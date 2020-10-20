@@ -1,0 +1,50 @@
+﻿body {
+    margin: 0;
+}
+
+.d-block {
+    height: 350px;
+    width: 770px;
+    
+}
+
+.jumbotron {
+  height:250px;
+}
+
+.emp1 {
+    color:black;
+    font-weight:bolder;
+}
+
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 30%;
+    background-color: #f1f1f1;
+    position: fixed;
+    height: 50%;
+    overflow: auto;
+}
+
+li a {
+    
+    display: block;
+    color: #000;
+    padding: 20px 16px;
+    text-decoration: none;
+    font-family: 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bold;
+}
+
+    li a.active {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    li a:hover:not(.active) {
+        background-color: #555;
+        color: white;
+    }
