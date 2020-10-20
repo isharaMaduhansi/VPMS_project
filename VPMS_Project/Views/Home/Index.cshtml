@@ -14,7 +14,7 @@
 
 </head>
 <body>
-    <section class="jumbotron text-center">
+    <section class="jumbotron text-center" style="height:200px" >
         <div class="container">
             <h2>Welcome to Bellvantage</h2>
             <p class="lead text-muted">
@@ -24,7 +24,7 @@
     </section>
 
 
-    <ul>
+    <ul style="position:absolute;height:350px">
         <li><a class="active" href="emp_manage/viewAllemp">Employee</a></li>
         <li><a href="AdminTimeS/ViewTimeSheet">Time Sheet</a></li>
         <li><a href="AdminAttendence/viewAttendence">Attendence</a></li>
@@ -82,7 +82,14 @@
         </div>
 
     </div>
+    <footer class="border-top card-footer text-muted text-center" style="background-color:gainsboro;position:absolute;width:100%;margin-bottom:0;white-space:nowrap;line-height:60px">
+        <div class="container">
 
+            &copy; @DateTime.Now.Year <font style="color:royalblue">&nbsp; Bellvantage (Pvt) Ltd.&nbsp;</font> All rights reserved.
+
+        </div>
+
+    </footer>
 
     <script src="~/lib/jquery/jquery.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>

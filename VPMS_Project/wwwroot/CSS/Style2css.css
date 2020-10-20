@@ -4,10 +4,10 @@
 
 ul {
     list-style-type: none;
-    margin:0;
+    margin: 0;
     padding: 0;
-    width: 20%;
-    background-color: #555;
+    width: 17%;
+    background-color: #393737;
     position: fixed;
     height: 100%;
     overflow: auto;
@@ -16,7 +16,7 @@ ul {
 li a {
     display: block;
     color: white;
-    background-color: #555;
+    background-color: #393737;
     padding: 10px 16px;
     text-decoration: none;
 }
@@ -32,9 +32,8 @@ li a {
     }
 
 #img {
-   width:235px;
+   width:200px;
    height:200px;
-   margin-top:10px;
    margin-bottom:10px;
    margin-left:10px;
    margin-right:10px;

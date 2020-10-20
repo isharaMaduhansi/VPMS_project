@@ -5,15 +5,16 @@
     Layout = "_EmpLayout";
 }
 
-    <ul>
-        <li><img src="~/images/e.png" id="img" /></li>
-        <li><a class="active" href="#home">View All Employees</a></li>
-        <li><a href="#news">Add Employee</a></li>
-        <li><a href="#contact">Edit Employee</a></li>
-        <li><a href="#about">Delete Employee</a></li>
-    </ul>
+    <nav class="navbar navbar-light justify-content-between  "  style="background-color: gainsboro;width:83%;position:absolute;margin-left:17%" >
+        <a class="navbar-brand">Navbar</a>
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </nav>
+    
 
-    <div style="margin-left:23%;padding:1px 16px;height:1000px;">
+    <div style="margin-left:20%;padding:1px 16px;height:1000px">
         <h2>Fixed Full-height Side Nav</h2>
         <h3>Try to scroll this area, and see how the sidenav sticks to the page</h3>
         <p>Notice that this div element has a left margin of 25%. This is because the side navigation is set to 25% width. If you remove the margin, the sidenav will overlay/sit on top of this div.</p>

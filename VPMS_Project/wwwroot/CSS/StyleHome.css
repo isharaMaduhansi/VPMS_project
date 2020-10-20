@@ -8,10 +8,6 @@
     
 }
 
-.jumbotron {
-  height:250px;
-}
-
 .emp1 {
     color:black;
     font-weight:bolder;
@@ -24,7 +20,7 @@ ul {
     padding: 0;
     width: 30%;
     background-color: #f1f1f1;
-    position: fixed;
+    position: absolute;
     height: 50%;
     overflow: auto;
 }
@@ -39,10 +35,10 @@ li a {
     font-weight: bold;
 }
 
-    li a.active {
-        background-color: #4CAF50;
-        color: white;
-    }
+li a.active {
+    background-color: #4CAF50;
+    color: white;
+}
 
     li a:hover:not(.active) {
         background-color: #555;
