@@ -1,29 +1,48 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using VPMS_Project.Models;
+@model IEnumerable<EmpModel>
+
 @{
     Layout = "_EmpLayout";
 }
 
-    <nav class="navbar navbar-light justify-content-between  "  style="background-color: gainsboro;width:83%;position:absolute;margin-left:17%" >
-        <a class="navbar-brand">Navbar</a>
+    <nav class="navbar navbar-light" style="background-color:gainsboro;margin-left:200px">
+        <a class="navbar-brand">
+        <h4 style="font-family:Cambria">Employees Of Bellvantage (Pvt) Ltd</h4></a>
         <form class="form-inline">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
     </nav>
-    
 
-    <div style="margin-left:20%;padding:1px 16px;height:1000px">
-        <h2>Fixed Full-height Side Nav</h2>
-        <h3>Try to scroll this area, and see how the sidenav sticks to the page</h3>
-        <p>Notice that this div element has a left margin of 25%. This is because the side navigation is set to 25% width. If you remove the margin, the sidenav will overlay/sit on top of this div.</p>
-        <p>Also notice that we have set overflow:auto to sidenav. This will add a scrollbar when the sidenav is too long (for example if it has over 50 links inside of it).</p>
-        <p>Some text..</p>
-        <p>Some text..</p>
-        <p>Some text..</p>
-        <p>Some text..</p>
-        <p>Some text..</p>
-        <p>Some text..</p>
-        <p>Some text..</p>
-    </div>
+
+    @*style="background-color: gainsboro;width:83%;position:relative;margin-left:230px;*@
+<div style="margin-left:20%;height:1000px;" >
+    <br>
+
+
+  
+    <br><br>
+    @foreach (var emp in Model)
+    {
+        <div class="table-responsive">
+            <table class="table table-hover" style="width:900px">
+                <thead>
+
+                </thead>
+                <tbody>
+                    <tr style="line-height:20px;">
+                        <th scope="row">@emp.EmpId</th>
+                        <td>@emp.EmpName <br> EmpId : @emp.EmpId</td>
+                        <td>@emp.Position</td>
+                        <td>Email: @emp.Email <br>Mobile: @emp.Mobile</td>
+                       <td><a href="/emp_manage/ViewEmpById/@emp.EmpId" class="btn btn-outline-secondary">View More</a></td>
+
+                    </tr>
+                </tbody>
+            </table>
+     </div>
+
+    }
+
+
+</div>

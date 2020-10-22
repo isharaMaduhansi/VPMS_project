@@ -1,0 +1,53 @@
+﻿@using VPMS_Project.Models;
+@model EmpModel
+
+
+@{
+    Layout = "_EmpLayout";
+}
+<nav class="navbar navbar-light" style="background-color:gainsboro;margin-left:200px">
+    <a class="navbar-brand">
+        <h4 style="font-family:Cambria">Employees Of Bellvantage (Pvt) Ltd</h4>
+    </a>
+    <form class="form-inline">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+</nav>
+
+<div style="margin-left:20%;height:1000px;">
+    <br> <br>
+
+    <section class="jumbotron text-center" style="height:400px;margin-bottom:100px;width:790px;margin-left:6%;background-color:ThreeDLightShadow">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col">
+                    <div class="card" style="width: 18rem;background-color:ThreeDLightShadow">
+                        <img class="card-img-top" src="~/images/e.png" alt="Card image cap">
+
+                    </div>
+
+
+                </div>
+                <div class="col">
+                    <div class="card" style="width: 18rem;background-color:ThreeDLightShadow;text-align:left">
+                        <div class="card-body">
+                            <h3 class="card-title">@Model.EmpName</h3>
+                            <h6 class="card-title" style="color:royalblue">Job title : @Model.Position</h6><hr>
+                            <p class="card-text">Employee Id : @Model.EmpName</p><hr>
+                            <p class="card-text">Emp. Email  : @Model.Email</p><hr>
+                            <p class="card-text">Emp. Mobile : @Model.Mobile</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <br> <br> <br>
+
+   
+
+</div>

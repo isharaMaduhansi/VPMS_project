@@ -13,76 +13,177 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
 </head>
-<body>
-    <section class="jumbotron text-center" style="height:200px" >
-        <div class="container">
-            <h2>Welcome to Bellvantage</h2>
-            <p class="lead text-muted">
-                Admin panal-Employee section
-            </p>
-        </div>
-    </section>
+<body style="background-image:url('images/new2.jpg');background-repeat:no-repeat;position:center;background-size:100% 100%;height:600px;width:90%;max-width:100%">
+    @*<section class="jumbotron text-center" style="height:100px;margin-bottom:100px">
+            <div class="container">
 
-
-    <ul style="position:absolute;height:350px">
-        <li><a class="active" href="emp_manage/viewAllemp">Employee</a></li>
-        <li><a href="AdminTimeS/ViewTimeSheet">Time Sheet</a></li>
-        <li><a href="AdminAttendence/viewAttendence">Attendence</a></li>
-        <li><a href="AdminAttendence/viewAttendence">Work Sheet</a></li>
-    </ul>
-
-    <div style="margin-left:35%;padding:1px 16px;margin-right:30px">
-
-        <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel" data-interval="2000">
-            <ol class="carousel-indicators">
-                <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-                <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="~/images/emp1.jpg" class="d-block" alt="empmanage">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5 class="emp1">Employee Manage</h5>
-                        <p class="emp1">Can view all employees details and manage them.</p>
-                    </div>
-                </div>
-
-                <div class="carousel-item">
-                    <img src="~/images/atten.jpg" class="d-block" alt="attendence">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5 class="emp1">Attendence view</h5>
-                        <p class="emp1">Can view attendence of all employees.</p>
-                    </div>
-                </div>
-
-                <div class="carousel-item">
-                    <img src="~/images/c.png" class="d-block" alt="time">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5 class="emp1">Time Sheet View</h5>
-                        <p class="emp1">Can view time sheets of all employees.</p>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img src="~/images/a.png" class="d-block" alt="time">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5 class="emp1">Work Sheet View</h5>
-                        <p class="emp1">Can view work sheets of all employees.</p>
-                    </div>
-                </div>
+                <h1 class="lead ">
+                    Admin panal-Employee section
+                </h1>
             </div>
-            <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
+        </section>*@
+
+
+    <div class="row">
+        @*<div class="row-cols-10"><div class="square" style="height: 80px;width: 300px;background-color: #555;opacity:0.3;border: 2px solid red;border-radius:10%;margin-left:10px;margin-top:20px;margin-bottom:10px"></div></div>*@
+        <div class="col">
+            <a href="emp_manage/viewAllemp">
+                <div class="card" style=" opacity: 0.8; border: 2px solid black; border-radius: 5%; margin-left: 80px; margin-top: 100px; margin-bottom: 60px;height:150px;width:180px">
+                    <img src="~/images/e.png" alt="Avatar" style="width:120px;height:90px;margin-left:26px;margin-bottom:10px;margin-top:10px">
+                    <div class="container">
+                        <font style="font-size:13pt">Employee Manage</font>
+
+                    </div>
+                </div></a>
+
+</div>
+
+        <div class="col"></div>
+        <div class="col">
+            <div class="col">
+                <a href="AdminTimeS/ViewTimeSheet">
+                    <div class="card" style=" opacity: 0.8; border: 2px solid black; border-radius: 5%; margin-top: 100px; margin-bottom: 60px;height:150px;width:180px">
+                        <img src="~/images/d.jpg" alt="Avatar" style="width:120px;height:90px;margin-left:26px;margin-bottom:10px;margin-top:10px">
+                        <div class="container">
+                            <font style="font-size:13pt;margin-left:25px">
+                                Time Sheet
+                            </font>
+
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+
+
+
+
+
+
         </div>
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
+
+
 
     </div>
-    <footer class="border-top card-footer text-muted text-center" style="background-color:gainsboro;position:absolute;width:100%;margin-bottom:0;white-space:nowrap;line-height:60px">
+
+
+    <div class="row">
+        @*<div class="row-cols-10"><div class="square" style="height: 80px;width: 300px;background-color: #555;opacity:0.3;border: 2px solid red;border-radius:10%;margin-left:10px;margin-top:20px;margin-bottom:10px"></div></div>*@
+        <div class="col">
+            <a href="AdminAttendence/viewAttendence">
+                <div class="card" style=" opacity: 0.8; border: 2px solid black; border-radius: 5%; margin-left: 80px; margin-top: 50px; margin-bottom: 60px;height:150px;width:180px">
+                    <img src="~/images/atten.jpg" alt="Avatar" style="width:120px;height:90px;margin-left:26px;margin-bottom:10px;margin-top:10px">
+                    <div class="container">
+                        <font style="font-size:13pt;margin-left:25px">
+                            Attendence
+                        </font>
+
+                    </div>
+                </div>
+            </a>
+
+        </div>
+
+        <div class="col"></div>
+        <div class="col">
+            <div class="col">
+                <a href="AdminAttendence/viewAttendence">
+                    <div class="card" style=" opacity: 0.8; border: 2px solid black; border-radius: 5%; margin-top: 50px; margin-bottom: 60px;height:150px;width:180px">
+                        <img src="~/images/c.png" alt="Avatar" style="width:120px;height:90px;margin-left:26px;margin-bottom:10px;margin-top:10px">
+                        <div class="container">
+                            <font style="font-size:13pt;margin-left:30px">Work Sheet</font>
+
+
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+
+
+
+
+
+
+        </div>
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
+
+
+
+    </div>
+
+
+
+
+    @*<ul style="position:absolute;height:350px;width:34%">
+
+            <li><a class="active" href="emp_manage/viewAllemp">Employee</a></li>
+            <li><a href="AdminTimeS/ViewTimeSheet">Time Sheet</a></li>
+            <li><a href="AdminAttendence/viewAttendence">Attendence</a></li>
+            <li><a href="AdminAttendence/viewAttendence">Work Sheet</a></li>
+        </ul>*@
+
+    @*<div style="margin-left:47%;padding:1px 16px;margin-right:30px;margin-bottom:25%;margin-top:12%">
+
+            <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel" data-interval="2000">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="~/images/emp1.jpg" class="d-block" alt="empmanage" style="height:400px;width:600px">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5 class="emp1">Employee Manage</h5>
+                            <p class="emp1">Can view all employees details and manage them.</p>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+                        <img src="~/images/atten.jpg" class="d-block" alt="attendence" style="height:400px;width:600px">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5 class="emp1">Attendence view</h5>
+                            <p class="emp1">Can view attendence of all employees.</p>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+                        <img src="~/images/c.png" class="d-block" alt="time" style="height:400px;width:600px">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5 class="emp1">Time Sheet View</h5>
+                            <p class="emp1">Can view time sheets of all employees.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="~/images/a.png" class="d-block" alt="time" style="height:400px;width:600px">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5 class="emp1">Work Sheet View</h5>
+                            <p class="emp1">Can view work sheets of all employees.</p>
+                        </div>
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+
+        </div>*@
+    <footer class="border-top card-footer text-muted text-center" style="background-color:gainsboro;position:absolute;width:100%;margin-top:33px;white-space:nowrap;line-height:60px">
         <div class="container">
 
             &copy; @DateTime.Now.Year <font style="color:royalblue">&nbsp; Bellvantage (Pvt) Ltd.&nbsp;</font> All rights reserved.

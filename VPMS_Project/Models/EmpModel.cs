@@ -13,5 +13,9 @@ namespace VPMS_Project.Models
 
         public String Position { get; set; }
 
+        public String Email { get; set; }
+
+        public int Mobile { get; set; }
+
     }
 }

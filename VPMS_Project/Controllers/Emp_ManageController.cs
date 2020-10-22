@@ -19,14 +19,14 @@ namespace VPMS_Project.Controllers
 
         public IActionResult ViewAllEmp()
         {
-            //return _empRepository.GetAllEmps();
-            return View();
+            var data= _empRepository.GetAllEmps();
+            return View(data);
         }
 
         public IActionResult ViewEmpById(int id)
         {
-           // return _empRepository.GetEmpById(id);
-            return View();
+           var data=_empRepository.GetEmpById(id);
+            return View(data);
         }
     }
 }

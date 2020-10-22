@@ -22,9 +22,9 @@ namespace VPMS_Project.Repository
         {
             return new List<EmpModel>()
             { 
-              new EmpModel(){ EmpId=1,EmpName="Ishara",Position="CEO"},
-               new EmpModel(){ EmpId=2,EmpName="Hansi",Position="MD"},
-                new EmpModel(){ EmpId=3,EmpName="Madu",Position="PM"},
+              new EmpModel(){ EmpId=1,EmpName="Ishara",Position="CEO",Email="ishara@gmail.com",Mobile=67},
+               new EmpModel(){ EmpId=2,EmpName="Hansi",Position="MD",Email="hansi@gmail.com",Mobile=456},
+                new EmpModel(){ EmpId=3,EmpName="Maduh",Position="PM",Email="shbwh@gmail.com",Mobile=677},
 
 
             };
