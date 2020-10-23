@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace VPMS_Project.Models
+namespace VPMS_Project.Data
 {
-    public class EmpModel
+    public class Employees
     {
+        [Key]
         public int EmpId { get; set; }
 
         public String EmpFName { get; set; }
@@ -17,6 +19,7 @@ namespace VPMS_Project.Models
         public String Email { get; set; }
 
         public int Mobile { get; set; }
+        public DateTime? Dob { get; set; }
 
 
     }

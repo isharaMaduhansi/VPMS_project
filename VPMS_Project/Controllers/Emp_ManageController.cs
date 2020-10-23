@@ -23,10 +23,23 @@ namespace VPMS_Project.Controllers
             return View(data);
         }
 
+        [Route("Employee-Details/{id}",Name="empDetailsRoute")]
         public IActionResult ViewEmpById(int id)
         {
+           
            var data=_empRepository.GetEmpById(id);
-            return View(data);
+             return View(data);
+        }
+
+        public IActionResult AddEmployee()
+        {
+             return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddEmployee(EmpModel empModel)
+        {
+            return View();
         }
     }
 }

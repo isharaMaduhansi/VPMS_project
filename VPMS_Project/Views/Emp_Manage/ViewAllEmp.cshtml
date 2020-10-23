@@ -1,11 +1,12 @@
-﻿@using VPMS_Project.Models;
-@model IEnumerable<EmpModel>
-
-@{
-    Layout = "_EmpLayout";
+﻿
+@{ 
+    ViewData["Title"] = "All Employees";
 }
 
-    <nav class="navbar navbar-light" style="background-color:gainsboro;margin-left:200px">
+@model IEnumerable<EmpModel>
+
+
+    <nav class="navbar navbar-light" style="background-color:gainsboro;margin-left:18%">
         <a class="navbar-brand">
         <h4 style="font-family:Cambria">Employees Of Bellvantage (Pvt) Ltd</h4></a>
         <form class="form-inline">
@@ -32,10 +33,10 @@
                 <tbody>
                     <tr style="line-height:20px;">
                         <th scope="row">@emp.EmpId</th>
-                        <td>@emp.EmpName <br> EmpId : @emp.EmpId</td>
+                        <td>@emp.EmpFName @emp.EmpLName<br><font style="color:royalblue;font-size:small;"> EmpId : @emp.EmpId</font></td>
                         <td>@emp.Position</td>
                         <td>Email: @emp.Email <br>Mobile: @emp.Mobile</td>
-                       <td><a href="/emp_manage/ViewEmpById/@emp.EmpId" class="btn btn-outline-secondary">View More</a></td>
+                       <td><a asp-route="empDetailsRoute"  asp-route-id="@emp.EmpId"  class="btn btn-outline-primary">View More</a></td>
 
                     </tr>
                 </tbody>

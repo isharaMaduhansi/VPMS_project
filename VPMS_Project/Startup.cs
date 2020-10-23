@@ -5,8 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using VPMS_Project.Data;
 
 namespace VPMS_Project
 {
@@ -17,8 +19,11 @@ namespace VPMS_Project
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-
-            services.AddRazorPages().AddRazorRuntimeCompilation();
+            services.AddDbContext<EmpStoreContext>(
+                
+                options => options.UseSqlServer("Server=.;Database=EmployeeStore;Integrated Security=True;")
+                );
+             services.AddRazorPages().AddRazorRuntimeCompilation();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -33,7 +38,11 @@ namespace VPMS_Project
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapDefaultControllerRoute();
+                // endpoints.MapDefaultControllerRoute();
+                endpoints.MapControllerRoute(
+                    name:"Default",
+                    pattern:"{controller=EmployeeHome}/{action=EmpIndex}/{id?}"
+                    );
             });
         }
     }

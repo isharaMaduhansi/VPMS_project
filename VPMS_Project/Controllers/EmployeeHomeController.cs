@@ -6,9 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace VPMS_Project.Controllers
 {
-    public class HomeController : Controller
+    public class EmployeeHomeController : Controller
     {
-        public IActionResult Index()
+        public IActionResult EmpIndex()
         {
             return View();
         }

@@ -1,11 +1,13 @@
-﻿@using VPMS_Project.Models;
+﻿
+
+@{
+    ViewData["Title"] = Model.EmpFName;
+}
+
 @model EmpModel
 
 
-@{
-    Layout = "_EmpLayout";
-}
-<nav class="navbar navbar-light" style="background-color:gainsboro;margin-left:200px">
+<nav class="navbar navbar-light" style="background-color:gainsboro;margin-left:18%">
     <a class="navbar-brand">
         <h4 style="font-family:Cambria">Employees Of Bellvantage (Pvt) Ltd</h4>
     </a>
@@ -18,7 +20,7 @@
 <div style="margin-left:20%;height:1000px;">
     <br> <br>
 
-    <section class="jumbotron text-center" style="height:400px;margin-bottom:100px;width:790px;margin-left:6%;background-color:ThreeDLightShadow">
+    <section class="jumbotron text-center" style="height:400px;margin-bottom:100px;width:790px;margin-left:6%;background-color:gainsboro">
 
         <div class="container">
 
@@ -32,13 +34,14 @@
 
                 </div>
                 <div class="col">
-                    <div class="card" style="width: 18rem;background-color:ThreeDLightShadow;text-align:left">
+                    <div class="card" style="width: 20rem;background-color:gainsboro;text-align:left;">
                         <div class="card-body">
-                            <h3 class="card-title">@Model.EmpName</h3>
+                            <h3 class="card-title">@Model.EmpFName @Model.EmpLName</h3>
                             <h6 class="card-title" style="color:royalblue">Job title : @Model.Position</h6><hr>
-                            <p class="card-text">Employee Id : @Model.EmpName</p><hr>
+                            <p class="card-text">Employee Id : @Model.EmpId</p><hr>
                             <p class="card-text">Emp. Email  : @Model.Email</p><hr>
                             <p class="card-text">Emp. Mobile : @Model.Mobile</p>
+                            
                         </div>
                     </div>
                 </div>
@@ -48,6 +51,8 @@
 
     <br> <br> <br>
 
-   
+
+
+
 
 </div>

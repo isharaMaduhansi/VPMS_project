@@ -1,0 +1,85 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@{
+    ViewData["Title"] = "Add New Employee";
+}
+@model EmpModel
+<div style="margin-left:20%;height:1000px;">
+
+    <br>
+
+    <h2 style="font-family:Calibri;color:forestgreen">Recruiting New Employees</h2><hr>
+
+    <div class="container" id="con" style="margin-top:30px;">
+        <form method="post" asp-action="AddEmployee" asp-controller="Emp_Manage">
+
+            <div class="row" style="margin-bottom:25px">
+                <div class="col-25" style="float: left; width: 25%; margin-top: 6px;">
+                    <label asp-for="EmpFName" style="margin-left:40px">First Name</label>
+                </div>
+                <div class="col-75" style="float: left; width: 65%; margin-top: 6px;margin-right:20px">
+                    <input asp-for="EmpFName" type="text" id="fname" name="firstname" placeholder="Employee First name..">
+                </div>
+            </div>
+            <div class="row" style="margin-bottom:25px">
+                <div class="col-25" style="float: left; width: 25%; margin-top: 6px;">
+                    <label asp-for="EmpLName" style="margin-left:40px">Last Name</label>
+                </div>
+                <div class="col-75" style="float: left; width: 65%; margin-top: 6px;margin-right:20px">
+                    <input asp-for="EmpLName" type="text" id="lname" name="lastname" placeholder="Employee last name..">
+                </div>
+            </div>
+            <div class="row" style="margin-bottom:25px">
+                <div class="col-25" style="float: left; width: 25%; margin-top: 6px;">
+                    <label asp-for="EmpId" style="margin-left:40px">Employee ID</label>
+                </div>
+                <div class="col-75" style="float: left; width: 65%; margin-top: 6px;margin-right:20px">
+                    <input asp-for="EmpId" type="text" id="eid" name="eid" placeholder="Employee ID..">
+                </div>
+            </div>
+            <div class="row" style="margin-bottom:25px">
+                <div class="col-25" style="float: left; width: 25%; margin-top: 6px;">
+                    <label asp-for="Position" style="margin-left:40px">Job Title</label>
+                </div>
+                <div class="col-75" style="float: left; width: 65%; margin-top: 6px;margin-right:20px">
+                    <select asp-for="Position" id="job" name="job">
+                        <option>Select Job Position</option>
+                        <option value="ceo">CEO</option>
+                        <option value="head">Head Of IT</option>
+                        <option value="pm">Project Manager</option>
+                        <option value="pam">Project Account Manager</option>
+                        <option value="archi">System Architect</option>
+                        <option value="leader">Team Leader</option>
+                        <option value="developer">Developer</option>
+                        <option value="ba">BA</option>
+                        <option value="qa">QA</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row" style="margin-bottom:25px">
+                <div class="col-25" style="float: left; width: 25%; margin-top: 6px;">
+                    <label asp-for="Email" style="margin-left:40px">Email</label>
+                </div>
+                <div class="col-75" style="float: left; width: 65%; margin-top: 6px;margin-right:20px">
+                    <input asp-for="Email" type="text" id="email" name="email" placeholder="Employee email..">
+                </div>
+            </div>
+            <div class="row" style="margin-bottom:25px">
+                <div class="col-25" style="float: left; width: 25%; margin-top: 6px;">
+                    <label asp-for="Mobile" style="margin-left:40px">Mobile Num</label>
+                </div>
+                <div class="col-75" style="float: left; width: 65%; margin-top: 6px;margin-right:20px">
+                    <input asp-for="Mobile" type="text" id="phone" name="phone" placeholder="Employee Mobile..">
+                </div>
+            </div>
+          
+            <div class="row" style="margin-top:35px">
+                <input type="submit" value="Add Employee" style="margin-left:70%;width:150px">
+            </div>
+        </form>
+    </div>
+
+
+</div>
