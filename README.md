@@ -1,3 +1,3 @@
 # VPMS_project
 
-Group Project
+Group Project- Virtual project management system
