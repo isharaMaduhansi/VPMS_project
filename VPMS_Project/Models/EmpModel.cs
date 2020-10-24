@@ -8,6 +8,7 @@ namespace VPMS_Project.Models
     public class EmpModel
     {
         public int EmpId { get; set; }
+    
 
         public String EmpFName { get; set; }
         public String EmpLName { get; set; }
@@ -17,6 +18,7 @@ namespace VPMS_Project.Models
         public String Email { get; set; }
 
         public int Mobile { get; set; }
+        public DateTime? Dob { get; set; }
 
 
     }

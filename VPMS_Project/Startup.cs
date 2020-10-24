@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using VPMS_Project.Data;
+using VPMS_Project.Repository;
 
 namespace VPMS_Project
 {
@@ -24,6 +25,7 @@ namespace VPMS_Project
                 options => options.UseSqlServer("Server=.;Database=EmployeeStore;Integrated Security=True;")
                 );
              services.AddRazorPages().AddRazorRuntimeCompilation();
+            services.AddScoped<EmpRepository, EmpRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

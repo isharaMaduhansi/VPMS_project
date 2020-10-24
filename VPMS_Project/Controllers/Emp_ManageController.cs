@@ -12,33 +12,40 @@ namespace VPMS_Project.Controllers
     {
         private readonly EmpRepository _empRepository = null;
 
-        public Emp_ManageController() 
+        public Emp_ManageController(EmpRepository empRepository) 
         {
-            _empRepository = new EmpRepository();
+            _empRepository = empRepository;
         }
 
-        public IActionResult ViewAllEmp()
+        public async Task<IActionResult> ViewAllEmp()
         {
-            var data= _empRepository.GetAllEmps();
+            var data= await _empRepository.GetAllEmps();
             return View(data);
         }
 
         [Route("Employee-Details/{id}",Name="empDetailsRoute")]
-        public IActionResult ViewEmpById(int id)
+        public async Task<IActionResult> ViewEmpById(int id)
         {
            
-           var data=_empRepository.GetEmpById(id);
+           var data=await _empRepository.GetEmpById(id);
              return View(data);
         }
 
-        public IActionResult AddEmployee()
+        public IActionResult AddEmployee(bool isSucceess=false,int empId = 0)
         {
-             return View();
+            ViewBag.IsSuccess = isSucceess;
+            ViewBag.bookId = empId;
+            return View();
         }
 
         [HttpPost]
-        public IActionResult AddEmployee(EmpModel empModel)
+        public async Task<IActionResult> AddEmployee(EmpModel empModel)
         {
+           int id= await _empRepository.AddEmp(empModel);
+            if (id > 0)
+            {
+                return RedirectToAction(nameof(AddEmployee),new { isSucceess =true, empId =id });
+            }
             return View();
         }
     }

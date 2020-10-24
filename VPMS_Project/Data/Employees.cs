@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -10,6 +11,7 @@ namespace VPMS_Project.Data
     {
         [Key]
         public int EmpId { get; set; }
+      
 
         public String EmpFName { get; set; }
         public String EmpLName { get; set; }

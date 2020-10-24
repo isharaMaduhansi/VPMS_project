@@ -17,33 +17,35 @@
 
 
     @*style="background-color: gainsboro;width:83%;position:relative;margin-left:230px;*@
-<div style="margin-left:20%;height:1000px;" >
+<div style="margin-left:20%;height:1000px;">
     <br>
 
 
-  
+
     <br><br>
     @foreach (var emp in Model)
     {
         <div class="table-responsive">
-            <table class="table table-hover" style="width:900px">
-                <thead>
+                <table class="table table-hover table-bordered" style="width:900px">
+                    <thead>
 
-                </thead>
-                <tbody>
-                    <tr style="line-height:20px;">
-                        <th scope="row">@emp.EmpId</th>
-                        <td>@emp.EmpFName @emp.EmpLName<br><font style="color:royalblue;font-size:small;"> EmpId : @emp.EmpId</font></td>
-                        <td>@emp.Position</td>
-                        <td>Email: @emp.Email <br>Mobile: @emp.Mobile</td>
-                       <td><a asp-route="empDetailsRoute"  asp-route-id="@emp.EmpId"  class="btn btn-outline-primary">View More</a></td>
+                    </thead>
+                    <tbody>
+                        <tr style="line-height:20px;">
+                            <th scope="row">@emp.EmpId</th>
+                            <td>@emp.EmpFName @emp.EmpLName<br><font style="color:royalblue;font-size:small;"> EmpId : @emp.EmpId</font></td>
+                            <td>@emp.Position</td>
+                            <td>Email: @emp.Email <br>Mobile: @emp.Mobile</td>
+                            <td><a asp-route="empDetailsRoute" asp-route-id="@emp.EmpId" class="btn btn-outline-primary">View More</a></td>
 
-                    </tr>
-                </tbody>
-            </table>
-     </div>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
 
     }
+
 
 
 </div>
