@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using VPMS_Project.Models;
 using VPMS_Project.Repository;
 
@@ -11,10 +12,12 @@ namespace VPMS_Project.Controllers
     public class Emp_ManageController : Controller
     {
         private readonly EmpRepository _empRepository = null;
+        private readonly JobRepository _jobRepository = null;
 
-        public Emp_ManageController(EmpRepository empRepository) 
+        public Emp_ManageController(EmpRepository empRepository, JobRepository jobRepository) 
         {
             _empRepository = empRepository;
+            _jobRepository = jobRepository;
         }
 
         public async Task<IActionResult> ViewAllEmp()
@@ -31,11 +34,14 @@ namespace VPMS_Project.Controllers
              return View(data);
         }
 
-        public IActionResult AddEmployee(bool isSucceess=false,int empId = 0)
+        public async Task<IActionResult> AddEmployee(bool isSucceess=false,int empId = 0)
         {
+            var emp = new EmpModel();
+
+            ViewBag.JobType = new SelectList(await _jobRepository.GetJobTypes(),"Id","name");
             ViewBag.IsSuccess = isSucceess;
             ViewBag.empId = empId;
-            return View();
+            return View(emp);
         }
 
         [HttpPost]
@@ -51,6 +57,7 @@ namespace VPMS_Project.Controllers
                     return RedirectToAction(nameof(AddEmployee), new { isSucceess = true, empId = id });
                 }
             }
+            ViewBag.JobType = new SelectList(await _jobRepository.GetJobTypes(), "Id", "Name");
             return View();
         }
     }

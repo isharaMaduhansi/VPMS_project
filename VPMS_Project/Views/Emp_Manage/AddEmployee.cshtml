@@ -1,6 +1,4 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using VPMS_Project.Enums;
 
 @{
     ViewData["Title"] = "Add New Employee";
@@ -36,16 +34,7 @@
             </div>
             <div class="col-75" style="float: left; width: 65%; margin-top: 6px;margin-right:20px">
                 <select asp-for="Position" id="job" name="job">
-                    <option>Select Job Position</option>
-                    <option value="ceo">CEO</option>
-                    <option value="head">Head Of IT</option>
-                    <option value="pm">Project Manager</option>
-                    <option value="pam">Project Account Manager</option>
-                    <option value="archi">System Architect</option>
-                    <option value="leader">Team Leader</option>
-                    <option value="developer">Developer</option>
-                    <option value="ba">BA</option>
-                    <option value="qa">QA</option>
+                    
                 </select>
             </div>
         </div>*@
@@ -69,29 +58,29 @@
                 </div>
 
                 <div class="form-group" style="margin-top:20px">
-                    <label asp-for="Position">Job Title</label>
-                    <input asp-for="Position" class="form-control" placeholder="Job Title" />
-                    <span asp-validation-for="Position" class="text-danger"></span>
+                    <label asp-for="JobId">Job Title</label>
+                    <select asp-for="JobId" class="form-control" asp-items="ViewBag.JobType">
+                        <option value="">Choose the Job Title</option>
+                    </select>
+                    <span asp-validation-for="JobId" class="text-danger"></span>
                 </div>
 
                
 
-                <div class="row">
-                    <div class="col">
+                
                         <div class="form-group">
                             <label asp-for="Email">Email</label>
                             <input asp-for="Email" class="form-control" placeholder="Employee email" />
                             <span asp-validation-for="Email" class="text-danger"></span>
                         </div>
-                    </div>
-                    <div class="col">
+                 
+                    
                         <div class="form-group">
                             <label asp-for="Mobile">Mobile</label>
                             <input asp-for="Mobile" class="form-control" placeholder="Employee Mobile" />
                             <span asp-validation-for="Mobile" class="text-danger"></span>
                         </div>
-                    </div>
-                </div>
+                  
 
                 <div class="row">
                     <div class="col">

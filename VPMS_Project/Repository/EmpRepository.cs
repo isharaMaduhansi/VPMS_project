@@ -31,7 +31,8 @@ namespace VPMS_Project.Repository
                      EmpId=emp.EmpId,
                      EmpFName=emp.EmpFName,
                      EmpLName=emp.EmpLName,
-                     Position=emp.Position,
+                     JobId=emp.JobId,
+                     JobTypes=emp.JobTypes.Name,
                      Email=emp.Email,
                      Mobile=emp.Mobile,
                      Dob=emp.Dob,
@@ -48,41 +49,35 @@ namespace VPMS_Project.Repository
 
         public async Task<EmpModel> GetEmpById(int id)
         {
-            var employee = await _context.Employees.FindAsync(id);
-            if (employee!=null)
+
+            return await _context.Employees.Where(x => x.EmpId == id).Select(employee => new EmpModel()
             {
-                var emp = new EmpModel() {
-                    EmpId = employee.EmpId,
-                    EmpFName = employee.EmpFName,
-                    EmpLName = employee.EmpLName,
-                    Position = employee.Position,
-                    Email = employee.Email,
-                    Mobile = employee.Mobile,
-                    Address=employee.Address,
-                    Dob=employee.Dob,
-                    WorkSince=employee.WorkSince
-                   
+                EmpId = employee.EmpId,
+                EmpFName = employee.EmpFName,
+                EmpLName = employee.EmpLName,
+                JobId = employee.JobId,
+                JobTypes = employee.JobTypes.Name,
+                Email = employee.Email,
+                Mobile = employee.Mobile,
+                Address = employee.Address,
+                Dob = employee.Dob,
+                WorkSince = employee.WorkSince
+            }).FirstOrDefaultAsync();
 
-           };
+          }
 
-                return emp;
-            
-            }
-            return null;
-        }
-
-        public List<EmpModel> GetEmpByName(String name,String Job)
-        {
-            return DataSource().Where(x => x.EmpFName.Contains(name) || x.Position.Contains(Job)).ToList();
-        }
+        //public List<EmpModel> GetEmpByName(String name,String Job)
+        //{
+        //    return DataSource().Where(x => x.EmpFName.Contains(name) || x.Position.Contains(Job)).ToList();
+        //}
 
         public async Task<int> AddEmp(EmpModel empModel)
         {
             var newEmp = new Employees() {
 
-                EmpFName=empModel.EmpFName,
-                EmpLName=empModel.EmpLName,
-                Position=empModel.Position,
+                EmpFName = empModel.EmpFName,
+                EmpLName = empModel.EmpLName,
+                JobId = empModel.JobId,
                 Email=empModel.Email,
                 Address=empModel.Address,
                 Dob=empModel.Dob,
@@ -100,17 +95,7 @@ namespace VPMS_Project.Repository
         }
 
 
-        private List<EmpModel> DataSource()
-        {
-            return new List<EmpModel>()
-            { 
-              new EmpModel(){ EmpId=1,EmpFName="Ishara",EmpLName="gyhbggh",Position="CEO",Email="ishara@gmail.com",Mobile=67},
-               new EmpModel(){ EmpId=2,EmpFName="Hansi",EmpLName="vgvh",Position="MD",Email="hansi@gmail.com",Mobile=456},
-                new EmpModel(){ EmpId=3,EmpFName="Maduh",EmpLName="bhj",Position="PM",Email="shbwh@gmail.com",Mobile=677},
-
-
-            };
-        }
+       
 
         
     }

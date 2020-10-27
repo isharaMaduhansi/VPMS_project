@@ -7,6 +7,7 @@
 @model EmpModel
 
 
+
 <nav class="navbar navbar-light" style="background-color:gainsboro;margin-left:18%;position:relative;width:82%">
     <a class="navbar-brand">
         <h4 style="font-family:Cambria">Employees Of Bellvantage (Pvt) Ltd</h4>
@@ -30,22 +31,18 @@
                          <img class="card-img-top" src="~/images/e.png" alt="Card image cap">
 
                      </div>
-
-
-
-
-                 </div>
+               </div>
                  <div class="col">
                      <div class="card" style="width: 23rem;background-color:#808080;text-align:left;font-family:Arial;color:white">
                          <div class="card-body">
                              <h4 class="card-title">@Model.EmpFName @Model.EmpLName</h4>
-                             <h6 class="card-title">@Model.Position</h6>
+                             <h6 class="card-title">@Model.JobTypes</h6>
                              <h7 class="card-title">Work since - @Model.WorkSince</h7><hr>
                              <p class="card-text">EmpId   -<font style="color:black">  @Model.EmpId</font></p><hr>
                              <p class="card-text">Email   -<font style="color:black">  @Model.Email</font></p><hr>
                              <p class="card-text">Mobile  -<font style="color:black">  @Model.Mobile</font></p><hr>
                              <p class="card-text">Address -<font style="color:black">  @Model.Address</font></p><hr>
-                             <p class="card-text">DOB     -<font style="color:black">  @Model.Dob</font></p><hr>
+                             <p class="card-text">DOB     -<font style="color:black" >  @Model.Dob</font></p><hr>
 
 
                          </div>

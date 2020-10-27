@@ -16,7 +16,7 @@ namespace VPMS_Project.Data
         public String EmpFName { get; set; }
         public String EmpLName { get; set; }
 
-        public String Position { get; set; }
+        public int JobId { get; set; }
 
         public String Email { get; set; }
 
@@ -24,6 +24,8 @@ namespace VPMS_Project.Data
         public DateTime? Dob { get; set; }
         public DateTime? WorkSince{ get; set; }
         public String Address { get; set; }
+
+        public JobTypes JobTypes { get; set; }
 
 
     }
