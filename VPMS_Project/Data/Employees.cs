@@ -22,6 +22,8 @@ namespace VPMS_Project.Data
 
         public int Mobile { get; set; }
         public DateTime? Dob { get; set; }
+        public DateTime? WorkSince{ get; set; }
+        public String Address { get; set; }
 
 
     }

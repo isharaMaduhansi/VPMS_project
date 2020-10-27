@@ -34,17 +34,22 @@ namespace VPMS_Project.Controllers
         public IActionResult AddEmployee(bool isSucceess=false,int empId = 0)
         {
             ViewBag.IsSuccess = isSucceess;
-            ViewBag.bookId = empId;
+            ViewBag.empId = empId;
             return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> AddEmployee(EmpModel empModel)
         {
-           int id= await _empRepository.AddEmp(empModel);
-            if (id > 0)
+          
+            if(ModelState.IsValid)
             {
-                return RedirectToAction(nameof(AddEmployee),new { isSucceess =true, empId =id });
+                int id = await _empRepository.AddEmp(empModel);
+
+                if (id > 0)
+                {
+                    return RedirectToAction(nameof(AddEmployee), new { isSucceess = true, empId = id });
+                }
             }
             return View();
         }

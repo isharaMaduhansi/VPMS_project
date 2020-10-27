@@ -34,7 +34,9 @@ namespace VPMS_Project.Repository
                      Position=emp.Position,
                      Email=emp.Email,
                      Mobile=emp.Mobile,
-                     Dob=emp.Dob
+                     Dob=emp.Dob,
+                     Address=emp.Address
+                     
                     
                     });
                 
@@ -56,7 +58,10 @@ namespace VPMS_Project.Repository
                     Position = employee.Position,
                     Email = employee.Email,
                     Mobile = employee.Mobile,
-                    Dob = employee.Dob
+                    Address=employee.Address,
+                    Dob=employee.Dob,
+                    WorkSince=employee.WorkSince
+                   
 
            };
 
@@ -79,7 +84,11 @@ namespace VPMS_Project.Repository
                 EmpLName=empModel.EmpLName,
                 Position=empModel.Position,
                 Email=empModel.Email,
-                Mobile=empModel.Mobile,
+                Address=empModel.Address,
+                Dob=empModel.Dob,
+                WorkSince=DateTime.UtcNow,
+                Mobile=empModel.Mobile.HasValue? empModel.Mobile.Value:0,
+                
              };
 
            await _context.Employees.AddAsync(newEmp);

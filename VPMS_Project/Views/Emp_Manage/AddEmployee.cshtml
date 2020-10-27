@@ -14,10 +14,10 @@
 
         <h2 style="font-family:Calibri;color:forestgreen">Recruiting New Employees</h2><hr>
        
-        @if (ViewBag.IsSuccess)
+        @if (ViewBag.IsSuccess==true)
         { 
          <div class="alert alert-success alert-dismissible fade show container" role="alert">
-        <strong>Congragulations!</strong> You added a new employee successfully.<br><a asp-route="empDetailsRoute"  asp-route-id="@ViewBag.bookId" >Click here</a> to view the details.
+        <strong>Congragulations!</strong> You added a new employee successfully.<br><a asp-route="empDetailsRoute"  asp-route-id="@ViewBag.empId" >Click here</a> to view the details.
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -51,7 +51,7 @@
         </div>*@
         
 
-        <div class="container" id="con" style="margin-top:60px;height:600px">
+        <div class="container" id="con" style="margin-top:60px;height:700px">
             <form method="post" asp-action="AddEmployee" asp-controller="Emp_Manage">
 
 
@@ -59,29 +59,57 @@
                     <div class="col">
                         <label asp-for="EmpFName">First Name</label>
                         <input asp-for="EmpFName" type="text" class="form-control" placeholder="First name">
+                        <span asp-validation-for="EmpFName" class="text-danger"></span>
                     </div>
                     <div class="col">
                         <label asp-for="EmpLName">Last Name</label>
                         <input asp-for="EmpLName" type="text" class="form-control" placeholder="Last name">
+                        <span asp-validation-for="EmpLName" class="text-danger"></span>
                     </div>
                 </div>
 
                 <div class="form-group" style="margin-top:20px">
                     <label asp-for="Position">Job Title</label>
                     <input asp-for="Position" class="form-control" placeholder="Job Title" />
+                    <span asp-validation-for="Position" class="text-danger"></span>
                 </div>
 
+               
 
-                <div class="form-group">
-                    <label asp-for="Email">Email</label>
-                    <input asp-for="Email" class="form-control" placeholder="Employee email" />
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label asp-for="Email">Email</label>
+                            <input asp-for="Email" class="form-control" placeholder="Employee email" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label asp-for="Mobile">Mobile</label>
+                            <input asp-for="Mobile" class="form-control" placeholder="Employee Mobile" />
+                            <span asp-validation-for="Mobile" class="text-danger"></span>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label asp-for="Mobile">Mobile</label>
-                    <input asp-for="Mobile" class="form-control" placeholder="Employee Mobile" />
-                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label asp-for="Dob">Date Of Birth</label>
+                            <input asp-for="Dob" class="form-control" placeholder="Employee Mobile" />
+                            <span asp-validation-for="Dob" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label asp-for="Address">Address</label>
+                            <textarea asp-for="Address" class="form-control" placeholder="Employee Address" ></textarea>
+                            <span asp-validation-for="Address" class="text-danger"></span>
+                        </div>
 
+                    </div>
+                </div>
                 <div class="form-group" style="margin-top:50px">
 
                     <input type="submit" value="Add Employee" class="btn btn-primary" />

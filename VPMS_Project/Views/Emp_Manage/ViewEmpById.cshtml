@@ -20,14 +20,14 @@
 <div style="margin-left:20%;height:800px;">
     <br> <br>
 
-         <section class="jumbotron text-center" style="height:460px;position:relative;margin-bottom:30px;width:95%;margin-left:2%;background-color:whitesmoke">
+         <section class="jumbotron text-center" style="height:700px;position:relative;margin-bottom:30px;width:95%;margin-left:2%;background-color:whitesmoke">
 
 
 
              <div class="row">
                  <div class="col">
                      <div class="card" style="width: 22rem;background-color:#393737;border-width:medium">
-                         <img class="card-img-top" src="~/images/e.png" alt="Card image cap" >
+                         <img class="card-img-top" src="~/images/e.png" alt="Card image cap">
 
                      </div>
 
@@ -36,150 +36,154 @@
 
                  </div>
                  <div class="col">
-                     <div class="card" style="width: 23rem;background-color:#393737;text-align:left;font-family:Arial;color:white">
+                     <div class="card" style="width: 23rem;background-color:#808080;text-align:left;font-family:Arial;color:white">
                          <div class="card-body">
                              <h4 class="card-title">@Model.EmpFName @Model.EmpLName</h4>
-                             <h6 class="card-title" >@Model.Position</h6>
-                             <h7 class="card-title">Work since - 2017/nov/15</h7><hr>
-                             <p class="card-text">EmpId  -<font style="color:forestgreen">  @Model.EmpId</font></p><hr>
-                             <p class="card-text">Email  -<font style="color:forestgreen">  @Model.Email</font></p><hr>
-                             <p class="card-text">Mobile -<font style="color:forestgreen">  @Model.Mobile</font></p>
+                             <h6 class="card-title">@Model.Position</h6>
+                             <h7 class="card-title">Work since - @Model.WorkSince</h7><hr>
+                             <p class="card-text">EmpId   -<font style="color:black">  @Model.EmpId</font></p><hr>
+                             <p class="card-text">Email   -<font style="color:black">  @Model.Email</font></p><hr>
+                             <p class="card-text">Mobile  -<font style="color:black">  @Model.Mobile</font></p><hr>
+                             <p class="card-text">Address -<font style="color:black">  @Model.Address</font></p><hr>
+                             <p class="card-text">DOB     -<font style="color:black">  @Model.Dob</font></p><hr>
 
 
                          </div>
                      </div>
                  </div>
              </div>
-         </section>
-         <div class="container">
-            <table class="table ">
-               
-                <tbody>
-                    <tr style="line-height:60px">
-                        <td scope="row" style="text-align:center;vertical-align:middle">
-                            <a asp-controller="AdminAttendence" asp-action="ViewAttendence" style="color:white;background-color:forestgreen" class="btn btn-outline-success">Attendence Details</a>
-                            
-                        </td>
+             <div class="container">
+                 <table class="table ">
+
+                     <tbody>
+                         <tr style="line-height:60px">
+                             <td scope="row" style="text-align:center;vertical-align:middle">
+                                 <a asp-controller="AdminAttendence" asp-action="ViewAttendence" style="color:white;background-color:forestgreen" class="btn btn-outline-success">Attendence Details</a>
+
+                             </td>
 
 
-                        <td rowspan="3" width="70%">
+                             <td rowspan="3" width="80%">
 
-                            <div class="accordion" id="accordionExample">
-                                <div class="card">
-                                    <div class="card-header" id="headingOne">
-                                        <h5 class="mb-0">
-                                            <button class="btn btn-link" style="color:forestgreen;font-family:Cambria" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                               <b>Current Projects</b>
-                                            </button>
-                                        </h5>
-                                    </div>
+                                 <div class="accordion" id="accordionExample">
+                                     <div class="card">
+                                         <div class="card-header" id="headingOne" style="background-color:#808080">
+                                             <h5 class="mb-0">
+                                                 <button class="btn btn-link" style="color:white;font-family:Cambria;" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                     <b>Current Projects</b>
+                                                 </button>
+                                             </h5>
+                                         </div>
 
-                                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                                       
-                                        <div class="row">
-                                            <div class="col">
-                                                <div class="card-body">
-                                                    <div class="card" style="width: 10rem;height:5rem;background-color:whitesmoke" ">
-                                                        <div class="card-body">
-                                                            <h6 class="card-title">V-PMS Project</h6>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
 
-                                            </div>
-                                            <div class="col">
-                                                <div class="card-body">
-                                                    <div class="card" style="width: 10rem;height:5rem;background-color:whitesmoke" >
-                                                        <div class="card-body">
-                                                            <h6 class="card-title">Smart Office Project</h6>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                             <div class="row">
+                                                 <div class="col">
+                                                     <div class="card-body">
+                                                         <div class="card" style="width: 10rem;height:5rem;background-color:whitesmoke">
+                                                             <div class="card-body">
+                                                                 <h6 class="card-title">V-PMS Project</h6>
+                                                             </div>
+                                                         </div>
+                                                     </div>
 
-                                            </div>
-                                            <div class="col">
-                                                <a href="#" style="color:forestgreen;font-size:smaller">View More</a>
-                                            </div>
+                                                 </div>
+                                                 <div class="col">
+                                                     <div class="card-body">
+                                                         <div class="card" style="width: 10rem;height:5rem;background-color:whitesmoke">
+                                                             <div class="card-body">
+                                                                 <h6 class="card-title">Smart Office Project</h6>
+                                                             </div>
+                                                         </div>
+                                                     </div>
 
-
-                                            </div>
+                                                 </div>
+                                                 <div class="col">
+                                                     <a href="#" style="color:forestgreen;font-size:smaller">View More</a>
+                                                 </div>
 
 
-                                        </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-header" id="headingTwo">
-                                        <h5 class="mb-0">
-                                            <button class="btn btn-link collapsed" style="color:forestgreen;font-family:Cambria" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="color:forestgreen">
-                                                <b>Current Tasks</b>
-                                            </button>
-                                        </h5>
-                                    </div>
-                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col">
-                                                    <div class="card-body" >
-                                                        <div class="card" style="width: 10rem;height:6rem;background-color:whitesmoke">
-                                                            <div class="card-body" >
-                                                                <h6 class="card-title">Login part- VPMS</h6>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                                <div class="col">
-                                                    <div class="card-body">
-                                                        <div class="card" style="width: 10rem;height:6rem;background-color:whitesmoke">
-                                                            <div class="card-body">
-                                                                <h6 class="card-title">Leave part- Smart Office</h6>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                                <div class="col">
-                                                    <a href="#" style="color:forestgreen;font-size:smaller">View More</a>
-                                                </div>
+                                             </div>
 
 
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            
-                             
-                            </div>
+                                         </div>
+                                     </div>
+                                     <div class="card">
+                                         <div class="card-header" id="headingTwo" style="background-color:#808080">
+                                             <h5 class="mb-0">
+                                                 <button class="btn btn-link collapsed" style="color:white;font-family:Cambria" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="color:forestgreen">
+                                                     <b>Current Tasks</b>
+                                                 </button>
+                                             </h5>
+                                         </div>
+                                         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                             <div class="card-body">
+                                                 <div class="row">
+                                                     <div class="col">
+                                                         <div class="card-body">
+                                                             <div class="card" style="width: 8rem;height:6rem;background-color:whitesmoke">
+                                                                 <div class="card-body">
+                                                                     <h6 class="card-title">Login part- VPMS</h6>
+                                                                 </div>
+                                                             </div>
+                                                         </div>
+
+                                                     </div>
+                                                     <div class="col">
+                                                         <div class="card-body">
+                                                             <div class="card" style="width: 8rem;height:6rem;background-color:whitesmoke">
+                                                                 <div class="card-body">
+                                                                     <h6 class="card-title">Leave part- Smart Office</h6>
+                                                                 </div>
+                                                             </div>
+                                                         </div>
+
+                                                     </div>
+                                                     
+                                                         <div class="col">
+                                                             <a href="#" style="color:forestgreen;font-size:smaller">View More</a>
+                                                         </div>
+
+
+                                                     </div>
+                                                 </div>
+                                         </div>
+                                     </div>
+
+
+                                 </div>
 
 
 
 
 
-                        </td>
-                       
-                       
-                    </tr>
-                    <tr style="line-height:60px">
-                        <td scope="row" style="text-align:center;vertical-align:middle">
-                            <a asp-controller="AdminTimeS" asp-action="ViewTimeSheet"  style="color:white;background-color:forestgreen" class="btn btn-outline-success">View Time Sheets</a>
+                             </td>
 
-                        </td>
-                       
-                        
-                      
-                    </tr>
-                    <tr style="line-height:60px">
-                        <td scope="row" style="text-align:center;vertical-align:middle">
-                            <a style="color:white;background-color:forestgreen" asp-controller="AdminTimeS" asp-action="ViewTimeSheet" class="btn btn-outline-success">View Work Sheets</a>
-                       </td>
-                        
-                    
-                    </tr>
-                </tbody>
-            </table>
+
+                         </tr>
+                         <tr style="line-height:60px">
+                             <td scope="row" style="text-align:center;vertical-align:middle">
+                                 <a asp-controller="AdminTimeS" asp-action="ViewTimeSheet" style="color:white;background-color:forestgreen" class="btn btn-outline-success">View Time Sheets</a>
+
+                             </td>
+
+
+
+                         </tr>
+                         <tr style="line-height:60px">
+                             <td scope="row" style="text-align:center;vertical-align:middle">
+                                 <a style="color:white;background-color:forestgreen" asp-controller="AdminTimeS" asp-action="ViewTimeSheet" class="btn btn-outline-success">View Work Sheets</a>
+                             </td>
+
+
+                         </tr>
+                     </tbody>
+                 </table>
              </div>
 
 
+         </section>
+         
 
         </div>
    

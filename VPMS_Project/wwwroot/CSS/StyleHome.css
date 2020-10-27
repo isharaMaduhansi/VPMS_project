@@ -24,7 +24,7 @@ ul {
     overflow: auto;
 }
 
-li a {
+/*li a {
     
     display: block;
     color: #000;
@@ -42,5 +42,5 @@ li a.active {
     li a:hover:not(.active) {
         background-color: #555;
         color: white;
-    }
+    }*/
 
