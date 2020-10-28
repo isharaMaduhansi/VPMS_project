@@ -45,55 +45,66 @@
 
 
                 <div class="row">
-                    <div class="col">
+                    <div class="col" >
                         <label asp-for="EmpFName">First Name</label>
-                        <input asp-for="EmpFName" type="text" class="form-control" placeholder="First name">
+                        <input asp-for="EmpFName" type="text" class="form-control" placeholder="First name" style="height:45px">
                         <span asp-validation-for="EmpFName" class="text-danger"></span>
                     </div>
                     <div class="col">
                         <label asp-for="EmpLName">Last Name</label>
-                        <input asp-for="EmpLName" type="text" class="form-control" placeholder="Last name">
+                        <input asp-for="EmpLName" type="text" class="form-control" placeholder="Last name" style="height:45px">
                         <span asp-validation-for="EmpLName" class="text-danger"></span>
                     </div>
                 </div>
 
                 <div class="form-group" style="margin-top:20px">
-                    <label asp-for="JobId">Job Title</label>
-                    <select asp-for="JobId" class="form-control" asp-items="ViewBag.JobType">
+                    <label asp-for="JobTitle">Job Title</label>
+                    <select asp-for="JobTitle" class="form-control" style="height:45px">
                         <option value="">Choose the Job Title</option>
+                        <option value="Project Manager">Project Manager</option>
+                        <option value="Head Of IT">Head Of IT</option>
+                        <option value="CEO">CEO</option>
+                        <option value="Project Account Manager">Project Account Manager</option>
+                        <option value="Team Leader">Team Leader</option>
+                        <option value="System Architect">System Architect</option>
+                        <option value="Senior Software Engineer">Senior Software Engineer</option>
+                        <option value="Software Engineer">Software Engineer</option>
+                        <option value="Quality Assuarance">QA</option>
+                        <option value="Business quality Assurance">BQA</option>
+
                     </select>
-                    <span asp-validation-for="JobId" class="text-danger"></span>
+                    <span asp-validation-for="JobTitle" class="text-danger"></span>
                 </div>
 
-               
-
                 
-                        <div class="form-group">
-                            <label asp-for="Email">Email</label>
-                            <input asp-for="Email" class="form-control" placeholder="Employee email" />
-                            <span asp-validation-for="Email" class="text-danger"></span>
-                        </div>
-                 
-                    
-                        <div class="form-group">
-                            <label asp-for="Mobile">Mobile</label>
-                            <input asp-for="Mobile" class="form-control" placeholder="Employee Mobile" />
-                            <span asp-validation-for="Mobile" class="text-danger"></span>
-                        </div>
-                  
+
+
+                <div class="form-group">
+                    <label asp-for="Email">Email</label>
+                    <input asp-for="Email" class="form-control" placeholder="Employee email" style="height:45px"/>
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <label asp-for="Mobile">Mobile</label>
+                    <input asp-for="Mobile" class="form-control" placeholder="Employee Mobile" style="height:45px"/>
+                    <span asp-validation-for="Mobile" class="text-danger"></span>
+                </div>
+
 
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
                             <label asp-for="Dob">Date Of Birth</label>
-                            <input asp-for="Dob" class="form-control" placeholder="Employee Mobile" />
+                            <input asp-for="Dob" class="form-control" placeholder="Employee Mobile" style="height:45px"/>
                             <span asp-validation-for="Dob" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-group">
                             <label asp-for="Address">Address</label>
-                            <textarea asp-for="Address" class="form-control" placeholder="Employee Address" ></textarea>
+                            <textarea asp-for="Address" class="form-control" placeholder="Employee Address" style="height:60px"></textarea>
                             <span asp-validation-for="Address" class="text-danger"></span>
                         </div>
 

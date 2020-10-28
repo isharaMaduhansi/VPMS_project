@@ -26,7 +26,7 @@ namespace VPMS_Project
                 );
              services.AddRazorPages().AddRazorRuntimeCompilation();
             services.AddScoped<EmpRepository, EmpRepository>();
-            services.AddScoped<JobRepository, JobRepository>();
+         
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

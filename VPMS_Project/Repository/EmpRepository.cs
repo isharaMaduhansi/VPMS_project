@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using VPMS_Project.Data;
+using VPMS_Project.Enums;
 using VPMS_Project.Models;
 
 namespace VPMS_Project.Repository
@@ -31,8 +32,7 @@ namespace VPMS_Project.Repository
                      EmpId=emp.EmpId,
                      EmpFName=emp.EmpFName,
                      EmpLName=emp.EmpLName,
-                     JobId=emp.JobId,
-                     JobTypes=emp.JobTypes.Name,
+                     JobTitle=emp.JobTitle,
                      Email=emp.Email,
                      Mobile=emp.Mobile,
                      Dob=emp.Dob,
@@ -46,7 +46,7 @@ namespace VPMS_Project.Repository
 
             return employees;
         }
-
+        
         public async Task<EmpModel> GetEmpById(int id)
         {
 
@@ -55,13 +55,12 @@ namespace VPMS_Project.Repository
                 EmpId = employee.EmpId,
                 EmpFName = employee.EmpFName,
                 EmpLName = employee.EmpLName,
-                JobId = employee.JobId,
-                JobTypes = employee.JobTypes.Name,
+                JobTitle=employee.JobTitle,
                 Email = employee.Email,
                 Mobile = employee.Mobile,
                 Address = employee.Address,
                 Dob = employee.Dob,
-                WorkSince = employee.WorkSince
+                WorkSince = (DateTime)employee.WorkSince,
             }).FirstOrDefaultAsync();
 
           }
@@ -77,8 +76,8 @@ namespace VPMS_Project.Repository
 
                 EmpFName = empModel.EmpFName,
                 EmpLName = empModel.EmpLName,
-                JobId = empModel.JobId,
                 Email=empModel.Email,
+                JobTitle = empModel.JobTitle,
                 Address=empModel.Address,
                 Dob=empModel.Dob,
                 WorkSince=DateTime.UtcNow,

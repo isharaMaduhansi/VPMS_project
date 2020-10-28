@@ -10,8 +10,8 @@ using VPMS_Project.Data;
 namespace VPMS_Project.Migrations
 {
     [DbContext(typeof(EmpStoreContext))]
-    [Migration("20201027204740_AddedJobTypesTable")]
-    partial class AddedJobTypesTable
+    [Migration("20201028074915_addedJobTitleColumn")]
+    partial class addedJobTitleColumn
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -43,11 +43,8 @@ namespace VPMS_Project.Migrations
                     b.Property<string>("EmpLName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("JobId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("JobTypesId")
-                        .HasColumnType("int");
+                    b.Property<string>("JobTitle")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Mobile")
                         .HasColumnType("int");
@@ -57,34 +54,7 @@ namespace VPMS_Project.Migrations
 
                     b.HasKey("EmpId");
 
-                    b.HasIndex("JobTypesId");
-
                     b.ToTable("Employees");
-                });
-
-            modelBuilder.Entity("VPMS_Project.Data.JobTypes", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Jobs");
-                });
-
-            modelBuilder.Entity("VPMS_Project.Data.Employees", b =>
-                {
-                    b.HasOne("VPMS_Project.Data.JobTypes", "JobTypes")
-                        .WithMany("employee")
-                        .HasForeignKey("JobTypesId");
                 });
 #pragma warning restore 612, 618
         }

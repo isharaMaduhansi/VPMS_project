@@ -36,8 +36,8 @@
                      <div class="card" style="width: 23rem;background-color:#808080;text-align:left;font-family:Arial;color:white">
                          <div class="card-body">
                              <h4 class="card-title">@Model.EmpFName @Model.EmpLName</h4>
-                             <h6 class="card-title">@Model.JobTypes</h6>
-                             <h7 class="card-title">Work since - @Model.WorkSince</h7><hr>
+                             <h5 class="card-title" style="color:greenyellow">@Model.JobTitle</h5>
+                             <h7 class="card-title">Work since - @Model.WorkSince.Date</h7><hr>
                              <p class="card-text">EmpId   -<font style="color:black">  @Model.EmpId</font></p><hr>
                              <p class="card-text">Email   -<font style="color:black">  @Model.Email</font></p><hr>
                              <p class="card-text">Mobile  -<font style="color:black">  @Model.Mobile</font></p><hr>
@@ -160,7 +160,7 @@
                          </tr>
                          <tr style="line-height:60px">
                              <td scope="row" style="text-align:center;vertical-align:middle">
-                                 <a asp-controller="AdminTimeS" asp-action="ViewTimeSheet" style="color:white;background-color:forestgreen" class="btn btn-outline-success">View Time Sheets</a>
+                                 <a asp-controller="AdminTimeS" asp-action="ViewTimeSheet" style="color:white;background-color:forestgreen;height:60px;width:140px" class="btn btn-outline-success" >View Time<br> Sheets</a>
 
                              </td>
 

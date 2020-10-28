@@ -36,7 +36,7 @@
                     <tr style="line-height: 40px">
                         <th scope="row">@emp.EmpId</th>
                         <td>@emp.EmpFName @emp.EmpLName<br><font style="color:forestgreen;font-size:small;margin-bottom:0px"> EmpId : @emp.EmpId</font></td>
-                        <td>@emp.JobTypes</td>
+                        <td>@emp.JobTitle</td>
                         <td>Email: @emp.Email <br>Mobile: @emp.Mobile</td>
                         <td><a asp-route="empDetailsRoute" asp-route-id="@emp.EmpId" class="btn btn-outline-success">View More</a></td>
                     </tr>

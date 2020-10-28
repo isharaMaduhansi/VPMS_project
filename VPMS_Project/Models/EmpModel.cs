@@ -21,12 +21,7 @@ namespace VPMS_Project.Models
         [Required(ErrorMessage = "Please Enter last name")]
         public String EmpLName { get; set; }
 
-        //[Required(ErrorMessage = "Please Enter job title")]
-        public int JobId { get; set; }
-
-        public String JobTypes { get; set; }
-
-
+      
 
         [DataType(DataType.EmailAddress)]
         [Required(ErrorMessage = "Please Enter email")]
@@ -41,14 +36,12 @@ namespace VPMS_Project.Models
         [DataType(DataType.Date)]
         public DateTime? Dob { get; set; }
 
-
-
-       [DataType(DataType.Date)]
-        public DateTime? WorkSince { get; set; }
-
+        public DateTime WorkSince { get; set; }
 
         public String Address { get; set; }
 
+        [Required(ErrorMessage = "Please choose Job Title")]
+        public String JobTitle { get; set; }
 
     }
 }
