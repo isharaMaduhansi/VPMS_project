@@ -35,8 +35,10 @@ namespace VPMS_Project.Repository
                      JobTitle=emp.JobTitle,
                      Email=emp.Email,
                      Mobile=emp.Mobile,
-                     Dob=emp.Dob,
-                     Address=emp.Address
+                     Dob=(DateTime)emp.Dob,
+                     Address=emp.Address,
+                     PhotoURL=emp.ProfilePhoto,
+                     Gender=emp.Gender
                      
                     
                     });
@@ -59,8 +61,10 @@ namespace VPMS_Project.Repository
                 Email = employee.Email,
                 Mobile = employee.Mobile,
                 Address = employee.Address,
-                Dob = employee.Dob,
+                Dob = (DateTime)employee.Dob,
                 WorkSince = (DateTime)employee.WorkSince,
+                PhotoURL = employee.ProfilePhoto,
+                Gender=employee.Gender
             }).FirstOrDefaultAsync();
 
           }
@@ -76,12 +80,14 @@ namespace VPMS_Project.Repository
 
                 EmpFName = empModel.EmpFName,
                 EmpLName = empModel.EmpLName,
-                Email=empModel.Email,
+                Email = empModel.Email,
                 JobTitle = empModel.JobTitle,
-                Address=empModel.Address,
-                Dob=empModel.Dob,
-                WorkSince=DateTime.UtcNow,
-                Mobile=empModel.Mobile.HasValue? empModel.Mobile.Value:0,
+                Address = empModel.Address,
+                Dob = empModel.Dob,
+                WorkSince = DateTime.UtcNow,
+                Mobile = empModel.Mobile.HasValue ? empModel.Mobile.Value : 0,
+                ProfilePhoto = empModel.PhotoURL,
+                Gender=empModel.Gender
                 
              };
 

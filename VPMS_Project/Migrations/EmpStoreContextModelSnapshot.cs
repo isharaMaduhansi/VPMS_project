@@ -41,11 +41,17 @@ namespace VPMS_Project.Migrations
                     b.Property<string>("EmpLName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Gender")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("JobTitle")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Mobile")
                         .HasColumnType("int");
+
+                    b.Property<string>("ProfilePhoto")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("WorkSince")
                         .HasColumnType("datetime2");

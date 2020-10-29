@@ -1,28 +1,32 @@
 ﻿
-@{ 
+@{
     ViewData["Title"] = "All Employees";
 }
 
 @model IEnumerable<EmpModel>
 
 
-    <nav class="navbar navbar-light" style="background-color:gainsboro;margin-left:18%">
-        <a class="navbar-brand">
-        <h4 style="font-family:Cambria">Employees Of Bellvantage (Pvt) Ltd</h4></a>
-        <form class="form-inline">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-    </nav>
+<nav class="navbar navbar-light" style="background-color:gainsboro;margin-left:18%">
+    <a class="navbar-brand">
+        <h4 style="font-family:Cambria">Employees Of Bellvantage (Pvt) Ltd</h4>
+    </a>
+    <form class="form-inline">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+</nav>
+<br>
+
+<a style="color:white;background-color:forestgreen;line-height:30px;margin-left:86%;margin-top:20px" asp-controller="Emp_Manage" asp-action="AddEmployee" class="btn btn-outline-success">Add New</a>
 
 
-    @*style="background-color: gainsboro;width:83%;position:relative;margin-left:230px;*@
+
 <div style="margin-left:20%;height:1000px;">
-    <br> <br><br> <br>
+    <br>
 
 
     <div class="table-responsive">
-        <table class="table table-hover " style="width:900px;">
+        <table class="table table-hover " style="width:980px;">
 
             <thead>
 
@@ -34,7 +38,16 @@
 
 
                     <tr style="line-height: 40px">
-                        <th scope="row">@emp.EmpId</th>
+                        <th scope="row">
+                            <div class="rounded-circle" style="width: 3.7rem;background-color:gainsboro;border-width:medium">
+                                <img class="card-img-top rounded-circle" src="@emp.PhotoURL" height="55" width="20">
+
+                            </div>
+
+
+
+
+                        </th>
                         <td>@emp.EmpFName @emp.EmpLName<br><font style="color:forestgreen;font-size:small;margin-bottom:0px"> EmpId : @emp.EmpId</font></td>
                         <td>@emp.JobTitle</td>
                         <td>Email: @emp.Email <br>Mobile: @emp.Mobile</td>
@@ -44,13 +57,6 @@
 
                 }
 
-
-
-                @*<th scope="row">@emp.EmpId</th>
-                    <td>@emp.EmpFName @emp.EmpLName<br><font style="color:royalblue;font-size:small;"> EmpId : @emp.EmpId</font></td>
-                    <td>@emp.Position</td>
-                    <td>Email: @emp.Email <br>Mobile: @emp.Mobile</td>
-                    <td><a asp-route="empDetailsRoute" asp-route-id="@emp.EmpId" class="btn btn-outline-primary">View More</a></td>*@
 
 
             </tbody>

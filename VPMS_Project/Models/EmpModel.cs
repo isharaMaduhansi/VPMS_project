@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using VPMS_Project.Enums;
+using Microsoft.AspNetCore.Http;
 
 namespace VPMS_Project.Models
 {
@@ -12,7 +13,7 @@ namespace VPMS_Project.Models
         public int EmpId { get; set; }
 
         [StringLength(20,MinimumLength =3)]
-        [Required(ErrorMessage ="Please Enter first name")]
+        [Required(ErrorMessage = "Please Enter first name")]
         public String EmpFName { get; set; }
 
 
@@ -21,7 +22,7 @@ namespace VPMS_Project.Models
         [Required(ErrorMessage = "Please Enter last name")]
         public String EmpLName { get; set; }
 
-      
+
 
         [DataType(DataType.EmailAddress)]
         [Required(ErrorMessage = "Please Enter email")]
@@ -34,7 +35,7 @@ namespace VPMS_Project.Models
 
         
         [DataType(DataType.Date)]
-        public DateTime? Dob { get; set; }
+        public DateTime Dob { get; set; }
 
         public DateTime WorkSince { get; set; }
 
@@ -42,6 +43,15 @@ namespace VPMS_Project.Models
 
         [Required(ErrorMessage = "Please choose Job Title")]
         public String JobTitle { get; set; }
+
+        public IFormFile ProfilePhoto { get; set; }
+
+        public String PhotoURL { get; set; }
+
+        [Required(ErrorMessage = "Please select one")]
+        public String Gender { get; set; }
+
+
 
     }
 }

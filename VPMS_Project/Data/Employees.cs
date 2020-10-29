@@ -25,7 +25,14 @@ namespace VPMS_Project.Data
         public DateTime? WorkSince{ get; set; }
         public String Address { get; set; }
 
-       
+        public String ProfilePhoto { get; set; }
+
+        public String Gender { get; set; }
+
+
+
+
+
 
 
     }
