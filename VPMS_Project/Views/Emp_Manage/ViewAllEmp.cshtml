@@ -17,7 +17,7 @@
 </nav>
 <br>
 
-<a style="color:white;background-color:forestgreen;line-height:30px;margin-left:86%;margin-top:20px" asp-controller="Emp_Manage" asp-action="AddEmployee" class="btn btn-outline-success">Add New</a>
+<a style="color:white;background-color:forestgreen;line-height:30px;margin-left:87%;margin-top:20px" asp-controller="Emp_Manage" asp-action="AddEmployee" class="btn btn-outline-success">Add New</a>
 
 
 
@@ -36,30 +36,30 @@
                 @foreach (var emp in Model)
                 {
 
-
-                    <tr style="line-height: 40px">
-                        <th scope="row">
+                    
+                <tr style="line-height: 40px">
+                    
+                    <th scope="row">
+                        <a asp-route="empDetailsRoute" asp-route-id="@emp.EmpId">
                             <div class="rounded-circle" style="width: 3.7rem;background-color:gainsboro;border-width:medium">
-                                <img class="card-img-top rounded-circle" src="@emp.PhotoURL" height="55" width="20">
-
+                                <img class="card-img-top rounded-circle" src="@(string.IsNullOrEmpty(emp.PhotoURL) ? "~/images/defa.png" : emp.PhotoURL)" height="55" width="20" asp-append-version="true">
                             </div>
-
-
-
-
-                        </th>
+                        </a>
+                    </th>
                         <td>@emp.EmpFName @emp.EmpLName<br><font style="color:forestgreen;font-size:small;margin-bottom:0px"> EmpId : @emp.EmpId</font></td>
                         <td>@emp.JobTitle</td>
                         <td>Email: @emp.Email <br>Mobile: @emp.Mobile</td>
                         <td><a asp-route="empDetailsRoute" asp-route-id="@emp.EmpId" class="btn btn-outline-success">View More</a></td>
-                    </tr>
+                 
+                        </tr>
+                    
 
 
                 }
 
 
 
-            </tbody>
+                </tbody>
         </table>
     </div>
 

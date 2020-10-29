@@ -19,36 +19,46 @@ namespace VPMS_Project.Repository
         }
 
 
-        public async Task<List<EmpModel>> GetAllEmps() 
+        public async Task<List<EmpModel>> GetAllEmps()
         {
-            var employees = new List<EmpModel>();
-            var AllEmp = await _context.Employees.ToListAsync();
-            if (AllEmp?.Any()==true)
+            return await _context.Employees.Select(emp => new EmpModel()
             {
-                foreach (var emp in AllEmp)
-                {
-                    employees.Add(new EmpModel() 
-                    {
-                     EmpId=emp.EmpId,
-                     EmpFName=emp.EmpFName,
-                     EmpLName=emp.EmpLName,
-                     JobTitle=emp.JobTitle,
-                     Email=emp.Email,
-                     Mobile=emp.Mobile,
-                     Dob=(DateTime)emp.Dob,
-                     Address=emp.Address,
-                     PhotoURL=emp.ProfilePhoto,
-                     Gender=emp.Gender
-                     
-                    
-                    });
-                
-                }
-            }
 
-            return employees;
+                EmpId = emp.EmpId,
+                EmpFName = emp.EmpFName,
+                EmpLName = emp.EmpLName,
+                JobTitle = emp.JobTitle,
+                Email = emp.Email,
+                Mobile = emp.Mobile,
+                Dob = (DateTime)emp.Dob,
+                Address = emp.Address,
+                PhotoURL = emp.ProfilePhoto,
+                Gender = emp.Gender
+
+            }).ToListAsync();
         }
-        
+
+        public async Task<List<EmpModel>> GetEmpListAsync(string name,string job)
+        {
+            return await _context.Employees.Where(x => x.EmpFName.Contains(name) || x.JobTitle.Contains(job))
+                .Select(emp => new EmpModel()
+            {
+
+                EmpId = emp.EmpId,
+                EmpFName = emp.EmpFName,
+                EmpLName = emp.EmpLName,
+                JobTitle = emp.JobTitle,
+                Email = emp.Email,
+                Mobile = emp.Mobile,
+                Dob = (DateTime)emp.Dob,
+                Address = emp.Address,
+                PhotoURL = emp.ProfilePhoto,
+                Gender = emp.Gender
+
+            }).ToListAsync();
+        }
+
+
         public async Task<EmpModel> GetEmpById(int id)
         {
 

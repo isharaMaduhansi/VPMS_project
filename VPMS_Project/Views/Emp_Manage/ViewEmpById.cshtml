@@ -18,18 +18,17 @@
     </form>
 </nav>
 
-<div style="margin-left:20%;height:800px;margin-top:10px">
-    <br> <br>
-    <a style="color:white;background-color:forestgreen;line-height:40px;margin-left:83%" asp-controller="Emp_Manage" asp-action="ViewAllEmp" class="btn btn-outline-success">Back to List</a>
 
-    <section class="jumbotron text-center" style="height:1000px;position:relative;margin-top:30px;margin-bottom:30px;width:95%;margin-left:2%;background-color:whitesmoke">
+<div style="margin-left:20%;height:800px;">
+    <br><br> <br><br>
+    <section class="jumbotron text-center" style="height:1000px;position:relative;width:95%;margin-left:2%;background-color:whitesmoke;">
 
 
 
         <div class="row">
             <div class="col">
                 <div class="card rounded-circle" style="width: 20rem;background-color:gainsboro;border-width:medium">
-                    <img class="card-img-top rounded-circle" src="@Model.PhotoURL" height="300" width="60" asp-append-version="true">
+                    <img class="card-img-top rounded-circle" src="@(string.IsNullOrEmpty(Model.PhotoURL) ? "~/images/defa.png" : Model.PhotoURL)" height="300" width="60" asp-append-version="true">
 
                 </div>
             </div>
@@ -58,7 +57,7 @@
                                 </tr>
                                 <tr>
                                     <th scope="row">Address</th>
-                                    <th>@Model.Address</th>
+                                    <th>@(string.IsNullOrEmpty(Model.Address) ? "Address is not available" : Model.Address) </th>
 
                                 </tr>
                                 <tr>
@@ -66,11 +65,6 @@
                                     <th>@Model.Dob.Day-@Model.Dob.Month-@Model.Dob.Year</th>
 
                                 </tr>
-
-
-
-
-
                         </table>
 
                     </div>
@@ -126,11 +120,7 @@
                                             <div class="col">
                                                 <a href="#" style="color:forestgreen;font-size:smaller">View More</a>
                                             </div>
-
-
                                         </div>
-
-
                                     </div>
                                 </div>
                                 <div class="card">
@@ -168,8 +158,6 @@
                                                 <div class="col">
                                                     <a href="#" style="color:forestgreen;font-size:smaller">View More</a>
                                                 </div>
-
-
                                             </div>
                                         </div>
                                     </div>
@@ -177,15 +165,15 @@
 
 
                             </div>
-                         </td>
-                         </tr>
+                        </td>
+                    </tr>
                     <tr style="line-height:60px">
                         <td scope="row" style="text-align:center;vertical-align:middle">
                             <a asp-controller="AdminTimeS" asp-action="ViewTimeSheet" style="color:white;background-color:forestgreen;height:60px;width:140px" class="btn btn-outline-success">View Time<br> Sheets</a>
 
                         </td>
 
-                       </tr>
+                    </tr>
                     <tr style="line-height:60px">
                         <td scope="row" style="text-align:center;vertical-align:middle">
                             <a style="color:white;background-color:forestgreen" asp-controller="AdminTimeS" asp-action="ViewTimeSheet" class="btn btn-outline-success">View Work Sheets</a>
@@ -200,9 +188,18 @@
 
     </section>
 
+    <br>
+    <a style="color:forestgreen;margin-left:84%;margin-bottom:20px" asp-controller="Emp_Manage" asp-action="ViewAllEmp">View All Employees</a>
+    <br> 
+    <div class="container">
+        <h3 style="color:white;background-color:#555;margin-top:18px">Related Employees</h3>
+        @await Component.InvokeAsync("EmpList", new { name = @Model.EmpFName, job = Model.JobTitle })
 
+
+
+    </div>
 </div>
-   
+
 
 
 

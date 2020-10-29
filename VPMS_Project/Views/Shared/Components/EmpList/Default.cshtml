@@ -1,0 +1,38 @@
+﻿@using VPMS_Project.Models;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@model IEnumerable<EmpModel>
+
+<div class="table-responsive">
+    <table class="table table-hover " style="width:980px;">
+
+        <thead>
+
+        </thead>
+        <tbody>
+
+            @foreach (var emp in Model)
+            {
+
+
+                <tr style="line-height: 40px">
+                    <th scope="row">
+                        <div class="rounded-circle" style="width: 3.7rem;background-color:gainsboro;border-width:medium">
+                            <img class="card-img-top rounded-circle" src="@(string.IsNullOrEmpty(emp.PhotoURL) ? "~/images/defa.png" : emp.PhotoURL)" height="55" width="20" asp-append-version="true">
+
+                        </div>
+                    </th>
+                    <td>@emp.EmpFName @emp.EmpLName<br><font style="color:forestgreen;font-size:small;margin-bottom:0px"> EmpId : @emp.EmpId</font></td>
+                    <td>@emp.JobTitle</td>
+                    <td>Email: @emp.Email <br>Mobile: @emp.Mobile</td>
+                    <td><a asp-route="empDetailsRoute" asp-route-id="@emp.EmpId" class="btn btn-outline-success">View More</a></td>
+                </tr>
+
+
+            }
+
+
+
+        </tbody>
+    </table>
+</div>

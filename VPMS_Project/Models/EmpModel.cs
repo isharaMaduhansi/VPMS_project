@@ -35,6 +35,7 @@ namespace VPMS_Project.Models
 
         
         [DataType(DataType.Date)]
+        [Required(ErrorMessage = "Please select Date of Birth")]
         public DateTime Dob { get; set; }
 
         public DateTime WorkSince { get; set; }
