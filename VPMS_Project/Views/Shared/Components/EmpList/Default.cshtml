@@ -18,7 +18,7 @@
                 <tr style="line-height: 40px">
                     <th scope="row">
                         <div class="rounded-circle" style="width: 3.7rem;background-color:gainsboro;border-width:medium">
-                            <img class="card-img-top rounded-circle" src="@(string.IsNullOrEmpty(emp.PhotoURL) ? "~/images/defa.png" : emp.PhotoURL)" height="55" width="20" asp-append-version="true">
+                            <a asp-route="empDetailsRoute" asp-route-id="@emp.EmpId"> <img class="card-img-top rounded-circle" src="@(string.IsNullOrEmpty(emp.PhotoURL) ? "~/images/defa.png" : emp.PhotoURL)" height="55" width="20" asp-append-version="true"></a>
 
                         </div>
                     </th>

@@ -25,7 +25,8 @@ namespace VPMS_Project
                 options => options.UseSqlServer("Server=.;Database=EmployeeStore;Integrated Security=True;")
                 );
              services.AddRazorPages().AddRazorRuntimeCompilation();
-            services.AddScoped<EmpRepository, EmpRepository>();
+
+            services.AddScoped<IEmpRepository, EmpRepository>();
          
         }
 

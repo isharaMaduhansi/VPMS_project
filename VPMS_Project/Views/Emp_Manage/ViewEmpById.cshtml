@@ -19,16 +19,20 @@
 </nav>
 
 
-<div style="margin-left:20%;height:800px;">
-    <br><br> <br><br>
-    <section class="jumbotron text-center" style="height:1000px;position:relative;width:95%;margin-left:2%;background-color:whitesmoke;">
+<div style="margin-left:20%;height:900px;">
+    <br><br> <br>
+    <section class="jumbotron text-center" style="height:1050px;position:relative;width:95%;margin-left:2%;background-color:whitesmoke;">
 
+        <a asp-controller="Emp_Manage" asp-action="EditEmpById" asp-route-id="@Model.EmpId" class="btn btn-success" style="margin-left:70%;line-height:34px;width:100px">Edit</a>
+            <a asp-controller="Emp_Manage" asp-action="ViewAllEmp" class="btn btn-danger" style="margin-left:5%;line-height:34px;width:100px">Delete</a>
 
+        
+        <br><br><br>
 
         <div class="row">
             <div class="col">
-                <div class="card rounded-circle" style="width: 20rem;background-color:gainsboro;border-width:medium">
-                    <img class="card-img-top rounded-circle" src="@(string.IsNullOrEmpty(Model.PhotoURL) ? "~/images/defa.png" : Model.PhotoURL)" height="300" width="60" asp-append-version="true">
+                <div class="card rounded-circle" style="width: 18rem;background-color:gainsboro;border-width:medium">
+                    <img class="card-img-top rounded-circle" src="@(string.IsNullOrEmpty(Model.PhotoURL) ? "~/images/defa.png" : Model.PhotoURL)" height="280" width="60" asp-append-version="true">
 
                 </div>
             </div>
@@ -77,12 +81,12 @@
                 <tbody>
                     <tr style="line-height:60px">
                         <td scope="row" style="text-align:center;vertical-align:middle">
-                            <a asp-controller="AdminAttendence" asp-action="ViewAttendence" style="color:white;background-color:forestgreen" class="btn btn-outline-success">Attendence Details</a>
+                            <a asp-controller="AdminAttendence" asp-action="ViewAttendence"  class="btn btn-outline-dark">Attendence Details</a>
 
                         </td>
 
 
-                        <td rowspan="3" width="80%">
+                        <td rowspan="3" width="90%">
 
                             <div class="accordion" id="accordionExample">
                                 <div class="card">
@@ -169,20 +173,23 @@
                     </tr>
                     <tr style="line-height:60px">
                         <td scope="row" style="text-align:center;vertical-align:middle">
-                            <a asp-controller="AdminTimeS" asp-action="ViewTimeSheet" style="color:white;background-color:forestgreen;height:60px;width:140px" class="btn btn-outline-success">View Time<br> Sheets</a>
+                            <a asp-controller="AdminTimeS" asp-action="ViewTimeSheet" style="height:60px;width:140px" class="btn btn-outline-dark">View Time<br> Sheets</a>
 
                         </td>
 
                     </tr>
                     <tr style="line-height:60px">
                         <td scope="row" style="text-align:center;vertical-align:middle">
-                            <a style="color:white;background-color:forestgreen" asp-controller="AdminTimeS" asp-action="ViewTimeSheet" class="btn btn-outline-success">View Work Sheets</a>
+                            <a  asp-controller="AdminTimeS" asp-action="ViewTimeSheet" class="btn btn-outline-dark">View Leave Details</a>
                         </td>
 
 
                     </tr>
                 </tbody>
             </table>
+            <br>
+            
+           
         </div>
 
 

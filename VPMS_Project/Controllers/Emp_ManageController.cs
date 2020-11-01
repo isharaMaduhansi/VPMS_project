@@ -13,11 +13,11 @@ namespace VPMS_Project.Controllers
 {
     public class Emp_ManageController : Controller
     {
-        private readonly EmpRepository _empRepository = null;
+        private readonly IEmpRepository _empRepository = null;
         private readonly IWebHostEnvironment _webHostEnvironment;
 
 
-        public Emp_ManageController(EmpRepository empRepository, IWebHostEnvironment webHostEnvironment) 
+        public Emp_ManageController(IEmpRepository empRepository, IWebHostEnvironment webHostEnvironment) 
         {
             _empRepository = empRepository;
             _webHostEnvironment = webHostEnvironment;
@@ -31,7 +31,21 @@ namespace VPMS_Project.Controllers
             return View(data);
         }
 
-        [Route("Employee-Details/{id}",Name="empDetailsRoute")]
+        public async Task<IActionResult> EditEmp(bool isSucceess = false, int empId = 0)
+        {
+            ViewBag.IsSuccess = isSucceess;
+            ViewBag.empId = empId;
+            var data = await _empRepository.GetAllEmps();
+            return View(data);
+        }
+
+        public async Task<IActionResult> RemoveEmp()
+        {
+            var data = await _empRepository.GetAllEmps();
+            return View(data);
+        }
+
+        [Route("~/Employee-Details/{id}",Name="empDetailsRoute")]
         public async Task<IActionResult> ViewEmpById(int id)
         {
            
@@ -71,5 +85,44 @@ namespace VPMS_Project.Controllers
             }
             return View();
         }
+        
+        public async Task<IActionResult> EditEmpById(int id,bool isSucceess = false)
+        {
+
+            ViewBag.IsSuccess = isSucceess;
+            ViewBag.empId = id;
+            var data = await _empRepository.GetEmpById(id);
+            return View(data);
+        }
+
+
+       
+        [HttpPost]
+        public async Task<IActionResult> EditEmpById(EmpModel empModel)
+        {
+
+            if (ModelState.IsValid)
+            {
+                if (empModel.ProfilePhoto != null)
+                {
+                    String folder = "images/Employees/";
+                    folder += Guid.NewGuid().ToString() + "_" + empModel.ProfilePhoto.FileName;
+                    empModel.PhotoURL = "/" + folder;
+                    String serverFolder = Path.Combine(_webHostEnvironment.WebRootPath, folder);
+
+                    await empModel.ProfilePhoto.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
+                }
+                bool success = await _empRepository.UpdateEmp(empModel);
+
+                if (success == true)
+                {
+                    return RedirectToAction(nameof(EditEmp), new { isSucceess = true, empId = empModel.EmpId});
+                }
+            }
+            return View();
+        }
+
+
+
     }
 }

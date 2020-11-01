@@ -1,0 +1,138 @@
+﻿
+
+
+@{
+    ViewData["Title"] = "update data";
+}
+@model EmpModel
+
+    <div style="margin-left:20%;height:1000px;">
+
+        <br>
+
+
+        <h2 style="font-family:Calibri;color:forestgreen">Update Details</h2><hr>
+
+       
+
+
+
+        <div class="container" id="con" style="margin-top:60px;height:1000px">
+
+            <h5> User Id @ViewBag.empId</h5><hr>
+            <form method="post" enctype="multipart/form-data" asp-action="EditEmpById" asp-controller="Emp_Manage">
+
+                <input hidden asp-for="EmpId" />
+                <input hidden asp-for="PhotoURL" />
+
+                <div class="row">
+                    <div class="col">
+                        <label asp-for="EmpFName">First Name</label>
+                        <input asp-for="EmpFName" type="text" class="form-control" placeholder="First name" style="height:45px">
+                        <span asp-validation-for="EmpFName" class="text-danger"></span>
+                    </div>
+                    <div class="col">
+                        <label asp-for="EmpLName">Last Name</label>
+                        <input asp-for="EmpLName" type="text" class="form-control" placeholder="Last name" style="height:45px">
+                        <span asp-validation-for="EmpLName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group" style="margin-top:20px">
+                            <label asp-for="JobTitle">Job Title</label>
+                            <select asp-for="JobTitle" class="form-control" style="height:45px" asp-items="ViewBag.Job">
+                                <option value="">Choose the Job Title</option>
+                                <option value="Project Manager">Project Manager</option>
+                                <option value="Head Of IT">Head Of IT</option>
+                                <option value="CEO">CEO</option>
+                                <option value="Project Account Manager">Project Account Manager</option>
+                                <option value="Team Leader">Team Leader</option>
+                                <option value="System Architect">System Architect</option>
+                                <option value="Senior Software Engineer">Senior Software Engineer</option>
+                                <option value="Software Engineer">Software Engineer</option>
+                                <option value="Quality Assuarance">QA</option>
+                                <option value="Business quality Assurance">BQA</option>
+
+                            </select>
+                            <span asp-validation-for="JobTitle" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <label asp-for="Gender" style="margin-top:20px;margin-left:20px">Gender</label>
+                        <div class="form-group form-inline" style="font-size:15pt">
+
+                            <input class="form-control" type="radio" value="Female" asp-for="Gender" style="margin-left:40px;" />&nbsp;&nbsp;&nbsp;Female
+                            <input class="form-control" type="radio" value="Male" asp-for="Gender" style="margin-left:70px;" />&nbsp;&nbsp;&nbsp;Male&nbsp;&nbsp;&nbsp;
+                            <span asp-validation-for="Gender" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Email">Email</label>
+                    <input asp-for="Email" class="form-control" placeholder="Employee email" style="height:45px" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <label asp-for="Mobile">Mobile</label>
+                    <input asp-for="Mobile" class="form-control" placeholder="Employee Mobile" style="height:45px" />
+                    <span asp-validation-for="Mobile" class="text-danger"></span>
+                </div>
+
+
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label asp-for="Dob">Date Of Birth</label>
+                            <input asp-for="Dob" class="form-control" placeholder="select birth day" style="height:45px" />
+                            <span asp-validation-for="Dob" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label asp-for="Address">Address</label>
+                            <textarea asp-for="Address" class="form-control" placeholder="Employee Address" style="height:70px"></textarea>
+                            <span asp-validation-for="Address" class="text-danger"></span>
+                        </div>
+
+                    </div>
+
+
+
+
+                </div>
+
+                <div class="col">
+                    <div class="form-group">
+                        <label asp-for="ProfilePhoto">Profile photo</label>
+                        <div class="custom-file">
+                            <input asp-for="ProfilePhoto" class="custom-file-input" id="customFile">
+                            <label class="custom-file-label" for="customFile">Click here to change image</label>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="form-group" style="margin-top:50px">
+                    <a asp-controller="Emp_Manage" asp-action="EditEmp"  class="btn btn-success" style="margin-left:75%;margin-top:1px;line-height:34px;width:100px">Cancel</a>
+                    <input type="submit" value="Edit Details" class="btn btn-primary" />
+                </div>
+            </form>
+
+        </div>
+    </div>
+@section photo
+{
+    <script type="text/javascript">
+
+
+        $(".custom-file-input").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+    </script>
+
+
+}

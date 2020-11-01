@@ -10,9 +10,9 @@ namespace VPMS_Project.Component
     public class EmpListViewComponent : ViewComponent
     {
 
-        private readonly EmpRepository _empRepository;
+        private readonly IEmpRepository _empRepository;
 
-        public EmpListViewComponent(EmpRepository empRepository)
+        public EmpListViewComponent(IEmpRepository empRepository)
         {
             _empRepository = empRepository;
         }
