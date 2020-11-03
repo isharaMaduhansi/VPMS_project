@@ -1,0 +1,74 @@
+﻿@{
+    ViewData["Title"] = Model.EmpFName;
+}
+
+@model EmpModel
+
+<div style="margin-left:20%;height:900px;">
+    <br><a asp-controller="Emp_Manage" asp-action="SeeRemoveEmp" class="btn btn-outline-success" style="margin-left:80%;width:80px">Back</a><br> <br>
+    <section class="jumbotron text-center" style="height:1050px;position:relative;width:95%;margin-left:2%;background-color:whitesmoke;">
+
+
+        <br>
+
+        <div class="row">
+            <div class="col">
+                <div class="card rounded-circle" style="width: 18rem;background-color:gainsboro;border-width:medium">
+                    <img class="card-img-top rounded-circle" src="@(string.IsNullOrEmpty(Model.PhotoURL) ? "~/images/defa.png" : Model.PhotoURL)" height="280" width="60" asp-append-version="true">
+                </div>
+                <br> <br>
+
+
+            </div>
+            <div class="col">
+                <div class="card" style="width: 30rem;background-color:#808080;text-align:left;font-family:Arial;color:white">
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            @Model.EmpFName @Model.EmpLName
+                            <span class="badge badge-dark" style="margin-left:25%;font-size:large"> @Model.Status</span>
+                        </h4>
+                        <h5 class="card-title" style="color:greenyellow">
+                            @Model.JobTitle
+                        </h5>
+                        <h7 class="card-title">Work since - @Model.WorkSince.Day-@Model.WorkSince.Month-@Model.WorkSince.Year&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LastDay of Work - @Model.LastDayWorked.Date-@Model.LastDayWorked.Month-@Model.LastDayWorked.Year</h7><hr>
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr>
+                                    <th scope="row">EmpId</th>
+                                    <th>@Model.EmpId</th>
+
+                                </tr>
+                                <tr>
+                                    <th scope="row">Gender</th>
+                                    <th>@Model.Gender</th>
+
+                                </tr>
+                                <tr>
+                                    <th scope="row">Email</th>
+                                    <th>@Model.Email</th>
+
+                                </tr>
+                                <tr>
+                                    <th scope="row">Mobile No</th>
+                                    <th>@Model.Mobile</th>
+
+                                </tr>
+                                <tr>
+                                    <th scope="row">Address</th>
+                                    <th>@(string.IsNullOrEmpty(Model.Address) ? "Address is not available" : Model.Address) </th>
+
+                                </tr>
+                                <tr>
+                                    <th scope="row">Date of Birth</th>
+                                    <th>@Model.Dob.Day-@Model.Dob.Month-@Model.Dob.Year</th>
+
+                                </tr>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+</div>

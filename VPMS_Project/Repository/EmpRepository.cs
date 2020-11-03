@@ -21,7 +21,7 @@ namespace VPMS_Project.Repository
 
         public async Task<List<EmpModel>> GetAllEmps()
         {
-            return await _context.Employees.Select(emp => new EmpModel()
+            return await _context.Employees.Where(x => x.Status=="Active").Select(emp => new EmpModel()
             {
 
                 EmpId = emp.EmpId,
@@ -33,14 +33,39 @@ namespace VPMS_Project.Repository
                 Dob = (DateTime)emp.Dob,
                 Address = emp.Address,
                 PhotoURL = emp.ProfilePhoto,
-                Gender = emp.Gender
+                Gender = emp.Gender,
+                Status=emp.Status
+               
 
             }).ToListAsync();
         }
 
-        public async Task<List<EmpModel>> GetEmpListAsync(string name, string job)
+       
+        public async Task<List<EmpModel>> GetDeletedEmps()
         {
-            return await _context.Employees.Where(x => x.EmpFName.Contains(name) || x.JobTitle.Contains(job))
+            return await _context.Employees.Where(x => x.Status == "Inactive").Select(emp => new EmpModel()
+            {
+
+                EmpId = emp.EmpId,
+                EmpFName = emp.EmpFName,
+                EmpLName = emp.EmpLName,
+                JobTitle = emp.JobTitle,
+                Email = emp.Email,
+                Mobile = emp.Mobile,
+                Dob = (DateTime)emp.Dob,
+                Address = emp.Address,
+                PhotoURL = emp.ProfilePhoto,
+                Gender = emp.Gender,
+                Status = emp.Status
+
+
+            }).ToListAsync();
+        }
+
+
+        public async Task<List<EmpModel>> GetEmpListAsync(string name, string job,int id)
+        {
+            return await _context.Employees.Where(x =>(x.Status=="Active") && (x.EmpId != id) && (x.EmpFName.Contains(name) || x.JobTitle.Contains(job)))
                 .Select(emp => new EmpModel()
                 {
 
@@ -53,7 +78,8 @@ namespace VPMS_Project.Repository
                     Dob = (DateTime)emp.Dob,
                     Address = emp.Address,
                     PhotoURL = emp.ProfilePhoto,
-                    Gender = emp.Gender
+                    Gender = emp.Gender,
+                    Status=emp.Status
 
                 }).ToListAsync();
         }
@@ -74,7 +100,8 @@ namespace VPMS_Project.Repository
                 Dob = (DateTime)employee.Dob,
                 WorkSince = (DateTime)employee.WorkSince,
                 PhotoURL = employee.ProfilePhoto,
-                Gender = employee.Gender
+                Gender = employee.Gender,
+                Status=employee.Status
             }).FirstOrDefaultAsync();
 
         }
@@ -98,7 +125,8 @@ namespace VPMS_Project.Repository
                 WorkSince = DateTime.UtcNow,
                 Mobile = empModel.Mobile.HasValue ? empModel.Mobile.Value : 0,
                 ProfilePhoto = empModel.PhotoURL,
-                Gender = empModel.Gender
+                Gender = empModel.Gender,
+                Status=empModel.Status
 
             };
 
@@ -123,6 +151,7 @@ namespace VPMS_Project.Repository
             emp.Dob = empModel.Dob;
             emp.Address = empModel.Address;
             emp.ProfilePhoto = empModel.PhotoURL;
+            emp.Status = empModel.Status;
 
             _context.Entry(emp).State = EntityState.Modified;
             await _context.SaveChangesAsync();
@@ -131,5 +160,22 @@ namespace VPMS_Project.Repository
          
         }
 
-       }
+        public async Task<bool> DeleteEmp(int id)
+        {
+
+            var emp = await _context.Employees.FindAsync(id);
+            emp.LastDayWorked = DateTime.UtcNow;
+            emp.Status = "Inactive";
+
+            _context.Entry(emp).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            return true;
+
+        }
+
+
+
+
+    }
 }

@@ -18,9 +18,9 @@ namespace VPMS_Project.Component
         }
 
 
-        public async Task<IViewComponentResult> InvokeAsync(string name,string job)
+        public async Task<IViewComponentResult> InvokeAsync(string name,string job,int id)
         {
-            var emps = await _empRepository.GetEmpListAsync(name,job);
+            var emps = await _empRepository.GetEmpListAsync(name,job,id);
             return View(emps);
         }
     }

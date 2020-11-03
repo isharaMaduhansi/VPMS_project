@@ -31,6 +31,20 @@ namespace VPMS_Project.Controllers
             return View(data);
         }
 
+        public async Task<IActionResult> SeeRemoveEmp()
+        {
+            var data = await _empRepository.GetDeletedEmps();
+            return View(data);
+        }
+
+        public async Task<IActionResult> DeletedEmpById(int id)
+        {
+            var data = await _empRepository.GetEmpById(id);
+            return View(data);
+        }
+
+
+
         public async Task<IActionResult> EditEmp(bool isSucceess = false, int empId = 0)
         {
             ViewBag.IsSuccess = isSucceess;
@@ -44,6 +58,19 @@ namespace VPMS_Project.Controllers
             var data = await _empRepository.GetAllEmps();
             return View(data);
         }
+
+        public async Task<IActionResult> DeleteEmpById(int id)
+        {
+
+            bool success= await _empRepository.DeleteEmp(id);
+            if (success == true)
+            {
+                return RedirectToAction(nameof(RemoveEmp));
+            }
+            return View("RemoveEmp");
+        }
+
+
 
         [Route("~/Employee-Details/{id}",Name="empDetailsRoute")]
         public async Task<IActionResult> ViewEmpById(int id)

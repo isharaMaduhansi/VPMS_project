@@ -29,6 +29,11 @@ namespace VPMS_Project.Data
 
         public String Gender { get; set; }
 
+   
+        public String Status { get; set; }
+
+        public DateTime? LastDayWorked { get; set; }
+
 
 
 

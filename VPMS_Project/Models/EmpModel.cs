@@ -52,6 +52,11 @@ namespace VPMS_Project.Models
         [Required(ErrorMessage = "Please select one")]
         public String Gender { get; set; }
 
+        [Required(ErrorMessage = "Please select one")]
+        public String Status { get; set; }
+
+        public DateTime LastDayWorked { get; set; }
+
 
 
     }

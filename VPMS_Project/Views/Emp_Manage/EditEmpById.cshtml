@@ -17,7 +17,7 @@
 
 
 
-        <div class="container" id="con" style="margin-top:60px;height:1000px">
+        <div class="container" id="con" style="margin-top:60px;height:1100px">
 
             <h5> User Id @ViewBag.empId</h5><hr>
             <form method="post" enctype="multipart/form-data" asp-action="EditEmpById" asp-controller="Emp_Manage">
@@ -115,9 +115,20 @@
                     </div>
 
                 </div>
-                <div class="form-group" style="margin-top:50px">
-                    <a asp-controller="Emp_Manage" asp-action="EditEmp"  class="btn btn-success" style="margin-left:75%;margin-top:1px;line-height:34px;width:100px">Cancel</a>
-                    <input type="submit" value="Edit Details" class="btn btn-primary" />
+
+                   <div class="form-group">
+                <label asp-for="Status" style="margin-top:15px;margin-left:25px">Status</label>
+                <div class="form-group form-inline" style="font-size:15pt">
+
+                    <input class="form-control" type="radio" value="Active" asp-for="Status" style="margin-left:40px;" />&nbsp;&nbsp;&nbsp;Active
+                    <input class="form-control" type="radio" value="Inactive" asp-for="Status" style="margin-left:70px;" />&nbsp;&nbsp;&nbsp;Inactive&nbsp;&nbsp;&nbsp;
+                    <span asp-validation-for="Status" class="text-danger"></span>
+                </div>
+
+            </div>
+                <div class="form-group" style="margin-top:30px">
+                    <a asp-controller="Emp_Manage" asp-action="EditEmp"  class="btn btn-success" style="margin-left:70%;margin-top:1px;line-height:34px;width:100px">Cancel</a>
+                    <input type="submit" value="Save Changes" class="btn btn-primary" style="margin-left:15px;"/>
                 </div>
             </form>
 
