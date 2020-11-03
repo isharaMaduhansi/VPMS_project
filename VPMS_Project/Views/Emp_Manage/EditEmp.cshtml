@@ -23,12 +23,12 @@
     <br>   <br>
     @if (ViewBag.IsSuccess == true)
     {
-        <div class="alert alert-success alert-dismissible fade show container" role="alert">
-            <strong>Congragulations!</strong>Successfully updated.<br><a asp-route="empDetailsRoute" asp-route-id="@ViewBag.empId">Click here</a> to view the details.
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
+<div class="alert alert-success alert-dismissible fade show container" role="alert">
+    <strong>Congragulations!</strong>&nbsp;&nbsp;&nbsp;Successfully updated.<br><a asp-route="empDetailsRoute" asp-route-id="@ViewBag.empId">Click here</a> to view the details.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
 
 
     }
@@ -59,7 +59,7 @@
                         <td>@emp.JobTitle
                         <br><span class="badge badge-dark" style="margin-bottom: 0px; font-size: 11pt">@emp.Status</span></td>
                         <td>Email: @emp.Email <br>Mobile: @emp.Mobile</td>
-                        <td><a asp-controller="Emp_Manage" asp-action="EditEmpById" asp-route-id="@emp.EmpId" class="btn btn-outline-primary">Edit</a></td>
+                        <td><a asp-controller="Emp_Manage" asp-action="EditEmpById" asp-route-id="@emp.EmpId" class="btn btn-outline-primary" style="width:70px">Edit</a></td>
 
                     </tr>
 

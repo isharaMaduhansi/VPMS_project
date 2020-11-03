@@ -99,6 +99,7 @@ namespace VPMS_Project.Repository
                 Address = employee.Address,
                 Dob = (DateTime)employee.Dob,
                 WorkSince = (DateTime)employee.WorkSince,
+                LastDayWorked=(DateTime)employee.LastDayWorked,
                 PhotoURL = employee.ProfilePhoto,
                 Gender = employee.Gender,
                 Status=employee.Status
@@ -106,10 +107,7 @@ namespace VPMS_Project.Repository
 
         }
 
-        //public List<EmpModel> GetEmpByName(String name,String Job)
-        //{
-        //    return DataSource().Where(x => x.EmpFName.Contains(name) || x.Position.Contains(Job)).ToList();
-        //}
+        
 
         public async Task<int> AddEmp(EmpModel empModel)
         {

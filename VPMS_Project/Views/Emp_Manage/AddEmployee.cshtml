@@ -126,8 +126,8 @@
                 <label asp-for="Status" style="margin-top:15px;margin-left:25px">Status</label>
                 <div class="form-group form-inline" style="font-size:15pt">
 
-                    <input class="form-control" type="radio" value="Active" asp-for="Status" style="margin-left:40px;" />&nbsp;&nbsp;&nbsp;Active
-                    <input class="form-control" type="radio" value="Inactive" asp-for="Status" style="margin-left:70px;" />&nbsp;&nbsp;&nbsp;Inactive&nbsp;&nbsp;&nbsp;
+                    <input class="form-control" type="radio" value="Active" asp-for="Status" style="margin-left:40px;" checked />&nbsp;&nbsp;&nbsp;Active
+                    <input class="form-control" type="radio" value="Inactive" asp-for="Status" style="margin-left:70px;" disabled/>&nbsp;&nbsp;&nbsp;Inactive&nbsp;&nbsp;&nbsp;
                     <span asp-validation-for="Status" class="text-danger"></span>
                 </div>
 

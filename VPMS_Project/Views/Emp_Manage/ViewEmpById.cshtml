@@ -18,15 +18,15 @@
     </form>
 </nav>
 
-
+<br>
 <div style="margin-left:20%;height:900px;">
-    <br><br><br>
+    <br>
     <section class="jumbotron text-center" style="height:1050px;position:relative;width:95%;margin-left:2%;background-color:whitesmoke;">
         <a asp-controller="Emp_Manage" asp-action="EditEmpById" asp-route-id="@Model.EmpId" class="btn btn-outline-success" style="margin-left:70%;width:70px">Edit</a>
         <a asp-controller="Emp_Manage" asp-action="DeleteEmpById" asp-route-id="@Model.EmpId" class="btn btn-outline-danger" style="margin-left:30px;width:70px">Delete</a>
 
 
-        <br><br>
+        <br><br><br>
 
         <div class="row">
             <div class="col">
@@ -46,110 +46,73 @@
                         </h4>
                         <h5 class="card-title" style="color:greenyellow">
                             @Model.JobTitle
-                    </h5>
-                    <h7 class="card-title">Work since - @Model.WorkSince.Day-@Model.WorkSince.Month-@Model.WorkSince.Year&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Model.Gender</h7><hr>
-                    <table class="table table-bordered">
-                        <tbody>
-                            <tr>
-                                <th scope="row">EmpId</th>
-                                <th>@Model.EmpId</th>
+                        </h5>
+                        <h7 class="card-title">Work since - @Model.WorkSince.Day-@Model.WorkSince.Month-@Model.WorkSince.Year&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Model.Gender</h7><hr>
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr>
+                                    <th scope="row">EmpId</th>
+                                    <th>@Model.EmpId</th>
 
-                            </tr>
+                                </tr>
 
-                            <tr>
-                                <th scope="row">Email</th>
-                                <th>@Model.Email</th>
+                                <tr>
+                                    <th scope="row">Email</th>
+                                    <th>@Model.Email</th>
 
-                            </tr>
-                            <tr>
-                                <th scope="row">Mobile No</th>
-                                <th>@Model.Mobile</th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Mobile No</th>
+                                    <th>@Model.Mobile</th>
 
-                            </tr>
-                            <tr>
-                                <th scope="row">Address</th>
-                                <th>@(string.IsNullOrEmpty(Model.Address) ? "Address is not available" : Model.Address) </th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Address</th>
+                                    <th>@(string.IsNullOrEmpty(Model.Address) ? "Address is not available" : Model.Address) </th>
 
-                            </tr>
-                            <tr>
-                                <th scope="row">Date of Birth</th>
-                                <th>@Model.Dob.Day-@Model.Dob.Month-@Model.Dob.Year</th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Date of Birth</th>
+                                    <th>@Model.Dob.Day-@Model.Dob.Month-@Model.Dob.Year</th>
 
-                            </tr>
-                    </table>
+                                </tr>
+                        </table>
 
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="container">
-        <table class="table " style="margin-top:50px">
+        <div class="container">
+            <table class="table " style="margin-top:50px">
 
-            <tbody>
-                <tr style="line-height:60px">
-                    <td scope="row" style="text-align:center;vertical-align:middle">
-                        <a asp-controller="AdminAttendence" asp-action="ViewAttendence" class="btn btn-outline-dark">Attendence Details</a>
+                <tbody>
+                    <tr style="line-height:60px">
+                        <td scope="row" style="text-align:center;vertical-align:middle">
+                            <a asp-controller="AdminAttendence" asp-action="ViewAttendence" class="btn btn-outline-dark">Attendence Details</a>
 
-                    </td>
+                        </td>
 
 
-                    <td rowspan="3" width="90%">
+                        <td rowspan="3" width="90%">
 
-                        <div class="accordion" id="accordionExample">
-                            <div class="card">
-                                <div class="card-header" id="headingOne" style="background-color:#808080">
-                                    <h5 class="mb-0">
-                                        <button class="btn btn-link" style="color:white;font-family:Cambria;" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                            <b>Current Projects</b>
-                                        </button>
-                                    </h5>
-                                </div>
-
-                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="card-body">
-                                                <div class="card" style="width: 10rem;height:5rem;background-color:whitesmoke">
-                                                    <div class="card-body">
-                                                        <h6 class="card-title">V-PMS Project</h6>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="col">
-                                            <div class="card-body">
-                                                <div class="card" style="width: 10rem;height:5rem;background-color:whitesmoke">
-                                                    <div class="card-body">
-                                                        <h6 class="card-title">Smart Office Project</h6>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="col">
-                                            <a href="#" style="color:forestgreen;font-size:smaller">View More</a>
-                                        </div>
+                            <div class="accordion" id="accordionExample">
+                                <div class="card">
+                                    <div class="card-header" id="headingOne" style="background-color:#808080">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link" style="color:white;font-family:Cambria;" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                <b>Current Projects</b>
+                                            </button>
+                                        </h5>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-header" id="headingTwo" style="background-color:#808080">
-                                    <h5 class="mb-0">
-                                        <button class="btn btn-link collapsed" style="color:white;font-family:Cambria" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="color:forestgreen">
-                                            <b>Current Tasks</b>
-                                        </button>
-                                    </h5>
-                                </div>
-                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                                    <div class="card-body">
+
+                                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+
                                         <div class="row">
                                             <div class="col">
                                                 <div class="card-body">
-                                                    <div class="card" style="width: 8rem;height:6rem;background-color:whitesmoke">
+                                                    <div class="card" style="width: 10rem;height:5rem;background-color:whitesmoke">
                                                         <div class="card-body">
-                                                            <h6 class="card-title">Login part- VPMS</h6>
+                                                            <h6 class="card-title">V-PMS Project</h6>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -157,57 +120,94 @@
                                             </div>
                                             <div class="col">
                                                 <div class="card-body">
-                                                    <div class="card" style="width: 8rem;height:6rem;background-color:whitesmoke">
+                                                    <div class="card" style="width: 10rem;height:5rem;background-color:whitesmoke">
                                                         <div class="card-body">
-                                                            <h6 class="card-title">Leave part- Smart Office</h6>
+                                                            <h6 class="card-title">Smart Office Project</h6>
                                                         </div>
                                                     </div>
                                                 </div>
 
                                             </div>
-
                                             <div class="col">
                                                 <a href="#" style="color:forestgreen;font-size:smaller">View More</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="card">
+                                    <div class="card-header" id="headingTwo" style="background-color:#808080">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link collapsed" style="color:white;font-family:Cambria" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="color:forestgreen">
+                                                <b>Current Tasks</b>
+                                            </button>
+                                        </h5>
+                                    </div>
+                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="card-body">
+                                                        <div class="card" style="width: 8rem;height:6rem;background-color:whitesmoke">
+                                                            <div class="card-body">
+                                                                <h6 class="card-title">Login part- VPMS</h6>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col">
+                                                    <div class="card-body">
+                                                        <div class="card" style="width: 8rem;height:6rem;background-color:whitesmoke">
+                                                            <div class="card-body">
+                                                                <h6 class="card-title">Leave part- Smart Office</h6>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="col">
+                                                    <a href="#" style="color:forestgreen;font-size:smaller">View More</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
                             </div>
+                        </td>
+                    </tr>
+                    <tr style="line-height:60px">
+                        <td scope="row" style="text-align:center;vertical-align:middle">
+                            <a asp-controller="AdminTimeS" asp-action="ViewTimeSheet" style="height:60px;width:140px" class="btn btn-outline-dark">View Time<br> Sheets</a>
+
+                        </td>
+
+                    </tr>
+                    <tr style="line-height:60px">
+                        <td scope="row" style="text-align:center;vertical-align:middle">
+                            <a asp-controller="AdminTimeS" asp-action="ViewTimeSheet" class="btn btn-outline-dark">View Leave Details</a>
+                        </td>
 
 
-                        </div>
-                    </td>
-                </tr>
-                <tr style="line-height:60px">
-                    <td scope="row" style="text-align:center;vertical-align:middle">
-                        <a asp-controller="AdminTimeS" asp-action="ViewTimeSheet" style="height:60px;width:140px" class="btn btn-outline-dark">View Time<br> Sheets</a>
-
-                    </td>
-
-                </tr>
-                <tr style="line-height:60px">
-                    <td scope="row" style="text-align:center;vertical-align:middle">
-                        <a asp-controller="AdminTimeS" asp-action="ViewTimeSheet" class="btn btn-outline-dark">View Leave Details</a>
-                    </td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
 
 
-                </tr>
-            </tbody>
-        </table>
-        <br>
-
-
-    </div>
+        </div>
 
 
     </section>
 
     <br>
     <a style="color:forestgreen;margin-left:84%;margin-bottom:20px" asp-controller="Emp_Manage" asp-action="ViewAllEmp">View All Employees</a>
-    <br> 
+    <br>
     <div class="container">
         <h3 style="color:white;background-color:#555;margin-top:18px">Related Employees</h3>
-        @await Component.InvokeAsync("EmpList", new { name = @Model.EmpFName, job = Model.JobTitle,id=Model.EmpId })
+        @await Component.InvokeAsync("EmpList", new { name = @Model.EmpFName, job = Model.JobTitle, id = Model.EmpId })
 
 
 

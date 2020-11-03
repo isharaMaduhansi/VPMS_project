@@ -5,10 +5,16 @@
 @model EmpModel
 
 <div style="margin-left:20%;height:900px;">
-    <br><a asp-controller="Emp_Manage" asp-action="SeeRemoveEmp" class="btn btn-outline-success" style="margin-left:80%;width:80px">Back</a><br> <br>
+    <br>
+    
+    <a asp-controller="Emp_Manage" asp-action="EditEmpById" asp-route-id="@Model.EmpId" class="btn btn-outline-success" style="margin-left:75%;width:70px">Edit</a>
+       
+    <a asp-controller="Emp_Manage" asp-action="SeeRemoveEmp" class="btn btn-outline-success" style="margin-left:20px;width:80px">Back</a>
+     
+    <br> <br>
     <section class="jumbotron text-center" style="height:1050px;position:relative;width:95%;margin-left:2%;background-color:whitesmoke;">
-
-
+        
+        
         <br>
 
         <div class="row">
@@ -25,12 +31,12 @@
                     <div class="card-body">
                         <h4 class="card-title">
                             @Model.EmpFName @Model.EmpLName
-                            <span class="badge badge-dark" style="margin-left:25%;font-size:large"> @Model.Status</span>
+                            <span class="badge badge-danger" style="margin-left:25%;font-size:large"> @Model.Status</span>
                         </h4>
                         <h5 class="card-title" style="color:greenyellow">
                             @Model.JobTitle
                         </h5>
-                        <h7 class="card-title">Work since - @Model.WorkSince.Day-@Model.WorkSince.Month-@Model.WorkSince.Year&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LastDay of Work - @Model.LastDayWorked.Date-@Model.LastDayWorked.Month-@Model.LastDayWorked.Year</h7><hr>
+                        <h7 class="card-title">Work since - @Model.WorkSince.Day-@Model.WorkSince.Month-@Model.WorkSince.Year&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LastDay of Work - @Model.LastDayWorked.Day-@Model.LastDayWorked.Month-@Model.LastDayWorked.Year</h7><hr>
                         <table class="table table-bordered">
                             <tbody>
                                 <tr>

@@ -65,9 +65,9 @@ namespace VPMS_Project.Controllers
             bool success= await _empRepository.DeleteEmp(id);
             if (success == true)
             {
-                return RedirectToAction(nameof(RemoveEmp));
+                return RedirectToAction(nameof(SeeRemoveEmp));
             }
-            return View("RemoveEmp");
+            return View("SeeRemoveEmp");
         }
 
 
