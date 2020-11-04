@@ -1,11 +1,12 @@
 ﻿@{
     ViewData["Title"] = Model.EmpFName;
+    ViewData["Topic"] = "Employees Who Quited";
 }
 
 @model EmpModel
 
 <div style="margin-left:20%;height:900px;">
-    <br>
+    <br><br>
     
     <a asp-controller="Emp_Manage" asp-action="EditEmpById" asp-route-id="@Model.EmpId" class="btn btn-outline-success" style="margin-left:75%;width:70px">Edit</a>
        

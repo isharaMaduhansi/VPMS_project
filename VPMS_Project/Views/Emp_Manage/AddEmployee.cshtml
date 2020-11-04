@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Add New Employee";
+    ViewData["Topic"] = "";
 }
 @model EmpModel
 
@@ -127,16 +128,16 @@
                 <div class="form-group form-inline" style="font-size:15pt">
 
                     <input class="form-control" type="radio" value="Active" asp-for="Status" style="margin-left:40px;" checked />&nbsp;&nbsp;&nbsp;Active
-                    <input class="form-control" type="radio" value="Inactive" asp-for="Status" style="margin-left:70px;" disabled/>&nbsp;&nbsp;&nbsp;Inactive&nbsp;&nbsp;&nbsp;
+                    <input class="form-control" type="radio" value="Inactive" asp-for="Status" style="margin-left:70px;" disabled />&nbsp;&nbsp;&nbsp;Inactive&nbsp;&nbsp;&nbsp;
                     <span asp-validation-for="Status" class="text-danger"></span>
                 </div>
 
             </div>
 
-                <div class="form-group" style="margin-top:50px">
-                    <a asp-controller="Emp_Manage" asp-action="ViewAllEmp" class="btn btn-success" style="margin-left:70%;margin-top:1px;line-height:34px;width:100px">Cancel</a>
-                    <input type="submit" value="Add Employee" class="btn btn-primary" />
-                </div>
+            <div class="form-group" style="margin-top:50px">
+                <a asp-controller="Emp_Manage" asp-action="ViewAllEmp" class="btn btn-success" style="margin-left:70%;margin-top:1px;line-height:34px;width:100px">Cancel</a>
+                <input type="submit" value="Add Employee" class="btn btn-primary" />
+            </div>
         </form>
 
     </div>

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using VPMS_Project.Enums;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace VPMS_Project.Models
 {
@@ -12,7 +13,7 @@ namespace VPMS_Project.Models
     {
         public int EmpId { get; set; }
 
-        [StringLength(20,MinimumLength =3)]
+        [StringLength(20, MinimumLength = 3)]
         [Required(ErrorMessage = "Please Enter first name")]
         public String EmpFName { get; set; }
 
@@ -33,7 +34,7 @@ namespace VPMS_Project.Models
         [Required(ErrorMessage = "Please Enter mobile number")]
         public int? Mobile { get; set; }
 
-        
+
         [DataType(DataType.Date)]
         [Required(ErrorMessage = "Please select Date of Birth")]
         public DateTime Dob { get; set; }
@@ -54,6 +55,9 @@ namespace VPMS_Project.Models
 
         [Required(ErrorMessage = "Please select one")]
         public String Status { get; set; }
+
+        [BindProperty(SupportsGet=true)]
+        public String Search { get; set; }
 
         public DateTime LastDayWorked { get; set; }
 

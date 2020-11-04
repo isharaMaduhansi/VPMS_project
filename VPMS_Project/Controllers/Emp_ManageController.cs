@@ -27,7 +27,14 @@ namespace VPMS_Project.Controllers
 
         public async Task<IActionResult> ViewAllEmp()
         {
-            var data= await _empRepository.GetAllEmps();
+            var data= await _empRepository.GetActiveEmps();
+            return View(data);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> SearchEmp(string Search)
+        {
+            var data = await _empRepository.GetSearchEmps(Search);
             return View(data);
         }
 
@@ -49,14 +56,14 @@ namespace VPMS_Project.Controllers
         {
             ViewBag.IsSuccess = isSucceess;
             ViewBag.empId = empId;
-            var data = await _empRepository.GetAllEmps();
+            var data = await _empRepository.GetActiveEmps();
             return View(data);
         }
 
         public async Task<IActionResult> RemoveEmp(bool isSucceess = false)
         {
             ViewBag.IsSuccess = isSucceess;
-            var data = await _empRepository.GetAllEmps();
+            var data = await _empRepository.GetActiveEmps();
             return View(data);
         }
 

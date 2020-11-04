@@ -1,20 +1,13 @@
 ﻿
 @{
     ViewData["Title"] = "Deleted Employees";
+    ViewData["Topic"]= "Employees Who Quited";
 }
 
 @model IEnumerable<EmpModel>
 
 
-<nav class="navbar navbar-light" style="background-color:gainsboro;margin-left:18%">
-    <a class="navbar-brand">
-        <h4 style="font-family:Cambria">Employees Of Bellvantage (Pvt) Ltd</h4>
-    </a>
-    <form class="form-inline">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-</nav>
+
 <br>
 
 
@@ -34,9 +27,9 @@
                 @foreach (var emp in Model)
                 {
 
-                    
+
                     <tr style="line-height: 40px">
-                      
+
                         <th scope="row">
                             <a asp-route="empDetailsRoute" asp-route-id="@emp.EmpId">
                                 <div class="rounded-circle" style="width: 3.5rem;background-color:gainsboro;border-width:medium">
@@ -53,7 +46,7 @@
                         <td><a asp-controller="Emp_Manage" asp-action="DeletedEmpById" asp-route-id="@emp.EmpId" class="btn btn-outline-danger">View More</a></td>
 
                     </tr>
-                    
+
 
 
                 }

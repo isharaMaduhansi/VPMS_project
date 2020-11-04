@@ -7,7 +7,9 @@ namespace VPMS_Project.Repository
     public interface IEmpRepository
     {
         Task<int> AddEmp(EmpModel empModel);
-        Task<List<EmpModel>> GetAllEmps();
+        Task<List<EmpModel>> GetActiveEmps();
+
+        Task<List<EmpModel>> GetSearchEmps(string name);
 
         Task<List<EmpModel>> GetDeletedEmps();
         Task<EmpModel> GetEmpById(int id);

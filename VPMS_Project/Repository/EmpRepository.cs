@@ -19,7 +19,7 @@ namespace VPMS_Project.Repository
         }
 
 
-        public async Task<List<EmpModel>> GetAllEmps()
+        public async Task<List<EmpModel>> GetActiveEmps()
         {
             return await _context.Employees.Where(x => x.Status=="Active").Select(emp => new EmpModel()
             {
@@ -39,8 +39,31 @@ namespace VPMS_Project.Repository
 
             }).ToListAsync();
         }
+        
 
-       
+        public async Task<List<EmpModel>> GetSearchEmps(String name)
+        {
+            return await _context.Employees.Where(x => x.EmpFName.Contains(name) || x.JobTitle.Contains(name) || x.EmpLName.Contains(name))
+                .Select(emp => new EmpModel()
+            {
+
+                EmpId = emp.EmpId,
+                EmpFName = emp.EmpFName,
+                EmpLName = emp.EmpLName,
+                JobTitle = emp.JobTitle,
+                Email = emp.Email,
+                Mobile = emp.Mobile,
+                Dob = (DateTime)emp.Dob,
+                Address = emp.Address,
+                PhotoURL = emp.ProfilePhoto,
+                Gender = emp.Gender,
+                Status = emp.Status
+
+
+            }).ToListAsync();
+        }
+
+
         public async Task<List<EmpModel>> GetDeletedEmps()
         {
             return await _context.Employees.Where(x => x.Status == "Inactive").Select(emp => new EmpModel()
