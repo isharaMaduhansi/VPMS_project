@@ -53,22 +53,33 @@ namespace VPMS_Project.Controllers
             return View(data);
         }
 
-        public async Task<IActionResult> RemoveEmp()
+        public async Task<IActionResult> RemoveEmp(bool isSucceess = false)
         {
+            ViewBag.IsSuccess = isSucceess;
             var data = await _empRepository.GetAllEmps();
             return View(data);
         }
 
-        public async Task<IActionResult> DeleteEmpById(int id)
+        public async Task<IActionResult> DeleteEmp(int id)
         {
 
-            bool success= await _empRepository.DeleteEmp(id);
+            var data = await _empRepository.GetEmpById(id);
+            return View(data);
+        }
+
+     
+        public async Task<IActionResult> DeleteEmpPost(int id)
+        {
+
+            bool success = await _empRepository.DeleteEmp(id);
             if (success == true)
             {
-                return RedirectToAction(nameof(SeeRemoveEmp));
+                return RedirectToAction(nameof(RemoveEmp), new { isSucceess = true });
+
             }
-            return View("SeeRemoveEmp");
+            return View();
         }
+
 
 
 
@@ -113,10 +124,8 @@ namespace VPMS_Project.Controllers
             return View();
         }
         
-        public async Task<IActionResult> EditEmpById(int id,bool isSucceess = false)
+        public async Task<IActionResult> EditEmpById(int id)
         {
-
-            ViewBag.IsSuccess = isSucceess;
             ViewBag.empId = id;
             var data = await _empRepository.GetEmpById(id);
             return View(data);
