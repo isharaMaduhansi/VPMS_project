@@ -48,8 +48,8 @@
             </a>
             <form class="form-inline" method="get" asp-action="SearchEmp">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search employees" aria-label="Search" name="Search" />
-                <input class="btn btn-outline-success" type="submit" value="Search" />
-
+                <input class="btn btn-outline-success" type="submit" value="Search" style="line-height:16px" />
+                <a asp-controller="EmployeeHome" asp-action="EmpIndex" class="btn btn-success" style="line-height:25px;margin-left:15px;width:80px">Back</a>
             </form>
         </nav>
 
@@ -65,7 +65,7 @@
 
         </div>
 
-    </footer>*@
+    </footer>*@//
 
     <environment include="Development">
         <script src="~/lib/jquery/jquery.js"></script>

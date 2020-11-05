@@ -1,0 +1,41 @@
+﻿body {
+    margin: 0;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 17%;
+    background-color: #393737;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+}
+
+
+li a {
+    display: block;
+    color: white;
+    background-color: #393737;
+    padding: 10px 16px;
+    text-decoration: none;
+}
+
+    li a.active {
+        background-color: #4CAF50;
+        color: black;
+    }
+
+    li a:hover:not(.active) {
+        background-color: ghostwhite;
+        color: black;
+    }
+
+#img {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
