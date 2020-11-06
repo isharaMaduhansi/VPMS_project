@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "All Employees";
     ViewData["Topic"] = "Employees of Bellvantage (Pvt) Ltd";
+    int i = 0;
 }
 
 @model IEnumerable<EmpModel>
@@ -12,8 +13,7 @@
 
 
 <div style="margin-left:20%;height:1000px;">
-    <br> <br> <br>
-  
+    <br> <br>
     <div class="table-responsive">
         <table class="table table-hover " style="width:980px;">
 
@@ -25,7 +25,7 @@
                 @foreach (var emp in Model)
                 {
 
-
+                    i += 1;
                     <tr style="line-height: 40px">
 
                         <th scope="row">
@@ -37,7 +37,7 @@
                         </th>
                         <td>@emp.EmpFName @emp.EmpLName<br><font style="color:forestgreen;font-size:11pt;margin-bottom:0px"> EmpId : @emp.EmpId</font></td>
                         <td>
-                            @emp.JobTitle
+                            @emp.JobType
                             <br><span class="badge badge-dark" style="margin-bottom: 0px; font-size: 11pt">@emp.Status</span>
                         </td>
                         <td>Email: @emp.Email <br>Mobile: @emp.Mobile</td>
@@ -54,9 +54,9 @@
             </tbody>
         </table>
     </div>
-
-
-
+    <br>
+    <hr>
+    <h5>No of employees : @i</h5>
 
 
 

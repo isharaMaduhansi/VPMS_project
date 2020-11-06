@@ -14,37 +14,41 @@ namespace VPMS_Project.Models
         public int EmpId { get; set; }
 
         [StringLength(20, MinimumLength = 3)]
-        [Required(ErrorMessage = "Please Enter first name")]
+        [Required(ErrorMessage = "First name field is required")]
         public String EmpFName { get; set; }
 
 
 
         [StringLength(20, MinimumLength = 3)]
-        [Required(ErrorMessage = "Please Enter last name")]
+        [Required(ErrorMessage = "Last name field is required")]
         public String EmpLName { get; set; }
 
 
 
         [DataType(DataType.EmailAddress)]
-        [Required(ErrorMessage = "Please Enter email")]
+        [Required(ErrorMessage = "Email field is required")]
         [EmailAddress]
         public String Email { get; set; }
 
 
-        [Required(ErrorMessage = "Please Enter mobile number")]
+        [Required(ErrorMessage = "Mobile number field is required")]
         public int? Mobile { get; set; }
 
 
         [DataType(DataType.Date)]
-        [Required(ErrorMessage = "Please select Date of Birth")]
+        [Required(ErrorMessage = "Date of birth field is required")]
         public DateTime Dob { get; set; }
 
+        [DataType(DataType.Date)]
+        [Required(ErrorMessage = "Join date field is required")]
         public DateTime WorkSince { get; set; }
 
         public String Address { get; set; }
 
-        [Required(ErrorMessage = "Please choose Job Title")]
-        public String JobTitle { get; set; }
+        [Required(ErrorMessage = "Job title field is required")]
+        public int JobTitleId { get; set; }
+
+        public String JobType { get; set; }
 
         public IFormFile ProfilePhoto { get; set; }
 
@@ -55,9 +59,6 @@ namespace VPMS_Project.Models
 
         [Required(ErrorMessage = "Please select one")]
         public String Status { get; set; }
-
-        [BindProperty(SupportsGet=true)]
-        public String Search { get; set; }
 
         public DateTime LastDayWorked { get; set; }
 

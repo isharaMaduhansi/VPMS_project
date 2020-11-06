@@ -21,116 +21,124 @@ namespace VPMS_Project.Repository
 
         public async Task<List<EmpModel>> GetActiveEmps()
         {
-            return await _context.Employees.Where(x => x.Status=="Active").Select(emp => new EmpModel()
-            {
-
-                EmpId = emp.EmpId,
-                EmpFName = emp.EmpFName,
-                EmpLName = emp.EmpLName,
-                JobTitle = emp.JobTitle,
-                Email = emp.Email,
-                Mobile = emp.Mobile,
-                Dob = (DateTime)emp.Dob,
-                Address = emp.Address,
-                PhotoURL = emp.ProfilePhoto,
-                Gender = emp.Gender,
-                Status=emp.Status
-               
-
-            }).ToListAsync();
+          return await (from a in _context.Employees
+                          join b in _context.Job on a.JobTitleId equals b.JobId
+                          select new EmpModel()
+                          {
+                              EmpId = a.EmpId,
+                              EmpFName = a.EmpFName,
+                              EmpLName = a.EmpLName,
+                              JobTitleId = a.JobTitleId,
+                              JobType = b.JobName,
+                              Email = a.Email,
+                              Mobile = a.Mobile,
+                              Dob = (DateTime)a.Dob,
+                              Address = a.Address,
+                              PhotoURL = a.ProfilePhoto,
+                              Gender = a.Gender,
+                              Status = a.Status
+                           })
+                          .Where(a => a.Status == "Active").ToListAsync();
         }
         
 
         public async Task<List<EmpModel>> GetSearchEmps(String name)
         {
-            return await _context.Employees.Where(x => x.EmpFName.Contains(name) || x.JobTitle.Contains(name) || x.EmpLName.Contains(name))
-                .Select(emp => new EmpModel()
-            {
-
-                EmpId = emp.EmpId,
-                EmpFName = emp.EmpFName,
-                EmpLName = emp.EmpLName,
-                JobTitle = emp.JobTitle,
-                Email = emp.Email,
-                Mobile = emp.Mobile,
-                Dob = (DateTime)emp.Dob,
-                Address = emp.Address,
-                PhotoURL = emp.ProfilePhoto,
-                Gender = emp.Gender,
-                Status = emp.Status
-
-
-            }).ToListAsync();
+            return await (from a in _context.Employees
+                          join b in _context.Job on a.JobTitleId equals b.JobId
+                          select new EmpModel()
+                          {
+                              EmpId = a.EmpId,
+                              EmpFName = a.EmpFName,
+                              EmpLName = a.EmpLName,
+                              JobTitleId = a.JobTitleId,
+                              JobType = b.JobName,
+                              Email = a.Email,
+                              Mobile = a.Mobile,
+                              Dob = (DateTime)a.Dob,
+                              Address = a.Address,
+                              PhotoURL = a.ProfilePhoto,
+                              Gender = a.Gender,
+                              Status = a.Status
+                          })
+                        .Where(x => x.EmpFName.Contains(name) || x.JobType.Contains(name) || x.EmpLName.Contains(name)).ToListAsync();
         }
 
 
         public async Task<List<EmpModel>> GetDeletedEmps()
         {
-            return await _context.Employees.Where(x => x.Status == "Inactive").Select(emp => new EmpModel()
-            {
+            return await (from a in _context.Employees
+                          join b in _context.Job on a.JobTitleId equals b.JobId
+                          select new EmpModel()
+                          {
+                              EmpId = a.EmpId,
+                              EmpFName = a.EmpFName,
+                              EmpLName = a.EmpLName,
+                              JobTitleId = a.JobTitleId,
+                              JobType = b.JobName,
+                              Email = a.Email,
+                              Mobile = a.Mobile,
+                              Dob = (DateTime)a.Dob,
+                              Address = a.Address,
+                              PhotoURL = a.ProfilePhoto,
+                              Gender = a.Gender,
+                              Status = a.Status
+                          })
+                       .Where(x => x.Status == "Inactive").ToListAsync();
 
-                EmpId = emp.EmpId,
-                EmpFName = emp.EmpFName,
-                EmpLName = emp.EmpLName,
-                JobTitle = emp.JobTitle,
-                Email = emp.Email,
-                Mobile = emp.Mobile,
-                Dob = (DateTime)emp.Dob,
-                Address = emp.Address,
-                PhotoURL = emp.ProfilePhoto,
-                Gender = emp.Gender,
-                Status = emp.Status
 
-
-            }).ToListAsync();
         }
 
 
         public async Task<List<EmpModel>> GetEmpListAsync(string name, string job,int id)
         {
-            return await _context.Employees.Where(x =>(x.Status=="Active") && (x.EmpId != id) && (x.EmpFName.Contains(name) || x.JobTitle.Contains(job)))
-                .Select(emp => new EmpModel()
-                {
-
-                    EmpId = emp.EmpId,
-                    EmpFName = emp.EmpFName,
-                    EmpLName = emp.EmpLName,
-                    JobTitle = emp.JobTitle,
-                    Email = emp.Email,
-                    Mobile = emp.Mobile,
-                    Dob = (DateTime)emp.Dob,
-                    Address = emp.Address,
-                    PhotoURL = emp.ProfilePhoto,
-                    Gender = emp.Gender,
-                    Status=emp.Status
-
-                }).ToListAsync();
+            return await (from a in _context.Employees
+                          join b in _context.Job on a.JobTitleId equals b.JobId
+                          select new EmpModel()
+                          {
+                              EmpId = a.EmpId,
+                              EmpFName = a.EmpFName,
+                              EmpLName = a.EmpLName,
+                              JobTitleId = a.JobTitleId,
+                              JobType = b.JobName,
+                              Email = a.Email,
+                              Mobile = a.Mobile,
+                              Dob = (DateTime)a.Dob,
+                              Address = a.Address,
+                              PhotoURL = a.ProfilePhoto,
+                              Gender = a.Gender,
+                              Status = a.Status
+                          })
+                      .Where(x => (x.Status == "Active") && (x.EmpId != id) && (x.EmpFName.Contains(name) || x.JobType.Contains(job))).ToListAsync();
         }
 
 
         public async Task<EmpModel> GetEmpById(int id)
         {
-
-            return await _context.Employees.Where(x => x.EmpId == id).Select(employee => new EmpModel()
-            {
-                EmpId = employee.EmpId,
-                EmpFName = employee.EmpFName,
-                EmpLName = employee.EmpLName,
-                JobTitle = employee.JobTitle,
-                Email = employee.Email,
-                Mobile = employee.Mobile,
-                Address = employee.Address,
-                Dob = (DateTime)employee.Dob,
-                WorkSince = (DateTime)employee.WorkSince,
-                LastDayWorked=(DateTime)employee.LastDayWorked,
-                PhotoURL = employee.ProfilePhoto,
-                Gender = employee.Gender,
-                Status=employee.Status
-            }).FirstOrDefaultAsync();
+               return await (from a in _context.Employees
+                          join b in _context.Job on a.JobTitleId equals b.JobId
+                          select new EmpModel()
+                          {
+                              EmpId = a.EmpId,
+                              EmpFName = a.EmpFName,
+                              EmpLName = a.EmpLName,
+                              JobTitleId = a.JobTitleId,
+                              JobType = b.JobName,
+                              Email = a.Email,
+                              Mobile = a.Mobile,
+                              Dob = (DateTime)a.Dob,
+                              WorkSince = (DateTime)a.WorkSince,
+                              LastDayWorked=(DateTime)a.LastDayWorked,
+                              Address = a.Address,
+                              PhotoURL = a.ProfilePhoto,
+                              Gender = a.Gender,
+                              Status = a.Status
+                          })
+                     .Where(x => x.EmpId == id).FirstOrDefaultAsync();
 
         }
 
-        
+
 
         public async Task<int> AddEmp(EmpModel empModel)
         {
@@ -140,10 +148,10 @@ namespace VPMS_Project.Repository
                 EmpFName = empModel.EmpFName,
                 EmpLName = empModel.EmpLName,
                 Email = empModel.Email,
-                JobTitle = empModel.JobTitle,
+                JobTitleId = empModel.JobTitleId,
                 Address = empModel.Address,
                 Dob = empModel.Dob,
-                WorkSince = DateTime.UtcNow,
+                WorkSince = empModel.WorkSince,
                 Mobile = empModel.Mobile.HasValue ? empModel.Mobile.Value : 0,
                 ProfilePhoto = empModel.PhotoURL,
                 Gender = empModel.Gender,
@@ -166,7 +174,8 @@ namespace VPMS_Project.Repository
             emp.EmpFName = empModel.EmpFName;
             emp.EmpLName = empModel.EmpLName;
             emp.Email=empModel.Email;
-            emp.JobTitle = empModel.JobTitle;
+            emp.JobTitleId = empModel.JobTitleId;
+            emp.WorkSince = empModel.WorkSince;
             emp.Gender = empModel.Gender;
             emp.Mobile = empModel.Mobile.HasValue ? empModel.Mobile.Value : 0;
             emp.Dob = empModel.Dob;
@@ -194,6 +203,8 @@ namespace VPMS_Project.Repository
             return true;
 
         }
+
+       
 
 
 

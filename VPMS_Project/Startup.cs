@@ -25,9 +25,10 @@ namespace VPMS_Project
                 options => options.UseSqlServer("Server=.;Database=EmployeeStore;Integrated Security=True;")
                 );
              services.AddRazorPages().AddRazorRuntimeCompilation();
-
+            
             services.AddScoped<IEmpRepository, EmpRepository>();
-         
+            services.AddScoped<JobRepository, JobRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

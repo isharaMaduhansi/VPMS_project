@@ -11,7 +11,7 @@
     <br>
 
 
-    <h2 style="font-family:Calibri;color:forestgreen">Recruiting New Employees</h2><hr>
+    <h3 style="font-family:Calibri;color:forestgreen">Enroll New Employee</h3><hr>
 
     @if (ViewBag.IsSuccess == true)
     {
@@ -28,7 +28,7 @@
 
 
 
-    <div class="container" id="con" style="margin-top:60px;height:1000px">
+    <div class="container" id="con" style="margin-top:60px;height:1100px">
         <form method="post" enctype="multipart/form-data" asp-action="AddEmployee" asp-controller="Emp_Manage">
 
 
@@ -47,26 +47,16 @@
             <div class="row">
                 <div class="col">
                     <div class="form-group" style="margin-top:20px">
-                        <label asp-for="JobTitle">Job Title</label>
-                        <select asp-for="JobTitle" class="form-control" style="height:45px" asp-items="ViewBag.Job">
+                        <label asp-for="JobTitleId">Job Title</label>
+                        <a asp-controller="Emp_Manage" asp-action="ModifyList" class="btn-dark" style="font-size:11pt;margin-left:390px">Modity List</a>
+                        <select asp-for="JobTitleId" class="form-control" style="height:40px" asp-items="ViewBag.Jobs">
                             <option value="">Choose the Job Title</option>
-                            <option value="Project Manager">Project Manager</option>
-                            <option value="Head of IT">Head of IT</option>
-                            <option value="CEO">CEO</option>
-                            <option value="Project Account Manager">Project Account Manager</option>
-                            <option value="Team Leader">Team Leader</option>
-                            <option value="System Architect">System Architect</option>
-                            <option value="Senior Software Engineer">Senior Software Engineer</option>
-                            <option value="Software Engineer">Software Engineer</option>
-                            <option value="Quality Assuarance">QA</option>
-                            <option value="Business quality Assurance">BQA</option>
-
                         </select>
-                        <span asp-validation-for="JobTitle" class="text-danger"></span>
+                        <span asp-validation-for="JobTitleId" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col">
-                    <label asp-for="Gender" style="margin-top:25px;margin-left:45px">Gender</label>
+                    <label asp-for="Gender" style="margin-top:33px;margin-left:45px">Gender</label>
                     <div class="form-group form-inline" style="font-size:15pt">
 
                         <input class="form-control" type="radio" value="Female" asp-for="Gender" style="margin-left:40px;" />&nbsp;&nbsp;&nbsp;Female
@@ -89,6 +79,12 @@
                 <span asp-validation-for="Mobile" class="text-danger"></span>
             </div>
 
+            <div class="form-group">
+                <label asp-for="WorkSince">Work Since</label>
+                <input asp-for="WorkSince" class="form-control" placeholder="Employee Join Date" style="height:45px" />
+                <span asp-validation-for="WorkSince" class="text-danger"></span>
+            </div>
+
 
             <div class="row">
                 <div class="col">
@@ -106,7 +102,7 @@
                     </div>
 
                 </div>
- </div>
+            </div>
 
             <div class="col">
                 <div class="form-group">
@@ -116,7 +112,6 @@
                         <label class="custom-file-label" for="customFile">Upload Image</label>
                     </div>
                 </div>
-
             </div>
 
             <div class="form-group">
@@ -131,8 +126,8 @@
             </div>
 
             <div class="form-group" style="margin-top:50px">
-                <a asp-controller="Emp_Manage" asp-action="ViewAllEmp" class="btn btn-success" style="margin-left:70%;margin-top:1px;line-height:34px;width:100px">Cancel</a>
-                <input type="submit" value="Add Employee" class="btn btn-primary" />
+                <a asp-controller="Emp_Manage" asp-action="ViewAllEmp" class="btn btn-success" style="margin-left:78%;margin-top:1px;line-height:34px;width:100px">Cancel</a>
+                <input type="submit" value="Enroll" class="btn btn-primary" />
             </div>
         </form>
 

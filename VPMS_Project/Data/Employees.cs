@@ -16,7 +16,7 @@ namespace VPMS_Project.Data
         public String EmpFName { get; set; }
         public String EmpLName { get; set; }
 
-        public String JobTitle { get; set; }
+        public int JobTitleId { get; set; }
 
         public String Email { get; set; }
 
@@ -33,6 +33,8 @@ namespace VPMS_Project.Data
         public String Status { get; set; }
 
         public DateTime? LastDayWorked { get; set; }
+
+        public Job Job { get; set; }
 
 
 

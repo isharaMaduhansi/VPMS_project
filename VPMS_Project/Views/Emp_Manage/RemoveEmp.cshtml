@@ -49,17 +49,17 @@
                         </th>
                         <td>@emp.EmpFName @emp.EmpLName<br><font style="color:forestgreen;font-size:small;margin-bottom:0px"> EmpId : @emp.EmpId</font></td>
                         <td>
-                            @emp.JobTitle
-                        <br><span class="badge badge-dark" style="margin-bottom: 0px; font-size: 11pt">@emp.Status</span>
-                    </td>
-                    <td>Email: @emp.Email <br>Mobile: @emp.Mobile</td>
-                    <td><a asp-controller="Emp_Manage" asp-action="DeleteEmp" asp-route-id="@emp.EmpId" class="btn btn-outline-danger">Delete</a></td>
+                            @emp.JobType
+                            <br><span class="badge badge-dark" style="margin-bottom: 0px; font-size: 11pt">@emp.Status</span>
+                        </td>
+                        <td>Email: @emp.Email <br>Mobile: @emp.Mobile</td>
+                        <td><a asp-controller="Emp_Manage" asp-action="DeleteEmp" asp-route-id="@emp.EmpId" class="btn btn-outline-danger">Delete</a></td>
 
-                </tr>
+                    </tr>
+                   
 
 
-
-            }
+                }
 
 
 

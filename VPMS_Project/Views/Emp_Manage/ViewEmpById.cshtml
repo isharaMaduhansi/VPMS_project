@@ -38,7 +38,7 @@
                             <span class="badge badge-dark" style="margin-left:25%;font-size:large"> @Model.Status</span>
                         </h4>
                         <h5 class="card-title" style="color:greenyellow">
-                            @Model.JobTitle
+                            @Model.JobType
                         </h5>
                         <h7 class="card-title">Work since - @Model.WorkSince.Day-@Model.WorkSince.Month-@Model.WorkSince.Year&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Model.Gender</h7><hr>
                         <table class="table table-bordered">
@@ -200,7 +200,7 @@
     <br>
     <div class="container">
         <h3 style="color:white;background-color:#555;margin-top:18px">Related Employees</h3>
-        @await Component.InvokeAsync("EmpList", new { name = @Model.EmpFName, job = Model.JobTitle, id = Model.EmpId })
+        @await Component.InvokeAsync("EmpList", new { name = @Model.EmpFName, job = Model.JobType, id = Model.EmpId })
 
 
 

@@ -14,12 +14,14 @@ namespace VPMS_Project.Controllers
     public class Emp_ManageController : Controller
     {
         private readonly IEmpRepository _empRepository = null;
+        private readonly JobRepository _jobRepository = null;
         private readonly IWebHostEnvironment _webHostEnvironment;
 
 
-        public Emp_ManageController(IEmpRepository empRepository, IWebHostEnvironment webHostEnvironment) 
+        public Emp_ManageController(IEmpRepository empRepository, IWebHostEnvironment webHostEnvironment, JobRepository jobRepository) 
         {
             _empRepository = empRepository;
+            _jobRepository = jobRepository;
             _webHostEnvironment = webHostEnvironment;
 
 
@@ -98,9 +100,10 @@ namespace VPMS_Project.Controllers
              return View(data);
         }
 
-        public IActionResult AddEmployee(bool isSucceess=false,int empId = 0)
+        public async Task<IActionResult> AddEmployee(bool isSucceess=false,int empId = 0)
         {
             var emp = new EmpModel();
+            ViewBag.Jobs =new SelectList( await _jobRepository.GetJobs(),"JobId","JobName");
             ViewBag.IsSuccess = isSucceess;
             ViewBag.empId = empId;
             return View(emp);
@@ -128,12 +131,16 @@ namespace VPMS_Project.Controllers
                     return RedirectToAction(nameof(AddEmployee), new { isSucceess = true, empId = id });
                 }
             }
+            ViewBag.Jobs = new SelectList(await _jobRepository.GetJobs(), "JobId", "JobName");
             return View();
         }
         
+
+
         public async Task<IActionResult> EditEmpById(int id)
         {
             ViewBag.empId = id;
+            ViewBag.Jobs = new SelectList(await _jobRepository.GetJobs(), "JobId", "JobName");
             var data = await _empRepository.GetEmpById(id);
             return View(data);
         }
@@ -162,9 +169,49 @@ namespace VPMS_Project.Controllers
                     return RedirectToAction(nameof(EditEmp), new { isSucceess = true, empId = empModel.EmpId});
                 }
             }
+            ViewBag.Jobs = new SelectList(await _jobRepository.GetJobs(), "JobId", "JobName");
             return View();
         }
 
+       
+        public async Task<IActionResult> ModifyList(bool isSucceess = false,bool isdelete =false)
+        {
+            ViewBag.IsSuccess = isSucceess;
+            ViewBag.IsDelete = isdelete;
+            var data = await _jobRepository.GetJobs();
+            return View(data);
+        }
+
+        [HttpGet]
+        public IActionResult AddJob()
+        {
+           return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddJob(JobModel jobModel)
+        {
+            int id = await _jobRepository.AddJob(jobModel);
+
+            if (id > 0)
+            {
+                return RedirectToAction(nameof(ModifyList), new { isSucceess = true });
+            }
+
+            return View();
+        }
+        
+             public async Task<IActionResult> DeleteJob(int id)
+        {
+
+            bool success = await _jobRepository.DeleteJob(id);
+            if (success == true)
+            {
+                return RedirectToAction(nameof(ModifyList), new { isdelete = true });
+
+            }
+            return View();
+        }
 
 
     }
