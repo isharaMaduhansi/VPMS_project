@@ -3,18 +3,150 @@
 
 @{
     ViewData["Title"] = "update data";
-    ViewData["Topic"] = "";
+    ViewData["Topic"] = "Modify Existing Employees";
 }
 @model EmpModel
 
-    <div style="margin-left:20%;height:1000px;">
+
+
+    <div style="margin-left: 17%; height: 1000px; background-image: url('/images/Parallax.jpg'); background-repeat: no-repeat; position: center;background-size:100% 100%;">
+
+        <br><br><br>
+        <h5 style="color:white;margin-left: 15%;"> User Id @ViewBag.empId</h5><hr style="background-color:white">
+
+        <form method="post" enctype="multipart/form-data" asp-action="EditEmpById" asp-controller="Emp_Manage" style="margin-left:15%;width:750px">
+            
+            <input hidden asp-for="EmpId" />
+                <input hidden asp-for="PhotoURL" />
+            
+            <div class="row">
+                <div class="col">
+                    <div class="form-group" style="margin-top:13px">
+                        <input asp-for="EmpFName" class="form-control" placeholder="Employee First Name" style="height:45px;" />
+                        <span asp-validation-for="EmpFName" class="text-danger"></span>
+                    </div>
+
+                </div>
+
+                <div class="col">
+                    <div class="form-group" style="margin-top:13px">
+                        <input asp-for="EmpLName" class="form-control" placeholder="Employee Last Name" style="height:45px;" />
+                        <span asp-validation-for="EmpLName" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col">
+                    <div class="form-group" style="margin-top:13px">
+                        <a asp-controller="Emp_Manage" asp-action="ModifyList" class="btn-outline-success" style="font-size:11pt;margin-left:280px;color:lightgreen">Modity List</a>
+                        <select asp-for="JobTitleId" class="form-control" asp-items="ViewBag.Jobs" style="height:45px;">
+                            <option value="">Choose the Job Title</option>
+                        </select>
+                        <span asp-validation-for="JobTitleId" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="form-group form-inline" style="font-size:15pt;margin-top:33px">
+
+                        <input class="form-control" type="radio" value="Female" asp-for="Gender" style="margin-left:40px;color:white" />&nbsp;&nbsp;&nbsp;<font style="color:white">Female</font>
+                        <input class="form-control" type="radio" value="Male" asp-for="Gender" style="margin-left:70px;color:white" />&nbsp;&nbsp;&nbsp;<font style="color:white">Male</font>&nbsp;&nbsp;&nbsp;
+                        <span asp-validation-for="Gender" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="form-group" style="margin-top:13px">
+                        <input asp-for="Email" class="form-control" placeholder="Employee email" style="height:45px;" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group" style="margin-top:13px">
+                        <input asp-for="Mobile" class="form-control" placeholder="Employee Mobile" style="height:45px" />
+                        <span asp-validation-for="Mobile" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+            <div class="row">
+                <div class="col">
+                    <div class="form-group" style="margin-top:13px">
+                        <font style="color:white">Date Of Birth</font>
+                        <input asp-for="Dob" class="form-control" placeholder="select birth day" style="height:45px" />
+                        <span asp-validation-for="Dob" class="text-danger"></span>
+                    </div>
+
+                </div>
+
+                <div class="col">
+                    <div class="form-group" style="margin-top:13px">
+                        <font style="color:white">Employee Join Date</font>
+                        <input asp-for="WorkSince" class="form-control" placeholder="Employee Join Date" style="height:45px" required />
+                        <span asp-validation-for="WorkSince" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="form-group" style="margin-top:13px">
+                        <textarea asp-for="Address" class="form-control" placeholder="Employee Address" style="height:70px"></textarea>
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+
+                </div>
+
+                <div class="col">
+                    <div class="form-group">
+                        <div class="form-group form-inline" style="font-size:15pt;margin-top:33px">
+
+                            <input class="form-control" type="radio" value="Active" asp-for="Status" style="margin-left:40px;"  />&nbsp;&nbsp;&nbsp;<font style="color:white">Active</font>
+                            <input class="form-control" type="radio" value="Inactive" asp-for="Status" style="margin-left:70px;"  />&nbsp;&nbsp;&nbsp;<font style="color:white">Inactive</font>&nbsp;&nbsp;&nbsp;
+                            <span asp-validation-for="Status" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-top:13px">
+                <div class="custom-file">
+                    <input asp-for="ProfilePhoto" class="custom-file-input" id="customFile" style="line-height:45px">
+                    <label class="custom-file-label" for="customFile">Click here to change image</label>
+                </div>
+            </div>
+
+
+
+
+            <div class="form-group">
+                <input type="submit" value="Save Changes" class="btn-block" /><br><br>
+                <a asp-controller="Emp_Manage" asp-action="EditEmp" class="btn btn-success btn-lg btn-block" style="margin-top:20px">Cancel</a>
+            </div>
+
+
+        </form>
+    </div>
+
+
+
+@*<div style="margin-left:20%;height:1000px;">
 
         <br>
 
 
         <h3 style="font-family:Calibri;color:forestgreen">Modify Existing Employees</h3><hr>
 
-       
+
 
 
 
@@ -129,7 +261,7 @@
             </form>
 
         </div>
-    </div>
+    </div>*@
 @section photo
 {
     <script type="text/javascript">

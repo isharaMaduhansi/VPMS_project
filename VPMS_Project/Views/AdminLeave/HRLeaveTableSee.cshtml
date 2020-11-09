@@ -1,0 +1,106 @@
+﻿@{
+    Layout = "_LeaveLayout";
+    ViewData["Title"] = "Leave Standard";
+    int i = 0;
+}
+
+@model IEnumerable<JobModel>
+
+<br>
+<div style="margin-left:20%;height:1000px;">
+    <h3 style="font-family:Cambria;color:black;">HR Leave Allocation Graph</h3><hr>
+    <br>
+
+    @if (ViewBag.IsSuccess == true)
+    {
+        <div class="alert alert-success" role="alert">
+            <strong>Congragulations!</strong> You have added a new job title successfully.
+        </div>
+    }
+
+    @if (ViewBag.IsDelete == true)
+    {
+        <div class="alert alert-success" role="alert">
+            Successfully Deleted.
+        </div>
+    }
+
+    @if (ViewBag.IsUpdate == true)
+    {
+        <div class="alert alert-success" role="alert">
+            Successfully Updated.
+        </div>
+    }
+
+    <div style="margin-left:5%;margin-right:6%">
+        <br>
+        <div style="background-color:#191616;line-height:60px">
+            <a asp-controller="AdminLeave" asp-action="AddJob" class="btn-success" style="margin-left:20px;font-size:large">+ Add New </a>
+            <a asp-controller="AdminLeave" asp-action="LeaveAllocation" class="btn-success" style="margin-left:30px;font-size:large">&nbsp;Back&nbsp;&nbsp;&nbsp;</a>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-hover table-dark" style="width:900px;">
+
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <td scope="col" colspan="5">Number of Leaves given for one year </td>
+
+                    </tr>
+                    <tr>
+                        <td scope="col">Job Title</td>
+                        <td scope="col">Casual Leaves</td>
+                        <td scope="col">Medical Leaves</td>
+                        <td scope="col">Annual Leaves</td>
+                        <td scope="col">Short Leaves</td>
+                        <td scope="col">HalfDay Leaves</td>
+                        <td scope="col">Total Leaves</td>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var job in Model)
+                    {
+                        @*onclick="return confirm('Are you sure')"*@
+                        i += 1;
+                        <tr style="line-height: 20px">
+                            <td scope="row"> <font style="color:white"> @job.JobName</font> </td>
+                            <td scope="row"> <font style="color:white"> @job.Casual</font> </td>
+                            <td scope="row"> <font style="color:white"> @job.Medical</font> </td>
+                            <td scope="row"> <font style="color:white"> @job.Annual</font> </td>
+                            <td scope="row"> <font style="color:white"> @job.ShortLeaves</font> </td>
+                            <td scope="row"> <font style="color:white"> @job.HalfDays</font> </td>
+                            <td scope="row"> <font style="color:white"> @job.TotalLeaves</font> </td>
+                            <td>
+                                <a asp-controller="AdminLeave" asp-action="EditJob" asp-route-id="@job.JobId">
+                                    <img src="~/images/168.png" style="width:30px;height:30px" />
+                                </a>
+                            </td>
+                            
+                            <td>
+                                <a asp-controller="AdminLeave" asp-action="DeleteJob" asp-route-id="@job.JobId" onclick="return confirm('Do you want to delete this job type ?')">
+                                    <img src="~/images/unnamed.png" style="width:30px;height:30px" />
+                                </a>
+
+
+
+                            </td>
+
+                        </tr>
+                    }
+
+
+
+                </tbody>
+            </table>
+        </div>
+
+
+
+
+
+    </div>
+    <br>
+    <h5>No of Job Types : @i</h5>
+</div>

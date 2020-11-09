@@ -9,7 +9,16 @@
 
 
 <br>
+@if (ViewBag.IsSuccess == true)
+{
+    <div class="alert alert-danger" role="alert">
+        Result Not Found
+    </div>
+    <a asp-controller="Emp_Manage" asp-action="ViewAllEmp"  class="btn btn-outline-danger">View All Employeees</a>
 
+
+
+}
 
 <div style="margin-left:20%;height:1000px;">
     <br> <br> <br>

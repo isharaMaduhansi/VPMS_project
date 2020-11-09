@@ -33,8 +33,8 @@
 
         <div style="margin-left:17%;margin-right:27%;background-color:#191616">
             <br>
-            <a asp-controller="Emp_Manage" asp-action="AddJob" class="btn-success" style="margin-left:20px">Add New Job</a>
-            <a asp-controller="Emp_Manage" asp-action="AddEmployee" class="btn-success" style="margin-left:30px">Back</a>
+            <a asp-controller="Emp_Manage" asp-action="AddJob" class="btn-success" style="margin-left:20px">+ Add New </a>
+            <a asp-controller="Emp_Manage" asp-action="AddEmployee" class="btn-success" style="margin-left:30px">Back&nbsp;&nbsp;&nbsp;&nbsp;</a>
 
             <br>
             <br>
@@ -59,23 +59,20 @@
                                 <td>
                                     <a asp-controller="Emp_Manage" asp-action="DeleteJob" asp-route-id="@job.JobId" onclick="return confirm('Do you want to delete this job type ?')">
 
-                                        <img src="~/images/wrong2.jpg" style="width:30px;height:30px" />
+                                        <img src="~/images/unnamed.png" style="width:30px;height:30px" />
                                         @*<font style="color:white"> Delete</font>*@
                                     </a>
                                 </td>
 
                             </tr>
-
-
-
-                        }
+                          }
 
 
 
                     </tbody>
                 </table>
             </div>
-            <br>
+            
 
 
 

@@ -1,8 +1,9 @@
 ﻿
 
 @{
-    ViewData["Title"] = "Add New Job";
-    ViewData["Topic"] = "Add New Position";
+    Layout = "_LeaveLayout";
+    ViewData["Title"] = "Edit job type";
+
 }
 
 @model JobModel
@@ -10,7 +11,9 @@
 <div style="margin-left: 15%; height: 650px; background-image: url('/images/Parallax.jpg'); background-repeat: no-repeat; position: center;background-size:100% 100%;">
     <br><br><br><br>
 
-    <form enctype="multipart/form-data" method="post" asp-action="AddJob" asp-controller="Emp_Manage" style="margin-left:20%;width:600px">
+    <form enctype="multipart/form-data" method="post" asp-action="EditJob" asp-controller="AdminLeave" style="margin-left:20%;width:600px">
+        
+         <input hidden asp-for="JobId" />
         <div class="form-group">
             <input asp-for="JobName" class="form-control" placeholder="Enter New Position" style="height:50px;" />
             <span asp-validation-for="JobName" class="text-danger"></span>
@@ -19,6 +22,7 @@
         <div class="row">
             <div class="col">
                 <div class="form-group" style="margin-top:13px">
+                    <font style="color:white">Casual leaves</font>
                     <input asp-for="Casual" class="form-control" placeholder="Casual Leaves" style="height:50px;" />
                     <span asp-validation-for="Casual" class="text-danger"></span>
                 </div>
@@ -27,6 +31,7 @@
 
             <div class="col">
                 <div class="form-group" style="margin-top:13px">
+                    <font style="color:white">Medical leaves</font>
                     <input asp-for="Medical" class="form-control" placeholder="Medical Leaves" style="height:50px;" />
                     <span asp-validation-for="Medical" class="text-danger"></span>
                 </div>
@@ -36,6 +41,7 @@
         <div class="row">
             <div class="col">
                 <div class="form-group">
+                    <font style="color:white"> Annual leaves</font>
                     <input asp-for="Annual" class="form-control" placeholder="Annual Leaves" style="height:50px;" />
                     <span asp-validation-for="Annual" class="text-danger"></span>
                 </div>
@@ -44,19 +50,21 @@
 
             <div class="col">
                 <div class="form-group">
+                    <font style="color:white"> short leaves</font>
                     <input asp-for="ShortLeaves" class="form-control" placeholder="Short Leaves" style="height:50px;" />
                     <span asp-validation-for="ShortLeaves" class="text-danger"></span>
                 </div>
             </div>
         </div>
         <div class="form-group">
+            <font style="color:white"> Half days</font>
             <input asp-for="HalfDays" class="form-control" placeholder="Half Day Leaves" style="height:50px;" />
             <span asp-validation-for="HalfDays" class="text-danger"></span>
         </div>
 
         <div class="form-group">
-            <input type="submit" value="Add New" class="btn-block" /><br><br>
-            <a asp-controller="Emp_Manage" asp-action="ModifyList" class="btn btn-success btn-lg btn-block" style="margin-top:20px">Cancel</a>
+            <input type="submit" value="Save Changes" class="btn-block btn-success btn-lg" /><br><br>
+            <a asp-controller="AdminLeave" asp-action="HRLeaveTableSee" class="btn btn-success btn-lg btn-block" style="margin-top:20px">Cancel</a>
         </div>
 
     </form>

@@ -23,5 +23,7 @@ namespace VPMS_Project.Component
             var emps = await _empRepository.GetEmpListAsync(name,job,id);
             return View(emps);
         }
+
+
     }
 }

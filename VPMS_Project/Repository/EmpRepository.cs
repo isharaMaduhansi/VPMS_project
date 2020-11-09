@@ -61,7 +61,7 @@ namespace VPMS_Project.Repository
                               Gender = a.Gender,
                               Status = a.Status
                           })
-                        .Where(x => x.EmpFName.Contains(name) || x.JobType.Contains(name) || x.EmpLName.Contains(name)).ToListAsync();
+                        .Where(x => (x.Status == "Active") && (x.EmpFName.Contains(name) || x.JobType.Contains(name) || x.EmpLName.Contains(name))).ToListAsync();
         }
 
 

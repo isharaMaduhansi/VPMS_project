@@ -40,6 +40,7 @@ namespace VPMS_Project.Models
         public DateTime Dob { get; set; }
 
         [DataType(DataType.Date)]
+        [System.ComponentModel.DisplayName("dd/MM/yyyy")]
         [Required(ErrorMessage = "Join date field is required")]
         public DateTime WorkSince { get; set; }
 
@@ -61,6 +62,15 @@ namespace VPMS_Project.Models
         public String Status { get; set; }
 
         public DateTime LastDayWorked { get; set; }
+
+        public DateTime? FromDate { get; set; }
+        public DateTime Todate { get; set; }
+        
+        public int MedicalAllocated { get; set; }
+        public int CasualAllocated { get; set; }
+        public int AnnualAllocated { get; set; }
+        public int ShortLeaveAllocated { get; set; }
+        public int HalfLeaveAllocated { get; set; }
 
 
 

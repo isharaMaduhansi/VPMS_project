@@ -14,6 +14,11 @@ namespace VPMS_Project.Data
         public String JobName { get; set; }
         public String Description { get; set; }
 
+        public int Casual { get; set; }
+        public int Medical { get; set; }
+        public int Annual { get; set; }
+        public int ShortLeaves { get; set; }
+        public int HalfDays { get; set; }
         public ICollection<Employees> Employees { get; set; }
 
 

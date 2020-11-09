@@ -34,9 +34,14 @@ namespace VPMS_Project.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> SearchEmp(string Search)
+        public async Task<IActionResult> SearchEmp(string Search, bool isSucceess = false)
         {
             var data = await _empRepository.GetSearchEmps(Search);
+            ViewBag.IsSuccess = isSucceess;
+            if (data == null) 
+            {
+                return RedirectToAction(nameof(SearchEmp), new { isSucceess = true });
+            }
             return View(data);
         }
 
