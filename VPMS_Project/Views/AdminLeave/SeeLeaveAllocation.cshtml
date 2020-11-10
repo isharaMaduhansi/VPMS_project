@@ -37,63 +37,82 @@
             <br><br>
                 <div class="container">
                     <a asp-controller="AdminLeave" asp-action="LeaveAllocation" class="btn-dark btn-lg" style="margin-left:90%">Back</a>
-                <div class="card-group vgr-cards" style="width:48rem;margin-left:50px;">
-                    <div class="card" >
-                        <div class="card-img-body">
-                            <img class="card-img-top " src="@(string.IsNullOrEmpty(Model.PhotoURL) ? "~/images/defa.png" : Model.PhotoURL)" height="280" width="60" asp-append-version="true">
 
+                    @if (ViewBag.IsUpdate == true)
+                    {
+                        <div class="alert alert-success" role="alert">
+                            Successfully Updated.
                         </div>
-                        <div class="card-body">
-                            <h3 class="card-title">@Model.EmpFName @Model.EmpLName</h3>
-                            <h5 class="card-title">@Model.JobType</h5>
-                            <p class="card-text" style="margin-top:30px">
-                                Work since :  @Model.WorkSince.Day-@Model.WorkSince.Month-@Model.WorkSince.Year<br>
-                                User Id &nbsp;&nbsp; &nbsp; &nbsp;:  @Model.EmpId
-                            </p>
+                    }
+                    <div class="card-group vgr-cards" style="width:48rem;margin-left:50px;">
+                        <div class="card">
+                            <div class="card-img-body">
+                                <img class="card-img-top " src="@(string.IsNullOrEmpty(Model.PhotoURL) ? "~/images/defa.png" : Model.PhotoURL)" height="280" width="60" asp-append-version="true">
 
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title">@Model.EmpFName @Model.EmpLName</h3>
+                                <h5 class="card-title">@Model.JobType</h5>
+                                <p class="card-text" style="margin-top:30px">
+                                    Work since :  @Model.WorkSince.Day-@Model.WorkSince.Month-@Model.WorkSince.Year<br>
+                                    User Id &nbsp;&nbsp; &nbsp; &nbsp;:  @Model.EmpId
+                                </p>
+
+                            </div>
                         </div>
-                    </div>
-                    <div class="card">
+                        <div class="card">
 
-                        <div class="card-body">
-                            <h4 class="card-title" style="font-family:Cambria">Leave Allocation
-                                <span style="margin-left:110px;color:darkgreen">
-                                    <button type="button" class="btn btn-outline-success">Edit</button>
-                                </span>
-                            </h4>
-                            <h5 class="card-title" style="color:darkgreen;font-family:Cambria">From :  @Model.FromDate.Day-@Model.FromDate.Month-@Model.FromDate.Year &nbsp;&nbsp;&nbsp;
-                            To : @Model.Todate.Day-@Model.Todate.Month-@Model.Todate.Year
-                            </h5>
+                            <div class="card-body">
+                                <h4 class="card-title" style="font-family:Cambria">
+                                    Leave Allocation
+                                    <span style="margin-left:110px;color:darkgreen">
+                                        <a @*asp-controller="AdminLeave" asp-action="EditLeaveAllocation"*@ @*asp-route-id="@Model.EmpId*@ class="btn btn-outline-success">Edit</a>
+                             
+                                    </span>
+                                </h4>
+                                <h5 class="card-title" style="color:darkgreen;font-family:Cambria">
+                                    From :  @Model.FromDate.Day-@Model.FromDate.Month-@Model.FromDate.Year &nbsp;&nbsp;&nbsp;
+                                    To : @Model.Todate.Day-@Model.Todate.Month-@Model.Todate.Year
+                                </h5>
 
-                            <div class="card bg-light text-dark" style="height:50px;margin-bottom:8px">
-                                <div class="card-body">Casual Leaves
-                                    <span style="margin-left:180px;color:darkgreen">@Model.CasualAllocated</span>
+                                <div class="card bg-light text-dark" style="height:50px;margin-bottom:8px">
+                                    <div class="card-body">
+                                        Casual Leaves
+                                        <span style="margin-left:180px;color:darkgreen">@Model.CasualAllocated</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="card bg-light text-dark" style="height:50px;margin-bottom:8px">
-                                <div class="card-body">Medical Leaves
-                                    <span style="margin-left:170px;color:darkgreen">@Model.MedicalAllocated</span></div>
-                            </div>
-                            <div class="card bg-light text-dark" style="height:50px;margin-bottom:8px">
-                                <div class="card-body">Annual Leaves
-                                    <span style="margin-left:175px;color:darkgreen">@Model.AnnualAllocated</span></div>
-                            </div>
-                            <div class="card bg-light text-dark" style="height:50px;margin-bottom:8px">
-                                <div class="card-body">Short Leaves
-                                    <span style="margin-left:188px;color:darkgreen">@Model.ShortLeaveAllocated</span></div>
-                            </div>
-                            <div class="card bg-light text-dark" style="height:50px;margin-bottom:8px">
-                                <div class="card-body">Half Days
-                                    <span style="margin-left:212px;color:darkgreen">@Model.HalfLeaveAllocated</span></div>
-                            </div>
-                            <br>
-                            <div class="card bg-light text-dark" style="height:50px;margin-bottom:8px">
-                                <div class="card-body">
-                                    Total Leaves
-                                    <span style="margin-left:190px;color:darkgreen">@Model.TotalLeaveGiven</span>
+                                <div class="card bg-light text-dark" style="height:50px;margin-bottom:8px">
+                                    <div class="card-body">
+                                        Medical Leaves
+                                        <span style="margin-left:170px;color:darkgreen">@Model.MedicalAllocated</span>
+                                    </div>
                                 </div>
+                                <div class="card bg-light text-dark" style="height:50px;margin-bottom:8px">
+                                    <div class="card-body">
+                                        Annual Leaves
+                                        <span style="margin-left:175px;color:darkgreen">@Model.AnnualAllocated</span>
+                                    </div>
+                                </div>
+                                <div class="card bg-light text-dark" style="height:50px;margin-bottom:8px">
+                                    <div class="card-body">
+                                        Short Leaves
+                                        <span style="margin-left:188px;color:darkgreen">@Model.ShortLeaveAllocated</span>
+                                    </div>
+                                </div>
+                                <div class="card bg-light text-dark" style="height:50px;margin-bottom:8px">
+                                    <div class="card-body">
+                                        Half Days
+                                        <span style="margin-left:212px;color:darkgreen">@Model.HalfLeaveAllocated</span>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="card bg-light text-dark" style="height:50px;margin-bottom:8px">
+                                    <div class="card-body">
+                                        Total Leaves
+                                        <span style="margin-left:190px;color:darkgreen">@Model.TotalLeaveGiven</span>
+                                    </div>
 
-                            </div>
+                                </div>
                             </div>
 
                         </div>

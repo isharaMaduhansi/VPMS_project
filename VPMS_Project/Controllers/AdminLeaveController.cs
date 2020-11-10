@@ -105,12 +105,14 @@ namespace VPMS_Project.Controllers
         }
 
         
-            public async Task<IActionResult> SeeLeaveAllocation(int id)
+            public async Task<IActionResult> SeeLeaveAllocation(int id, bool isUpdate = false)
         {
-
+            ViewBag.IsUpdate = isUpdate;
             var data = await _empRepository.GetEmpById(id);
             return View(data);
         }
+
+
 
     }
 }
