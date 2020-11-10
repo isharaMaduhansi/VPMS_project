@@ -8,32 +8,7 @@
 
     <div style="margin-left:20%;height:900px;">
         <div class="container">
-            @*<img class="card-img-top rounded-circle" src="@(string.IsNullOrEmpty(Model.PhotoURL) ? "~/images/defa.png" : Model.PhotoURL)" height="280" width="60" asp-append-version="true">
-
-
-        @Model.EmpFName @Model.EmpLName
-        <br>
-        @Model.JobType
-        <br>
-        @Model.EmpId
-        <br>
-        work since :  @Model.WorkSince.Day-@Model.WorkSince.Month-@Model.WorkSince.Year
-        <br>
-        from :@Model.FromDate.Day-@Model.FromDate.Month-@Model.FromDate.Year
-        <br>
-        to: @Model.Todate.Day-@Model.Todate.Month-@Model.Todate.Year
-        <br>
-        annu:@Model.AnnualAllocated
-        <br>
-        Casu:@Model.CasualAllocated
-        <br>
-        Medi:@Model.MedicalAllocated
-        <br>
-        Short:@Model.ShortLeaveAllocated
-        <br>
-        Half:@Model.HalfLeaveAllocated
-        <br>
-        Total:@Model.TotalLeaveGiven*@
+          
             <br><br>
                 <div class="container">
                     <a asp-controller="AdminLeave" asp-action="LeaveAllocation" class="btn-dark btn-lg" style="margin-left:90%">Back</a>
