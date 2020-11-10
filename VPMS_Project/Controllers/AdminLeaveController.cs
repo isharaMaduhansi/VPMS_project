@@ -104,5 +104,13 @@ namespace VPMS_Project.Controllers
             return View();
         }
 
+        
+            public async Task<IActionResult> SeeLeaveAllocation(int id)
+        {
+
+            var data = await _empRepository.GetEmpById(id);
+            return View(data);
+        }
+
     }
 }

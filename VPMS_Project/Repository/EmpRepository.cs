@@ -132,7 +132,18 @@ namespace VPMS_Project.Repository
                               Address = a.Address,
                               PhotoURL = a.ProfilePhoto,
                               Gender = a.Gender,
-                              Status = a.Status
+                              Status = a.Status,
+                              FromDate= (DateTime)a.FromDate,
+                              Todate= (DateTime)a.Todate,
+                              CasualAllocated=a.CasualAllocated,
+                              MedicalAllocated=a.MedicalAllocated,
+                              AnnualAllocated=a.AnnualAllocated,
+                              HalfLeaveAllocated=a.HalfLeaveAllocated,
+                              ShortLeaveAllocated=a.ShortLeaveAllocated,
+                              TotalLeaveGiven=a.ShortLeaveAllocated+a.HalfLeaveAllocated+a.AnnualAllocated+a.MedicalAllocated+a.CasualAllocated
+                              
+                              
+
                           })
                      .Where(x => x.EmpId == id).FirstOrDefaultAsync();
 
@@ -142,6 +153,7 @@ namespace VPMS_Project.Repository
 
         public async Task<int> AddEmp(EmpModel empModel)
         {
+            var job = await _context.Job.FindAsync(empModel.JobTitleId);
             var newEmp = new Employees()
             {
 
@@ -155,7 +167,16 @@ namespace VPMS_Project.Repository
                 Mobile = empModel.Mobile.HasValue ? empModel.Mobile.Value : 0,
                 ProfilePhoto = empModel.PhotoURL,
                 Gender = empModel.Gender,
-                Status=empModel.Status
+                Status = empModel.Status,
+                CasualAllocated = job.Casual,
+                AnnualAllocated = job.Annual,
+                MedicalAllocated = job.Medical,
+                ShortLeaveAllocated = job.ShortLeaves,
+                HalfLeaveAllocated = job.HalfDays,
+                FromDate = empModel.WorkSince.AddMonths(1),
+                Todate=empModel.WorkSince.AddMonths(1).AddYears(1)
+                
+                
 
             };
 
@@ -169,7 +190,7 @@ namespace VPMS_Project.Repository
 
         public async Task<bool> UpdateEmp(EmpModel empModel)
         {
-            
+            var job = await _context.Job.FindAsync(empModel.JobTitleId);
             var emp =await _context.Employees.FindAsync(empModel.EmpId);
             emp.EmpFName = empModel.EmpFName;
             emp.EmpLName = empModel.EmpLName;
@@ -182,6 +203,13 @@ namespace VPMS_Project.Repository
             emp.Address = empModel.Address;
             emp.ProfilePhoto = empModel.PhotoURL;
             emp.Status = empModel.Status;
+            emp.CasualAllocated = job.Casual;
+            emp.AnnualAllocated = job.Annual;
+            emp.MedicalAllocated = job.Medical;
+             emp.ShortLeaveAllocated = job.ShortLeaves;
+            emp.HalfLeaveAllocated = job.HalfDays;
+            emp.FromDate = empModel.WorkSince.AddMonths(1);
+            emp.Todate = empModel.WorkSince.AddMonths(1).AddYears(1);
 
             _context.Entry(emp).State = EntityState.Modified;
             await _context.SaveChangesAsync();

@@ -63,7 +63,7 @@ namespace VPMS_Project.Models
 
         public DateTime LastDayWorked { get; set; }
 
-        public DateTime? FromDate { get; set; }
+        public DateTime FromDate { get; set; }
         public DateTime Todate { get; set; }
         
         public int MedicalAllocated { get; set; }
@@ -71,6 +71,7 @@ namespace VPMS_Project.Models
         public int AnnualAllocated { get; set; }
         public int ShortLeaveAllocated { get; set; }
         public int HalfLeaveAllocated { get; set; }
+        public int TotalLeaveGiven { get; set; }
 
 
 
