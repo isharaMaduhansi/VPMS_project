@@ -1,0 +1,83 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width , initial-scale=1, shrink-to-fit=no">
+    <title>Employee</title>
+    <link href="~/CSS/StyleHome.css" rel="stylesheet" />
+    <link href="~/lib/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+</head>
+<body style="background-image:url('images/new back.jpg');background-repeat:no-repeat;position:center;background-size:100% 100%;height:660px;width:90%;max-width:100%">
+    <header>
+        <nav class="navbar navbar-dark " style="width:1284px;line-height:25px;background-color:#175A47">
+            <div>
+                <img src="~/images/Home.png" width="35" height="35" class="d-inline-block align-top" alt="">
+                <font style="font-size:15pt;color:white;font-family:'Bell MT';font-weight:bold;margin-left:20px"> ADMIN PORTAL</font>
+            </div>
+
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="row" style="margin-top:100px;margin-bottom:100px">
+            @*<div class="row-cols-10"><div class="square" style="height: 80px;width: 300px;background-color: #555;opacity:0.3;border: 2px solid red;border-radius:10%;margin-left:10px;margin-top:20px;margin-bottom:10px"></div></div>*@
+            <div class="col">
+                <a asp-controller="EmployeeHome" asp-action="EmpIndex">
+                    <div class="card" style=" opacity: 0.6; border-radius: 5%; margin-left: 300px; margin-top: 100px; margin-bottom: 60px;height:100px;width:300px;background-color:#175A47">
+
+                        <div class="container" style="margin-top:30px;">
+                            <font style="font-size:14pt;color:white;font-weight:bold;"><center>Project</center></font>
+
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+
+
+            <div class="col">
+                <a asp-controller="EmployeeHome" asp-action="EmpIndex">
+                    <div class="card" style=" opacity: 0.6;  border-radius: 5%; margin-left: 5px; margin-top: 100px; margin-bottom: 60px;height:100px;width:300px;background-color:#175A47">
+
+                        <div class="container" style="margin-top:30px;">
+                            <font style="font-size:14pt;color:white;font-weight:bold;"><center>Employee</center></font>
+
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+
+
+
+
+        </div>
+    </div>
+
+
+    
+
+
+    <footer class="border-top card-footer text-muted text-center" style="background-color:#175A47;margin-top:1000px;position:absolute;width:100%;margin-top:65px;white-space:nowrap;line-height:60px">
+        <div class="container">
+
+            &copy; @DateTime.Now.Year <font style="color:royalblue">&nbsp; Bellvantage (Pvt) Ltd.&nbsp;</font> All rights reserved.
+
+        </div>
+
+    </footer>
+
+    <script src="~/lib/jquery/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+
+
+
+</body>
+</html>

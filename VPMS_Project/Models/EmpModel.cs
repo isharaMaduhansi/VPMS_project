@@ -39,8 +39,8 @@ namespace VPMS_Project.Models
         [Required(ErrorMessage = "Date of birth field is required")]
         public DateTime Dob { get; set; }
 
+
         [DataType(DataType.Date)]
-        [System.ComponentModel.DisplayName("dd/MM/yyyy")]
         [Required(ErrorMessage = "Join date field is required")]
         public DateTime WorkSince { get; set; }
 
@@ -72,6 +72,10 @@ namespace VPMS_Project.Models
         public int ShortLeaveAllocated { get; set; }
         public int HalfLeaveAllocated { get; set; }
         public int TotalLeaveGiven { get; set; }
+
+
+        
+     
 
 
 

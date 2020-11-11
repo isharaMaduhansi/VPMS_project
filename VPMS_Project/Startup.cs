@@ -46,7 +46,7 @@ namespace VPMS_Project
                 // endpoints.MapDefaultControllerRoute();
                 endpoints.MapControllerRoute(
                     name:"Default",
-                    pattern:"{controller=EmployeeHome}/{action=EmpIndex}/{id?}"
+                    pattern:"{controller=EmployeeHome}/{action=Home}/{id?}"
                     );
             });
         }
