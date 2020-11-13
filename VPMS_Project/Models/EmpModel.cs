@@ -63,14 +63,30 @@ namespace VPMS_Project.Models
 
         public DateTime LastDayWorked { get; set; }
 
+        [DataType(DataType.Date)]
+        [Required(ErrorMessage = "Date field is required")]
         public DateTime FromDate { get; set; }
+
+        [DataType(DataType.Date)]
+        [Required(ErrorMessage = "Date field is required")]
         public DateTime Todate { get; set; }
-        
+
+        [Required(ErrorMessage = "Medical Leave field is required")]
         public int MedicalAllocated { get; set; }
+
+        [Required(ErrorMessage = "Casual Leave field is required")]
         public int CasualAllocated { get; set; }
+
+        [Required(ErrorMessage = "Annual Leave field is required")]
         public int AnnualAllocated { get; set; }
+
+
+        [Required(ErrorMessage = "Short Leave field is required")]
         public int ShortLeaveAllocated { get; set; }
+
+        [Required(ErrorMessage = "HalfDay Leave field is required")]
         public int HalfLeaveAllocated { get; set; }
+
         public int TotalLeaveGiven { get; set; }
 
 

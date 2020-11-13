@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
@@ -110,6 +111,30 @@ namespace VPMS_Project.Controllers
             ViewBag.IsUpdate = isUpdate;
             var data = await _empRepository.GetEmpById(id);
             return View(data);
+        }
+
+        public async Task<IActionResult> EditLeaveAllocation(int id)
+        {
+            var data = await _empRepository.GetEmpById(id);
+            return View(data);
+        }
+
+
+
+        [HttpPost]
+        public async Task<IActionResult> EditLeaveAllocation(EmpModel empModel)
+        {
+
+          
+            
+                bool success = await _empRepository.UpdateEmpLeave(empModel);
+
+                if (success == true)
+                {
+                    return RedirectToAction(nameof(SeeLeaveAllocation),new {id= empModel.EmpId, isUpdate = true });
+                }
+            
+            return View();
         }
 
 

@@ -151,6 +151,7 @@ namespace VPMS_Project.Repository
 
 
 
+
         public async Task<int> AddEmp(EmpModel empModel)
         {
             var job = await _context.Job.FindAsync(empModel.JobTitleId);
@@ -203,19 +204,31 @@ namespace VPMS_Project.Repository
             emp.Address = empModel.Address;
             emp.ProfilePhoto = empModel.PhotoURL;
             emp.Status = empModel.Status;
-            emp.CasualAllocated = job.Casual;
-            emp.AnnualAllocated = job.Annual;
-            emp.MedicalAllocated = job.Medical;
-             emp.ShortLeaveAllocated = job.ShortLeaves;
-            emp.HalfLeaveAllocated = job.HalfDays;
-            emp.FromDate = empModel.WorkSince.AddMonths(1);
-            emp.Todate = empModel.WorkSince.AddMonths(1).AddYears(1);
 
             _context.Entry(emp).State = EntityState.Modified;
             await _context.SaveChangesAsync();
 
             return true;
          
+        }
+
+        public async Task<bool> UpdateEmpLeave(EmpModel empModel)
+        {
+            
+            var emp = await _context.Employees.FindAsync(empModel.EmpId);
+            emp.CasualAllocated = empModel.CasualAllocated;
+            emp.AnnualAllocated = empModel.AnnualAllocated;
+            emp.MedicalAllocated = empModel.MedicalAllocated;
+            emp.ShortLeaveAllocated = empModel.ShortLeaveAllocated;
+            emp.HalfLeaveAllocated = empModel.HalfLeaveAllocated;
+            emp.FromDate = empModel.FromDate;
+            emp.Todate = empModel.Todate;
+
+            _context.Entry(emp).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            return true;
+
         }
 
         public async Task<bool> DeleteEmp(int id)

@@ -15,6 +15,7 @@ namespace VPMS_Project.Repository
         Task<EmpModel> GetEmpById(int id);
         Task<List<EmpModel>> GetEmpListAsync(string name, string job,int id);
         Task<bool> UpdateEmp(EmpModel empModel);
+        Task<bool> UpdateEmpLeave(EmpModel empModel);
 
         Task<bool> DeleteEmp(int id);
     }
