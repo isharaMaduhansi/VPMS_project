@@ -7,67 +7,68 @@
 @model IEnumerable<EmpModel>
 
 
+<div class="content">
 
-<br>
-@if (ViewBag.IsSuccess == true)
-{
-    <div class="alert alert-danger" role="alert">
-        Result Not Found
+    <br>
+    @if (ViewBag.IsSuccess == true)
+    {
+        <div class="alert alert-danger" role="alert">
+            Result Not Found
+        </div>
+        <a asp-controller="Emp_Manage" asp-action="ViewAllEmp" class="btn btn-outline-danger">View All Employeees</a>
+
+
+
+    }
+
+
+        <br> <br> <br>
+
+
+        <div class="table-responsive col-sm-10 col-md-12 col-xl-12">
+            <table class="table table-hover " >
+
+                <thead>
+
+                </thead>
+                <tbody>
+
+                    @foreach (var emp in Model)
+                    {
+
+
+                        <tr style="line-height: 40px">
+
+                            <th scope="row">
+                                <a asp-route="empDetailsRoute" asp-route-id="@emp.EmpId">
+                                    <div class="rounded-circle" style="width: 3.5rem;background-color:gainsboro;border-width:medium">
+                                        <img class="card-img-top rounded-circle" src="@(string.IsNullOrEmpty(emp.PhotoURL) ? "~/images/defa.png" : emp.PhotoURL)" height="55" width="20" asp-append-version="true">
+                                    </div>
+                                </a>
+                            </th>
+                            <td>@emp.EmpFName @emp.EmpLName<br><font style="color:forestgreen;font-size:11pt;margin-bottom:0px"> UserID : @emp.EmpId</font></td>
+                            <td>
+                                @emp.JobType
+                                <br><span class="badge badge-dark" style="margin-bottom: 0px; font-size: 11pt">@emp.Status</span>
+                            </td>
+                            <td>Email: @emp.Email <br>Mobile: @emp.Mobile</td>
+                            <td><a asp-route="empDetailsRoute" asp-route-id="@emp.EmpId" class="btn btn-outline-success">View More</a></td>
+
+                        </tr>
+
+
+
+                    }
+
+
+
+                </tbody>
+            </table>
+        </div>
+
+
+
+
+
+
     </div>
-    <a asp-controller="Emp_Manage" asp-action="ViewAllEmp"  class="btn btn-outline-danger">View All Employeees</a>
-
-
-
-}
-
-<div style="margin-left:20%;height:1000px;">
-    <br> <br> <br>
-
-
-    <div class="table-responsive">
-        <table class="table table-hover " style="width:980px;">
-
-            <thead>
-
-            </thead>
-            <tbody>
-
-                @foreach (var emp in Model)
-                {
-
-
-                    <tr style="line-height: 40px">
-
-                        <th scope="row">
-                            <a asp-route="empDetailsRoute" asp-route-id="@emp.EmpId">
-                                <div class="rounded-circle" style="width: 3.5rem;background-color:gainsboro;border-width:medium">
-                                    <img class="card-img-top rounded-circle" src="@(string.IsNullOrEmpty(emp.PhotoURL) ? "~/images/defa.png" : emp.PhotoURL)" height="55" width="20" asp-append-version="true">
-                                </div>
-                            </a>
-                        </th>
-                        <td>@emp.EmpFName @emp.EmpLName<br><font style="color:forestgreen;font-size:11pt;margin-bottom:0px"> UserID : @emp.EmpId</font></td>
-                        <td>
-                            @emp.JobType
-                            <br><span class="badge badge-dark" style="margin-bottom: 0px; font-size: 11pt">@emp.Status</span>
-                        </td>
-                        <td>Email: @emp.Email <br>Mobile: @emp.Mobile</td>
-                        <td><a asp-route="empDetailsRoute" asp-route-id="@emp.EmpId" class="btn btn-outline-success">View More</a></td>
-
-                    </tr>
-
-
-
-                }
-
-
-
-            </tbody>
-        </table>
-    </div>
-
-
-
-
-
-
-</div>

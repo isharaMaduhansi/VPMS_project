@@ -7,7 +7,7 @@
 @model EmpModel
 
 
-    <div style="margin-left: 18%; height: 1000px; background-image: url('/images/Parallax.jpg'); background-repeat: no-repeat; position: center;background-size:100% 100%;">
+    <div class="content" style="background-image: url('/images/Parallax.jpg'); background-repeat: no-repeat; position: center;background-size:100% 100%;">
 
         <br><br><br>
 
@@ -26,7 +26,7 @@
         </div>
         <form enctype="multipart/form-data" method="post" asp-action="AddEmployee" asp-controller="Emp_Manage" style="margin-left:15%;width:750px">
             <div class="row">
-                <div class="col">
+                <div class="col-md-6 col-sm-3">
                     <div class="form-group" style="margin-top:13px">
                         <input asp-for="EmpFName" class="form-control" placeholder="Employee First Name" style="height:45px;" />
                         <span asp-validation-for="EmpFName" class="text-danger"></span>
@@ -34,7 +34,7 @@
 
                 </div>
 
-                <div class="col">
+                <div class="col-md-6 col-sm-3">
                     <div class="form-group" style="margin-top:13px">
                         <input asp-for="EmpLName" class="form-control" placeholder="Employee Last Name" style="height:45px;" />
                         <span asp-validation-for="EmpLName" class="text-danger"></span>
@@ -44,7 +44,7 @@
 
 
             <div class="row">
-                <div class="col">
+                <div class="col-md-6 col-sm-3">
                     <div class="form-group" style="margin-top:13px">
                         <a asp-controller="Emp_Manage" asp-action="ModifyList" class="btn-outline-success" style="font-size:11pt;margin-left:280px;color:lightgreen">Modity List</a>
                         <select asp-for="JobTitleId" class="form-control" asp-items="ViewBag.Jobs" style="height:45px;">
@@ -54,7 +54,7 @@
                     </div>
                 </div>
 
-                <div class="col">
+                <div class="col-md-6 col-sm-3">
                     <div class="form-group form-inline" style="font-size:15pt;margin-top:33px">
 
                         <input class="form-control" type="radio" value="Female" asp-for="Gender" style="margin-left:40px;color:white" />&nbsp;&nbsp;&nbsp;<font style="color:white">Female</font>
@@ -65,14 +65,14 @@
             </div>
 
             <div class="row">
-                <div class="col">
+                <div class="col-md-6 col-sm-3">
                     <div class="form-group" style="margin-top:13px">
                         <input asp-for="Email" class="form-control" placeholder="Employee email" style="height:45px;" />
                         <span asp-validation-for="Email" class="text-danger"></span>
 
                     </div>
                 </div>
-                <div class="col">
+                <div class="col-md-6 col-sm-3">
                     <div class="form-group" style="margin-top:13px">
                         <input asp-for="Mobile" class="form-control" placeholder="Employee Mobile" style="height:45px" />
                         <span asp-validation-for="Mobile" class="text-danger"></span>
@@ -85,7 +85,7 @@
 
 
             <div class="row">
-                <div class="col">
+                <div class="col-md-6 col-sm-3">
                     <div class="form-group" style="margin-top:13px">
                         <font style="color:white">Date Of Birth</font>
                         <input asp-for="Dob" class="form-control" placeholder="select birth day" value="dd/mm/yyyy" style="height:45px" />
@@ -94,7 +94,7 @@
 
                 </div>
 
-                <div class="col">
+                <div class="col-md-6 col-sm-3">
                     <div class="form-group" style="margin-top:13px">
                         <font style="color:white">Employee Join Date</font>
                         <input asp-for="WorkSince" type="date" class="form-control" value="dd/mm/yyyy" style="height:45px" />
@@ -104,7 +104,7 @@
             </div>
 
             <div class="row">
-                <div class="col">
+                <div class="col-md-6 col-sm-3">
                     <div class="form-group" style="margin-top:13px">
                         <textarea asp-for="Address" class="form-control" placeholder="Employee Address" style="height:70px"></textarea>
                         <span asp-validation-for="Address" class="text-danger"></span>
@@ -112,7 +112,7 @@
 
                 </div>
 
-                <div class="col">
+                <div class="col-md-6 col-sm-3">
                     <div class="form-group">
                         <div class="form-group form-inline" style="font-size:15pt;margin-top:33px">
 
@@ -136,7 +136,7 @@
 
             <div class="form-group">
                 <input type="submit" value="Add New" class="btn-block" /><br><br>
-                <a asp-controller="Emp_Manage" asp-action="ModifyList" class="btn btn-success btn-lg btn-block" style="margin-top:20px">Cancel</a>
+                <a asp-controller="Emp_Manage" asp-action="ViewAllEmp" class="btn btn-success btn-lg btn-block" style="margin-top:20px">Cancel</a>
             </div>
 
 

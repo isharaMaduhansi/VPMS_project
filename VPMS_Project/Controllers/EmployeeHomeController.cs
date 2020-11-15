@@ -17,5 +17,10 @@ namespace VPMS_Project.Controllers
         {
             return View();
         }
+
+        public IActionResult Portal()
+        {
+            return View();
+        }
     }
 }

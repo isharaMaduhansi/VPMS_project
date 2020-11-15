@@ -14,23 +14,22 @@
 
             <div class="container">
                 <div class="row">
-                    <div class="col">
+                    <div class="col-sm-12 col-lg-8">
                         <h1 class="display-4">Leave Allocation Details</h1>
-                        <p class="lead" style="margin-bottom:20px">Search anyone to see their leave allocation details.</p>
-                        
+                        <p class="lead" style="padding-bottom:10px">Search anyone to see their leave allocation details.</p>
                         <form class="form-inline" method="get" asp-action="LeaveAllocation" asp-controller="AdminLeave">
                             <input class="form-control-lg mr-lg-2" type="search" placeholder="Search employees" aria-label="Search" name="Search" />
-                            <input class="btn btn-success" type="submit" value="Search" style="line-height:30px;width:80px" onclick="help()" />
-                            <a asp-controller="EmployeeHome" asp-action="EmpIndex" class="btn btn-success" style="line-height:30px;margin-left:15px;width:80px">Back</a>
+                            <input class="btn btn-success" type="submit" value="Search" style="line-height:30px;width:80px;" onclick="help()" />
+                            <a asp-controller="EmployeeHome" asp-action="EmpIndex" class="btn btn-success" style="line-height:30px;margin-left:3%;width:80px;">Back</a>
 
                         </form>
                     </div>
-                    <div style="margin-right:50px">
-                        <a as asp-action="HRLeaveTableSee" asp-controller="AdminLeave">
-                            <div class="card" style=" border: 2px solid black; border-radius: 5%;height:90px;width:120px;margin-left:20px;background-color:#39bd37">
+                    <div class="col-sm-12 col-lg-4" style="padding:50px">
+                        <a asp-action="HRLeaveTableSee" asp-controller="AdminLeave">
+                            <div class="card text-center" style=" border: 2px solid black; border-radius: 5%;height:90px;width:120px;margin-left:20px;background-color:#39bd37" >
                                 <div class="container">
-                                    <font style="font-size:12pt;margin-left:10px;color:white">
-                                        View HR &nbsp;&nbsp;&nbsp;&nbsp;Leave
+                                    <font style="font-size:12pt;color:white">
+                                        View HR Leave
                                         Allocation
                                     </font>
 
@@ -47,51 +46,51 @@
         </div>
 
         <br> <br>
+        <div class="row">
+            <div class="table-responsive col-sm-12 col-md-12">
+                <table class="table table-hover ">
 
-             <div class="table-responsive">
-                 <table class="table table-hover " style="width:980px;">
+                    <thead>
 
-                     <thead>
+                    </thead>
+                    <tbody>
 
-                     </thead>
-                     <tbody>
+                        @foreach (var emp in Model)
+                        {
 
-                         @foreach (var emp in Model)
-                         {
+                            <tr style="line-height: 40px">
 
-                             <tr style="line-height: 40px">
+                                <th scope="row">
+                                    <a asp-controller="AdminLeave" asp-action="SeeLeaveAllocation" asp-route-id="@emp.EmpId">
+                                        <div class="rounded-circle" style="width: 3.5rem;background-color:gainsboro;border-width:medium">
+                                            <img class="card-img-top rounded-circle" src="@(string.IsNullOrEmpty(emp.PhotoURL) ? "~/images/defa.png" : emp.PhotoURL)" height="55" width="20" asp-append-version="true">
+                                        </div>
+                                    </a>
+                                </th>
+                                <td> @emp.EmpFName @emp.EmpLName<br><font style="color:forestgreen;font-size:11pt;margin-bottom:0px"> EmpId : @emp.EmpId</font></td>
+                                <td>
+                                    @emp.JobType
 
-                                 <th scope="row">
-                                     <a asp-controller="AdminLeave" asp-action="SeeLeaveAllocation" asp-route-id="@emp.EmpId">
-                                         <div class="rounded-circle" style="width: 3.5rem;background-color:gainsboro;border-width:medium">
-                                             <img class="card-img-top rounded-circle" src="@(string.IsNullOrEmpty(emp.PhotoURL) ? "~/images/defa.png" : emp.PhotoURL)" height="55" width="20" asp-append-version="true">
-                                         </div>
-                                     </a>
-                                 </th>
-                                 <td> @emp.EmpFName @emp.EmpLName<br><font style="color:forestgreen;font-size:11pt;margin-bottom:0px"> EmpId : @emp.EmpId</font></td>
-                                 <td>
-                                     @emp.JobType
+                                </td>
 
-                                 </td>
+                                <td><a asp-controller="AdminLeave" asp-action="SeeLeaveAllocation" asp-route-id="@emp.EmpId" class="text-success">See leave Allocation Details</a></td>
 
-                                 <td><a asp-controller="AdminLeave" asp-action="SeeLeaveAllocation" asp-route-id="@emp.EmpId" class="text-success">See leave Allocation Details</a></td>
-
-                             </tr>
-
-
-
-                         }
+                            </tr>
 
 
 
-                     </tbody>
-                 </table>
-                 <br>
-                     <div class="find" style="margin-left:200px">
-                         Search Employees to see their leave allocation details
-                         <img src="~/images/sea.jpg" style="width:300px;height:300px"/>
-                     </div>
+                        }
 
+
+
+                    </tbody>
+                </table>
+                <br>
+                <div class="find" style="margin-left:20%">
+                    Search Employees to see their leave allocation details
+                    <img src="~/images/sea.jpg" style="width:300px;height:auto" />
+                </div>
+            </div>
              </div>
     </div>
 </div>
@@ -102,7 +101,7 @@
 <script>
     $(document).ready(function () {
         $("input").click(function () {
-            $(".find").hide(1000);
+            $(".find").hide(2000);
         });
     });
 </script>

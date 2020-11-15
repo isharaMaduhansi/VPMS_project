@@ -61,10 +61,10 @@ div.header {
     div.content {
         margin-left: 0;
     }
-
     div.header {
         margin-left: 0;
     }
+    
 }
 
 /* On screens that are less than 400px, display the bar vertically, instead of horizontally */

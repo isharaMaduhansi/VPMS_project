@@ -7,7 +7,7 @@
 
 @model JobModel
 
-<div style="margin-left: 15%; height: 650px; background-image: url('/images/Parallax.jpg'); background-repeat: no-repeat; position: center;background-size:100% 100%;">
+<div class="content"  style="background-image: url('/images/Parallax.jpg'); background-repeat: no-repeat; position: center;background-size:100% 100%;">
     <br><br><br><br>
 
     <form enctype="multipart/form-data" method="post" asp-action="AddJob" asp-controller="Emp_Manage" style="margin-left:20%;width:600px">
@@ -17,7 +17,7 @@
         </div>
         <font style="color:white;margin-left:90px;">Enter Number Of Leaves Given for one year for this position </font>
         <div class="row">
-            <div class="col">
+            <div class="col-md-6 col-sm-3">
                 <div class="form-group" style="margin-top:13px">
                     <input asp-for="Casual" class="form-control" placeholder="Casual Leaves" style="height:50px;" />
                     <span asp-validation-for="Casual" class="text-danger"></span>
@@ -25,7 +25,7 @@
 
             </div>
 
-            <div class="col">
+            <div class="col-md-6 col-sm-3">
                 <div class="form-group" style="margin-top:13px">
                     <input asp-for="Medical" class="form-control" placeholder="Medical Leaves" style="height:50px;" />
                     <span asp-validation-for="Medical" class="text-danger"></span>
@@ -34,7 +34,7 @@
         </div>
 
         <div class="row">
-            <div class="col">
+            <div class="col-md-6 col-sm-3">
                 <div class="form-group">
                     <input asp-for="Annual" class="form-control" placeholder="Annual Leaves" style="height:50px;" />
                     <span asp-validation-for="Annual" class="text-danger"></span>
@@ -42,7 +42,7 @@
 
             </div>
 
-            <div class="col">
+            <div class="col-md-6 col-sm-3">
                 <div class="form-group">
                     <input asp-for="ShortLeaves" class="form-control" placeholder="Short Leaves" style="height:50px;" />
                     <span asp-validation-for="ShortLeaves" class="text-danger"></span>

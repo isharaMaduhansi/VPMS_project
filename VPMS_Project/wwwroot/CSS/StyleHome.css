@@ -6,7 +6,15 @@
 body {
     margin: 0;
     font-family: 'Roboto', sans-serif;
+    background-image: url('/images/back5.jpg');
+    background-repeat: no-repeat;
+    position: center;
+    background-size: 100% 100%;
+    height: 690px;
+    width: 90%;
+    max-width: 100%;
 }
+
 
 .d-block {
   
@@ -14,9 +22,28 @@ body {
     
 }
 
+.navbar {
+    width: 100%;
+    width: 111%;
+    line-height: 25px;
+    background-color: #175A47;
+}
+
+@media screen and (max-width:600px) {
+    .navbar {
+      width:100%;
+    }
+    body {
+        background-image:none;
+        background-repeat:repeat-y;
+        
+    }
+
+}
+
 .emp1 {
-    color:black;
-    font-weight:bolder;
+    color: black;
+    font-weight: bolder;
 }
 
 
