@@ -13,14 +13,14 @@
 <div class="content">
     <br>
     <section class="jumbotron text-center" style="height:1050px;position:relative;width:95%;margin-left:2%;background-color:whitesmoke;">
-        <a asp-controller="Emp_Manage" asp-action="EditEmpById" asp-route-id="@Model.EmpId" class="btn btn-outline-success" style="margin-left:70%;width:70px">Edit</a>
+        <a asp-controller="Emp_Manage" asp-action="EditEmpById" asp-route-id="@Model.EmpId" class="btn btn-outline-success" style="margin-left:60%;width:70px">Edit</a>
         <a asp-controller="Emp_Manage" asp-action="DeleteEmp" asp-route-id="@Model.EmpId" class="btn btn-outline-danger" style="margin-left:30px;width:70px">Delete</a>
 
 
-        <br><br><br>
+        <br><br>
 
         <div class="row">
-            <div class="col">
+            <div class="col-lg-5 col-md-5 col-sm-12">
                 <div class="card rounded-circle" style="width: 18rem;background-color:gainsboro;border-width:medium">
                     <img class="card-img-top rounded-circle" src="@(string.IsNullOrEmpty(Model.PhotoURL) ? "~/images/defa.png" : Model.PhotoURL)" height="280" width="60" asp-append-version="true">
                 </div>
@@ -28,7 +28,7 @@
 
 
             </div>
-            <div class="col">
+            <div class="col-lg-7 col-md-7 col-sm-12">
                 <div class="card" style="width: 30rem;background-color:#808080;text-align:left;font-family:Arial;color:white">
                     <div class="card-body">
                         <h4 class="card-title">

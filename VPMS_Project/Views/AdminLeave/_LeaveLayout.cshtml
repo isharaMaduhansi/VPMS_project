@@ -23,24 +23,22 @@
 <body>
     <header>
 
-        <ul style="width:18%">
-            <li><img src="~/images/bell.jpg" id="img" style="width:150px;height:120px;margin-bottom:30px;margin-left:25px" asp-append-version="true" /></li>
-            <li>
-                <div class="btn-group-vertical" id="myDIV">
-                    <a class="btn-block" asp-controller="AdminLeave" asp-action="LeaveAllocation">Leave Allocation</a>
-                    <a asp-controller="AdminLeave" asp-action="LeaveAllocation" class="btn-block">Leave Recommendation</a>
-                    <a asp-controller="Emp_Manage" asp-action="EditEmp" class="btn-block">Leave Approval</a>
-                    <a asp-controller="Emp_Manage" asp-action="SeeRemoveEmp" class="btn-block">Leave Details</a>
-                </div>
-            </li>
-
-        </ul>
-
+        
+        <div class="sidebar">
+            <h4 class="text-center" style="font-family:'Bell MT';background-color:#175A47;color:white;line-height:100px;">
+               Admin Portal
+            </h4>
+            
+            <a class="btn-block " asp-controller="AdminLeave" asp-action="LeaveAllocation" style="line-height:15px">Leave Allocation</a>
+            <a asp-controller="Emp_Manage" asp-action="AddEmployee" class="btn-block" style="line-height:15px">Leave Recommendation </a>
+            <a asp-controller="Emp_Manage" asp-action="EditEmp" class="btn-block" style="line-height:15px">Leave Approval</a>
+            <a asp-controller="Emp_Manage" asp-action="RemoveEmp" class="btn-block" style="line-height:15px">Leave Details</a>
+        </div>
     </header>
 
 
     <main role="main">
-        <div>
+        <div >
             @RenderBody()
         </div>
     </main>

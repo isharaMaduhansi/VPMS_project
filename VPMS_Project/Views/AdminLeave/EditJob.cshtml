@@ -8,7 +8,7 @@
 
 @model JobModel
 
-<div style="margin-left: 15%; height: 650px; background-image: url('/images/Parallax.jpg'); background-repeat: no-repeat; position: center;background-size:100% 100%;">
+<div class="content" style=" background-image: url('/images/Parallax.jpg'); background-repeat: no-repeat; position: center;background-size:100% 100%;">
     <br><br><br><br>
 
     <form enctype="multipart/form-data" method="post" asp-action="EditJob" asp-controller="AdminLeave" style="margin-left:20%;width:600px">
@@ -63,7 +63,7 @@
         </div>
 
         <div class="form-group">
-            <input type="submit" value="Save Changes" class="btn-block btn-success btn-lg" /><br><br>
+            <input type="submit" value="Save Changes" class="btn-block btn-success btn-lg" />
             <a asp-controller="AdminLeave" asp-action="HRLeaveTableSee" class="btn btn-success btn-lg btn-block" style="margin-top:20px">Cancel</a>
         </div>
 

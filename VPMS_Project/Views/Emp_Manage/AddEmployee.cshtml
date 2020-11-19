@@ -24,9 +24,9 @@
 
             }
         </div>
-        <form enctype="multipart/form-data" method="post" asp-action="AddEmployee" asp-controller="Emp_Manage" style="margin-left:15%;width:750px">
+        <form enctype="multipart/form-data" method="post" asp-action="AddEmployee" asp-controller="Emp_Manage" style="margin-left:15%;width:60%">
             <div class="row">
-                <div class="col-md-6 col-sm-3">
+                <div class="col-md-6 col-sm-6">
                     <div class="form-group" style="margin-top:13px">
                         <input asp-for="EmpFName" class="form-control" placeholder="Employee First Name" style="height:45px;" />
                         <span asp-validation-for="EmpFName" class="text-danger"></span>
@@ -34,7 +34,7 @@
 
                 </div>
 
-                <div class="col-md-6 col-sm-3">
+                <div class="col-md-6 col-sm-6">
                     <div class="form-group" style="margin-top:13px">
                         <input asp-for="EmpLName" class="form-control" placeholder="Employee Last Name" style="height:45px;" />
                         <span asp-validation-for="EmpLName" class="text-danger"></span>
@@ -44,21 +44,21 @@
 
 
             <div class="row">
-                <div class="col-md-6 col-sm-3">
+                <div class="col-md-6 col-sm-6">
                     <div class="form-group" style="margin-top:13px">
-                        <a asp-controller="Emp_Manage" asp-action="ModifyList" class="btn-outline-success" style="font-size:11pt;margin-left:280px;color:lightgreen">Modity List</a>
+                        <a asp-controller="Emp_Manage" asp-action="ModifyList" class="btn-outline-success" style="font-size:11pt;margin-left:73%;color:lightgreen">Modity List</a>
                         <select asp-for="JobTitleId" class="form-control" asp-items="ViewBag.Jobs" style="height:45px;">
-                            <option value="">Choose the Job Title</option>
+                            <option value="">Choose Designation</option>
                         </select>
                         <span asp-validation-for="JobTitleId" class="text-danger"></span>
                     </div>
                 </div>
 
-                <div class="col-md-6 col-sm-3">
+                <div class="col-md-6 col-sm-6">
                     <div class="form-group form-inline" style="font-size:15pt;margin-top:33px">
 
-                        <input class="form-control" type="radio" value="Female" asp-for="Gender" style="margin-left:40px;color:white" />&nbsp;&nbsp;&nbsp;<font style="color:white">Female</font>
-                        <input class="form-control" type="radio" value="Male" asp-for="Gender" style="margin-left:70px;color:white" />&nbsp;&nbsp;&nbsp;<font style="color:white">Male</font>&nbsp;&nbsp;&nbsp;
+                        <input class="form-control" type="radio" value="Female" asp-for="Gender" style="margin-left:20%;color:white" /><font style="color:white;margin-left:4%;">Female</font>
+                        <input class="form-control" type="radio" value="Male" asp-for="Gender" style="margin-left:20%;color:white" /><font style="color:white;margin-left:4%;">Male</font>
                         <span asp-validation-for="Gender" class="text-danger"></span>
                     </div>
                 </div>
@@ -85,7 +85,7 @@
 
 
             <div class="row">
-                <div class="col-md-6 col-sm-3">
+                <div class="col-md-6 col-sm-6">
                     <div class="form-group" style="margin-top:13px">
                         <font style="color:white">Date Of Birth</font>
                         <input asp-for="Dob" class="form-control" placeholder="select birth day" value="dd/mm/yyyy" style="height:45px" />
@@ -94,7 +94,7 @@
 
                 </div>
 
-                <div class="col-md-6 col-sm-3">
+                <div class="col-md-6 col-sm-6">
                     <div class="form-group" style="margin-top:13px">
                         <font style="color:white">Employee Join Date</font>
                         <input asp-for="WorkSince" type="date" class="form-control" value="dd/mm/yyyy" style="height:45px" />
@@ -112,12 +112,12 @@
 
                 </div>
 
-                <div class="col-md-6 col-sm-3">
+                <div class="col-md-6 col-sm-6">
                     <div class="form-group">
                         <div class="form-group form-inline" style="font-size:15pt;margin-top:33px">
 
-                            <input class="form-control" type="radio" value="Active" asp-for="Status" style="margin-left:40px;" checked />&nbsp;&nbsp;&nbsp;<font style="color:white">Active</font>
-                            <input class="form-control" type="radio" value="Inactive" asp-for="Status" style="margin-left:70px;" disabled />&nbsp;&nbsp;&nbsp;<font style="color:white">Inactive</font>&nbsp;&nbsp;&nbsp;
+                            <input class="form-control" type="radio" value="Active" asp-for="Status" style="margin-left:20%;" checked />&nbsp;&nbsp;&nbsp;<font style="color:white">Active</font>
+                            <input class="form-control" type="radio" value="Inactive" asp-for="Status" style="margin-left:20%;" disabled />&nbsp;&nbsp;&nbsp;<font style="color:white">Inactive</font>&nbsp;&nbsp;&nbsp;
                             <span asp-validation-for="Status" class="text-danger"></span>
                         </div>
                     </div>
@@ -136,7 +136,7 @@
 
             <div class="form-group">
                 <input type="submit" value="Add New" class="btn-block" /><br><br>
-                <a asp-controller="Emp_Manage" asp-action="ViewAllEmp" class="btn btn-success btn-lg btn-block" style="margin-top:20px">Cancel</a>
+                <a asp-controller="Emp_Manage" asp-action="ViewAllEmp" class="btn btn-success btn-lg btn-block" style="margin-top:20px;">Cancel</a>
             </div>
 
 

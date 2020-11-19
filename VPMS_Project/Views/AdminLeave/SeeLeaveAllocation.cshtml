@@ -5,19 +5,19 @@
 }
 
 @model EmpModel
+    <nav class="navbar navbar-light" style="background-color:gainsboro;height:50px;margin-left:17.8%">
+        <a class="navbar-brand" asp-controller="AdminLeave" asp-action="LeaveAllocation">
 
-    <div style="margin-left:18%;height:900px;">
-        <nav class="navbar navbar-light" style="background-color:gainsboro;height:50px">
-            <a class="navbar-brand" asp-controller="AdminLeave" asp-action="LeaveAllocation">
+            <img src="~/images/271218.png" style="height:25px;width:25px" />
+        </a>
+    </nav>
+    <div style="margin-left:20%;height:900px;">
 
-                <img src="~/images/271218.png" style="height:25px;width:25px"/>
-            </a>
-        </nav>
         <div class="container">
 
             <br><br>
             <div class="container">
-                
+
                 @if (ViewBag.IsUpdate == true)
                 {
                     <div class="alert alert-success" role="alert">

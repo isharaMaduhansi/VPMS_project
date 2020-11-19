@@ -18,5 +18,6 @@ namespace VPMS_Project.Repository
         Task<bool> UpdateEmpLeave(EmpModel empModel);
 
         Task<bool> DeleteEmp(int id);
+
     }
 }

@@ -115,8 +115,8 @@ namespace VPMS_Project.Repository
 
         public async Task<EmpModel> GetEmpById(int id)
         {
-               return await (from a in _context.Employees
-                          join b in _context.Job on a.JobTitleId equals b.JobId
+               return await (from a in _context.Employees.Where(x => x.EmpId == id)
+                             join b in _context.Job on a.JobTitleId equals b.JobId
                           select new EmpModel()
                           {
                               EmpId = a.EmpId,
@@ -145,11 +145,9 @@ namespace VPMS_Project.Repository
                               
 
                           })
-                     .Where(x => x.EmpId == id).FirstOrDefaultAsync();
+                     .FirstOrDefaultAsync();
 
         }
-
-
 
 
         public async Task<int> AddEmp(EmpModel empModel)
@@ -193,6 +191,7 @@ namespace VPMS_Project.Repository
         {
             var job = await _context.Job.FindAsync(empModel.JobTitleId);
             var emp =await _context.Employees.FindAsync(empModel.EmpId);
+
             emp.EmpFName = empModel.EmpFName;
             emp.EmpLName = empModel.EmpLName;
             emp.Email=empModel.Email;
@@ -204,6 +203,13 @@ namespace VPMS_Project.Repository
             emp.Address = empModel.Address;
             emp.ProfilePhoto = empModel.PhotoURL;
             emp.Status = empModel.Status;
+            emp.CasualAllocated = job.Casual;
+            emp.AnnualAllocated = job.Annual;
+            emp.MedicalAllocated = job.Medical;
+            emp.ShortLeaveAllocated = job.ShortLeaves;
+            emp.HalfLeaveAllocated = job.HalfDays;
+            emp.FromDate = empModel.WorkSince.AddMonths(1);
+            emp.Todate = empModel.WorkSince.AddMonths(1).AddYears(1);
 
             _context.Entry(emp).State = EntityState.Modified;
             await _context.SaveChangesAsync();

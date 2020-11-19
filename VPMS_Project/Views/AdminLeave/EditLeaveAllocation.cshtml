@@ -8,7 +8,7 @@
 
 @model EmpModel
 
-    <div style="margin-left: 15%; height: 650px; background-image: url('/images/Parallax.jpg'); background-repeat: no-repeat; position: center;background-size:100% 100%;">
+    <div style="margin-left: 14%; height: 750px; background-image: url('/images/Parallax.jpg'); background-repeat: no-repeat; position: center;background-size:100% 100%;">
         <br><br><br>
         @*<h4>@Model.EmpFName @Model.EmpLName</h4>*@
         <br>
@@ -81,8 +81,8 @@
             </div>
 
             <div class="form-group">
-                <input type="submit" value="Save Changes" class="btn-block btn-success btn-lg" /><br><br>
-                <a asp-controller="AdminLeave" asp-action="SeeLeaveAllocation" asp-route-id="@Model.EmpId" class="btn btn-success btn-lg btn-block" style="margin-top:20px">Cancel</a>
+                <input type="submit" value="Save Changes" class="btn-block btn-success btn-lg" /><br>
+                <a asp-controller="AdminLeave" asp-action="SeeLeaveAllocation" asp-route-id="@Model.EmpId" class="btn btn-success btn-lg btn-block">Cancel</a>
             </div>
 
         </form>

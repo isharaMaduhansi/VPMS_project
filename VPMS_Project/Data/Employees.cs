@@ -44,6 +44,8 @@ namespace VPMS_Project.Data
 
         public Job Job { get; set; }
 
+        public ICollection<LeaveApply> LeaveApply { get; set; }
+
 
 
 

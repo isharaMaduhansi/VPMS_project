@@ -68,6 +68,9 @@ div.header {
     #back {
         margin-left: 0;
     }
+    body {
+        background-color: #393737;
+    }
 }
 
 /* On screens that are less than 400px, display the bar vertically, instead of horizontally */
@@ -76,4 +79,7 @@ div.header {
         text-align: center;
         float: none;
     }
+
+  
+
 }

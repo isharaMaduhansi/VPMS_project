@@ -12,22 +12,22 @@
         <a asp-controller="Emp_Manage" asp-action="SeeRemoveEmp" class="btn btn-outline-success" style="margin-left:20px;width:80px">Back</a>
 
         <br> <br>
-        <section class="jumbotron text-center" style="height:1050px;position:relative;width:95%;margin-left:2%;background-color:whitesmoke;">
+        <section class="jumbotron text-center" style="height:1050px;position:relative;width:85%;margin-left:6%;background-color:whitesmoke;">
 
 
             <br>
 
             <div class="row">
-                <div class="col">
-                    <div class="card rounded-circle" style="width: 18rem;background-color:gainsboro;border-width:medium">
-                        <img class="card-img-top rounded-circle" src="@(string.IsNullOrEmpty(Model.PhotoURL) ? "~/images/defa.png" : Model.PhotoURL)" height="280" width="60" asp-append-version="true">
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <div class="card rounded-circle" style="width: 15rem;background-color:gainsboro;border-width:medium;">
+                        <img class="card-img-top rounded-circle" src="@(string.IsNullOrEmpty(Model.PhotoURL) ? "~/images/defa.png" : Model.PhotoURL)" height="230" width="50" asp-append-version="true">
                     </div>
                     <br> <br>
 
 
                 </div>
-                <div class="col">
-                    <div class="card" style="width: 30rem;background-color:#808080;text-align:left;font-family:Arial;color:white">
+                <div class="col-lg-8 col-md-8 col-sm-12">
+                    <div class="card" style="width: 35rem;background-color:#808080;text-align:left;font-family:Arial;color:white">
                         <div class="card-body">
                             <h4 class="card-title">
                                 @Model.EmpFName @Model.EmpLName

@@ -28,6 +28,7 @@ namespace VPMS_Project
             
             services.AddScoped<IEmpRepository, EmpRepository>();
             services.AddScoped<JobRepository, JobRepository>();
+            services.AddScoped<LeaveRepository, LeaveRepository>();
 
         }
 
