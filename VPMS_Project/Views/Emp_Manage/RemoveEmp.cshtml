@@ -52,8 +52,8 @@
                             @emp.JobType
                             <br><span class="badge badge-dark" style="margin-bottom: 0px; font-size: 11pt">@emp.Status</span>
                         </td>
-                        <td>Email: @emp.Email <br>Mobile: @emp.Mobile</td>
-                        <td><a asp-controller="Emp_Manage" asp-action="DeleteEmp" asp-route-id="@emp.EmpId" class="btn btn-outline-danger">Delete</a></td>
+                        <td><i class="fa fa-envelope"></i> : @emp.Email <br><i class='fas fa-mobile-alt' style="margin-left:7px"></i> : @emp.Mobile</td>
+                        <td><a asp-controller="Emp_Manage" asp-action="DeleteEmp" asp-route-id="@emp.EmpId" class="btn btn-outline-danger"><i class='fas fa-times' style='color:red'></i> Delete</a></td>
 
                     </tr>
 

@@ -27,16 +27,18 @@ namespace VPMS_Project.Repository
                 EndDate = LeaveApplyModel.EndDate,
                 Reason=LeaveApplyModel.Reason,
                 EmpId=LeaveApplyModel.EmpId,
-
+                AppliedDate=DateTime.UtcNow,
+                NoOfDays=LeaveApplyModel.NoOfDays,
+                
             };
 
             await _context.LeaveApply.AddAsync(leaveApply);
             await _context.SaveChangesAsync();
 
             return leaveApply.LeaveApplyId;
-
-
         }
+
+     
 
         public async Task<LeaveApplyModel> GetEmpLeaveById(int id)
         {
@@ -48,8 +50,94 @@ namespace VPMS_Project.Repository
                           
                           })
                    .FirstOrDefaultAsync();
+        }
+
+        public async Task<List<LeaveApplyModel>> GetAllLeaveById(int id)
+        {
+            return await (from a in _context.LeaveApply.Where(x => x.EmpId == id)
+                          select new LeaveApplyModel()
+                          {
+                              LeaveApplyId=a.LeaveApplyId,
+                              LeaveType=a.LeaveType,
+                              Startdate= (DateTime)a.Startdate,
+                              EndDate= (DateTime)a.EndDate,
+                              Reason=a.Reason,
+                              AppliedDate= (DateTime)a.AppliedDate,
+                              NoOfDays=a.NoOfDays,
+                              EmpId=a.EmpId,
+
+                         })
+                   .ToListAsync();
+        }
+
+        public async Task<LeaveApplyModel> GetOneLeaveById(int id)
+        {
+            return await (from a in _context.LeaveApply.Where(x => x.LeaveApplyId == id)
+                          select new LeaveApplyModel()
+                          {
+                              LeaveApplyId = a.LeaveApplyId,
+                              LeaveType = a.LeaveType,
+                              Startdate = (DateTime)a.Startdate,
+                              EndDate = (DateTime)a.EndDate,
+                              Reason = a.Reason,
+                              AppliedDate = (DateTime)a.AppliedDate,
+                              NoOfDays = a.NoOfDays,
+                              EmpId = a.EmpId,
+
+                          })
+                  .FirstOrDefaultAsync();
+
+        }
+  
+
+            public async Task<LeaveApplyModel> GetEmpLeaveJoinById(int id)
+        {
+            return await (from a in _context.LeaveApply.Where(x => x.LeaveApplyId == id)
+                          join b in _context.Employees on a.EmpId equals b.EmpId
+                          select new LeaveApplyModel()
+                          {
+                              LeaveApplyId = a.LeaveApplyId,
+                              LeaveType = a.LeaveType,
+                              Startdate = (DateTime)a.Startdate,
+                              EndDate = (DateTime)a.EndDate,
+                              Reason = a.Reason,
+                              AppliedDate = (DateTime)a.AppliedDate,
+                              NoOfDays = a.NoOfDays,
+                              EmpId = a.EmpId,
+                              FromDate= (DateTime)b.FromDate,
+                              ToDate= (DateTime)b.Todate
+
+                          })
+                  .FirstOrDefaultAsync();
 
         }
 
+        public async Task<bool> UpdateLeave(LeaveApplyModel leaveApplyModel)
+        {
+            var leave = await _context.LeaveApply.FindAsync(leaveApplyModel.LeaveApplyId);
+
+            leave.LeaveType = leaveApplyModel.LeaveType;
+            leave.Startdate = leaveApplyModel.Startdate;
+            leave.EndDate = leaveApplyModel.EndDate;
+            leave.Reason = leaveApplyModel.Reason;
+            leave.NoOfDays = leaveApplyModel.NoOfDays;
+
+            _context.Entry(leave).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            return true;
+
+        }
+
+        public async Task<bool> DeleteLeave(int id)
+        {
+
+            var leave = await _context.LeaveApply.FindAsync(id);
+            _context.Entry(leave).State = EntityState.Deleted;
+            await _context.SaveChangesAsync();
+
+            return true;
+
+        }
     }
 }

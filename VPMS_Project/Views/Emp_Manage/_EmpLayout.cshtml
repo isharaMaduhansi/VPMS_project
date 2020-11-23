@@ -7,6 +7,8 @@
     <link href="~/CSS/Style2css.css" rel="stylesheet" />
     <link href="~/CSS/StyleAddEmp.css" rel="stylesheet" />
     <link href="~/CSS/AdminStyleSheet.css" rel="stylesheet" />
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
    
 
     <environment include="Development">
@@ -28,27 +30,28 @@
 </head>
 <body>
     <div class="sidebar">
-            <h4 class="text-center" style="font-family:'Bell MT';background-color:#175A47;color:white;line-height:100px">
-              Admin Portal
-            </h4>
-        
-        <a class="btn-block " asp-controller="Emp_Manage" asp-action="ViewAllEmp" style="line-height:15px">See All Employees</a>
-        <a asp-controller="Emp_Manage" asp-action="AddEmployee" class="btn-block"  style="line-height:15px">Enroll New </a>
-        <a asp-controller="Emp_Manage" asp-action="EditEmp" class="btn-block"  style="line-height:15px">Modify Employee</a>
-        <a asp-controller="Emp_Manage" asp-action="RemoveEmp" class="btn-block"  style="line-height:15px">Delete Employee</a>
-        <a asp-controller="Emp_Manage" asp-action="SeeRemoveEmp" class="btn-block"  style="line-height:15px">See Deleted Employees</a>
+        <h4 class="text-center" style="font-family:'Bell MT';background-color:#175A47;color:white;line-height:100px">
+            <i class="fa fa-fw fa-user"></i> Admin Portal
+        </h4>
+        <br>
+        <a class="btn-block " asp-controller="Emp_Manage" asp-action="ViewAllEmp" style="line-height:15px"><i class='fas fa-users' style="margin-right:5px"></i> See All Employees</a>
+        <a asp-controller="Emp_Manage" asp-action="AddEmployee" class="btn-block"  style="line-height:15px"><i class='fas fa-user-plus' style="margin-right:5px"></i> Enroll New </a>
+        <a asp-controller="Emp_Manage" asp-action="EditEmp" class="btn-block"  style="line-height:15px"><i class='fas fa-user-edit' style="margin-right:5px"></i> Modify Employee</a>
+        <a asp-controller="Emp_Manage" asp-action="RemoveEmp" class="btn-block"  style="line-height:15px"><i class='fas fa-user-minus' style="margin-right:5px"></i> Delete Employee</a>
+        <a asp-controller="Emp_Manage" asp-action="SeeRemoveEmp" class="btn-block"  style="line-height:15px"><i class='fas fa-user-slash' style="margin-right:7px"></i>Whos Deleted</a>
     </div>
     <main role="main">
 
         <div class="header">
             <nav class="navbar navbar-light" style="background-color:gainsboro;">
 
-                    <div class="row" style="margin-left:5px">
-                        <a class="navbar-brand d-inline-block " asp-controller="EmployeeHome" asp-action="EmpIndex">
-                            <img src="~/images/271218.png" width="20" height="20" alt=""></a>
-                            <h4 style="font-family:Cambria;margin-left:15px;margin-top:5px" class="text-center">@ViewData["Topic"]</h4>
-                    </div>
-          
+                <div class="row" style="margin-left:5px">
+                    <a class="navbar-brand d-inline-block " asp-controller="EmployeeHome" asp-action="EmpIndex">
+                        <i class='fas fa-arrow-circle-left' style="margin-right:6px;color:#175A47"></i>
+                    </a>
+                    <h4 style="font-family:Cambria;margin-left:15px;margin-top:5px" class="text-center">@ViewData["Topic"]</h4>
+                </div>
+
                 <div class="col-sm-12 col-md-12 col-lg-4" style="padding-left:50px">
                     <form class="form-inline" method="get" asp-action="SearchEmp">
                         <input class="form-control mr-sm-2" type="search" placeholder="Search employees" aria-label="Search" name="Search" />
@@ -56,6 +59,7 @@
                     </form>
                 </div>
             </nav>
+           
         </div>
 
 

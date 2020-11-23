@@ -15,7 +15,7 @@
        
 
                 <form method="post" enctype="multipart/form-data" asp-action="EditEmpById" asp-controller="Emp_Manage" style="margin-left:15%;width:750px">
-                    <h5 style="color:white;margin-left: 15%;"> User Id @ViewBag.empId</h5><hr style="background-color:white">
+                    <h5 style="color:white;margin-left: 2%;"> User Id @ViewBag.empId</h5><hr style="background-color:white">
                     <input hidden asp-for="EmpId" />
                     <input hidden asp-for="PhotoURL" />
 
@@ -91,7 +91,7 @@
                         <div class="col">
                             <div class="form-group" style="margin-top:13px">
                                 <font style="color:white">Employee Join Date</font>
-                                <input asp-for="WorkSince" class="form-control" placeholder="Employee Join Date" style="height:45px" required />
+                                <input asp-for="WorkSince" class="form-control" placeholder="Employee Join Date" style="height:45px" />
                                 <span asp-validation-for="WorkSince" class="text-danger"></span>
                             </div>
                         </div>

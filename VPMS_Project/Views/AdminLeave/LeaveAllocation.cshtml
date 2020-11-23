@@ -7,7 +7,7 @@
 @model IEnumerable<EmpModel>
 
 
-<div style="margin-left:20%;height:900px;">
+<div style="margin-left:20%;height:900px;margin-right:3%">
     <div class="container">
 
         <div class="jumbotron jumbotron-fluid">
@@ -86,7 +86,7 @@
                     </tbody>
                 </table>
                 <br>
-                <div class="find" style="margin-left:20%">
+                <div class="find" style="margin-left:20%" id="img">
                     Search Employees to see their leave allocation details
                     <img src="~/images/sea.jpg" style="width:300px;height:auto" />
                 </div>
@@ -104,5 +104,6 @@
             $(".find").hide(2000);
         });
     });
+
 </script>
 }

@@ -18,8 +18,14 @@ namespace VPMS_Project.Data
 
         public DateTime? EndDate { get; set; }
 
+        public DateTime? AppliedDate { get; set; }
+
+        public int NoOfDays { get; set; }
+
         public int EmpId { get; set; }
 
         public Employees Employees { get; set; }
+
+      
     }
 }

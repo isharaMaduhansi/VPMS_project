@@ -8,10 +8,10 @@
     <nav class="navbar navbar-light" style="background-color:gainsboro;height:50px;margin-left:17.8%">
         <a class="navbar-brand" asp-controller="AdminLeave" asp-action="LeaveAllocation">
 
-            <img src="~/images/271218.png" style="height:25px;width:25px" />
+            <i class='fas fa-arrow-circle-left' style="margin-right:6px;color:#175A47"></i>
         </a>
     </nav>
-    <div style="margin-left:20%;height:900px;">
+    <div class="content">
 
         <div class="container">
 
@@ -25,7 +25,7 @@
                     </div>
                 }
 
-                <div class="card-group vgr-cards" style="width:48rem;margin-left:50px;">
+                <div class="card-group vgr-cards" style="width:48rem;margin-left:8%;">
                     <div class="card">
                         <div class="card-img-body">
                             <img class="card-img-top " src="@(string.IsNullOrEmpty(Model.PhotoURL) ? "~/images/defa.png" : Model.PhotoURL)" height="280" width="60" asp-append-version="true">
@@ -46,8 +46,8 @@
                         <div class="card-body">
                             <h4 class="card-title" style="font-family:Cambria">
                                 Leave Allocation
-                                <span style="margin-left:110px;color:darkgreen">
-                                    <a asp-controller="AdminLeave" asp-action="EditLeaveAllocation" asp-route-id="@Model.EmpId" class="btn btn-outline-success">Edit</a>
+                                <span style="margin-left:20%;color:darkgreen">
+                                    <a asp-controller="AdminLeave" asp-action="EditLeaveAllocation" asp-route-id="@Model.EmpId" class="btn btn-outline-success"><i class='fas fa-wrench'></i> Edit</a>
 
                                 </span>
                             </h4>

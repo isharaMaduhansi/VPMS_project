@@ -35,13 +35,13 @@
 
     <div style="margin-left:18%;margin-right:27%;background-color:#191616">
         <br>
-        <a asp-controller="Emp_Manage" asp-action="AddJob" class="btn-success" style="margin-left:20px;background-color:#175A47">+ Add New </a>
-        <a asp-controller="Emp_Manage" asp-action="AddEmployee" class="btn-success" style="margin-left:30px;background-color:#175A47">Back&nbsp;&nbsp;&nbsp;&nbsp;</a>
-
+        <a asp-controller="Emp_Manage" asp-action="AddEmployee"><i class='fas fa-arrow-left' style="margin-left:8px;color:white"></i></a>
+        <a asp-controller="Emp_Manage" asp-action="AddJob" class="btn-success" style="margin-left:30px;background-color:#175A47"><i class='fas fa-plus'></i> Add New </a>
+     
         <br>
         <br>
         <div class="table-responsive col-sm-10 col-md-12 col-xl-12">
-            <table class="table table-hover " >
+            <table class="table table-hover ">
 
                 <thead>
 
@@ -50,7 +50,7 @@
 
                     @foreach (var job in Model)
                     {
-                        @*onclick="return confirm('Are you sure')"*@
+                       
 
                         <tr style="line-height: 20px">
 
@@ -59,10 +59,10 @@
                                 <font style="color:white"> @job.JobName</font>
                             </td>
                             <td>
-                                <a asp-controller="Emp_Manage" asp-action="DeleteJob" asp-route-id="@job.JobId" onclick="return confirm('Do you want to delete this job type ?')">
+                                <a asp-controller="Emp_Manage" asp-action="DeleteJob" asp-route-id="@job.JobId" onclick="return confirm('This will also permantly delete existing employees who hold this position. Do you want to delete this job title?')">
 
-                                    <img src="~/images/unnamed.png" style="width:30px;height:30px" />
-                                    @*<font style="color:white"> Delete</font>*@
+                                    <i class='fas fa-times' style='font-size:24px;color:red'></i>
+                                  
                                 </a>
                             </td>
 

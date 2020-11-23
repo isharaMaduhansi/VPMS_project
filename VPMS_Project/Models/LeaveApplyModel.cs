@@ -13,18 +13,23 @@ namespace VPMS_Project.Models
         [Required(ErrorMessage = "Leave type field is required")]
         public String LeaveType { get; set; }
 
+
         [Required(ErrorMessage = "Reason field is required")]
         public String Reason { get; set; }
 
       
         [DataType(DataType.Date)]
         [Required(ErrorMessage = "Start date field is required")]
-        public DateTime? Startdate { get; set; }
+        public DateTime Startdate { get; set; }
 
        
         [DataType(DataType.Date)]
         [Required(ErrorMessage = "End date field is required")]
-         public DateTime? EndDate { get; set; }
+         public DateTime EndDate { get; set; }
+
+        public DateTime AppliedDate { get; set; }
+
+        public int NoOfDays { get; set; }
 
         public int EmpId { get; set; }
 

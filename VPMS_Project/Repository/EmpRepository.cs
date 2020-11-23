@@ -38,7 +38,7 @@ namespace VPMS_Project.Repository
                               Gender = a.Gender,
                               Status = a.Status
                            })
-                          .Where(a => a.Status == "Active").ToListAsync();
+                          .ToListAsync();
         }
         
 
@@ -174,9 +174,7 @@ namespace VPMS_Project.Repository
                 HalfLeaveAllocated = job.HalfDays,
                 FromDate = empModel.WorkSince.AddMonths(1),
                 Todate=empModel.WorkSince.AddMonths(1).AddYears(1)
-                
-                
-
+                  
             };
 
             await _context.Employees.AddAsync(newEmp);

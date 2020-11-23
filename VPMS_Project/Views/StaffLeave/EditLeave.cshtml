@@ -1,0 +1,155 @@
+﻿@{
+    Layout = "_StaffLayout";
+    ViewData["Title"] = "Edit Applied Leave";
+    ViewData["Topic"] = "Leave";
+}
+<link href="~/CSS/MenuStyleSheet.css" rel="stylesheet" />
+@model LeaveApplyModel
+
+<div class="content" style="background-image: url('/images/Parallax.jpg'); background-repeat: no-repeat; position: center;background-size:100% 100%;">
+    <div class="navbar">
+        <a asp-controller="StaffLeave" asp-action="LeaveBalance"><i class='far fa-calendar-alt' style="margin-right:7px"></i> Leave Balance</a>
+        <a asp-controller="StaffLeave" asp-action="LeaveApply"><i class='far fa-calendar-plus' style="margin-right:7px"></i> Leave Apply</a>
+        <a asp-controller="StaffLeave" asp-action="LeaveHistory"><i class="fa fa-address-book-o" style="margin-right:7px"></i> Leave History</a>
+    </div>
+    <br><br>
+    <div style="margin-left:20%;width:60%">
+
+    </div>
+    <br>
+    <br>
+
+
+    <input hidden value="@Model.ToDate" name="y" />
+    <input hidden value="@Model.FromDate.Year-@Model.FromDate.Month-@Model.FromDate.Day" id="x" />
+    <font style="color:white;font-size:13pt;font-family:Arial"><center>Leave Application - @DateTime.Now.Day/@DateTime.Now.Month/@DateTime.Now.Year</center> </font>
+    <br>
+
+    <form name="nme" enctype="multipart/form-data" method="post" asp-action="EditLeave" asp-controller="StaffLeave" style="margin-left:20%;width:60%">
+        <input hidden asp-for="LeaveApplyId" />
+        <div class="form-group">
+            <select asp-for="LeaveType" class="form-control" style="height:50px;" required>
+                <option value="">Choose Leave Type</option>
+                <option>Annual Leave</option>
+                <option>Medical Leave</option>
+                <option>Casual Leave</option>
+                <option>Short Leave</option>
+                <option>Half Days</option>
+            </select>
+            <span asp-validation-for="LeaveType" class="text-danger"></span>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-6 col-sm-6 ">
+                <div class="form-group" style="margin-top:13px">
+                    <font style="color:white">Start Date</font>
+                    <input id="start" onchange="check1()" asp-for="Startdate"  class="form-control" placeholder="Casual Leaves" style="height:50px;"  />
+                    <span asp-validation-for="Startdate" class="text-danger"></span>
+                </div>
+
+            </div>
+
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group" style="margin-top:13px">
+                    <font style="color:white">End Date</font>
+                    <input id="end" onchange="check2()" asp-for="EndDate"  class="form-control" placeholder="Medical Leaves" style="height:50px;"  />
+                    <span asp-validation-for="EndDate" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div style="color:red;margin-bottom:20px" id="msg"></div>
+        <div style="color:white;margin-left:40%;" id="days"></div>
+
+        <div class="form-group" style="margin-top:13px">
+
+            <textarea asp-for="Reason" class="form-control" placeholder="Reason" style="height:100px" required></textarea>
+            <span asp-validation-for="Reason" class="text-danger"></span>
+
+
+        </div>
+
+
+
+
+        <div class="form-group">
+            <input type="submit" value="Apply" class="btn-block btn-success btn-lg" id="myBtn" onclick="ConfirmApply()" />
+            <a asp-controller="StaffLeave" asp-action="LeaveHistory" class="btn btn-success btn-lg btn-block" style="margin-top:20px">Cancel</a>
+        </div>
+
+
+    </form>
+</div>
+
+
+
+@section DateCompare
+{
+    <script type="text/javascript">
+
+            function check1() {
+                var from = document.getElementById("x").value;
+                var start = document.getElementById("start").value;
+                if (from > start) {
+                    document.getElementById('msg').innerHTML = "Oops! You Can not apply leave on " + start + ". Because you have been allocated leave since " + from;
+                    document.getElementById("myBtn").disabled = true;
+                    document.getElementById("end").disabled = true;
+                }
+                else {
+                    document.getElementById('msg').innerHTML = "";
+                    document.getElementById("myBtn").disabled = false;
+                    document.getElementById("end").disabled = false;
+                }
+
+            }
+
+            function check2() {
+                var start = document.getElementById("start").value;
+                var end = document.getElementById("end").value;
+                var date1 = new Date(start);
+                var date2 = new Date(end);
+
+                var oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+                var diffDays = Math.abs((date1.getTime() - date2.getTime()) / (oneDay));
+
+
+                if (end <= start) {
+                    document.getElementById('msg').innerHTML = "End Date should be bigger than start date( " + start + " ) ";
+                    document.getElementById("myBtn").disabled = true;
+                }
+                else {
+                    document.getElementById('msg').innerHTML = "";
+                    document.getElementById("myBtn").disabled = false;
+                    document.getElementById('days').innerHTML = "Leave Period : " + diffDays + " days ";
+
+                }
+
+
+            }
+
+            function ConfirmApply() {
+                var start = document.getElementById("start").value;
+                var end = document.getElementById("end").value;
+                var date1 = new Date(start);
+                var date2 = new Date(end);
+
+                var oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+                var diffDays = Math.abs((date1.getTime() - date2.getTime()) / (oneDay));
+
+
+                var x = confirm("Are you sure you want to save changes as " + diffDays + " days leave from " + start + " to " + end + " ?");
+                if (x)
+                    return true;
+                else
+                    return false;
+
+
+
+
+            }
+
+
+    </script>
+
+
+}
