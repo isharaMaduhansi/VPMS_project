@@ -16,15 +16,16 @@ namespace VPMS_Project.Controllers
         private readonly IEmpRepository _empRepository = null;
         private readonly JobRepository _jobRepository = null;
         private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly LeaveRepository _leaveRepository = null;
 
-        public AdminLeaveController(IEmpRepository empRepository, IWebHostEnvironment webHostEnvironment, JobRepository jobRepository)
+        public AdminLeaveController(IEmpRepository empRepository, IWebHostEnvironment webHostEnvironment, LeaveRepository leaveRepository, JobRepository jobRepository)
         {
             _empRepository = empRepository;
             _jobRepository = jobRepository;
             _webHostEnvironment = webHostEnvironment;
-
-
+            _leaveRepository = leaveRepository;
         }
+
         [HttpGet]
         public async Task<IActionResult> LeaveAllocation(string Search = null)
         {
@@ -67,13 +68,17 @@ namespace VPMS_Project.Controllers
             return View();
         }
 
+        public async Task<IActionResult> Recomend()
+        {
+            var data = await _leaveRepository.GetLeaveRecommend();
+            return View(data);
+        }
+
         public async Task<IActionResult> EditJob(int id)
         {
             var data = await _jobRepository.GetJobById(id);
             return View(data);
         }
-
-
 
         [HttpPost]
         public async Task<IActionResult> EditJob(JobModel jobModel)

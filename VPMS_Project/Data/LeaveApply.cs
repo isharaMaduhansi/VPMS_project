@@ -24,6 +24,8 @@ namespace VPMS_Project.Data
 
         public int EmpId { get; set; }
 
+        public String Status { get; set; }
+
         public Employees Employees { get; set; }
 
       

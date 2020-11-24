@@ -29,6 +29,7 @@ namespace VPMS_Project.Repository
                 EmpId=LeaveApplyModel.EmpId,
                 AppliedDate=DateTime.UtcNow,
                 NoOfDays=LeaveApplyModel.NoOfDays,
+                Status="Waiting for Recommendation"
                 
             };
 
@@ -65,8 +66,33 @@ namespace VPMS_Project.Repository
                               AppliedDate= (DateTime)a.AppliedDate,
                               NoOfDays=a.NoOfDays,
                               EmpId=a.EmpId,
+                              Status=a.Status
 
                          })
+                   .ToListAsync();
+        }
+
+        public async Task<List<LeaveApplyModel>> GetLeaveRecommend()
+        {
+            return await (from a in _context.LeaveApply.Where(x => x.Status == "Waiting for Recommendation")
+                          join b in _context.Employees on a.EmpId equals b.EmpId
+                          join c in _context.Job on b.JobTitleId equals c.JobId
+                          select new LeaveApplyModel()
+                          {
+                              LeaveApplyId = a.LeaveApplyId,
+                              LeaveType = a.LeaveType,
+                              Startdate = (DateTime)a.Startdate,
+                              EndDate = (DateTime)a.EndDate,
+                              Reason = a.Reason,
+                              AppliedDate = (DateTime)a.AppliedDate,
+                              NoOfDays = a.NoOfDays,
+                              EmpId = a.EmpId,
+                              Status = a.Status,
+                              EmpName=b.EmpFName+" "+b.EmpLName,
+                              Designation=c.JobName
+
+
+                          })
                    .ToListAsync();
         }
 
@@ -83,6 +109,7 @@ namespace VPMS_Project.Repository
                               AppliedDate = (DateTime)a.AppliedDate,
                               NoOfDays = a.NoOfDays,
                               EmpId = a.EmpId,
+                              Status=a.Status
 
                           })
                   .FirstOrDefaultAsync();

@@ -33,7 +33,7 @@
     @foreach (var leave in Model)
     {
         <div class="card bg-light" style="margin-bottom:30px;margin-left:8%;width:80%">
-            <div class="card-header" style="font-size:13pt;display:flex;justify-content:space-between">
+            <div class="card-header" style="font-size:13pt;display:flex;justify-content:space-between;background-color:lightgray">
                 <font class="card-title">
                    <b> @leave.NoOfDays Days </b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <span style="font-size:11pt">
@@ -59,7 +59,7 @@
                     </div>
                     <div class="col-md-4"><p style="font-size:12pt">Reason: <br>@leave.Reason</p></div>
                     <div class="col-md-4">
-                        <font class="text-success"><i class='fas fa-hourglass-end'></i> Waiting for recommendation</font><br>
+                        <font class="text-success"><i class='fas fa-hourglass-end'></i> @leave.Status</font><br>
                         <div style="display:none;margin-top:10px">  Recommender :  <br></div>
                         <div style="display:none;margin-top:3px">  Approver    :  </div>
                     </div>

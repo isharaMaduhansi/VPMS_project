@@ -1,0 +1,63 @@
+﻿
+@{
+    Layout = "_LeaveLayout";
+    ViewData["Title"] = "Leave Recommendation";
+
+}
+@model IEnumerable<LeaveApplyModel>
+
+    <div style="margin-left:20%;height:1000px;">
+        <div class="navbar">
+            <h3 style="font-family:Cambria;color:black;">
+                <br>
+                <a asp-controller="EmployeeHome" asp-action="EmpIndex" title="Back">
+                    <i class='fas fa-arrow-left' style="margin-right:15px;color:black;font-size:14pt"></i>
+                </a>Leave Recommendation
+            </h3>
+            <a asp-controller="StaffLeave" asp-action="LeaveBalance"><i class='far fa-calendar-alt' style="margin-top:35px;font-size:15pt;margin-right:10px"></i>View Recommended Leave</a>
+        </div>
+         <hr>
+        
+
+        <br><br>
+        @foreach (var leave in Model)
+        {
+            <div class="card bg-light" style="margin-bottom:30px;margin-left:2%;width:90%">
+                <div class="card-header" style="font-size:13pt;display:flex;justify-content:space-between;background-color:lightgray">
+                    <font class="card-title">
+                        <b> @leave.NoOfDays Days </b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span style="font-size:11pt">
+                            <i class='far fa-calendar-alt'></i> From &nbsp; @leave.Startdate.Day -@leave.Startdate.Month - @leave.Startdate.Year &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                            <i class='far fa-calendar-alt'></i> To &nbsp; @leave.EndDate.Day - @leave.EndDate.Month - @leave.EndDate.Year
+                        </span>
+                    </font>
+                    <font class="card-title">
+                        <a asp-controller="StaffLeave" asp-action="EditLeave" asp-route-id="@leave.LeaveApplyId" class="text-primary">Edit </a>|
+                        <a asp-controller="StaffLeave" asp-action="DeleteLeave" asp-route-id="@leave.LeaveApplyId" class="text-danger" onclick="return confirm('Do you want to delete this leave?')"> Delete</a>
+
+                    </font>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <blockquote class="blockquote mb-0">
+                                @leave.LeaveType
+                            </blockquote>
+                            <div style="margin-top:20px"><i class='far fa-calendar-alt'></i>  Applied Date : @leave.AppliedDate.Day - @leave.AppliedDate.Month - @leave.AppliedDate.Year</div>
+
+
+                        </div>
+                        <div class="col-md-4"><p style="font-size:12pt">Reason: <br>@leave.Reason</p></div>
+                        <div class="col-md-4">
+                            <font class="text-success"><i class='fas fa-hourglass-end'></i> @leave.Status</font><br>
+                            <div style="display:none;margin-top:10px">  Recommender :  <br></div>
+                            <div style="display:none;margin-top:3px">  Approver    :  </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+        }
+    </div>
