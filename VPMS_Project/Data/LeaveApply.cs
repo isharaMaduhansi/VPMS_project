@@ -26,6 +26,10 @@ namespace VPMS_Project.Data
 
         public String Status { get; set; }
 
+        public String RecommendName { get; set; }
+
+        public String ApproverName { get; set; }
+
         public Employees Employees { get; set; }
 
       

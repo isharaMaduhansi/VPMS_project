@@ -68,10 +68,36 @@ namespace VPMS_Project.Controllers
             return View();
         }
 
-        public async Task<IActionResult> Recomend()
+        public async Task<IActionResult> Recomend(bool isRecommend = false,bool isNotRecommend=false)
         {
+            ViewBag.IsRecommend = isRecommend;
+            ViewBag.IsNotRecommend = isNotRecommend;
             var data = await _leaveRepository.GetLeaveRecommend();
             return View(data);
+        }
+
+        public async Task<IActionResult> LeaveRecomend(int id)
+        {
+            String name = "ishara hansi";
+            bool success = await _leaveRepository.RecommendLeave(id,name);
+            if (success == true)
+            {
+                return RedirectToAction(nameof(Recomend), new { isRecommend = true });
+
+            }
+            return View();
+        }
+
+        public async Task<IActionResult> LeaveNotRecomend(int id)
+        {
+            String name = "Hiruni nisansala";
+            bool success = await _leaveRepository.NotRecommendLeave(id, name);
+            if (success == true)
+            {
+                return RedirectToAction(nameof(Recomend), new { isNotRecommend = true });
+
+            }
+            return View();
         }
 
         public async Task<IActionResult> EditJob(int id)
@@ -142,6 +168,37 @@ namespace VPMS_Project.Controllers
             return View();
         }
 
+        public async Task<IActionResult> Approve(bool isApprove = false, bool isNotApprove = false)
+        {
+            ViewBag.IsApprove = isApprove;
+            ViewBag.IsNotApprove = isNotApprove;
+            var data = await _leaveRepository.GetLeaveApprove();
+            return View(data);
+        }
+        
+        public async Task<IActionResult> LeaveApprove(int id)
+        {
+            String name = "Ishuwara Adithya";
+            bool success = await _leaveRepository.ApproveLeave(id, name);
+            if (success == true)
+            {
+                return RedirectToAction(nameof(Approve), new { isApprove = true });
+
+            }
+            return View();
+        }
+
+        public async Task<IActionResult> LeaveNotApprove(int id)
+        {
+            String name = "Ishuwara Adithya";
+            bool success = await _leaveRepository.NotApproveLeave(id, name);
+            if (success == true)
+            {
+                return RedirectToAction(nameof(Approve), new { isNotApprove = true });
+
+            }
+            return View();
+        }
 
 
     }

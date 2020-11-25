@@ -42,5 +42,9 @@ namespace VPMS_Project.Models
         public String EmpName { get; set; }
 
         public String Designation { get; set; }
+
+        public String RecommendName { get; set; }
+
+        public String ApproverName { get; set; }
     }
 }

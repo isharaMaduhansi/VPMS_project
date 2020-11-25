@@ -66,12 +66,41 @@ namespace VPMS_Project.Repository
                               AppliedDate= (DateTime)a.AppliedDate,
                               NoOfDays=a.NoOfDays,
                               EmpId=a.EmpId,
-                              Status=a.Status
+                              Status=a.Status,
+                              RecommendName=a.RecommendName,
+                              ApproverName=a.ApproverName
 
                          })
                    .ToListAsync();
         }
 
+        public async Task<bool> RecommendLeave(int id, String name)
+        {
+            var leave = await _context.LeaveApply.FindAsync(id);
+            leave.Status = "Waiting for Approval";
+            leave.RecommendName = name;
+
+            _context.Entry(leave).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            return true;
+
+        }
+
+        public async Task<bool> NotRecommendLeave(int id, String name)
+        {
+            var leave = await _context.LeaveApply.FindAsync(id);
+            leave.Status = "Not Recommended";
+            leave.RecommendName = name;
+
+            _context.Entry(leave).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            return true;
+
+        }
+
+        
         public async Task<List<LeaveApplyModel>> GetLeaveRecommend()
         {
             return await (from a in _context.LeaveApply.Where(x => x.Status == "Waiting for Recommendation")
@@ -96,6 +125,57 @@ namespace VPMS_Project.Repository
                    .ToListAsync();
         }
 
+        public async Task<bool> ApproveLeave(int id, String name)
+        {
+            var leave = await _context.LeaveApply.FindAsync(id);
+            leave.Status = "Approved";
+            leave.ApproverName = name;
+
+            _context.Entry(leave).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            return true;
+
+        }
+
+        public async Task<bool> NotApproveLeave(int id, String name)
+        {
+            var leave = await _context.LeaveApply.FindAsync(id);
+            leave.Status = "Not Approved";
+            leave.ApproverName = name;
+
+            _context.Entry(leave).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            return true;
+
+        }
+
+        public async Task<List<LeaveApplyModel>> GetLeaveApprove()
+        {
+            return await (from a in _context.LeaveApply.Where(x => x.Status == "Waiting for Approval")
+                          join b in _context.Employees on a.EmpId equals b.EmpId
+                          join c in _context.Job on b.JobTitleId equals c.JobId
+                          select new LeaveApplyModel()
+                          {
+                              LeaveApplyId = a.LeaveApplyId,
+                              LeaveType = a.LeaveType,
+                              Startdate = (DateTime)a.Startdate,
+                              EndDate = (DateTime)a.EndDate,
+                              Reason = a.Reason,
+                              AppliedDate = (DateTime)a.AppliedDate,
+                              NoOfDays = a.NoOfDays,
+                              EmpId = a.EmpId,
+                              Status = a.Status,
+                              EmpName = b.EmpFName + " " + b.EmpLName,
+                              Designation = c.JobName,
+                              RecommendName=a.RecommendName
+
+
+                          })
+                   .ToListAsync();
+        }
+
         public async Task<LeaveApplyModel> GetOneLeaveById(int id)
         {
             return await (from a in _context.LeaveApply.Where(x => x.LeaveApplyId == id)
@@ -109,8 +189,7 @@ namespace VPMS_Project.Repository
                               AppliedDate = (DateTime)a.AppliedDate,
                               NoOfDays = a.NoOfDays,
                               EmpId = a.EmpId,
-                              Status=a.Status
-
+                              Status=a.Status,
                           })
                   .FirstOrDefaultAsync();
 
