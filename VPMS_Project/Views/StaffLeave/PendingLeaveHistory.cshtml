@@ -1,7 +1,6 @@
 ﻿@{
     Layout = "_StaffLayout";
-    ViewData["Title"] = "Leave History";
-    ViewData["Topic"] = "Leave";
+    ViewData["Title"] = "Pending Leave";
 }
 <link href="~/CSS/MenuStyleSheet.css" rel="stylesheet" />
 
@@ -9,12 +8,8 @@
 
 
 <div class="content">
-    <div class="navbar">
-        <a asp-controller="StaffLeave" asp-action="LeaveBalance"><i class='far fa-calendar-alt' style="margin-right:7px"></i> Leave Balance</a>
-        <a asp-controller="StaffLeave" asp-action="LeaveApply"><i class='far fa-calendar-plus' style="margin-right:7px"></i> Leave Apply</a>
-        <a asp-controller="StaffLeave" asp-action="LeaveHistory"><i class="fa fa-address-book-o" style="margin-right:7px"></i> Leave History</a>
-    </div>
-    <br><br>
+    <partial name="_Menu" />
+    <br><br><br>   
     <div style="margin-left:8%;width:80%">
         @if (ViewBag.IsDelete == true)
         {
@@ -24,27 +19,29 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-
-
         }
     </div>
     <br>
 
     @foreach (var leave in Model)
     {
-        <div class="card bg-light" style="margin-bottom:30px;margin-left:8%;width:80%">
+        <div class="card bg-light" style="margin-bottom:40px;margin-left:8%;width:80%">
             <div class="card-header" style="font-size:13pt;display:flex;justify-content:space-between;background-color:lightgray">
                 <font class="card-title">
-                   <b> @leave.NoOfDays Days </b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <b> @leave.NoOfDays Days </b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <span style="font-size:11pt">
                         <i class='far fa-calendar-alt'></i> From &nbsp; @leave.Startdate.Day -@leave.Startdate.Month - @leave.Startdate.Year &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                         <i class='far fa-calendar-alt'></i> To &nbsp; @leave.EndDate.Day - @leave.EndDate.Month - @leave.EndDate.Year
                     </span>
                 </font>
                 <font class="card-title">
-                    <a asp-controller="StaffLeave" asp-action="EditLeave" asp-route-id="@leave.LeaveApplyId" class="text-primary">Edit </a>|
-                    <a asp-controller="StaffLeave" asp-action="DeleteLeave" asp-route-id="@leave.LeaveApplyId" class="text-danger" onclick="return confirm('Do you want to delete this leave?')"> Withdraw </a>
+                    @if (leave.Status == "Waiting for Recommendation")
+                    {
 
+                        <a asp-controller="StaffLeave" asp-action="EditLeave" asp-route-id="@leave.LeaveApplyId" class="text-primary">Edit |</a>
+                        <a asp-controller="StaffLeave" asp-action="DeleteLeave" asp-route-id="@leave.LeaveApplyId" class="text-danger" onclick="return confirm('Do you want to delete this leave?')"> Withdraw </a>
+
+                    }
                 </font>
             </div>
             <div class="card-body">
@@ -60,8 +57,10 @@
                     <div class="col-md-4"><p style="font-size:12pt">Reason: <br>@leave.Reason</p></div>
                     <div class="col-md-4">
                         <font class="text-primary"><i class='fas fa-hourglass-end'></i> @leave.Status</font><br>
-                        <div style="display:block;margin-top:10px">  Recommender : @leave.RecommendName  <br></div>
-                        <div style="display:block;margin-top:3px">  Approver    : @leave.ApproverName </div>
+                        @if (leave.Status == "Waiting for Approval")
+                        {
+                            <div style="display:block;margin-top:10px">  Recommender : @leave.RecommendName  <br></div>
+                        }
                     </div>
 
                 </div>

@@ -9,7 +9,6 @@
     <link href="~/CSS/StaffStyleSheet.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
     <environment include="Development">
         <link href="~/lib/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" />
@@ -44,12 +43,13 @@
 
                 <div class="container">
                     <div class="navbar-header">
-                            <h4 style="font-family:'Bell MT';font-weight:bold;">
-                            <a class="navbar-brand " asp-controller="EmployeeHome" asp-action="Portal">
-                             <i class='fas fa-arrow-circle-left' style="margin-right:4px;"></i>
-                            </a>@ViewData["Topic"]</h4>
+                        <h4 style="font-family:'Bell MT';font-weight:bold;">
+                            <a class="navbar-brand" asp-controller="EmployeeHome" asp-action="Portal">
+                                <i class='fas fa-arrow-circle-left' style="margin-right:4px;"></i>
+                            </a> Leave
+                          </h4>
 
-                         </div>
+                    </div>
 
                     <div class="nav navbar-nav navbar-right">
                         <div class="row">
@@ -63,17 +63,14 @@
                         </div>
                     </div>
                 </div>
-
-
-
             </nav>
         </div>
 
 
         <div>
 
-                @RenderBody()
-          
+            @RenderBody()
+
         </div>
     </main>
 
@@ -99,6 +96,10 @@
 
 
     @RenderSection("DateCompare", required: false)
-  
-</body>
+    @section DateCompare
+    {
+
+
+    }
+    </body>
 </html>

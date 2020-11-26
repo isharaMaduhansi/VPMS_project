@@ -46,5 +46,7 @@ namespace VPMS_Project.Models
         public String RecommendName { get; set; }
 
         public String ApproverName { get; set; }
+
+        public String Visible { get; set; }
     }
 }

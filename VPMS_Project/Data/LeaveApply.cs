@@ -30,6 +30,8 @@ namespace VPMS_Project.Data
 
         public String ApproverName { get; set; }
 
+        public String Visible { get; set; }
+
         public Employees Employees { get; set; }
 
       

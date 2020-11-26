@@ -1,0 +1,60 @@
+﻿@{
+    Layout = "_StaffLayout";
+    ViewData["Title"] = " Rejected Leave";
+}
+<link href="~/CSS/MenuStyleSheet.css" rel="stylesheet" />
+
+@model IEnumerable<LeaveApplyModel>
+
+
+<div class="content">
+    <partial name="_Menu" />
+    <br><br><br>
+    <div style="margin-left:8%;width:80%">
+    </div>
+    <br>
+
+    @foreach (var leave in Model)
+    {
+        <div class="card bg-light" style="margin-bottom:30px;margin-left:8%;width:80%">
+            <div class="card-header" style="font-size:13pt;display:flex;justify-content:space-between;background-color:lightgray">
+                <font class="card-title">
+                    <b> @leave.NoOfDays Days </b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span style="font-size:11pt">
+                        <i class='far fa-calendar-alt'></i> From &nbsp; @leave.Startdate.Day -@leave.Startdate.Month - @leave.Startdate.Year &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                        <i class='far fa-calendar-alt'></i> To &nbsp; @leave.EndDate.Day - @leave.EndDate.Month - @leave.EndDate.Year
+                    </span>
+                </font>
+                <font class="card-title">
+                    <a asp-controller="StaffLeave" asp-action="ClearRejectLeave" asp-route-id="@leave.LeaveApplyId" class="text-dark" onclick="return confirm('Do you want to clear ?')"> Clear </a>
+
+                </font>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <blockquote class="blockquote mb-0">
+                            @leave.LeaveType
+                        </blockquote>
+                        <div style="margin-top:20px"><i class='far fa-calendar-alt'></i>  Applied Date : @leave.AppliedDate.Day - @leave.AppliedDate.Month - @leave.AppliedDate.Year</div>
+
+
+                    </div>
+                    <div class="col-md-4"><p style="font-size:12pt">Reason: <br>@leave.Reason</p></div>
+                    <div class="col-md-4">
+                        <font class="text-danger"><i class="fa fa-trash-o"></i> @leave.Status</font><br>
+                        @*<div style="display:block;margin-top:10px">  Recommender : @leave.RecommendName  <br></div>
+                        <div style="display:block;margin-top:10px">  Approver : @leave.ApproverName  <br></div>*@
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+    }
+
+</div>
+
+

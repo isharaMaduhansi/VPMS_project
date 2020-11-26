@@ -32,14 +32,27 @@ namespace VPMS_Project.Controllers
         }
 
 
-        public async Task<IActionResult> LeaveHistory(bool isDelete = false)
+        public async Task<IActionResult> PendingLeaveHistory(bool isDelete = false)
         {
             int EmpId = 110;
             ViewBag.IsDelete = isDelete;
-            var data = await _leaveRepository.GetAllLeaveById(EmpId);
+            var data = await _leaveRepository.GetAllPendingLeaveById(EmpId);
             return View(data);
         }
-
+       
+         public async Task<IActionResult> ApprovedHistory()
+        {
+            int EmpId = 110;
+            var data = await _leaveRepository.GetApprovedLeaveById(EmpId);
+            return View(data);
+        }
+        
+         public async Task<IActionResult> RejectedLeave()
+        {
+            int EmpId = 110;
+            var data = await _leaveRepository.GetRejectedLeaveById(EmpId);
+            return View(data);
+        }
         public async Task<IActionResult> LeaveApply(bool isSucceess = false, bool isUpdate = false, int leaveId = 0)
         {
             int EmpId = 110;
@@ -101,12 +114,35 @@ namespace VPMS_Project.Controllers
             bool success = await _leaveRepository.DeleteLeave(id);
             if (success == true)
             {
-                return RedirectToAction(nameof(LeaveHistory), new { isDelete = true });
+                return RedirectToAction(nameof(PendingLeaveHistory), new { isDelete = true });
 
             }
             return View();
         }
 
+      
+        public async Task<IActionResult> ClearApprovedLeave(int id)
+        {
 
+            bool success = await _leaveRepository.ClearLeave(id);
+            if (success == true)
+            {
+                return RedirectToAction(nameof(ApprovedHistory));
+
+            }
+            return View();
+        }
+
+        public async Task<IActionResult> ClearRejectLeave(int id)
+        {
+
+            bool success = await _leaveRepository.ClearLeave(id);
+            if (success == true)
+            {
+                return RedirectToAction(nameof(RejectedLeave));
+
+            }
+            return View();
+        }
     }
 }

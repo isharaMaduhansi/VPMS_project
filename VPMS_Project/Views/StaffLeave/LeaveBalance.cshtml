@@ -1,14 +1,9 @@
 ﻿@{
     Layout = "_StaffLayout";
     ViewData["Title"] = "Leave Balance";
-    ViewData["Topic"] = "Leave";
 }
 <link href="~/CSS/MenuStyleSheet.css" rel="stylesheet" />
 <div class="content" style="background-color:#555">
-    <div class="navbar">
-        <a asp-controller="StaffLeave" asp-action="LeaveBalance"><i class='far fa-calendar-alt' style="margin-right:7px"></i> Leave Balance</a>
-        <a asp-controller="StaffLeave" asp-action="LeaveApply"><i class='far fa-calendar-plus' style="margin-right:7px"></i> Leave Apply</a>
-        <a asp-controller="StaffLeave" asp-action="LeaveHistory"><i class="fa fa-address-book-o" style="margin-right:7px"></i> Leave History</a>
-    </div>
+    <partial name="_Menu" />
     <br><br>
 </div>

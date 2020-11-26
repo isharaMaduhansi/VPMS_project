@@ -29,7 +29,8 @@ namespace VPMS_Project.Repository
                 EmpId=LeaveApplyModel.EmpId,
                 AppliedDate=DateTime.UtcNow,
                 NoOfDays=LeaveApplyModel.NoOfDays,
-                Status="Waiting for Recommendation"
+                Status="Waiting for Recommendation",
+                Visible="Show"
                 
             };
 
@@ -53,9 +54,9 @@ namespace VPMS_Project.Repository
                    .FirstOrDefaultAsync();
         }
 
-        public async Task<List<LeaveApplyModel>> GetAllLeaveById(int id)
+        public async Task<List<LeaveApplyModel>> GetAllPendingLeaveById(int id)
         {
-            return await (from a in _context.LeaveApply.Where(x => x.EmpId == id)
+            return await (from a in _context.LeaveApply.Where(x => x.EmpId == id && (x.Status == "Waiting for Recommendation" || x.Status == "Waiting for Approval"))
                           select new LeaveApplyModel()
                           {
                               LeaveApplyId=a.LeaveApplyId,
@@ -68,12 +69,54 @@ namespace VPMS_Project.Repository
                               EmpId=a.EmpId,
                               Status=a.Status,
                               RecommendName=a.RecommendName,
-                              ApproverName=a.ApproverName
 
                          })
                    .ToListAsync();
         }
+        
+          public async Task<List<LeaveApplyModel>> GetApprovedLeaveById(int id)
+        {
+            return await (from a in _context.LeaveApply.Where(x => (x.EmpId == id) && (x.Status == "Approved") && (x.Visible== "Show"))
+                          select new LeaveApplyModel()
+                          {
+                              LeaveApplyId = a.LeaveApplyId,
+                              LeaveType = a.LeaveType,
+                              Startdate = (DateTime)a.Startdate,
+                              EndDate = (DateTime)a.EndDate,
+                              Reason = a.Reason,
+                              AppliedDate = (DateTime)a.AppliedDate,
+                              NoOfDays = a.NoOfDays,
+                              EmpId = a.EmpId,
+                              Status = a.Status,
+                              RecommendName = a.RecommendName,
+                              ApproverName=a.ApproverName,
+                             
 
+                          })
+                   .ToListAsync();
+        }
+        
+
+         public async Task<List<LeaveApplyModel>> GetRejectedLeaveById(int id)
+        {
+            return await (from a in _context.LeaveApply.Where(x => x.EmpId == id && (x.Status == "Not Recommended" || x.Status == "Not Approved") && (x.Visible == "Show"))
+                          select new LeaveApplyModel()
+                          {
+                              LeaveApplyId = a.LeaveApplyId,
+                              LeaveType = a.LeaveType,
+                              Startdate = (DateTime)a.Startdate,
+                              EndDate = (DateTime)a.EndDate,
+                              Reason = a.Reason,
+                              AppliedDate = (DateTime)a.AppliedDate,
+                              NoOfDays = a.NoOfDays,
+                              EmpId = a.EmpId,
+                              Status = a.Status,
+                              //RecommendName = a.RecommendName,
+                              //ApproverName = a.ApproverName
+
+                          })
+                   .ToListAsync();
+        }
         public async Task<bool> RecommendLeave(int id, String name)
         {
             var leave = await _context.LeaveApply.FindAsync(id);
@@ -240,6 +283,20 @@ namespace VPMS_Project.Repository
 
             var leave = await _context.LeaveApply.FindAsync(id);
             _context.Entry(leave).State = EntityState.Deleted;
+            await _context.SaveChangesAsync();
+
+            return true;
+
+        }
+
+        public async Task<bool> ClearLeave(int id)
+        {
+
+            var leave = await _context.LeaveApply.FindAsync(id);
+
+            leave.Visible = "Hide";
+
+            _context.Entry(leave).State = EntityState.Modified;
             await _context.SaveChangesAsync();
 
             return true;

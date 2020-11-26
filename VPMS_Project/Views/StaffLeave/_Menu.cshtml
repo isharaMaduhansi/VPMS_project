@@ -1,0 +1,18 @@
+﻿
+<link href="~/CSS/PartiaMenuStyleSheet.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- The navigation menu -->
+<div id="navmenu" style="line-height:40px">
+    <a asp-controller="StaffLeave" asp-action="LeaveBalance"><i class='far fa-calendar-alt' style="margin-right:7px"></i> Leave Balance</a>
+
+    <a asp-controller="StaffLeave" asp-action="LeaveApply"><i class='far fa-calendar-plus' style="margin-right:7px"></i> Leave Apply</a>
+    <div class="subnav">
+        <button class="subnavbtn"><i class="fa fa-address-book-o" style="margin-right:7px"></i> Leave History <i class="fa fa-caret-down"></i></button>
+        <div class="subnav-content" id="drop">
+            <a asp-controller="StaffLeave" asp-action="PendingLeaveHistory"><i class="fa fa-hourglass-2"></i> Pending Leave Request</a>
+            <a asp-controller="StaffLeave" asp-action="ApprovedHistory"><i class="fa fa-check-square-o"></i> Approved Leave Request </a>
+            <a asp-controller="StaffLeave" asp-action="RejectedLeave"><i class="fa fa-trash-o"></i> Rejected Leave Request</a>
+        </div>
+    </div>
+
+</div>
