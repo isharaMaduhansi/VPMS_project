@@ -289,6 +289,13 @@ namespace VPMS_Project.Repository
 
         }
 
+        public bool CheckExist(int id,DateTime date)
+        {
+            bool result = _context.LeaveApply.ToList().Exists(x => x.EmpId == id && x.Startdate==date);
+            return result;
+
+        }
+
         public async Task<bool> ClearLeave(int id)
         {
 

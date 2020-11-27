@@ -40,9 +40,10 @@ namespace VPMS_Project.Controllers
             return View(data);
         }
        
-         public async Task<IActionResult> ApprovedHistory()
+         public async Task<IActionResult> ApprovedHistory(bool isMore = false)
         {
             int EmpId = 110;
+            ViewBag.IsMore = isMore;
             var data = await _leaveRepository.GetApprovedLeaveById(EmpId);
             return View(data);
         }
@@ -53,12 +54,13 @@ namespace VPMS_Project.Controllers
             var data = await _leaveRepository.GetRejectedLeaveById(EmpId);
             return View(data);
         }
-        public async Task<IActionResult> LeaveApply(bool isSucceess = false, bool isUpdate = false, int leaveId = 0)
+        public async Task<IActionResult> LeaveApply(bool isSucceess = false, bool isUpdate = false, int leaveId = 0, bool isExist=false)
         {
             int EmpId = 110;
             ViewBag.LeaveId = leaveId;
             ViewBag.IsSuccess = isSucceess;
             ViewBag.IsUpdate = isUpdate;
+            ViewBag.IsExist = isExist;
             var data = await _leaveRepository.GetEmpLeaveById(EmpId);
             return View(data);
         }
@@ -67,15 +69,26 @@ namespace VPMS_Project.Controllers
         public async Task<IActionResult> LeaveApply(LeaveApplyModel leaveApplyModel)
         {
             leaveApplyModel.EmpId = 110;
-            TimeSpan differ = (TimeSpan)(leaveApplyModel.EndDate - leaveApplyModel.Startdate);
-            leaveApplyModel.NoOfDays = differ.Days;
-            int id = await _leaveRepository.AddLeave(leaveApplyModel);
+            int Eid = leaveApplyModel.EmpId;
+            DateTime date = leaveApplyModel.Startdate;
+            bool existOne = _leaveRepository.CheckExist(Eid,date);
+            if (existOne) 
+            {
+                return RedirectToAction(nameof(LeaveApply), new { isExist = true});
+
+            }
+            else {
+
+                TimeSpan differ = (TimeSpan)(leaveApplyModel.EndDate - leaveApplyModel.Startdate);
+                leaveApplyModel.NoOfDays = differ.Days;
+                int id = await _leaveRepository.AddLeave(leaveApplyModel);
 
                 if (id > 0)
                 {
-                    return RedirectToAction(nameof(LeaveApply),new { isSucceess = true, leaveId = id });
+                    return RedirectToAction(nameof(LeaveApply), new { isSucceess = true, leaveId = id });
                 }
-            
+
+            }
             return View();
         }
 

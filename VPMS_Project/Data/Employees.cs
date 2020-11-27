@@ -12,11 +12,12 @@ namespace VPMS_Project.Data
         [Key]
         public int EmpId { get; set; }
       
-
         public String EmpFName { get; set; }
         public String EmpLName { get; set; }
 
         public int JobTitleId { get; set; }
+
+        public int PMId { get; set; }
 
         public String Email { get; set; }
 

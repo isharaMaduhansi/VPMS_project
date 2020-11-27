@@ -51,6 +51,8 @@ namespace VPMS_Project.Models
 
         public String JobType { get; set; }
 
+        public int PMId { get; set; }
+
         public IFormFile ProfilePhoto { get; set; }
 
         public String PhotoURL { get; set; }

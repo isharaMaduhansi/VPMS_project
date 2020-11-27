@@ -11,12 +11,12 @@
             <div style="margin-left:20%;width:60%">
                 @if (ViewBag.IsSuccess == true)
                 {
-                <div class="alert alert-success alert-dismissible fade show container" role="alert">
-                    <strong>Succesffull!</strong> You have applied a leave successfully.<a asp-controller="StaffLeave" asp-action="ViewLeave" asp-route-id="@ViewBag.LeaveId">Click here</a> to view.
-                            <button type = "button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span></button>
-                </div>
-
+                    <div class="alert alert-success alert-dismissible fade show container" role="alert">
+                        <strong>Succesffull!</strong> You have applied a leave successfully.<a asp-controller="StaffLeave" asp-action="ViewLeave" asp-route-id="@ViewBag.LeaveId">Click here</a> to view.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
 
                 }
                 
@@ -29,6 +29,16 @@
                         </button>
                     </div>
 
+                }
+
+                @if (ViewBag.IsExist == true)
+                {
+                    <div class="alert alert-danger alert-dismissible fade show container" role="alert">
+                        <strong>Operation Failed!</strong> You have already applied a leave on this day.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
 
                 }
             </div>

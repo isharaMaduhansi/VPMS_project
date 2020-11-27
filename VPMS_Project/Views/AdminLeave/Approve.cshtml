@@ -2,91 +2,100 @@
 @{
     Layout = "_LeaveLayout";
     ViewData["Title"] = "Leave Approve";
+    ViewData["Msg1"] = "No Leave Requests";
+    ViewData["Msg2"] = "No pending leave requests have been received yet.";
 
 }
 @model IEnumerable<LeaveApplyModel>
 
-<div style="margin-left:20%;height:1000px;">
-    <div class="navbar">
-        <h3 style="font-family:Cambria;color:black;">
-            <br>
-            <a asp-controller="EmployeeHome" asp-action="EmpIndex" title="Back">
-                <i class='fas fa-arrow-left' style="margin-right:15px;color:black;font-size:14pt"></i>
-            </a>Leave Approval
-        </h3>
-    </div>
-    <hr>
+    <div style="margin-left:20%;height:1000px;">
+        <div class="navbar">
+            <h3 style="font-family:Cambria;color:black;">
+                <br>
+                <a asp-controller="EmployeeHome" asp-action="EmpIndex" title="Back">
+                    <i class='fas fa-arrow-left' style="margin-right:15px;color:black;font-size:14pt"></i>
+                </a>Leave Approval
+            </h3>
+        </div>
+        <hr>
 
 
-    <br>
-    <div style="margin-left:2%;width:90%">
-        @if (ViewBag.IsApprove == true)
+        <br>
+        <div style="margin-left:2%;width:90%">
+            @if (ViewBag.IsApprove == true)
+            {
+                <div class="alert alert-success alert-dismissible fade show container" role="alert">
+                    Successfully Approved.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            }
+            @if (ViewBag.IsNotApprove == true)
+            {
+                <div class="alert alert-success alert-dismissible fade show container" role="alert">
+                    Successfully Rejected.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            }
+        </div>
+        <br>
+        @if (Model.Count() == 0)
         {
-            <div class="alert alert-success alert-dismissible fade show container" role="alert">
-                Successfully Approved.
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
+              <div style="margin-left:4%;width:85%">
+                <partial name="_Message" />
+               </div>
         }
-        @if (ViewBag.IsNotApprove == true)
+
+        @foreach (var leave in Model)
         {
-            <div class="alert alert-success alert-dismissible fade show container" role="alert">
-                Successfully Rejected.
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        }
-    </div>
-    <br>
-    @foreach (var leave in Model)
-    {
-        <div class="card bg-light" style="margin-bottom:30px;margin-left:2%;width:90%">
-            <div class="card-header" style="font-size:13pt;display:flex;justify-content:space-between;background-color:lightgray">
-                <font class="card-title">
-                    <b> @leave.EmpName - </b> &nbsp;
-                    <span style="font-size:11pt">
-                        @leave.Designation
-                    </span>
-                </font>
-                <font class="card-title text-sm" style="font-size:12pt">
-                    Recommended by : @leave.RecommendName
-                </font>
-            </div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-4">
-                        <blockquote class="blockquote mb-0">
-                            @leave.LeaveType for @leave.NoOfDays Days
-                        </blockquote>
-                        <div style="margin-top:10px"><i class='far fa-calendar-alt'></i>  Applied Date : @leave.AppliedDate.Day - @leave.AppliedDate.Month - @leave.AppliedDate.Year</div>
-                        <p style="font-size:12pt;margin-top:5px"><i class='far fa-meh'></i> Reason : @leave.Reason</p>
-                    </div>
-                    <div class="col-md-4">
-                        <div style="margin-top:8px"><i class='far fa-calendar-alt'></i>  From : @leave.Startdate.Day - @leave.Startdate.Month - @leave.Startdate.Year</div>
-                        <div style="margin-top:8px"><i class='far fa-calendar-alt'></i>  To&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : @leave.EndDate.Day - @leave.EndDate.Month - @leave.EndDate.Year</div>
-
-                    </div>
-                    <div class="col-md-4">
-                        <div style="margin-top:2px"><button type="button" class="btn btn-outline-dark btn-sm btn-block"><i class='fas fa-info'></i> Leave Info</button></div>
-                        <div style="margin-top:6px">
-                            <a asp-controller="AdminLeave" asp-action="LeaveApprove" asp-route-id="@leave.LeaveApplyId" onclick="return confirm('Do you want to approve this Leave ? ')" type="button" class="btn btn-outline-primary btn-sm btn-block">
-                                <i class='far fa-check-square'></i> Approved
-                            </a>
+            <div class="card bg-light" style="margin-bottom:30px;margin-left:2%;width:90%">
+                <div class="card-header" style="font-size:13pt;display:flex;justify-content:space-between;background-color:lightgray">
+                    <font class="card-title">
+                        <b> @leave.EmpName - </b> &nbsp;
+                        <span style="font-size:11pt">
+                            @leave.Designation
+                        </span>
+                    </font>
+                    <font class="card-title text-sm" style="font-size:12pt">
+                        Recommended by : @leave.RecommendName
+                    </font>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <blockquote class="blockquote mb-0">
+                                @leave.LeaveType for @leave.NoOfDays Days
+                            </blockquote>
+                            <div style="margin-top:10px"><i class='far fa-calendar-alt'></i>  Applied Date : @leave.AppliedDate.Day - @leave.AppliedDate.Month - @leave.AppliedDate.Year</div>
+                            <p style="font-size:12pt;margin-top:5px"><i class='far fa-meh'></i> Reason : @leave.Reason</p>
                         </div>
-                        <div style="margin-top:6px">
-                            <a asp-controller="AdminLeave" asp-action="LeaveNotApprove" asp-route-id="@leave.LeaveApplyId" onclick="return confirm('Do you want to reject this Leave ? ')" type="button" class="btn btn-outline-danger btn-sm btn-block">
-                                <i class='fas fa-times'></i> Not Approved
-                            </a>
+                        <div class="col-md-4">
+                            <div style="margin-top:8px"><i class='far fa-calendar-alt'></i>  From : @leave.Startdate.Day - @leave.Startdate.Month - @leave.Startdate.Year</div>
+                            <div style="margin-top:8px"><i class='far fa-calendar-alt'></i>  To&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : @leave.EndDate.Day - @leave.EndDate.Month - @leave.EndDate.Year</div>
+
+                        </div>
+                        <div class="col-md-4">
+                            <div style="margin-top:2px"><button type="button" class="btn btn-outline-dark btn-sm btn-block"><i class='fas fa-info'></i> Leave Info</button></div>
+                            <div style="margin-top:6px">
+                                <a asp-controller="AdminLeave" asp-action="LeaveApprove" asp-route-id="@leave.LeaveApplyId" onclick="return confirm('Do you want to approve this Leave ? ')" type="button" class="btn btn-outline-primary btn-sm btn-block">
+                                    <i class='far fa-check-square'></i> Approved
+                                </a>
+                            </div>
+                            <div style="margin-top:6px">
+                                <a asp-controller="AdminLeave" asp-action="LeaveNotApprove" asp-route-id="@leave.LeaveApplyId" onclick="return confirm('Do you want to reject this Leave ? ')" type="button" class="btn btn-outline-danger btn-sm btn-block">
+                                    <i class='fas fa-times'></i> Not Approved
+                                </a>
+                            </div>
+
                         </div>
 
                     </div>
-
                 </div>
             </div>
-        </div>
 
 
-    }
-</div>
+        }
+    </div>

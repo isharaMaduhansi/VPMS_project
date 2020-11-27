@@ -161,6 +161,7 @@ namespace VPMS_Project.Repository
                 Email = empModel.Email,
                 JobTitleId = empModel.JobTitleId,
                 Address = empModel.Address,
+                PMId=0,
                 Dob = empModel.Dob,
                 WorkSince = empModel.WorkSince,
                 Mobile = empModel.Mobile.HasValue ? empModel.Mobile.Value : 0,
