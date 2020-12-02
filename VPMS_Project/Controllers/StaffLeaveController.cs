@@ -16,7 +16,6 @@ namespace VPMS_Project.Controllers
         private readonly LeaveRepository _leaveRepository = null;
 
 
-
         public StaffLeaveController(IEmpRepository empRepository, IWebHostEnvironment webHostEnvironment, LeaveRepository leaveRepository)
         {
             _leaveRepository = leaveRepository;
@@ -26,9 +25,11 @@ namespace VPMS_Project.Controllers
         }
 
 
-        public IActionResult Leavebalance()
+        public async Task<IActionResult> Leavebalance()
         {
-            return View();
+            int EmpId = 110;
+            var data = await _leaveRepository.GetLeaveBalance(EmpId);
+            return View(data);
         }
 
 

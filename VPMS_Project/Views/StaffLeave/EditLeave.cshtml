@@ -17,6 +17,7 @@
 
     <input hidden value="@Model.ToDate" name="y" />
     <input hidden value="@Model.FromDate.Year-@Model.FromDate.Month-@Model.FromDate.Day" id="x" />
+    <input hidden value="@Model.ToDate.Year-@Model.ToDate.Month-@Model.ToDate.Day" id="y" />
     <font style="color:white;font-size:13pt;font-family:Arial"><center>Leave Application - @DateTime.Now.Day/@DateTime.Now.Month/@DateTime.Now.Year</center> </font>
     <br>
 
@@ -53,7 +54,7 @@
                 </div>
             </div>
         </div>
-        <div style="color:red;margin-bottom:20px" id="msg"></div>
+        <div style="color:red;margin-bottom:20px;background-color:black" id="msg"></div>
         <div style="color:white;margin-left:40%;" id="days"></div>
 
         <div class="form-group" style="margin-top:13px">
@@ -85,40 +86,57 @@
             function check1() {
                 var from = document.getElementById("x").value;
                 var start = document.getElementById("start").value;
-                if (from > start) {
-                    document.getElementById('msg').innerHTML = "Oops! You Can not apply leave on " + start + ". Because you have been allocated leave since " + from;
+                var to = document.getElementById("y").value;
+
+                if (to < start) {
+                    document.getElementById('msg').innerHTML = " Your leave allocation has not been extended from " + to + " yet. Please inform admin to extend your leave allocation.";
                     document.getElementById("myBtn").disabled = true;
                     document.getElementById("end").disabled = true;
-                }
-                else {
-                    document.getElementById('msg').innerHTML = "";
-                    document.getElementById("myBtn").disabled = false;
-                    document.getElementById("end").disabled = false;
+
                 }
 
+                else {
+                    if (from > start) {
+                        document.getElementById('msg').innerHTML = "Oops! You Can not apply leave on " + start + ". Because your leaves have been allocated from " + from;
+                        document.getElementById("myBtn").disabled = true;
+                        document.getElementById("end").disabled = true;
+                    }
+                    else {
+                        document.getElementById('msg').innerHTML = "";
+                        document.getElementById("myBtn").disabled = false;
+                        document.getElementById("end").disabled = false;
+                    }
+                }
             }
 
             function check2() {
                 var start = document.getElementById("start").value;
                 var end = document.getElementById("end").value;
+                var to = document.getElementById("y").value;
                 var date1 = new Date(start);
                 var date2 = new Date(end);
 
                 var oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
                 var diffDays = Math.abs((date1.getTime() - date2.getTime()) / (oneDay));
 
-
-                if (end <= start) {
-                    document.getElementById('msg').innerHTML = "End Date should be bigger than start date( " + start + " ) ";
+                if (to < end) {
+                    document.getElementById('msg').innerHTML = " Your leave allocation has not been extended from " + to + " yet. Please inform admin to extend your leave allocation.";
                     document.getElementById("myBtn").disabled = true;
+                    document.getElementById("end").disabled = true;
+
                 }
+
                 else {
-                    document.getElementById('msg').innerHTML = "";
-                    document.getElementById("myBtn").disabled = false;
-                    document.getElementById('days').innerHTML = "Leave Period : " + diffDays + " days ";
-
+                    if (end <= start) {
+                        document.getElementById('msg').innerHTML = "End Date should be bigger than start date( " + start + " ) ";
+                        document.getElementById("myBtn").disabled = true;
+                    }
+                    else {
+                        document.getElementById('msg').innerHTML = "";
+                        document.getElementById("myBtn").disabled = false;
+                        document.getElementById('days').innerHTML = "Leave Period : " + diffDays + " days ";
+                    }
                 }
-
 
             }
 

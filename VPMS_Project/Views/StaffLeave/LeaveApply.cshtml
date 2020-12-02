@@ -4,107 +4,108 @@
 }
 <link href="~/CSS/MenuStyleSheet.css" rel="stylesheet" />
 @model LeaveApplyModel
-    <div class="content" style="background-image: url('/images/Parallax.jpg'); background-repeat: no-repeat; position: center;background-size:100% 100%;">
-       
-        <partial name="_Menu"/>
-        <br><br>
-            <div style="margin-left:20%;width:60%">
-                @if (ViewBag.IsSuccess == true)
-                {
-                    <div class="alert alert-success alert-dismissible fade show container" role="alert">
-                        <strong>Succesffull!</strong> You have applied a leave successfully.<a asp-controller="StaffLeave" asp-action="ViewLeave" asp-route-id="@ViewBag.LeaveId">Click here</a> to view.
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
+<div class="content" style="background-image: url('/images/Parallax.jpg'); background-repeat: no-repeat; position: center;background-size:100% 100%;">
 
-                }
-                
-                @if (ViewBag.IsUpdate == true)
-                {
-                    <div class="alert alert-success alert-dismissible fade show container" role="alert">
-                        <strong>Succesffully Updated!</strong><a asp-controller="StaffLeave" asp-action="ViewLeave" asp-route-id="@ViewBag.LeaveId"> Click here</a> to view.
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-
-                }
-
-                @if (ViewBag.IsExist == true)
-                {
-                    <div class="alert alert-danger alert-dismissible fade show container" role="alert">
-                        <strong>Operation Failed!</strong> You have already applied a leave on this day.
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-
-                }
-            </div>
-        <br>
-        <br>
-
-
-        <input hidden value="@Model.ToDate" name="y" />
-        <input hidden value="@Model.FromDate.Year-@Model.FromDate.Month-@Model.FromDate.Day" id="x" />
-        <font style="color:white;font-size:13pt;font-family:Arial"><center>Leave Application - @DateTime.Now.Day/@DateTime.Now.Month/@DateTime.Now.Year</center> </font>
-        <br>
-        <form name="nme" enctype="multipart/form-data" method="post" asp-action="LeaveApply" asp-controller="StaffLeave" style="margin-left:20%;width:60%">
-
-            <div class="form-group">
-                <select asp-for="LeaveType" class="form-control" style="height:50px;" required>
-                    <option value="">Choose Leave Type</option>
-                    <option>Annual Leave</option>
-                    <option>Medical Leave</option>
-                    <option>Casual Leave</option>
-                    <option>Short Leave</option>
-                    <option>Half Days</option>
-                </select>
-                <span asp-validation-for="LeaveType" class="text-danger"></span>
+    <partial name="_Menu" />
+    <br><br>
+    <div style="margin-left:20%;width:60%">
+        @if (ViewBag.IsSuccess == true)
+        {
+            <div class="alert alert-success alert-dismissible fade show container" role="alert">
+                <strong>Succesffull!</strong> You have applied a leave successfully.<a asp-controller="StaffLeave" asp-action="ViewLeave" asp-route-id="@ViewBag.LeaveId">Click here</a> to view.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
 
+        }
 
-            <div class="row">
-                <div class="col-md-6 col-sm-6 ">
-                    <div class="form-group" style="margin-top:13px">
-                        <font style="color:white">Start Date</font>
-                        <input id="start" onchange="check1()" asp-for="Startdate" value="dd/mm/yyyy" class="form-control" placeholder="Casual Leaves" style="height:50px;" required />
-                        <span asp-validation-for="Startdate" class="text-danger"></span>
-                    </div>
-
-                </div>
-
-                <div class="col-md-6 col-sm-6">
-                    <div class="form-group" style="margin-top:13px">
-                        <font style="color:white">End Date</font>
-                        <input id="end" onchange="check2()" asp-for="EndDate" value="dd/mm/yyyy" class="form-control" placeholder="Medical Leaves" style="height:50px;" disabled />
-                        <span asp-validation-for="EndDate" class="text-danger"></span>
-                    </div>
-                </div>
-            </div>
-            <div style="color:red;margin-bottom:20px" id="msg"></div>
-            <div style="color:white;margin-left:40%;" id="days"></div>
-
-            <div class="form-group" style="margin-top:13px">
-
-                <textarea asp-for="Reason" class="form-control" placeholder="Reason" style="height:100px" required></textarea>
-                <span asp-validation-for="Reason" class="text-danger"></span>
-
-
+        @if (ViewBag.IsUpdate == true)
+        {
+            <div class="alert alert-success alert-dismissible fade show container" role="alert">
+                <strong>Succesffully Updated!</strong><a asp-controller="StaffLeave" asp-action="ViewLeave" asp-route-id="@ViewBag.LeaveId"> Click here</a> to view.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
 
+        }
 
-
-
-            <div class="form-group">
-                <input type="submit" value="Apply" class="btn-block btn-success btn-lg" id="myBtn" onclick="ConfirmApply()" />
-                <a asp-controller="StaffHome" asp-action="StaffDash" class="btn btn-success btn-lg btn-block" style="margin-top:20px">Cancel</a>
+        @if (ViewBag.IsExist == true)
+        {
+            <div class="alert alert-danger alert-dismissible fade show container" role="alert">
+                <strong>Operation Failed!</strong> You have already applied a leave on this day.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
 
-
-        </form>
+        }
     </div>
+    <br>
+    <br>
+
+
+    <input hidden value="@Model.ToDate" name="y" />
+    <input hidden value="@Model.FromDate.Year-@Model.FromDate.Month-@Model.FromDate.Day" id="x" />
+    <input hidden value="@Model.ToDate.Year-@Model.ToDate.Month-@Model.ToDate.Day" id="y" />
+    <font style="color:white;font-size:13pt;font-family:Arial"><center>Leave Application - @DateTime.Now.Day/@DateTime.Now.Month/@DateTime.Now.Year</center> </font>
+    <br>
+    <form name="nme" enctype="multipart/form-data" method="post" asp-action="LeaveApply" asp-controller="StaffLeave" style="margin-left:20%;width:60%">
+
+        <div class="form-group">
+            <select asp-for="LeaveType" class="form-control" style="height:50px;" required>
+                <option value="">Choose Leave Type</option>
+                <option>Annual Leave</option>
+                <option>Medical Leave</option>
+                <option>Casual Leave</option>
+                <option>Short Leave</option>
+                <option>Half Days</option>
+            </select>
+            <span asp-validation-for="LeaveType" class="text-danger"></span>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-6 col-sm-6 ">
+                <div class="form-group" style="margin-top:13px">
+                    <font style="color:white">Start Date</font>
+                    <input id="start" onchange="check1()" asp-for="Startdate" value="dd/mm/yyyy" class="form-control" placeholder="Casual Leaves" style="height:50px;" required />
+                    <span asp-validation-for="Startdate" class="text-danger"></span>
+                </div>
+
+            </div>
+
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group" style="margin-top:13px">
+                    <font style="color:white">End Date</font>
+                    <input id="end" onchange="check2()" asp-for="EndDate" value="dd/mm/yyyy" class="form-control" placeholder="Medical Leaves" style="height:50px;" disabled />
+                    <span asp-validation-for="EndDate" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div style="margin-bottom:20px;background-color:black;color:red;" id="msg" ></div>
+        <div style="color:white;margin-left:40%;" id="days"></div>
+
+        <div class="form-group" style="margin-top:13px">
+
+            <textarea asp-for="Reason" class="form-control" placeholder="Reason" style="height:100px" required></textarea>
+            <span asp-validation-for="Reason" class="text-danger"></span>
+
+
+        </div>
+
+
+
+
+        <div class="form-group">
+            <input type="submit" value="Apply" class="btn-block btn-success btn-lg" id="myBtn" onclick="ConfirmApply()" />
+            <a asp-controller="StaffHome" asp-action="StaffDash" class="btn btn-success btn-lg btn-block" style="margin-top:20px">Cancel</a>
+        </div>
+
+
+    </form>
+</div>
 
 
 
@@ -114,16 +115,30 @@
 
             function check1() {
                 var from = document.getElementById("x").value;
+                var to = document.getElementById("y").value;
                 var start = document.getElementById("start").value;
-                if (from > start) {
-                    document.getElementById('msg').innerHTML = "Oops! You Can not apply leave on " + start + ". Because you have been allocated leave since " + from;
+
+                if (to < start)
+                {
+                    document.getElementById('msg').innerHTML = " Your leave allocation has not been extended from " + to + " yet. Please inform admin to extend your leave allocation.";
                     document.getElementById("myBtn").disabled = true;
                     document.getElementById("end").disabled = true;
+
                 }
-                else {
-                    document.getElementById('msg').innerHTML = "";
-                    document.getElementById("myBtn").disabled = false;
-                    document.getElementById("end").disabled = false;
+
+                else
+                {
+                    if (from > start) {
+                        document.getElementById('msg').innerHTML = "Oops! You can not apply leave on " + start + ". Because your leaves have been allocated from " + from;
+                        document.getElementById("myBtn").disabled = true;
+                        document.getElementById("end").disabled = true;
+                    }
+                    else {
+                        document.getElementById('msg').innerHTML = "";
+                        document.getElementById("myBtn").disabled = false;
+                        document.getElementById("end").disabled = false;
+                    }
+
                 }
 
             }
@@ -131,22 +146,31 @@
             function check2() {
                 var start = document.getElementById("start").value;
                 var end = document.getElementById("end").value;
+                var to = document.getElementById("y").value;
                 var date1 = new Date(start);
                 var date2 = new Date(end);
 
                 var oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
                 var diffDays = Math.abs((date1.getTime() - date2.getTime()) / (oneDay));
 
-
-                if (end <= start) {
-                    document.getElementById('msg').innerHTML = "End Date should be bigger than start date( " + start + " ) ";
+                if (to < end) {
+                    document.getElementById('msg').innerHTML = " Your leave allocation has not been extended from " + to + " yet. Please inform admin to extend your leave allocation.";
                     document.getElementById("myBtn").disabled = true;
-                }
-                else {
-                    document.getElementById('msg').innerHTML = "";
-                    document.getElementById("myBtn").disabled = false;
-                    document.getElementById('days').innerHTML = "Leave Period : " + diffDays + " days ";
+                    document.getElementById("end").disabled = true;
 
+                }
+
+                else {
+                    if (end <= start) {
+                        document.getElementById('msg').innerHTML = "End Date should be bigger than start date( " + start + " ) ";
+                        document.getElementById("myBtn").disabled = true;
+                    }
+                    else {
+                        document.getElementById('msg').innerHTML = "";
+                        document.getElementById("myBtn").disabled = false;
+                        document.getElementById('days').innerHTML = "Leave Period : " + diffDays + " days ";
+
+                    }
                 }
 
 

@@ -56,6 +56,7 @@ namespace VPMS_Project.Repository
 
         public async Task<List<LeaveApplyModel>> GetAllPendingLeaveById(int id)
         {
+
             return await (from a in _context.LeaveApply.Where(x => x.EmpId == id && (x.Status == "Waiting for Recommendation" || x.Status == "Waiting for Approval"))
                           select new LeaveApplyModel()
                           {
@@ -73,8 +74,46 @@ namespace VPMS_Project.Repository
                          })
                    .ToListAsync();
         }
-        
-          public async Task<List<LeaveApplyModel>> GetApprovedLeaveById(int id)
+
+        public async Task<LBalanceModel> GetLeaveBalance(int id)
+        {
+            var emp = await _context.Employees.FindAsync(id);
+           
+            int totalLeaveGiven = emp.ShortLeaveAllocated + emp.HalfLeaveAllocated + emp.AnnualAllocated + emp.MedicalAllocated + emp.CasualAllocated;
+            int totalLeaveTaken = _context.LeaveApply.Where(x => (x.EmpId == id) && (x.Status == "Approved")).Count();
+            int medicalTaken = _context.LeaveApply.Where(x => (x.EmpId == id) && (x.Status == "Approved") && (x.LeaveType== "Medical Leave")).Count();
+            int annualTaken = _context.LeaveApply.Where(x => (x.EmpId == id) && (x.Status == "Approved") && (x.LeaveType == "Annual Leave")).Count();
+            int casualTaken = _context.LeaveApply.Where(x => (x.EmpId == id) && (x.Status == "Approved") && (x.LeaveType == "Casual Leave")).Count();
+            int shortTaken = _context.LeaveApply.Where(x => (x.EmpId == id) && (x.Status == "Approved") && (x.LeaveType == "Short Leave")).Count();
+            int halfTaken = _context.LeaveApply.Where(x => (x.EmpId == id) && (x.Status == "Approved") && (x.LeaveType == "Half Days")).Count();
+
+            return await (from a in _context.LeaveApply select new LBalanceModel()
+                          {
+                              EmpId = id,
+                              FromDate= (DateTime)emp.FromDate,
+                              Todate= (DateTime)emp.Todate,
+                              TotalLeaveGiven= totalLeaveGiven,
+                              TotalLeaveTaken= totalLeaveTaken,
+                              TotalLeaveBalance= totalLeaveGiven-totalLeaveTaken,
+                              MedicalAllocated = emp.MedicalAllocated,
+                              MedicalTaken= medicalTaken,
+                              CasualAllocated =emp.CasualAllocated,
+                              CasualTaken= casualTaken,
+                              AnnualAllocated =emp.AnnualAllocated,
+                              AnnualTaken= annualTaken,
+                              HalfAllocated =emp.HalfLeaveAllocated,
+                              Halftaken= halfTaken,
+                              ShortAllocated =emp.ShortLeaveAllocated,
+                              ShortTaken= shortTaken,
+                              MedicalRemain= emp.MedicalAllocated- medicalTaken,
+                              CasualRemain= emp.CasualAllocated- casualTaken,
+                              AnnualRemain= emp.AnnualAllocated- annualTaken,
+                              HalfRemain=emp.HalfLeaveAllocated- halfTaken,
+                              ShortRemain=emp.ShortLeaveAllocated- shortTaken
+            }).FirstOrDefaultAsync();
+        }
+
+        public async Task<List<LeaveApplyModel>> GetApprovedLeaveById(int id)
         {
             return await (from a in _context.LeaveApply.Where(x => (x.EmpId == id) && (x.Status == "Approved") && (x.Visible== "Show"))
                           select new LeaveApplyModel()
