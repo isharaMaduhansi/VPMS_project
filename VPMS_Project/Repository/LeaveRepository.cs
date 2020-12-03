@@ -348,5 +348,18 @@ namespace VPMS_Project.Repository
             return true;
 
         }
+        public async Task<List<LeaveApplyModel>> GetLeaveAsync(int id)
+        {
+            return await (from a in _context.LeaveApply.Where(x => (x.EmpId == id) && (x.Startdate> DateTime.UtcNow))
+                          select new LeaveApplyModel()
+                          {
+                              LeaveType = a.LeaveType,
+                              Startdate = (DateTime)a.Startdate,
+                              EndDate = (DateTime)a.EndDate,
+                              NoOfDays = a.NoOfDays,
+                              Status = a.Status    
+                          }).ToListAsync();
+        }
+        
     }
 }

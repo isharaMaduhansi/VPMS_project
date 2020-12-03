@@ -7,6 +7,7 @@
 
 <link href="~/CSS/MenuStyleSheet.css" rel="stylesheet" />
 
+
 <div class="content">
     <partial name="_Menu" />
     <br><br><br>
@@ -17,7 +18,7 @@
                 <h3 style="font-family:Cambria;color:black;margin-bottom:20px"> Leave Balance</h3>
                 <h6 style="font-family:Arial;color:black;"> From @Model.FromDate.Day-@Model.FromDate.Month-@Model.FromDate.Year &nbsp;&nbsp;&nbsp;&nbsp;To @Model.Todate.Day-@Model.Todate.Month-@Model.Todate.Year</h6>
             </div>
-         
+
             <div class="row">
                 <div class="row">
                     <div class="col-sm-12 col-lg-4" style="padding:50px">
@@ -26,8 +27,8 @@
                                 <div style="font-size:12pt;color:white;" class="row">
                                     <br>&nbsp;&nbsp;Total Leave Allocation
                                 </div><br>
-                                   <h4>@Model.TotalLeaveGiven</h4>
-                                
+                                <h4>@Model.TotalLeaveGiven</h4>
+
                             </div>
                         </div>
                     </div>
@@ -40,7 +41,7 @@
                                 <font style="font-size:12pt;color:white;">
                                     <br> Total Leave Taken
                                 </font><br><br>
-                                   <h4> @Model.TotalLeaveTaken</h4>
+                                <h4> @Model.TotalLeaveTaken</h4>
                             </div>
                         </div>
                     </div>
@@ -52,8 +53,8 @@
                                 <font style="font-size:12pt;color:white">
                                     <br>Leave Balance
                                 </font><br><br>
-                                           <h4>  @Model.TotalLeaveBalance </h4>
-</div>
+                                <h4>  @Model.TotalLeaveBalance </h4>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -140,6 +141,61 @@
             </div>
 
         </div>
-        <div class="col-md-3" style="">egdvgedget </div>
+        <div class="col-md-3" style="">
+
+            @await Component.InvokeAsync("Leave", new { id = Model.EmpId })
+        </div>
     </div>
+
+    @*<div id="calender"></div>
+        <link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" rel="stylesheet" />
+        <link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.print.min.css" rel="stylesheet" media="print" />*@
+
 </div>
+
+
+@*@section DateCompare
+    {
+    <script>
+        $(document).ready(function () {
+            // create Calendar from div HTML element
+            $("#calendar").kendoCalendar();
+        });
+    </script>
+
+}*@
+@*<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js" ></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+    <script type="text/javascript">
+        var events;
+        $.getJSON('StaffLeaveController/Read', null, function (output) {
+            events = output;
+        }
+
+        var events = [
+            { Title: "Birthday", Date: new Date("12/12/2019") },
+            { Title: "Christmas", Date: new Date("12/25/2019") },
+            { Title: "Boxing Day", Date: new Date("12/26/2019") }
+        ];
+
+        $("#calendar").datepicker({
+            beforeShowDay: function (date) {
+                var result = [true, '', null];
+                var tooltip = "";
+                var matching = $.grep(events, function (event) {
+                    if (event.Date.valueOf() === date.valueOf()) {
+                        tooltip = event.Title;
+                        return true;
+                    }
+                });
+
+                if (matching.length > 0) {
+                    result = [true, 'event', tooltip];
+                }
+                return result;
+            }
+        });
+
+    </script>
+*@
+
