@@ -2,7 +2,7 @@
     Layout = "_StaffLayout";
     ViewData["Title"] = "Pending Leave";
     ViewData["Msg1"] = "No Pending Leaves";
-    ViewData["Msg2"] = "There are no pending leave requests.";
+    ViewData["Msg2"] = "You currently have no pending leave requests.";
 }
 <link href="~/CSS/MenuStyleSheet.css" rel="stylesheet" />
 
@@ -11,27 +11,27 @@
 
 <div class="content">
     <partial name="_Menu" />
-    <br><br><br>   
-            <div style="margin-left:8%;width:90%">
+    <br><br><br>
+    <div style="margin-left:8%;width:80%">
 
-                @if (Model.Count() == 0)
-                {
-                    <br>
-                    <div style="width:90%">
-                        <partial name="_Message" />
-                    </div>
-                }
-
-                @if (ViewBag.IsDelete == true)
-                {
-                    <div class="alert alert-success alert-dismissible fade show container" role="alert">
-                        <strong>Succesffully Deleted!</strong>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                }
+        @if (Model.Count() == 0)
+        {
+            <br>
+            <div style="width:90%">
+                <partial name="_Message" />
             </div>
+        }
+
+        @if (ViewBag.IsDelete == true)
+        {
+        <div class="alert alert-success alert-dismissible fade show container" role="alert">
+        <strong>Succesffully Deleted!</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        }
+    </div>
     <br>
 
     @foreach (var leave in Model)
@@ -45,13 +45,19 @@
                         <i class='far fa-calendar-alt'></i> To &nbsp; @leave.EndDate.Day - @leave.EndDate.Month - @leave.EndDate.Year
                     </span>
                 </font>
-                <font class="card-title">
+                <font class="card-title" style="font-size:11pt">
+                   
                     @if (leave.Status == "Waiting for Recommendation")
                     {
 
                         <a asp-controller="StaffLeave" asp-action="EditLeave" asp-route-id="@leave.LeaveApplyId" class="text-primary">Edit |</a>
                         <a asp-controller="StaffLeave" asp-action="DeleteLeave" asp-route-id="@leave.LeaveApplyId" class="text-danger" onclick="return confirm('Do you want to delete this leave?')"> Withdraw </a>
 
+                    }
+                    @if (leave.Status == "Waiting for Approval")
+                    {
+
+                        <font class="text-primary" >Edit is not available</font>
                     }
                 </font>
             </div>
@@ -77,7 +83,7 @@
                 </div>
             </div>
         </div>
-
+       
 
     }
 

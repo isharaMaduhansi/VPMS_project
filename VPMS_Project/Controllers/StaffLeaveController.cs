@@ -9,7 +9,6 @@ using VPMS_Project.Repository;
 
 namespace VPMS_Project.Controllers
 {
-
         public class StaffLeaveController : Controller
         {
             private readonly IEmpRepository _empRepository = null;
@@ -33,7 +32,6 @@ namespace VPMS_Project.Controllers
                 return View(data);
             }
 
-
             public async Task<IActionResult> PendingLeaveHistory(bool isDelete = false)
             {
                 int EmpId = 110;
@@ -56,6 +54,7 @@ namespace VPMS_Project.Controllers
                 var data = await _leaveRepository.GetRejectedLeaveById(EmpId);
                 return View(data);
             }
+
             public async Task<IActionResult> LeaveApply(bool isSucceess = false, bool isUpdate = false, int leaveId = 0, bool isExist = false)
             {
                 int EmpId = 110;
@@ -73,11 +72,10 @@ namespace VPMS_Project.Controllers
                 leaveApplyModel.EmpId = 110;
                 int Eid = leaveApplyModel.EmpId;
                 DateTime date = leaveApplyModel.Startdate;
-                bool existOne = _leaveRepository.CheckExist(Eid, date);
+            bool existOne = _leaveRepository.CheckExist(Eid, date);
                 if (existOne)
                 {
                     return RedirectToAction(nameof(LeaveApply), new { isExist = true });
-
                 }
                 else
                 {
@@ -161,20 +159,7 @@ namespace VPMS_Project.Controllers
                 return View();
             }
 
-            [HttpGet]
-            public IActionResult Read()
-            {
-                //Database call to read dates and convert them to JSON object...
-
-                List<SelectedDates> highlightDates = new List<SelectedDates>();
-                highlightDates.Add(new SelectedDates
-                {
-                    Date = new DateTime(2019, 12, 1),
-                    Title = "Birthday"
-                });
-
-                return Json(highlightDates);
-            }
+        
         }
     }
 

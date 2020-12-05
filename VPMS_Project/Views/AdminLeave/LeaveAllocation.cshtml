@@ -7,7 +7,7 @@
 @model IEnumerable<EmpModel>
 
 
-<div style="margin-left:20%;height:900px;margin-right:3%">
+<div style="margin-left:20%;height:800px;margin-right:3%">
     <div class="container">
 
         <div class="jumbotron jumbotron-fluid">
@@ -37,9 +37,6 @@
                         </a>
                     </div>
                 </div>
-
-
-
             </div>
         </div>
 
@@ -47,9 +44,7 @@
         <div class="row">
             <div class="table-responsive col-sm-12 col-md-12">
                 <table class="table table-hover ">
-
                     <thead>
-
                     </thead>
                     <tbody>
 
@@ -72,22 +67,18 @@
                                 </td>
 
                                 <td><a asp-controller="AdminLeave" asp-action="SeeLeaveAllocation" asp-route-id="@emp.EmpId" class="text-success">See leave Allocation Details</a></td>
-
                             </tr>
-
-
-
                         }
-
-
-
                     </tbody>
                 </table>
-                <br>
+                
+                @if (Model.Count() == 0)
+                {
                 <div class="find" style="margin-left:20%" id="img">
-                    Search Employees to see their leave allocation details
-                    <img src="~/images/sea.jpg" style="width:300px;height:auto" />
+                Search Employees to see their leave allocation details
+                <img src="~/images/sea.jpg" style="width:300px;height:auto" />
                 </div>
+                }
             </div>
              </div>
     </div>

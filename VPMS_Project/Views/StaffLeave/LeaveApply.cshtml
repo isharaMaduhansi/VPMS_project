@@ -12,7 +12,7 @@
         @if (ViewBag.IsSuccess == true)
         {
             <div class="alert alert-success alert-dismissible fade show container" role="alert">
-                <strong>Succesffull!</strong> You have applied a leave successfully.<a asp-controller="StaffLeave" asp-action="ViewLeave" asp-route-id="@ViewBag.LeaveId">Click here</a> to view.
+                <strong>Succesffull!</strong> You have applied a leave successfully.<a asp-controller="StaffLeave" asp-action="ViewLeave" asp-route-id="@ViewBag.LeaveId"> Click here</a> to view.
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -45,16 +45,16 @@
     <br>
     <br>
 
-
-    <input hidden value="@Model.ToDate" name="y" />
     <input hidden value="@Model.FromDate.Year-@Model.FromDate.Month-@Model.FromDate.Day" id="x" />
     <input hidden value="@Model.ToDate.Year-@Model.ToDate.Month-@Model.ToDate.Day" id="y" />
+    @await Component.InvokeAsync("LeaveBalance", new { id = Model.EmpId })
+
     <font style="color:white;font-size:13pt;font-family:Arial"><center>Leave Application - @DateTime.Now.Day/@DateTime.Now.Month/@DateTime.Now.Year</center> </font>
     <br>
     <form name="nme" enctype="multipart/form-data" method="post" asp-action="LeaveApply" asp-controller="StaffLeave" style="margin-left:20%;width:60%">
 
         <div class="form-group">
-            <select asp-for="LeaveType" class="form-control" style="height:50px;" required>
+            <select asp-for="LeaveType" class="form-control" style="height:50px;" onchange="Remain()" id="LeaveType" required>
                 <option value="">Choose Leave Type</option>
                 <option>Annual Leave</option>
                 <option>Medical Leave</option>
@@ -62,9 +62,10 @@
                 <option>Short Leave</option>
                 <option>Half Days</option>
             </select>
+            <div style="margin-bottom:20px;color:limegreen;" id="balance"></div>
             <span asp-validation-for="LeaveType" class="text-danger"></span>
         </div>
-
+       
 
         <div class="row">
             <div class="col-md-6 col-sm-6 ">
@@ -84,7 +85,7 @@
                 </div>
             </div>
         </div>
-        <div style="margin-bottom:20px;background-color:black;color:red;" id="msg" ></div>
+        <div style="margin-bottom:20px;background-color:black;color:red;" id="msg"></div>
         <div style="color:white;margin-left:40%;" id="days"></div>
 
         <div class="form-group" style="margin-top:13px">
@@ -94,16 +95,10 @@
 
 
         </div>
-
-
-
-
         <div class="form-group">
             <input type="submit" value="Apply" class="btn-block btn-success btn-lg" id="myBtn" onclick="ConfirmApply()" />
-            <a asp-controller="StaffHome" asp-action="StaffDash" class="btn btn-success btn-lg btn-block" style="margin-top:20px">Cancel</a>
+            <a asp-controller="StaffLeave" asp-action="LeaveBalance" class="btn btn-success btn-lg btn-block" style="margin-top:20px">Cancel</a>
         </div>
-
-
     </form>
 </div>
 
@@ -193,7 +188,35 @@
                     return false;
 
 
+            }
 
+            function Remain() {
+                var annual = document.getElementById("annual").value;
+                var casual = document.getElementById("casual").value;
+                var medical = document.getElementById("medical").value;
+                var half = document.getElementById("half").value;
+                var short = document.getElementById("short").value;
+
+                var leaveType = document.getElementById("LeaveType").value;
+
+                switch (leaveType) {
+                    case "Annual Leave":
+                        document.getElementById('balance').innerHTML = annual +" Annual Leaves are available";
+                        break;
+                    case "Medical Leave":
+                        document.getElementById('balance').innerHTML = casual + " Medical Leaves are available";
+                        break;
+                    case "Casual Leave":
+                        document.getElementById('balance').innerHTML = medical + " Casual Leaves are available";
+                        break;
+                    case "Short Leave":
+                        document.getElementById('balance').innerHTML = half + " Short Leaves are available";
+                        break;
+                    case "Half Days":
+                        document.getElementById('balance').innerHTML = short + " Half Days are available";
+                        break;
+
+                }
 
             }
 

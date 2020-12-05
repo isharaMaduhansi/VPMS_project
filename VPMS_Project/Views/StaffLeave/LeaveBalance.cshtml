@@ -142,60 +142,8 @@
 
         </div>
         <div class="col-md-3" style="">
-
             @await Component.InvokeAsync("Leave", new { id = Model.EmpId })
         </div>
     </div>
-
-    @*<div id="calender"></div>
-        <link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" rel="stylesheet" />
-        <link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.print.min.css" rel="stylesheet" media="print" />*@
-
 </div>
-
-
-@*@section DateCompare
-    {
-    <script>
-        $(document).ready(function () {
-            // create Calendar from div HTML element
-            $("#calendar").kendoCalendar();
-        });
-    </script>
-
-}*@
-@*<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js" ></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
-    <script type="text/javascript">
-        var events;
-        $.getJSON('StaffLeaveController/Read', null, function (output) {
-            events = output;
-        }
-
-        var events = [
-            { Title: "Birthday", Date: new Date("12/12/2019") },
-            { Title: "Christmas", Date: new Date("12/25/2019") },
-            { Title: "Boxing Day", Date: new Date("12/26/2019") }
-        ];
-
-        $("#calendar").datepicker({
-            beforeShowDay: function (date) {
-                var result = [true, '', null];
-                var tooltip = "";
-                var matching = $.grep(events, function (event) {
-                    if (event.Date.valueOf() === date.valueOf()) {
-                        tooltip = event.Title;
-                        return true;
-                    }
-                });
-
-                if (matching.length > 0) {
-                    result = [true, 'event', tooltip];
-                }
-                return result;
-            }
-        });
-
-    </script>
-*@
 

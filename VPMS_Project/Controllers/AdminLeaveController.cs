@@ -30,12 +30,10 @@ namespace VPMS_Project.Controllers
         public async Task<IActionResult> LeaveAllocation(string Search = null)
         {
             var data = await _empRepository.GetSearchEmps(Search);
-          
             if (data == null )
             {
-                return RedirectToAction(nameof(LeaveAllocation));
+                return RedirectToAction(nameof(LeaveAllocation));  
             }
-
             return View(data);
         }
 
@@ -156,8 +154,6 @@ namespace VPMS_Project.Controllers
         public async Task<IActionResult> EditLeaveAllocation(EmpModel empModel)
         {
 
-          
-            
                 bool success = await _empRepository.UpdateEmpLeave(empModel);
 
                 if (success == true)
@@ -198,6 +194,19 @@ namespace VPMS_Project.Controllers
 
             }
             return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> leaveDetails(string Search = null)
+        {
+            var data = await _empRepository.GetSearchEmps(Search);
+
+            if (data == null)
+            {
+                return RedirectToAction(nameof(leaveDetails));
+            }
+
+            return View(data);
         }
 
 

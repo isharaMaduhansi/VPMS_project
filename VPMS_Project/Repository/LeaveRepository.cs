@@ -47,6 +47,7 @@ namespace VPMS_Project.Repository
             return await (from a in _context.Employees.Where(x => x.EmpId == id)
                           select new LeaveApplyModel()
                           {
+                              EmpId=id,
                               FromDate = (DateTime)a.FromDate,
                               ToDate = (DateTime)a.Todate,
                           
@@ -330,9 +331,8 @@ namespace VPMS_Project.Repository
 
         public bool CheckExist(int id,DateTime date)
         {
-            bool result = _context.LeaveApply.ToList().Exists(x => x.EmpId == id && x.Startdate==date);
+            bool result = _context.LeaveApply.ToList().Exists(x => (x.EmpId == id) && (x.Startdate<=date) && (x.EndDate>date));
             return result;
-
         }
 
         public async Task<bool> ClearLeave(int id)
@@ -353,6 +353,7 @@ namespace VPMS_Project.Repository
             return await (from a in _context.LeaveApply.Where(x => (x.EmpId == id) && (x.Startdate> DateTime.UtcNow))
                           select new LeaveApplyModel()
                           {
+                              EmpId=id,
                               LeaveType = a.LeaveType,
                               Startdate = (DateTime)a.Startdate,
                               EndDate = (DateTime)a.EndDate,
@@ -360,6 +361,58 @@ namespace VPMS_Project.Repository
                               Status = a.Status    
                           }).ToListAsync();
         }
-        
+
+        public async Task<RemainLeaveModel> LeaveBalanceAsync(int id)
+        {
+            var emp = await _context.Employees.FindAsync(id);
+
+            int totalLeaveGiven = emp.ShortLeaveAllocated + emp.HalfLeaveAllocated + emp.AnnualAllocated + emp.MedicalAllocated + emp.CasualAllocated;
+            int totalLeaveTaken = _context.LeaveApply.Where(x => (x.EmpId == id) && (x.Status == "Approved")).Count();
+            int medicalTaken = _context.LeaveApply.Where(x => (x.EmpId == id) && (x.Status == "Approved") && (x.LeaveType == "Medical Leave")).Count();
+            int annualTaken = _context.LeaveApply.Where(x => (x.EmpId == id) && (x.Status == "Approved") && (x.LeaveType == "Annual Leave")).Count();
+            int casualTaken = _context.LeaveApply.Where(x => (x.EmpId == id) && (x.Status == "Approved") && (x.LeaveType == "Casual Leave")).Count();
+            int shortTaken = _context.LeaveApply.Where(x => (x.EmpId == id) && (x.Status == "Approved") && (x.LeaveType == "Short Leave")).Count();
+            int halfTaken = _context.LeaveApply.Where(x => (x.EmpId == id) && (x.Status == "Approved") && (x.LeaveType == "Half Days")).Count();
+
+            return await (from a in _context.LeaveApply
+                          select new RemainLeaveModel()
+                          {
+                              EmpId = id,
+                              MedicalRemain = emp.MedicalAllocated - medicalTaken,
+                              CasualRemain = emp.CasualAllocated - casualTaken,
+                              AnnualRemain = emp.AnnualAllocated - annualTaken,
+                              HalfRemain = emp.HalfLeaveAllocated - halfTaken,
+                              ShortRemain = emp.ShortLeaveAllocated - shortTaken
+                          }).FirstOrDefaultAsync();
+        }
+
+        public async Task<List<LeaveApplyModel>> TodayLeaveAsync()
+        {
+            return await (from a in _context.LeaveApply.Where(x => (x.Startdate <= DateTime.UtcNow.AddMonths(1)) && (x.EndDate > DateTime.UtcNow.AddMonths(1)) && (x.Status == "Approved"))
+                          join b in _context.Employees on a.EmpId equals b.EmpId
+                          select new LeaveApplyModel()
+                          {
+                              
+                              EmpName = b.EmpFName + " " + b.EmpLName,
+                              Startdate = (DateTime)a.Startdate,
+                              EndDate = (DateTime)a.EndDate,
+                              NoOfDays = a.NoOfDays,
+                          }).ToListAsync();
+        }
+
+        public async Task<List<LeaveApplyModel>> UpcomingLeaveAsync()
+        {
+            return await (from a in _context.LeaveApply.Where(x => (x.Startdate > DateTime.UtcNow) && (x.Status == "Approved"))
+                          join b in _context.Employees on a.EmpId equals b.EmpId
+                          select new LeaveApplyModel()
+                          {
+
+                              EmpName = b.EmpFName + " " + b.EmpLName,
+                              Startdate = (DateTime)a.Startdate,
+                              EndDate = (DateTime)a.EndDate,
+                              NoOfDays = a.NoOfDays,
+                          }).ToListAsync();
+        }
+
     }
 }

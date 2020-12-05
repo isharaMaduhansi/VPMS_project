@@ -1,0 +1,12 @@
+﻿@using VPMS_Project.Models;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@model RemainLeaveModel
+
+    <div>
+        <input hidden value="@Model.AnnualRemain" id="annual" />
+        <input hidden value="@Model.CasualRemain" id="casual" />
+        <input hidden value="@Model.MedicalRemain" id="medical" />
+        <input hidden value="@Model.HalfRemain" id="half" />
+        <input hidden value="@Model.ShortRemain" id="short" />
+    </div>
