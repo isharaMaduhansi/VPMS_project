@@ -18,12 +18,24 @@
         @foreach (var leave in Model)
         {
             <br>
-            <h6 class="card-subtitle mb-2"><u>@leave.LeaveType</u> - @leave.NoOfDays Days</h6>
+            <h6 class="card-subtitle mb-2">@leave.LeaveType - @leave.NoOfDays Days</h6>
             <p class="card-text">
                 <i class="fa fa-calendar"></i> From &nbsp; @leave.Startdate.Day-@leave.Startdate.Month-@leave.Startdate.Year <br><i class="fa fa-calendar"></i>
                 To &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @leave.EndDate.Day-@leave.EndDate.Month-@leave.EndDate.Year
             </p>
-            <div class="text-primary">@leave.Status</div>
+            @if (leave.Status == "Waiting for Recommendation" || leave.Status == "Waiting for Approval")
+            {
+                <a asp-controller="StaffLeave" asp-action="PendingLeaveHistory"> <div class="text-primary"><u>@leave.Status</u></div></a>
+            }
+
+            @if (leave.Status == "Not Approved" || leave.Status == "Not Recommended")
+            {
+                <a asp-controller="StaffLeave" asp-action="RejectedLeave"> <div class="text-danger"><u>@leave.Status</u></div></a>
+            }
+            @if (leave.Status == "Approved")
+            {
+                <a asp-controller="StaffLeave" asp-action="ApprovedHistory"> <div class="text-success"><u>@leave.Status</u></div></a>
+            }
             <br><hr>
         }
     </div>

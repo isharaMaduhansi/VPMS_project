@@ -1,0 +1,79 @@
+﻿@{
+    Layout = "_LeaveLayout";
+    ViewData["Title"] = "Leave Allocation";
+}
+@model IEnumerable<LeaveApplyModel>
+
+    <div class="content" style="height:800px">
+        <h3 style="font-family:Cambria;color:black;">
+            <br>
+            <a asp-controller="AdminLeave" asp-action="Recomend" title="Back">
+                <i class='fas fa-arrow-left' style="margin-right:15px;color:black;font-size:14pt"></i>
+            </a>Leave Request Details
+        </h3>
+        <br> <br>
+
+        <table class="table table-striped">
+            <thead>
+                <tr style="line-height:60px">
+                    <th scope="col">Applied On</th>
+                    <th scope="col">Leave Type</th>
+                    <th scope="col">Start Date</th>
+                    <th scope="col">End Date</th>
+                    <th scope="col">No Of Days</th>
+                    <th scope="col">Recommender</th>
+                    <th scope="col">Approver</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var leave in Model)
+                {
+                    <tr style="line-height:50px">
+                        <td>@leave.AppliedDate.Day-@leave.AppliedDate.Month-@leave.AppliedDate.Year</td>
+                        <td>@leave.LeaveType</td>
+                        <td>@leave.Startdate.Day-@leave.Startdate.Month-@leave.Startdate.Year</td>
+                        <td>@leave.EndDate.Day-@leave.EndDate.Month-@leave.EndDate.Year</td>
+                        <td>@leave.NoOfDays</td>
+                        <td>
+                            @leave.RecommendName
+
+                            @if (leave.RecommendName == null)
+                            {
+                                <div class="text-dark text-center">-</div>
+                            }
+                        </td>
+                        <td>
+                            @leave.ApproverName
+                            @if (leave.ApproverName == null)
+                            {
+                                <div class="text-dark text-center">-</div>
+                            }
+                        </td>
+                        <td>
+                            @if (leave.Status == "Waiting for Recommendation" || leave.Status == "Waiting for Approval")
+                            {
+                                <div class="text-primary">@leave.Status</div>
+                            }
+
+                            @if (leave.Status == "Not Approved" || leave.Status == "Not Recommended")
+                            {
+                                <div class="text-danger">@leave.Status</div>
+                            }
+                            @if (leave.Status == "Approved")
+                            {
+                                <div class="text-success">@leave.Status</div>
+                            }
+
+
+
+                        </td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+
+    </div>
+

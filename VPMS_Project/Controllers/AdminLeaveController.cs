@@ -209,6 +209,18 @@ namespace VPMS_Project.Controllers
             return View(data);
         }
 
+        public async Task<IActionResult> SeeLeaveDetails(int id)
+        {
+            var data = await _empRepository.GetEmp(id);
+            return View(data);
+        }
+
+        public async Task<IActionResult> ViewLeave(int id)
+        {
+            var data = await _leaveRepository.GetLeaveById(id);
+            return View(data);
+        }
+
 
     }
 }

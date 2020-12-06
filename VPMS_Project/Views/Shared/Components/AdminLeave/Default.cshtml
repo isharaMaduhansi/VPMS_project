@@ -1,0 +1,131 @@
+﻿@using VPMS_Project.Models;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@model LBalanceModel
+
+    <div style="background-color:ThreeDHighlight;margin-left:5%;width:92%">
+        <h3 style="font-family:Cambria;color:black;margin-bottom:20px"> Leave Balance</h3>
+        <h6 style="font-family:Arial;color:black;"> From @Model.FromDate.Day-@Model.FromDate.Month-@Model.FromDate.Year &nbsp;&nbsp;&nbsp;&nbsp;To @Model.Todate.Day-@Model.Todate.Month-@Model.Todate.Year</h6>
+    </div>
+<br>
+<div class="row">
+    <div class="col-md-3" style="margin-left:5%">
+        <div class="col">
+            <div class="col-sm-12 col-lg-4" style="padding:20px">
+                <div class="card text-center" style=" border: 2px solid black;color:white ;border-radius: 5%;height:120px;width:170px;margin-left:3%;background-color:#175A47">
+                    <div class="container">
+                        <div style="font-size:12pt;color:white;" class="row">
+                            <br>&nbsp;&nbsp;Total Leave Allocation
+                        </div><br>
+                        <h5>@Model.TotalLeaveGiven</h5>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-lg-4" style="padding:20px">
+                <div class="card text-center" style=" border: 2px solid black;color:white;border-radius: 5%;height:120px;width:170px;margin-left:3%;background-color:#175A47">
+                    <div class="container">
+                        <font style="font-size:12pt;color:white;">
+                            <br> Total Leave Taken
+                        </font><br><br>
+                        <h5> @Model.TotalLeaveTaken</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-lg-4" style="padding:20px">
+                <div class="card text-center" style=" border: 2px solid black;color:white; border-radius: 5%;height:120px;width:170px;margin-left:3%;background-color:#175A47">
+                    <div class="container">
+                        <font style="font-size:12pt;color:white">
+                            <br>Leave Balance
+                        </font><br><br>
+                        <h5>  @Model.TotalLeaveBalance </h5>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <br>
+    </div>
+    <div class="col-md-8" style="">
+        <br>
+        <div class="card" style="background-color:ThreeDHighlight;margin-bottom:9px">
+            <div class="card-header" style="display: flex; justify-content: space-between;">
+                <h5 class="card-title">Annual Leaves</h5>
+                <h5 class="card-title">
+                    <span class="bottom" style="font-weight:normal;font-size:12pt;">Current Available&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>@Model.AnnualRemain</span>
+                </h5>
+                <h5 class="card-title">
+                    <span class="bottom" style="font-weight:normal;font-size:12pt;">Leave Taken&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>@Model.AnnualTaken</span>
+                    <span class="symbol">/</span>
+                    <span class="bottom">@Model.AnnualAllocated</span>
+                </h5>
+            </div>
+        </div>
+        <br>
+        <div class="card" style="background-color:ThreeDHighlight;margin-bottom:9px">
+            <div class="card-header" style="display: flex; justify-content: space-between;">
+                <h5 class="card-title">Medical Leaves</h5>
+                <h5 class="card-title">
+                    <span class="bottom" style="font-weight:normal;font-size:12pt;">Current Available&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>@Model.MedicalRemain</span>
+                </h5>
+                <h5 class="card-title">
+                    <span class="bottom" style="font-weight:normal;font-size:12pt;">Leave Taken&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>@Model.MedicalTaken</span>
+                    <span class="symbol">/</span>
+                    <span class="bottom">@Model.MedicalAllocated</span>
+                </h5>
+            </div>
+        </div>
+        <br>
+        <div class="card" style="background-color:ThreeDHighlight;margin-bottom:9px">
+            <div class="card-header" style="display: flex; justify-content: space-between;">
+                <h5 class="card-title">Casual Leaves</h5>
+                <h5 class="card-title">
+                    <span class="bottom" style="font-weight:normal;font-size:12pt;">Current Available&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>@Model.CasualRemain</span>
+                </h5>
+                <h5 class="card-title">
+                    <span class="bottom" style="font-weight:normal;font-size:12pt;">Leave Taken&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>@Model.CasualTaken</span>
+                    <span class="symbol">/</span>
+                    <span class="bottom">@Model.CasualAllocated</span>
+                </h5>
+            </div>
+        </div>
+        <br>
+        <div class="card" style="background-color:ThreeDHighlight;margin-bottom:9px">
+            <div class="card-header" style="display: flex; justify-content: space-between;">
+                <h5 class="card-title">Short Leaves</h5>
+                <h5 class="card-title">
+                    <span class="bottom" style="font-weight:normal;font-size:12pt;">Current Available&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>@Model.ShortRemain</span>
+                </h5>
+                <h5 class="card-title">
+                    <span class="bottom" style="font-weight:normal;font-size:12pt;">Leave Taken&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>@Model.ShortTaken</span>
+                    <span class="symbol">/</span>
+                    <span class="bottom">@Model.ShortAllocated</span>
+                </h5>
+            </div>
+        </div>
+        <br>
+        <div class="card" style="background-color:ThreeDHighlight;margin-bottom:9px">
+            <div class="card-header" style="display: flex; justify-content: space-between;">
+                <h5 class="card-title">Half Days</h5>
+                <h5 class="card-title">
+                    <span class="bottom" style="font-weight:normal;font-size:12pt;margin-left:20px">Current Available&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>@Model.HalfRemain</span>
+                </h5>
+                <h5 class="card-title">
+                    <span class="bottom" style="font-weight:normal;font-size:12pt;">Leave Taken&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>@Model.Halftaken</span>
+                    <span class="symbol">/</span>
+                    <span class="bottom">@Model.HalfAllocated</span>
+                </h5>
+            </div>
+        </div>
+    </div>
+</div>

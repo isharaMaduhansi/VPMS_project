@@ -12,7 +12,7 @@
                     <div class="jumbotron jumbotron-fluid" style="height:300px">
                         <div class="container">
                             <h1 class="display-4">Leave Details</h1>
-                            <p class="lead" style="padding-bottom:10px">Search anyone to see their leave details.</p>
+                            <p class="lead" style="padding-bottom:10px">Search anyone to see their leave balance details.</p>
                             <form class="form-inline" method="get" asp-action="LeaveDetails" asp-controller="AdminLeave">
                                 <input class="form-control-lg mr-lg-2" type="search" placeholder="Search employees" aria-label="Search" name="Search" />
                                 <input class="btn btn-success" type="submit" value="Search" style="line-height:30px;width:80px;background-color:#175A47" onclick="help()" />
@@ -32,7 +32,6 @@
                                     @foreach (var emp in Model)
                                     {
                                         <tr style="line-height: 40px">
-
                                             <th scope="row">
                                                 <a asp-controller="AdminLeave" asp-action="SeeLeaveAllocation" asp-route-id="@emp.EmpId">
                                                     <div class="rounded-circle" style="width: 3.5rem;background-color:gainsboro;border-width:medium">
@@ -45,8 +44,7 @@
                                                 @emp.JobType
 
                                             </td>
-
-                                            <td><a asp-controller="AdminLeave" asp-action="SeeLeaveAllocation" asp-route-id="@emp.EmpId" class="text-success">See leave Details</a></td>
+                                            <td><a asp-controller="AdminLeave" asp-action="SeeLeaveDetails" asp-route-id=" @emp.EmpId" class="text-success">See leave Details</a></td>
                                         </tr>
                                     }
                                 </tbody>
@@ -55,14 +53,14 @@
                             @if (Model.Count() == 0)
                             {
                                 <div class="find" style="margin-left:20%" id="img">
-                                    Search Employees to see their leave details
+                                    Search Employees to see their leave balance details
                                     <img src="~/images/sea.jpg" style="width:60%;height:auto" />
                                 </div>
                             }
                             </div>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3" >
                     <br> 
                     @await Component.InvokeAsync("TodayLeave")
                     <br>

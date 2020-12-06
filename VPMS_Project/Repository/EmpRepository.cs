@@ -250,7 +250,23 @@ namespace VPMS_Project.Repository
 
         }
 
-       
+        public async Task<EmpModel> GetEmp(int id)
+        {
+            return await (from a in _context.Employees.Where(x => x.EmpId == id)
+                          join b in _context.Job on a.JobTitleId equals b.JobId
+                          select new EmpModel()
+                          {
+                              EmpId = a.EmpId,
+                              EmpFName = a.EmpFName,
+                              EmpLName = a.EmpLName,
+                              JobType = b.JobName,
+                            
+                          })
+                  .FirstOrDefaultAsync();
+
+        }
+
+
 
 
 

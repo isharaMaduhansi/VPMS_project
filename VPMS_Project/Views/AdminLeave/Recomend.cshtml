@@ -60,7 +60,7 @@
                         </span>
                     </font>
                     <font class="card-title">
-                        View Leave Shedulling
+                        <a asp-controller="AdminLeave" asp-action="ViewLeave" asp-route-id="@leave.EmpId">Leave Request Details</a>
                     </font>
                 </div>
                 <div class="card-body">
@@ -78,7 +78,9 @@
 
                         </div>
                         <div class="col-md-4">
-                            <div style="margin-top:2px"><button type="button" class="btn btn-outline-dark btn-sm btn-block"><i class='fas fa-info'></i> Leave Info</button></div>
+                           
+                                <div style="margin-top:2px"><a type="button" class="btn btn-outline-dark btn-sm btn-block" asp-controller="AdminLeave" asp-action="SeeLeaveDetails" asp-route-id="@leave.EmpId"><i class='fas fa-info'></i> Leave Balance Info</a></div>
+                 
                             <div style="margin-top:6px">
                                 <a asp-controller="AdminLeave" asp-action="LeaveRecomend" asp-route-id="@leave.LeaveApplyId" onclick="return confirm('Do you want to recommend this Leave ? ')" type="button" class="btn btn-outline-primary btn-sm btn-block">
                                     <i class='far fa-check-square'></i> Recommended

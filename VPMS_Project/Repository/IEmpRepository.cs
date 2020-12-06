@@ -19,5 +19,7 @@ namespace VPMS_Project.Repository
 
         Task<bool> DeleteEmp(int id);
 
+        Task<EmpModel> GetEmp(int id);
+
     }
 }

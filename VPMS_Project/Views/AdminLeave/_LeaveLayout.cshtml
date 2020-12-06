@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width , initial-scale=1, shrink-to-fit=no">
-    <title>@ViewData["Title"] </title>
+    <title>@ViewData["Title"] | Admin portal </title>
     <link href="~/CSS/LeaveStyleSheet.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
@@ -30,11 +30,11 @@
             <h4 class="text-center" style="font-family:'Bell MT';background-color:#175A47;color:white;line-height:100px;">
                 <i class="fa fa-fw fa-user"></i> Admin Portal
             </h4>
-            
+            <a asp-controller="AdminLeave" asp-action="LeaveDetails" class="btn-block" style="line-height:15px"><i class='fas fa-info-circle' style="margin-right:5px"></i> Leave Details</a>
             <a class="btn-block " asp-controller="AdminLeave" asp-action="LeaveAllocation" style="line-height:15px"><i class='far fa-calendar-alt' style="margin-right:5px"></i> Leave Allocation</a>
             <a asp-controller="AdminLeave" asp-action="Recomend" class="btn-block" style="line-height:15px"><i class='far fa-calendar-check' style="margin-right:5px"></i> Leave Recommendation </a>
             <a asp-controller="AdminLeave" asp-action="Approve" class="btn-block" style="line-height:15px"><i class='fas fa-calendar-check' style="margin-right:5px"></i> Leave Approval</a>
-            <a asp-controller="AdminLeave" asp-action="LeaveDetails" class="btn-block" style="line-height:15px"><i class='fas fa-info-circle' style="margin-right:5px"></i> Leave Details</a>
+
         </div>
     </header>
 

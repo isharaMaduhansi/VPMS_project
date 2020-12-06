@@ -350,7 +350,7 @@ namespace VPMS_Project.Repository
         }
         public async Task<List<LeaveApplyModel>> GetLeaveAsync(int id)
         {
-            return await (from a in _context.LeaveApply.Where(x => (x.EmpId == id) && (x.Startdate> DateTime.UtcNow))
+            return await (from a in _context.LeaveApply.Where(x => (x.EmpId == id) && (x.Startdate> DateTime.UtcNow) && (x.Visible == "Show"))
                           select new LeaveApplyModel()
                           {
                               EmpId=id,
@@ -388,7 +388,7 @@ namespace VPMS_Project.Repository
 
         public async Task<List<LeaveApplyModel>> TodayLeaveAsync()
         {
-            return await (from a in _context.LeaveApply.Where(x => (x.Startdate <= DateTime.UtcNow.AddMonths(1)) && (x.EndDate > DateTime.UtcNow.AddMonths(1)) && (x.Status == "Approved"))
+            return await (from a in _context.LeaveApply.Where(x => (x.Startdate <= DateTime.UtcNow) && (x.EndDate > DateTime.UtcNow) && (x.Status == "Approved"))
                           join b in _context.Employees on a.EmpId equals b.EmpId
                           select new LeaveApplyModel()
                           {
@@ -402,7 +402,7 @@ namespace VPMS_Project.Repository
 
         public async Task<List<LeaveApplyModel>> UpcomingLeaveAsync()
         {
-            return await (from a in _context.LeaveApply.Where(x => (x.Startdate > DateTime.UtcNow) && (x.Status == "Approved"))
+            return await (from a in _context.LeaveApply.Where(x => (x.Startdate > DateTime.UtcNow) && (x.Status == "Approved") && (x.Startdate < DateTime.UtcNow.AddDays(7)))
                           join b in _context.Employees on a.EmpId equals b.EmpId
                           select new LeaveApplyModel()
                           {
@@ -414,5 +414,25 @@ namespace VPMS_Project.Repository
                           }).ToListAsync();
         }
 
+        public async Task<List<LeaveApplyModel>> GetLeaveById(int id)
+        {
+            return await (from a in _context.LeaveApply.Where(x => (x.EmpId == id))
+                          select new LeaveApplyModel()
+                          {
+                              LeaveApplyId = a.LeaveApplyId,
+                              LeaveType = a.LeaveType,
+                              Startdate = (DateTime)a.Startdate,
+                              EndDate = (DateTime)a.EndDate,
+                              Reason = a.Reason,
+                              AppliedDate = (DateTime)a.AppliedDate,
+                              NoOfDays = a.NoOfDays,
+                              EmpId = a.EmpId,
+                              Status = a.Status,
+                              RecommendName = a.RecommendName,
+                              ApproverName = a.ApproverName,
+
+                          })
+                   .ToListAsync();
+        }
     }
 }

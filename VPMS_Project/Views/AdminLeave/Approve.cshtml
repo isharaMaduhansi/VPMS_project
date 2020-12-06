@@ -60,7 +60,8 @@
                         </span>
                     </font>
                     <font class="card-title text-sm" style="font-size:12pt">
-                        Recommended by : @leave.RecommendName
+                        <a asp-controller="AdminLeave" asp-action="ViewLeave" asp-route-id="@leave.EmpId">Leave Request Details</a>
+                        
                     </font>
                 </div>
                 <div class="card-body">
@@ -75,10 +76,11 @@
                         <div class="col-md-4">
                             <div style="margin-top:8px"><i class='far fa-calendar-alt'></i>  From : @leave.Startdate.Day - @leave.Startdate.Month - @leave.Startdate.Year</div>
                             <div style="margin-top:8px"><i class='far fa-calendar-alt'></i>  To&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : @leave.EndDate.Day - @leave.EndDate.Month - @leave.EndDate.Year</div>
+                            <div style="margin-top:8px"><i class='far fa-user-circle'></i> Recommended by : @leave.RecommendName</div>
 
                         </div>
                         <div class="col-md-4">
-                            <div style="margin-top:2px"><button type="button" class="btn btn-outline-dark btn-sm btn-block"><i class='fas fa-info'></i> Leave Info</button></div>
+                            <div style="margin-top:2px"><a type="button" class="btn btn-outline-dark btn-sm btn-block" asp-controller="AdminLeave" asp-action="SeeLeaveDetails" asp-route-id="@leave.EmpId"><i class='fas fa-info'></i> Leave Balance Info</a></div>
                             <div style="margin-top:6px">
                                 <a asp-controller="AdminLeave" asp-action="LeaveApprove" asp-route-id="@leave.LeaveApplyId" onclick="return confirm('Do you want to approve this Leave ? ')" type="button" class="btn btn-outline-primary btn-sm btn-block">
                                     <i class='far fa-check-square'></i> Approved

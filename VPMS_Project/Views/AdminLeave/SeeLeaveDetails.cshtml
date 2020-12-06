@@ -1,0 +1,21 @@
+﻿@{
+    Layout = "_LeaveLayout";
+    ViewData["Title"] = Model.EmpFName + " Leave Details";
+}
+
+@model EmpModel
+
+
+<div class="content" style="height:800px">
+    <br>
+    <div class="navbar">
+        <h3 style="font-family:Cambria;color:black;">
+            <a asp-controller="AdminLeave" asp-action="LeaveDetails" title="Back">
+                <i class='fas fa-arrow-left' style="margin-right:15px;color:black;font-size:14pt"></i>
+            </a>@Model.EmpFName @Model.EmpLName -  <span style="font-size:14pt">@Model.JobType</span>
+        </h3>
+    </div><hr>
+    <br>
+    @await Component.InvokeAsync("AdminLeave", new { id = Model.EmpId })
+</div>
+
