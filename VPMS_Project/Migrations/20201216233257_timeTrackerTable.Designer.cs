@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VPMS_Project.Data;
 
 namespace VPMS_Project.Migrations
 {
     [DbContext(typeof(EmpStoreContext))]
-    partial class EmpStoreContextModelSnapshot : ModelSnapshot
+    [Migration("20201216233257_timeTrackerTable")]
+    partial class timeTrackerTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -179,50 +181,6 @@ namespace VPMS_Project.Migrations
                     b.ToTable("LeaveApply");
                 });
 
-            modelBuilder.Entity("VPMS_Project.Data.TimeTracker", b =>
-                {
-                    b.Property<int>("TrackId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime?>("BreakEnd")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("BreakStart")
-                        .HasColumnType("datetime2");
-
-                    b.Property<double>("BreakingHours")
-                        .HasColumnType("float");
-
-                    b.Property<DateTime?>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("EmpId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("EmployeesEmpId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("InTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("OutTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<double>("TotalHours")
-                        .HasColumnType("float");
-
-                    b.Property<double>("WorkingHours")
-                        .HasColumnType("float");
-
-                    b.HasKey("TrackId");
-
-                    b.HasIndex("EmployeesEmpId");
-
-                    b.ToTable("TimeTracker");
-                });
-
             modelBuilder.Entity("VPMS_Project.Data.Employees", b =>
                 {
                     b.HasOne("VPMS_Project.Data.Job", "Job")
@@ -234,13 +192,6 @@ namespace VPMS_Project.Migrations
                 {
                     b.HasOne("VPMS_Project.Data.Employees", "Employees")
                         .WithMany("LeaveApply")
-                        .HasForeignKey("EmployeesEmpId");
-                });
-
-            modelBuilder.Entity("VPMS_Project.Data.TimeTracker", b =>
-                {
-                    b.HasOne("VPMS_Project.Data.Employees", "Employees")
-                        .WithMany("TimeTracker")
                         .HasForeignKey("EmployeesEmpId");
                 });
 #pragma warning restore 612, 618

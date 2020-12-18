@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VPMS_Project.Data;
 
 namespace VPMS_Project.Migrations
 {
     [DbContext(typeof(EmpStoreContext))]
-    partial class EmpStoreContextModelSnapshot : ModelSnapshot
+    [Migration("20201216234051_time")]
+    partial class time
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -47,6 +47,8 @@ namespace VPMS_Project.Data
 
         public ICollection<LeaveApply> LeaveApply { get; set; }
 
+        public ICollection<TimeTracker> TimeTracker { get; set; }
+
 
 
 

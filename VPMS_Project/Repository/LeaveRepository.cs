@@ -27,7 +27,7 @@ namespace VPMS_Project.Repository
                 EndDate = LeaveApplyModel.EndDate,
                 Reason=LeaveApplyModel.Reason,
                 EmpId=LeaveApplyModel.EmpId,
-                AppliedDate=DateTime.UtcNow,
+                AppliedDate=DateTime.Now,
                 NoOfDays=LeaveApplyModel.NoOfDays,
                 Status="Waiting for Recommendation",
                 Visible="Show"

@@ -1,0 +1,112 @@
+﻿ 
+* {
+    box-sizing: border-box;
+}
+
+.wrap {
+    display: inline-block;
+    min-width: 360px;
+    min-height: 400px;
+    padding: 50px 15px;
+    background-color: #fff;
+    box-shadow: 0 5px 25px #0000004a;
+    border-radius: 8px;
+    text-align: center;
+}
+
+#timer {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    line-height: 250px;
+    border-radius: 50%;
+    font-size: 32px;
+    margin: 0 auto;
+    background-color: #fff;
+}
+
+#track {
+    font-family: Roboto;
+    font-weight: 300;
+    background: linear-gradient(to left, #607d8b, #175A47);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#p1 {
+    font-weight: bold;
+    color: gray;
+    padding: 30px 0;
+}
+
+.option a {
+    display: inline-block;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+#play, #reset {
+    width: 55px;
+    height: 55px;
+    line-height: 55px;
+    border-radius: 50px;
+    color: #fff;
+    background: linear-gradient(45deg, #175A47,#607d8b);
+    transition: all ease 0.1s;
+}
+
+#stop {
+    padding: 15px 20px;
+    border-radius: 50px;
+    color: #fff;
+    font-weight: 400;
+    background: linear-gradient(45deg, #175A47,#607d8b);
+    transition: all ease 0.1s;
+}
+
+    #play:active, #reset:active, #stop:active {
+        transform: scale(0.95);
+    }
+
+    #stop .fa {
+        margin-right: 5px;
+    }
+
+.fa-play {
+    padding-left: 5px;
+}
+
+.pause .fa-play, .fa-pause {
+    display: none;
+}
+
+.pause .fa-pause {
+    display: inline-block;
+}
+
+
+#timer svg {
+    position: absolute;
+    left: 0;
+}
+
+#animateCircle.addAnimation {
+    stroke-dasharray: 770;
+    stroke-dashoffset: -770;
+    animation: animateCircle 60s linear infinite;
+    animation-play-state: paused;
+}
+
+
+.defaultCircle {
+    opacity: .3;
+}
+
+@keyframes animateCircle {
+    from {
+        stroke-dashoffset: 0;
+    }
+}
+
+

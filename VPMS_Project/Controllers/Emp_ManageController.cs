@@ -24,7 +24,6 @@ namespace VPMS_Project.Controllers
             _jobRepository = jobRepository;
             _webHostEnvironment = webHostEnvironment;
 
-
         }
 
         public async Task<IActionResult> ViewAllEmp()

@@ -19,6 +19,8 @@ namespace VPMS_Project.Data
         public DbSet<Job> Job { get; set; }
         public DbSet<LeaveApply> LeaveApply { get; set; }
 
+        public DbSet<TimeTracker> TimeTracker { get; set; }
+
 
     }
 }

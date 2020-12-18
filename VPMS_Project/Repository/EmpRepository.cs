@@ -240,7 +240,7 @@ namespace VPMS_Project.Repository
         {
 
             var emp = await _context.Employees.FindAsync(id);
-            emp.LastDayWorked = DateTime.UtcNow;
+            emp.LastDayWorked = DateTime.Now;
             emp.Status = "Inactive";
 
             _context.Entry(emp).State = EntityState.Modified;
