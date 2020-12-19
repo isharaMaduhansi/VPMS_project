@@ -23,6 +23,12 @@
 
     <div class="container">
         <br>
+        @if (ViewBag.StartBreak == "Break")
+        {
+            <div class="alert alert-success" role="alert" id="msg">
+                <strong> Now you are in break time! .</strong> To end break time Click <span class="badge badge-secondary"> End Break Time </span> button.
+            </div>
+        }
         @if (ViewBag.IsExist == true)
         {
             <div class="alert alert-success alert-dismissible fade show container" role="alert">
@@ -33,6 +39,18 @@
             </div>
 
         }
+
+        @if (ViewBag.EndBreak == true)
+        {
+            <div class="alert alert-success alert-dismissible fade show container" role="alert">
+                <strong>Sorry! </strong>First You have to end break time before enter Out-time today.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+        }
+
         @if (ViewBag.IsOutExist == true)
         {
             <div class="alert alert-success alert-dismissible fade show container" role="alert">
@@ -46,15 +64,15 @@
 
         @if (ViewBag.IsFail == true)
         {
-    <div class="alert alert-success alert-dismissible fade show container" role="alert">
-        <strong>Sorry! </strong>First You have to enter your In-time today.
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
+            <div class="alert alert-success alert-dismissible fade show container" role="alert">
+                <strong>Sorry! </strong>First You have to enter your In-time today.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
 
         }
-    
+
         <div class="row" style="margin-top:20px;margin-bottom:100px">
             @*<div class="row-cols-10"><div class="square" style="height: 80px;width: 300px;background-color: #555;opacity:0.3;border: 2px solid red;border-radius:10%;margin-left:10px;margin-top:20px;margin-bottom:10px"></div></div>*@
             <div style="width:50%">
@@ -98,7 +116,7 @@
                         <a id="play" onclick="InFunc()" asp-controller="EmployeeHome" asp-action="InTime"> IN</a>
                         <a id="stop" onclick="playFunc()" asp-controller="EmployeeHome" asp-action="BreakTime" asp-route-id="@ViewBag.Track"><i class='fas fa-mug-hot'></i> Get Break</a>
                         <a id="reset" onclick="resetFunc()" asp-controller="EmployeeHome" asp-action="OutTime" asp-route-id="@ViewBag.Track"> OUT</a>
-                        @*<font>@ViewBag.Track</font>*@
+
                     </div>
                     <div class="option" style="margin-top:10px">
                         <a id="stop" onclick="endBreak()" asp-controller="EmployeeHome" asp-action="BreakEndTime" asp-route-id="@ViewBag.Track"><i class="fa fa-window-close-o"></i> End Break Time</a>
@@ -152,6 +170,7 @@
 
         function playFunc() {
 
+    
             playPause = playPause + 1;
 
             if (playPause === 1) {
@@ -178,6 +197,7 @@
         }
 
         function endBreak() {
+   
             document.getElementById("play").classList.add("pause");
             $("#animateCircle").addClass("addAnimation");
             $("#animateCircle.addAnimation").css("animation-play-state", "running");

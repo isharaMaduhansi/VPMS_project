@@ -27,5 +27,7 @@ namespace VPMS_Project.Models
 
         public int EmpId { get; set; }
 
+        public String Status { get; set; }
+
     }
 }

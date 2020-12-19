@@ -61,6 +61,7 @@ namespace VPMS_Project.Repository
                               TotalHours=a.TotalHours,
                               BreakingHours=a.BreakingHours,
                               EmpId = a.EmpId,
+                              Status=a.Status
 
                           })
                   .FirstOrDefaultAsync();
@@ -85,11 +86,37 @@ namespace VPMS_Project.Repository
             return result;
         }
 
+        public async Task<bool> CheckOut1(int id)
+        {
+            var track = await _context.TimeTracker.FindAsync(id);
+            if (track.OutTime == null && track.Status!="Break")
+                return true;
+            else
+                return false;
+        }
+
+        public async Task<bool> CheckOut2(int id)
+        {
+            var track = await _context.TimeTracker.FindAsync(id);
+            if (track.OutTime == null && track.Status == "Break")
+                return true;
+            else
+                return false;
+        }
+
+
+        public bool CheckBreak(int id)
+        {
+            bool result = _context.TimeTracker.ToList().Exists(x => (x.EmpId == id) && (x.Date == DateTime.Now.Date) && (x.Status=="Break") );
+            return result;
+        }
+
         public async Task<bool> StartBreak(int id)
         {
 
             var track = await _context.TimeTracker.FindAsync(id);
             track.BreakStart = DateTime.Now;
+            track.Status = "Break";
 
             _context.Entry(track).State = EntityState.Modified;
             await _context.SaveChangesAsync();
@@ -104,6 +131,7 @@ namespace VPMS_Project.Repository
             var track = await _context.TimeTracker.FindAsync(timeTrackerModel.TrackId);
             track.BreakEnd = DateTime.Now;
             track.BreakingHours = timeTrackerModel.BreakingHours+track.BreakingHours;
+            track.Status = "Work";
 
             _context.Entry(track).State = EntityState.Modified;
             await _context.SaveChangesAsync();

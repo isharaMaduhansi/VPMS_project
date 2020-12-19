@@ -37,13 +37,14 @@ namespace VPMS_Project.Controllers
             return View();
         }
 
-        public async Task<IActionResult> Portal(bool isExist = false, bool isOutExist = false,bool isFail = false)
+        public async Task<IActionResult> Portal(bool isExist = false, bool isOutExist = false,bool isFail = false, bool isEnd=false)
         {
             int EmpId = 110;
             bool result =  _attendenceRepo.CheckExist(EmpId);
 
             if (result == true) 
             {
+                ViewBag.EndBreak = isEnd;
                 var data = await _attendenceRepo.GetTime(EmpId); 
                  bool check = _attendenceRepo.CheckOut(EmpId);
                 Double dc2 = Math.Round((Double)data.BreakingHours, 2);
@@ -58,6 +59,13 @@ namespace VPMS_Project.Controllers
                     int mm = timeSpan.Minutes;
                     ViewBag.Work = hh+"h "+mm+"m";
                     ViewBag.Out = "Not been enterd";
+                  
+
+                    if (data.Status=="Break")
+                        ViewBag.StartBreak = "Break";
+                    else
+                        ViewBag.StartBreak = "Work";
+
                 }
                 else
                 {
@@ -69,6 +77,7 @@ namespace VPMS_Project.Controllers
                     int mm = timeSpan.Minutes;
                     ViewBag.Work = hh + "h " + mm + "m";
                     ViewBag.Out = data.OutTime.ToString("hh:mm tt");
+                    
                 }
                    
                 ViewBag.Track = data.TrackId; 
@@ -91,7 +100,6 @@ namespace VPMS_Project.Controllers
                 ViewBag.In = "Not been enterd";
                 ViewBag.Out = "Not been enterd";
                 ViewBag.IsFail = isFail;
-                //ViewBag.IsOutExist = false;
                 return View();
             }
             
@@ -127,15 +135,20 @@ namespace VPMS_Project.Controllers
             {
                 TimeTrackerModel timeTrackerModel = new TimeTrackerModel();
                 var track = await _context.TimeTracker.FindAsync(id);
-                TimeSpan differ = (TimeSpan)(DateTime.Now - track.InTime);
-                timeTrackerModel.TotalHours = differ.TotalHours;
-                timeTrackerModel.TrackId = id;
-
-                bool success = await _attendenceRepo.UpdateTrack(timeTrackerModel);
-                if (success == true)
+                if(track.Status!="Break")
                 {
-                    return RedirectToAction(nameof(Portal));
+                    TimeSpan differ = (TimeSpan)(DateTime.Now - track.InTime);
+                    timeTrackerModel.TotalHours = differ.TotalHours;
+                    timeTrackerModel.TrackId = id;
+
+                    bool success = await _attendenceRepo.UpdateTrack(timeTrackerModel);
+                    if (success == true)
+                    {
+                        return RedirectToAction(nameof(Portal));
+                    }
                 }
+                else
+                    return RedirectToAction(nameof(Portal), new { isEnd = true });
             }
             return View();
         }
@@ -148,11 +161,21 @@ namespace VPMS_Project.Controllers
             }
              else   
             {
-                bool success = await _attendenceRepo.StartBreak(id);
-                if (success == true)
+                bool check = await _attendenceRepo.CheckOut1(id);
+                if (check == true)
+                {
+                    bool success = await _attendenceRepo.StartBreak(id);
+                    if (success == true)
+                    {
+                        return RedirectToAction(nameof(Portal));
+                    }
+              
+                }
+                else
                 {
                     return RedirectToAction(nameof(Portal));
                 }
+
 
             }
               
@@ -167,14 +190,23 @@ namespace VPMS_Project.Controllers
             }
             else
             {
-                TimeTrackerModel timeTrackerModel = new TimeTrackerModel();
-                var track = await _context.TimeTracker.FindAsync(id);
-                TimeSpan differ = (TimeSpan)(DateTime.Now - track.BreakStart);
-                timeTrackerModel.BreakingHours = differ.TotalHours;
-                timeTrackerModel.TrackId = id;
+                bool check =await _attendenceRepo.CheckOut2(id);
+                if (check == true)
+                {
 
-                bool success = await _attendenceRepo.EndBreak(timeTrackerModel);
-                if (success == true)
+                    TimeTrackerModel timeTrackerModel = new TimeTrackerModel();
+                    var track = await _context.TimeTracker.FindAsync(id);
+                    TimeSpan differ = (TimeSpan)(DateTime.Now - track.BreakStart);
+                    timeTrackerModel.BreakingHours = differ.TotalHours;
+                    timeTrackerModel.TrackId = id;
+
+                    bool success = await _attendenceRepo.EndBreak(timeTrackerModel);
+                    if (success == true)
+                    {
+                        return RedirectToAction(nameof(Portal));
+                    }
+                }
+                else
                 {
                     return RedirectToAction(nameof(Portal));
                 }
