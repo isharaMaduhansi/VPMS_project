@@ -40,6 +40,7 @@ namespace VPMS_Project.Controllers
         public async Task<IActionResult> Portal(bool isExist = false, bool isOutExist = false,bool isFail = false, bool isEnd=false)
         {
             int EmpId = 110;
+            ViewBag.EmpId = EmpId;
             bool result =  _attendenceRepo.CheckExist(EmpId);
 
             if (result == true) 
@@ -140,6 +141,7 @@ namespace VPMS_Project.Controllers
                     TimeSpan differ = (TimeSpan)(DateTime.Now - track.InTime);
                     timeTrackerModel.TotalHours = differ.TotalHours;
                     timeTrackerModel.TrackId = id;
+                    timeTrackerModel.WorkingHours = differ.TotalHours-track.BreakingHours;
 
                     bool success = await _attendenceRepo.UpdateTrack(timeTrackerModel);
                     if (success == true)
@@ -212,6 +214,23 @@ namespace VPMS_Project.Controllers
                 }
             }
             return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> TimeInfo(int id, DateTime? Search=null)
+        {
+            if (Search == null)
+            {
+                var data = await _attendenceRepo.TrackInfoById(id);
+                return View(data);
+            }
+            else
+            {
+                var data = await _attendenceRepo.TrackInfoSearch(id,Search);
+                return View(data);
+
+            }
+           
         }
     }
 }

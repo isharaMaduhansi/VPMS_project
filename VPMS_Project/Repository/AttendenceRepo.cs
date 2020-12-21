@@ -42,6 +42,7 @@ namespace VPMS_Project.Repository
             var track = await _context.TimeTracker.FindAsync(timeTrackerModel.TrackId);
             track.OutTime = DateTime.Now;
             track.TotalHours = timeTrackerModel.TotalHours;
+            track.WorkingHours = timeTrackerModel.WorkingHours;
    
             _context.Entry(track).State = EntityState.Modified;
             await _context.SaveChangesAsync();
@@ -137,6 +138,42 @@ namespace VPMS_Project.Repository
             await _context.SaveChangesAsync();
 
             return true;
+
+        }
+
+        public async Task<List<TimeTrackerModel>> TrackInfoById(int id)
+        {
+            return await (from a in _context.TimeTracker.Where(x => x.EmpId == id)
+                          select new TimeTrackerModel()
+                          {
+                              TrackId = a.TrackId,
+                              Date= (DateTime)a.Date,
+                              InTime = (DateTime)a.InTime,
+                              OutTime = (DateTime)a.OutTime,
+                              TotalHours = a.TotalHours,
+                              BreakingHours = a.BreakingHours,
+                              WorkingHours=a.WorkingHours
+
+                          })
+                  .ToListAsync();
+
+        }
+
+        public async Task<List<TimeTrackerModel>> TrackInfoSearch(int id,DateTime? search)
+        {
+            return await (from a in _context.TimeTracker.Where(x => x.EmpId == id && (x.Date == (DateTime)search))
+                          select new TimeTrackerModel()
+                          {
+                              TrackId = a.TrackId,
+                              Date = (DateTime)a.Date,
+                              InTime = (DateTime)a.InTime,
+                              OutTime = (DateTime)a.OutTime,
+                              TotalHours = a.TotalHours,
+                              BreakingHours = a.BreakingHours,
+                              WorkingHours = a.WorkingHours
+
+                          })
+                  .ToListAsync();
 
         }
     }
