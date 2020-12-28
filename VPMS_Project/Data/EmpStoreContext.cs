@@ -21,6 +21,10 @@ namespace VPMS_Project.Data
 
         public DbSet<TimeTracker> TimeTracker { get; set; }
 
+        public DbSet<Attendence> Attendence { get; set; }
+
+        public DbSet<MarkAttendence> MarkAttendence { get; set; }
+
 
     }
 }

@@ -29,8 +29,8 @@ namespace VPMS_Project
             services.AddScoped<IEmpRepository, EmpRepository>();
             services.AddScoped<JobRepository, JobRepository>();
             services.AddScoped<LeaveRepository, LeaveRepository>();
+            services.AddScoped<TimeTrackRepo, TimeTrackRepo>();
             services.AddScoped<AttendenceRepo, AttendenceRepo>();
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -4,12 +4,14 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
+// Attendence Request
+
 namespace VPMS_Project.Data
 {
-    public class TimeTracker
+    public class Attendence
     {
         [Key]
-        public int TrackId { get; set; }
+        public int AttendenceId { get; set; }
 
         public DateTime? Date { get; set; }
 
@@ -19,14 +21,11 @@ namespace VPMS_Project.Data
 
         public double TotalHours { get; set; }
 
-        public DateTime? BreakStart { get; set; }
-        
-
-        public DateTime? BreakEnd { get; set; }
-
         public double BreakingHours { get; set; }
 
         public double WorkingHours { get; set; }
+
+        public String Explanation { get; set; }
 
         public int EmpId { get; set; }
 
@@ -34,7 +33,13 @@ namespace VPMS_Project.Data
 
         public String Type { get; set; }
 
+        public DateTime? AppliedDate { get; set; }
+
+        public String Approver { get; set; }
+
         public Employees Employees { get; set; }
+
 
     }
 }
+

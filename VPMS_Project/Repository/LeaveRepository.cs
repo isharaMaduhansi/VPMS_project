@@ -31,7 +31,7 @@ namespace VPMS_Project.Repository
                 NoOfDays=LeaveApplyModel.NoOfDays,
                 Status="Waiting for Recommendation",
                 Visible="Show"
-                
+
             };
 
             await _context.LeaveApply.AddAsync(leaveApply);
@@ -216,6 +216,41 @@ namespace VPMS_Project.Repository
 
             _context.Entry(leave).State = EntityState.Modified;
             await _context.SaveChangesAsync();
+
+            DateTime Start = (DateTime)leave.Startdate;
+
+            for (int i=0;i<leave.NoOfDays;i++) 
+            {
+                var info = _context.MarkAttendence.SingleOrDefault(x => (x.EmpId == leave.EmpId) && (x.Date == Start.Date.AddDays(i)));
+                if (info == null)
+                {
+                    var markAttendence = new MarkAttendence()
+                    {
+                        Date = Start.AddDays(i),
+                        EmpId = leave.EmpId,
+                        Status = "Leave On Day"
+                    };
+
+                    await _context.MarkAttendence.AddAsync(markAttendence);
+                    await _context.SaveChangesAsync();
+                }
+                else 
+                {
+                    info.InTime = null;
+                    info.OutTime = null;
+                    info.TotalHours = 0;
+                    info.Type = null;
+                    info.Status = "Leave On Day";
+
+                    _context.Entry(info).State = EntityState.Modified;
+                    await _context.SaveChangesAsync();
+                }
+
+
+
+                  
+
+            }
 
             return true;
 

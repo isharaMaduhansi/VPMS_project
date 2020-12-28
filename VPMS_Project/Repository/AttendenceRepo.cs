@@ -17,164 +17,127 @@ namespace VPMS_Project.Repository
             _context = context;
         }
 
-        public async Task<int> InTimeMark(TimeTrackerModel timeTrackerModel)
+        public async Task<int> AddRequest(AttendenceModel attendenceModel)
         {
-            var timeTracker = new TimeTracker()
+            var attendence = new Attendence()
             {
-                Date = DateTime.Now.Date,
-               InTime=DateTime.Now,
-                TotalHours =  0,
-                WorkingHours =  0,
-                BreakingHours =  0,
-                EmpId= timeTrackerModel.EmpId,
-               
+              Date= attendenceModel.Date,
+              InTime=attendenceModel.InTime,
+              OutTime=attendenceModel.OutTime,
+              TotalHours=attendenceModel.TotalHours,
+              BreakingHours=attendenceModel.BreakingHours,
+              WorkingHours=attendenceModel.WorkingHours,
+              Explanation=attendenceModel.Explanation,
+              EmpId=attendenceModel.EmpId,
+              Type="Manual",
+              AppliedDate=DateTime.UtcNow,
+              Status="Pending"
+              
             };
 
-            await _context.TimeTracker.AddAsync(timeTracker);
+            await _context.Attendence.AddAsync(attendence);
             await _context.SaveChangesAsync();
 
-            return timeTracker.TrackId;
+            return attendence.AttendenceId;
         }
 
-        public async Task<bool> UpdateTrack(TimeTrackerModel timeTrackerModel)
+        public async Task<List<AttendenceModel>> GetRequest(int id)
         {
-
-            var track = await _context.TimeTracker.FindAsync(timeTrackerModel.TrackId);
-            track.OutTime = DateTime.Now;
-            track.TotalHours = timeTrackerModel.TotalHours;
-            track.WorkingHours = timeTrackerModel.WorkingHours;
-   
-            _context.Entry(track).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
-
-            return true;
-
-        }
-
-        public async Task<TimeTrackerModel> GetTime(int id)
-        {
-            return await (from a in _context.TimeTracker.Where(x => x.EmpId == id && x.Date == DateTime.Now.Date)
-                          select new TimeTrackerModel()
+            return await (from a in _context.Attendence.Where(x => x.EmpId == id)
+                          select new AttendenceModel()
                           {
-                              TrackId=a.TrackId,
-                              InTime = (DateTime)a.InTime,
-                              OutTime = (DateTime)a.OutTime,
+                              Date = (DateTime)a.Date,
+                              InTime= (DateTime)a.InTime,
+                              OutTime= (DateTime)a.OutTime,
                               TotalHours=a.TotalHours,
                               BreakingHours=a.BreakingHours,
-                              EmpId = a.EmpId,
+                              WorkingHours=a.WorkingHours,
+                              Explanation=a.Explanation,
                               Status=a.Status
-
-                          })
-                  .FirstOrDefaultAsync();
-
-        }
-
-        public bool CheckExist(int id)
-        {
-            bool result = _context.TimeTracker.ToList().Exists(x => (x.EmpId == id) && (x.Date == DateTime.Now.Date));
-            return result;
-        }
-
-        public bool CheckIn(int id)
-        {
-            bool result = _context.TimeTracker.ToList().Exists(x => (x.EmpId == id) && (x.Date == DateTime.Now.Date) && (x.InTime != null));
-            return result;
-        }
-
-        public bool CheckOut(int id)
-        {
-            bool result = _context.TimeTracker.ToList().Exists(x => (x.EmpId == id) && (x.Date == DateTime.Now.Date) && (x.OutTime == null));
-            return result;
-        }
-
-        public async Task<bool> CheckOut1(int id)
-        {
-            var track = await _context.TimeTracker.FindAsync(id);
-            if (track.OutTime == null && track.Status!="Break")
-                return true;
-            else
-                return false;
-        }
-
-        public async Task<bool> CheckOut2(int id)
-        {
-            var track = await _context.TimeTracker.FindAsync(id);
-            if (track.OutTime == null && track.Status == "Break")
-                return true;
-            else
-                return false;
-        }
-
-
-        public bool CheckBreak(int id)
-        {
-            bool result = _context.TimeTracker.ToList().Exists(x => (x.EmpId == id) && (x.Date == DateTime.Now.Date) && (x.Status=="Break") );
-            return result;
-        }
-
-        public async Task<bool> StartBreak(int id)
-        {
-
-            var track = await _context.TimeTracker.FindAsync(id);
-            track.BreakStart = DateTime.Now;
-            track.Status = "Break";
-
-            _context.Entry(track).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
-
-            return true;
-
-        }
-
-        public async Task<bool> EndBreak(TimeTrackerModel timeTrackerModel)
-        {
-
-            var track = await _context.TimeTracker.FindAsync(timeTrackerModel.TrackId);
-            track.BreakEnd = DateTime.Now;
-            track.BreakingHours = timeTrackerModel.BreakingHours+track.BreakingHours;
-            track.Status = "Work";
-
-            _context.Entry(track).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
-
-            return true;
-
-        }
-
-        public async Task<List<TimeTrackerModel>> TrackInfoById(int id)
-        {
-            return await (from a in _context.TimeTracker.Where(x => x.EmpId == id)
-                          select new TimeTrackerModel()
-                          {
-                              TrackId = a.TrackId,
-                              Date= (DateTime)a.Date,
-                              InTime = (DateTime)a.InTime,
-                              OutTime = (DateTime)a.OutTime,
-                              TotalHours = a.TotalHours,
-                              BreakingHours = a.BreakingHours,
-                              WorkingHours=a.WorkingHours
-
                           })
                   .ToListAsync();
 
         }
 
-        public async Task<List<TimeTrackerModel>> TrackInfoSearch(int id,DateTime? search)
+        //public async Task<List<AttendenceModel>> GetRequestSearch(int id, DateTime? search)
+        //{
+        //    return await (from a in _context.Attendence.Where(x => x.EmpId == id && (x.Date == (DateTime)search))
+        //                  select new AttendenceModel()
+        //                  {
+        //                      Date = (DateTime)a.Date,
+        //                      InTime = (DateTime)a.InTime,
+        //                      OutTime = (DateTime)a.OutTime,
+        //                      TotalHours = a.TotalHours,
+        //                      BreakingHours = a.BreakingHours,
+        //                      WorkingHours = a.WorkingHours,
+        //                      Explanation = a.Explanation,
+        //                      Status=a.Status
+
+        //                  })
+        //          .ToListAsync();
+
+        //}
+
+        public bool CheckExist(int id,DateTime date)
         {
-            return await (from a in _context.TimeTracker.Where(x => x.EmpId == id && (x.Date == (DateTime)search))
-                          select new TimeTrackerModel()
+            bool result = _context.Attendence.ToList().Exists(x => (x.EmpId == id) && (x.Date == date.Date));
+            return result;
+        }
+
+        public async Task<List<AttendenceModel>> GetAttendenceApprove()
+        {
+            return await (from a in _context.Attendence.Where(x => x.Status == "Pending")
+                          join b in _context.Employees on a.EmpId equals b.EmpId
+                          join c in _context.Job on b.JobTitleId equals c.JobId
+                          select new AttendenceModel()
                           {
-                              TrackId = a.TrackId,
+                              AttendenceId = a.AttendenceId,
                               Date = (DateTime)a.Date,
                               InTime = (DateTime)a.InTime,
                               OutTime = (DateTime)a.OutTime,
                               TotalHours = a.TotalHours,
                               BreakingHours = a.BreakingHours,
-                              WorkingHours = a.WorkingHours
+                              WorkingHours = a.WorkingHours,
+                              Explanation = a.Explanation,
+                              EmpName = b.EmpFName + " " + b.EmpLName,
+                              Designation = c.JobName,
+                              AppliedDate=(DateTime)a.AppliedDate
+                      
+
 
                           })
-                  .ToListAsync();
+                   .ToListAsync();
+        }
 
+        public async Task<bool> ApproveAttendence(int id, String name)
+        {
+            var attendence = await _context.Attendence.FindAsync(id);
+            attendence.Status = "Approved";
+            attendence.Approver = name;
+
+            _context.Entry(attendence).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            return true;
+        }
+
+        public async Task<bool> NotApproveAttendence(int id, String name)
+        {
+            var attendence = await _context.Attendence.FindAsync(id);
+            attendence.Status = "Not Approved";
+            attendence.Approver = name;
+
+            _context.Entry(attendence).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            return true;
+
+        }
+
+        public bool CheckExistAttendence(int id)
+        {
+            bool result = _context.MarkAttendence.ToList().Exists(x => (x.EmpId == id) && (x.Date == DateTime.Now.Date));
+            return result;
         }
     }
 }

@@ -36,20 +36,16 @@
         
     }
 
-    #navmenu a:hover, .subnav:hover .subnavbtn {
-        background-color: #175A47;
-    }
+#navmenu a:hover, .subnav:hover .subnavbtn {
+    background-color: #173A47;
+}
 
-    #drop a:hover{
-        background-color: #eee;
-        color:black;
-    }
+   
 
 .subnav-content {
     display: none;
     position: absolute;
     left: 0;
-    background-color: #175A47;
     width: 82.8%;
     margin-left: 16%;
     z-index: 1;
@@ -62,10 +58,7 @@
         width: 35%;
     }
 
-  .subnav-content a:hover {
-            background-color: #eee;
-            color: black;
-        }
+
 
 .subnav:hover .subnav-content {
     display: block;

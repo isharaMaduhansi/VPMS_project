@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VPMS_Project.Data;
 
 namespace VPMS_Project.Migrations
 {
     [DbContext(typeof(EmpStoreContext))]
-    partial class EmpStoreContextModelSnapshot : ModelSnapshot
+    [Migration("20201225072743_addedtwocol")]
+    partial class addedtwocol
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -232,44 +234,6 @@ namespace VPMS_Project.Migrations
                     b.ToTable("LeaveApply");
                 });
 
-            modelBuilder.Entity("VPMS_Project.Data.MarkAttendence", b =>
-                {
-                    b.Property<int>("MarkAttendenceId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime?>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("EmpId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("EmployeesEmpId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("InTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("OutTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("TotalHours")
-                        .HasColumnType("float");
-
-                    b.Property<string>("Type")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("MarkAttendenceId");
-
-                    b.HasIndex("EmployeesEmpId");
-
-                    b.ToTable("MarkAttendence");
-                });
-
             modelBuilder.Entity("VPMS_Project.Data.TimeTracker", b =>
                 {
                     b.Property<int>("TrackId")
@@ -307,9 +271,6 @@ namespace VPMS_Project.Migrations
                     b.Property<double>("TotalHours")
                         .HasColumnType("float");
 
-                    b.Property<string>("Type")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<double>("WorkingHours")
                         .HasColumnType("float");
 
@@ -338,13 +299,6 @@ namespace VPMS_Project.Migrations
                 {
                     b.HasOne("VPMS_Project.Data.Employees", "Employees")
                         .WithMany("LeaveApply")
-                        .HasForeignKey("EmployeesEmpId");
-                });
-
-            modelBuilder.Entity("VPMS_Project.Data.MarkAttendence", b =>
-                {
-                    b.HasOne("VPMS_Project.Data.Employees", "Employees")
-                        .WithMany("MarkAttendence")
                         .HasForeignKey("EmployeesEmpId");
                 });
 

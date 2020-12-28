@@ -14,16 +14,19 @@ namespace VPMS_Project.Controllers
     {
         private readonly IEmpRepository _empRepository = null;
         private readonly IWebHostEnvironment _webHostEnvironment;
-        private readonly AttendenceRepo _attendenceRepo = null;
+        private readonly TimeTrackRepo _timeTrackRepo = null;
         private readonly EmpStoreContext _context = null;
+        private readonly AttendenceRepo _attendenceRepo = null;
+        
 
 
-        public EmployeeHomeController(IEmpRepository empRepository, IWebHostEnvironment webHostEnvironment, AttendenceRepo attendenceRepo, EmpStoreContext context)
+        public EmployeeHomeController(IEmpRepository empRepository, IWebHostEnvironment webHostEnvironment, TimeTrackRepo timeTrackRepo, EmpStoreContext context, AttendenceRepo attendenceRepo)
         {
-            _attendenceRepo = attendenceRepo;
+            _timeTrackRepo = timeTrackRepo;
             _empRepository = empRepository;
             _webHostEnvironment = webHostEnvironment;
             _context = context;
+            _attendenceRepo = attendenceRepo;
 
         }
 
@@ -41,13 +44,14 @@ namespace VPMS_Project.Controllers
         {
             int EmpId = 110;
             ViewBag.EmpId = EmpId;
-            bool result =  _attendenceRepo.CheckExist(EmpId);
+            bool result = _timeTrackRepo.CheckExist(EmpId);
 
             if (result == true) 
             {
                 ViewBag.EndBreak = isEnd;
-                var data = await _attendenceRepo.GetTime(EmpId); 
-                 bool check = _attendenceRepo.CheckOut(EmpId);
+                var data = await _timeTrackRepo.GetTime(EmpId);
+                ViewBag.Status = data.Status;
+                bool check = _timeTrackRepo.CheckOut(EmpId);
                 Double dc2 = Math.Round((Double)data.BreakingHours, 2);
                 if (check == true)
                 {
@@ -101,6 +105,7 @@ namespace VPMS_Project.Controllers
                 ViewBag.In = "Not been enterd";
                 ViewBag.Out = "Not been enterd";
                 ViewBag.IsFail = isFail;
+                ViewBag.Status = "Not mark In-time";
                 return View();
             }
             
@@ -109,14 +114,14 @@ namespace VPMS_Project.Controllers
         public async Task<IActionResult> InTime(TimeTrackerModel timeTrackerModel)
         {
             timeTrackerModel.EmpId = 110;
-            bool existOne = _attendenceRepo.CheckIn(timeTrackerModel.EmpId);
+            bool existOne = _timeTrackRepo.CheckIn(timeTrackerModel.EmpId);
             if (existOne)
             {
                 return RedirectToAction(nameof(Portal), new { isExist = true });
             }
             else
             {
-                int id = await _attendenceRepo.InTimeMark(timeTrackerModel);
+                int id = await _timeTrackRepo.InTimeMark(timeTrackerModel);
                 if (id > 0)
                 {
                     return RedirectToAction(nameof(Portal));
@@ -143,7 +148,7 @@ namespace VPMS_Project.Controllers
                     timeTrackerModel.TrackId = id;
                     timeTrackerModel.WorkingHours = differ.TotalHours-track.BreakingHours;
 
-                    bool success = await _attendenceRepo.UpdateTrack(timeTrackerModel);
+                    bool success = await _timeTrackRepo.UpdateTrack(timeTrackerModel);
                     if (success == true)
                     {
                         return RedirectToAction(nameof(Portal));
@@ -163,10 +168,10 @@ namespace VPMS_Project.Controllers
             }
              else   
             {
-                bool check = await _attendenceRepo.CheckOut1(id);
+                bool check = await _timeTrackRepo.CheckOut1(id);
                 if (check == true)
                 {
-                    bool success = await _attendenceRepo.StartBreak(id);
+                    bool success = await _timeTrackRepo.StartBreak(id);
                     if (success == true)
                     {
                         return RedirectToAction(nameof(Portal));
@@ -192,7 +197,7 @@ namespace VPMS_Project.Controllers
             }
             else
             {
-                bool check =await _attendenceRepo.CheckOut2(id);
+                bool check =await _timeTrackRepo.CheckOut2(id);
                 if (check == true)
                 {
 
@@ -202,7 +207,7 @@ namespace VPMS_Project.Controllers
                     timeTrackerModel.BreakingHours = differ.TotalHours;
                     timeTrackerModel.TrackId = id;
 
-                    bool success = await _attendenceRepo.EndBreak(timeTrackerModel);
+                    bool success = await _timeTrackRepo.EndBreak(timeTrackerModel);
                     if (success == true)
                     {
                         return RedirectToAction(nameof(Portal));
@@ -217,20 +222,11 @@ namespace VPMS_Project.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> TimeInfo(int id, DateTime? Search=null)
+        public async Task<IActionResult> TimeInfo(int id)
         {
-            if (Search == null)
-            {
-                var data = await _attendenceRepo.TrackInfoById(id);
+                var data = await _timeTrackRepo.TrackInfoById(id);
                 return View(data);
-            }
-            else
-            {
-                var data = await _attendenceRepo.TrackInfoSearch(id,Search);
-                return View(data);
-
-            }
-           
+    
         }
     }
 }

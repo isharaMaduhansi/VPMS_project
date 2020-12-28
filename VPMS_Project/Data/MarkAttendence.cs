@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace VPMS_Project.Data
 {
-    public class TimeTracker
+    public class MarkAttendence
     {
         [Key]
-        public int TrackId { get; set; }
+        public int MarkAttendenceId { get; set; }
 
         public DateTime? Date { get; set; }
 
@@ -19,15 +19,6 @@ namespace VPMS_Project.Data
 
         public double TotalHours { get; set; }
 
-        public DateTime? BreakStart { get; set; }
-        
-
-        public DateTime? BreakEnd { get; set; }
-
-        public double BreakingHours { get; set; }
-
-        public double WorkingHours { get; set; }
-
         public int EmpId { get; set; }
 
         public String Status { get; set; }
@@ -35,6 +26,5 @@ namespace VPMS_Project.Data
         public String Type { get; set; }
 
         public Employees Employees { get; set; }
-
     }
 }

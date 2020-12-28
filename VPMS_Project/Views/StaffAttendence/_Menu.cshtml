@@ -1,0 +1,21 @@
+﻿<link href="~/CSS/PartiaMenuStyleSheet.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- The navigation menu -->
+<style>
+    #navmenu a:hover, .subnav:hover .subnavbtn {
+        background-color: #173A47;
+    }
+
+    .subnav-content {
+        background-color: #173A47;
+    }
+
+</style>
+<div id="navmenu" style="line-height:40px">
+    <a asp-controller="StaffAttendence" asp-action="AttendenceInfo"><i class='far fa-calendar-alt' style="margin-right:7px"></i> Attendence Info</a>
+
+    <a asp-controller="StaffAttendence" asp-action="AtteRequest"><i class='far fa-calendar-plus' style="margin-right:7px"></i> Attendence Request</a>
+
+    <a asp-controller="StaffAttendence" asp-action="RequestHistory"><i class='far fa-calendar-plus' style="margin-right:7px"></i> Request History</a>
+
+</div>

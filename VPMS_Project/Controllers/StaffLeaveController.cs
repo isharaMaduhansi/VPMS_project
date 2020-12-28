@@ -72,7 +72,7 @@ namespace VPMS_Project.Controllers
                 leaveApplyModel.EmpId = 110;
                 int Eid = leaveApplyModel.EmpId;
                 DateTime date = leaveApplyModel.Startdate;
-            bool existOne = _leaveRepository.CheckExist(Eid, date);
+               bool existOne = _leaveRepository.CheckExist(Eid, date);
                 if (existOne)
                 {
                     return RedirectToAction(nameof(LeaveApply), new { isExist = true });

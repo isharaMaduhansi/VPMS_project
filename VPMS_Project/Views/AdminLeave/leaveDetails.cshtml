@@ -11,12 +11,12 @@
                 <div class="col-md-8" style="margin-left:1px">
                     <div class="jumbotron jumbotron-fluid" style="height:300px">
                         <div class="container">
-                            <h1 class="display-4">Leave Details</h1>
-                            <p class="lead" style="padding-bottom:10px">Search anyone to see their leave balance details.</p>
+                            <h1 class="display-4">Leave Balance</h1>
+                            <p class="lead" style="padding-bottom:10px">Search employee by name or designation to see their leave balance</p>
                             <form class="form-inline" method="get" asp-action="LeaveDetails" asp-controller="AdminLeave">
-                                <input class="form-control-lg mr-lg-2" type="search" placeholder="Search employees" aria-label="Search" name="Search" />
-                                <input class="btn btn-success" type="submit" value="Search" style="line-height:30px;width:80px;background-color:#175A47" onclick="help()" />
-                                <a asp-controller="EmployeeHome" asp-action="EmpIndex" class="btn btn-success" style="background-color:#175A47;line-height:30px;margin-left:3%;width:80px;">Back</a>
+                                <input class="form-control-lg mr-lg-2" type="search" placeholder="Name or Designation" aria-label="Search" name="Search" />
+                                <input class="btn btn-success" type="submit" value="Search" style="line-height:30px;width:80px;background-color:#173A47" onclick="help()" />
+                                <a asp-controller="EmployeeHome" asp-action="EmpIndex" class="btn btn-success" style="background-color:#173A47;line-height:30px;margin-left:3%;width:80px;">Back</a>
                             </form>
                         </div>
                     </div>

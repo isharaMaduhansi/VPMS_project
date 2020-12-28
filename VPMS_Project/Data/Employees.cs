@@ -49,6 +49,10 @@ namespace VPMS_Project.Data
 
         public ICollection<TimeTracker> TimeTracker { get; set; }
 
+        public ICollection<Attendence> Attendence { get; set; }
+
+        public ICollection<MarkAttendence> MarkAttendence { get; set; }
+
 
 
 

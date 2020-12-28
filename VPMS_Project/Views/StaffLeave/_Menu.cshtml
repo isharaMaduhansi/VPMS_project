@@ -2,6 +2,25 @@
 <link href="~/CSS/PartiaMenuStyleSheet.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <!-- The navigation menu -->
+<style>
+    #navmenu a:hover, .subnav:hover .subnavbtn {
+        background-color: #173A47;
+    }
+
+    .subnav-content {
+        background-color: #173A47;
+    }
+
+        .subnav-content a:hover {
+            background-color: white;
+            color: black;
+        }
+
+    #drop a:hover {
+        background-color: #eee;
+        color: black;
+    }
+</style>
 <div id="navmenu" style="line-height:40px">
     <a asp-controller="StaffLeave" asp-action="LeaveBalance"><i class='far fa-calendar-alt' style="margin-right:7px"></i> Leave Balance</a>
 

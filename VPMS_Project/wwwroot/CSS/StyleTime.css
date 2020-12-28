@@ -28,7 +28,6 @@
 #track {
     font-family: Roboto;
     font-weight: 300;
-    background: linear-gradient(to left, #607d8b, #175A47);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -52,7 +51,6 @@
     line-height: 55px;
     border-radius: 50px;
     color: #fff;
-    background: linear-gradient(45deg, #175A47,#607d8b);
     transition: all ease 0.1s;
 }
 
@@ -61,7 +59,6 @@
     border-radius: 50px;
     color: #fff;
     font-weight: 400;
-    background: linear-gradient(45deg, #175A47,#607d8b);
     transition: all ease 0.1s;
 }
 

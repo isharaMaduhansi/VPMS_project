@@ -93,7 +93,6 @@
             <textarea asp-for="Reason" class="form-control" placeholder="Reason" style="height:100px" required></textarea>
             <span asp-validation-for="Reason" class="text-danger"></span>
 
-
         </div>
         <div class="form-group">
             <input type="submit" value="Apply" class="btn-block btn-success btn-lg" id="myBtn" onclick="ConfirmApply()" />
@@ -151,7 +150,7 @@
                 if (to < end) {
                     document.getElementById('msg').innerHTML = " Your leave allocation has not been extended from " + to + " yet. Please inform admin to extend your leave allocation.";
                     document.getElementById("myBtn").disabled = true;
-                    document.getElementById("end").disabled = true;
+                    
 
                 }
 

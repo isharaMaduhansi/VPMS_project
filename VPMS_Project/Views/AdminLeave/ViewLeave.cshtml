@@ -4,6 +4,9 @@
 }
 @model IEnumerable<LeaveApplyModel>
 
+
+    <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables_themeroller.css">
     <div class="content" style="height:800px">
         <h3 style="font-family:Cambria;color:black;">
             <br>
@@ -11,9 +14,8 @@
                 <i class='fas fa-arrow-left' style="margin-right:15px;color:black;font-size:14pt"></i>
             </a>Leave Request Details
         </h3>
-        <br> <br>
-
-        <table class="table table-striped">
+        <br><br>
+        <table class="table table-hover" id="example">
             <thead>
                 <tr style="line-height:60px">
                     <th scope="col">Applied On</th>
@@ -27,53 +29,66 @@
                 </tr>
             </thead>
             <tbody>
-
                 @foreach (var leave in Model)
                 {
-                    <tr style="line-height:50px">
-                        <td>@leave.AppliedDate.Day-@leave.AppliedDate.Month-@leave.AppliedDate.Year</td>
-                        <td>@leave.LeaveType</td>
-                        <td>@leave.Startdate.Day-@leave.Startdate.Month-@leave.Startdate.Year</td>
-                        <td>@leave.EndDate.Day-@leave.EndDate.Month-@leave.EndDate.Year</td>
-                        <td>@leave.NoOfDays</td>
-                        <td>
-                            @leave.RecommendName
+                <tr style="line-height:60px">
+                    <td>@leave.AppliedDate.Day-@leave.AppliedDate.Month-@leave.AppliedDate.Year</td>
+                    <td>@leave.LeaveType</td>
+                    <td>@leave.Startdate.Day-@leave.Startdate.Month-@leave.Startdate.Year</td>
+                    <td>@leave.EndDate.Day-@leave.EndDate.Month-@leave.EndDate.Year</td>
+                    <td class="text-center">@leave.NoOfDays</td>
+                    <td>
+                        @leave.RecommendName
 
-                            @if (leave.RecommendName == null)
-                            {
-                                <div class="text-dark text-center">-</div>
-                            }
-                        </td>
-                        <td>
-                            @leave.ApproverName
-                            @if (leave.ApproverName == null)
-                            {
-                                <div class="text-dark text-center">-</div>
-                            }
-                        </td>
-                        <td>
-                            @if (leave.Status == "Waiting for Recommendation" || leave.Status == "Waiting for Approval")
-                            {
-                                <div class="text-primary">@leave.Status</div>
-                            }
+                        @if (leave.RecommendName == null)
+                        {
+                            <div class="text-dark text-center">None</div>
+                        }
+                    </td>
+                    <td>
+                        @leave.ApproverName
+                        @if (leave.ApproverName == null)
+                        {
+                            <div class="text-dark text-center">None</div>
+                        }
+                    </td>
+                    <td>
+                        @if (leave.Status == "Waiting for Recommendation" || leave.Status == "Waiting for Approval")
+                        {
+                            <div>@leave.Status</div>
+                        }
 
-                            @if (leave.Status == "Not Approved" || leave.Status == "Not Recommended")
-                            {
-                                <div class="text-danger">@leave.Status</div>
-                            }
-                            @if (leave.Status == "Approved")
-                            {
-                                <div class="text-success">@leave.Status</div>
-                            }
+                        @if (leave.Status == "Not Approved" || leave.Status == "Not Recommended")
+                        {
+                            <div class="text-danger">@leave.Status</div>
+                        }
+                        @if (leave.Status == "Approved")
+                        {
+                            <div class="text-success">@leave.Status</div>
+                        }
 
 
 
-                        </td>
-                    </tr>
-
+                </tr>
                 }
-            </tbody>
+           </tbody>
         </table>
-
     </div>
+
+        
+
+
+
+        @section leave{
+            <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+            <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+            <script>
+                $(function () {
+                    $("#example").dataTable();
+                })
+            </script>
+
+
+
+        }
 

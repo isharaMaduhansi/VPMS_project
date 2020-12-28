@@ -1,17 +1,19 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿
 @{
+    Layout = "_AttendenceLayout";
+    ViewData["Title"] = "Attendence Details";
+
 }
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Page Title</title>
-</head>
-<body>
 
-    <h1>This is a viewing attendence</h1>
-    <p>This is view all emp.</p>
 
-</body>
-</html>
+<div style="margin-left:20%;height:600px;">
+    <div class="navbar">
+        <h3 style="font-family:Cambria;color:black;">
+            <br>
+            <a asp-controller="EmployeeHome" asp-action="EmpIndex" title="Back">
+                <i class='fas fa-arrow-left' style="margin-right:15px;color:black;font-size:14pt"></i>
+            </a>Attendence Details
+        </h3>
+    </div>
+    <hr>
+    </div>
