@@ -59,24 +59,6 @@ namespace VPMS_Project.Repository
 
         }
 
-        //public async Task<List<AttendenceModel>> GetRequestSearch(int id, DateTime? search)
-        //{
-        //    return await (from a in _context.Attendence.Where(x => x.EmpId == id && (x.Date == (DateTime)search))
-        //                  select new AttendenceModel()
-        //                  {
-        //                      Date = (DateTime)a.Date,
-        //                      InTime = (DateTime)a.InTime,
-        //                      OutTime = (DateTime)a.OutTime,
-        //                      TotalHours = a.TotalHours,
-        //                      BreakingHours = a.BreakingHours,
-        //                      WorkingHours = a.WorkingHours,
-        //                      Explanation = a.Explanation,
-        //                      Status=a.Status
-
-        //                  })
-        //          .ToListAsync();
-
-        //}
 
         public bool CheckExist(int id,DateTime date)
         {
@@ -118,6 +100,39 @@ namespace VPMS_Project.Repository
             _context.Entry(attendence).State = EntityState.Modified;
             await _context.SaveChangesAsync();
 
+            DateTime date = (DateTime)attendence.Date;
+            var info = _context.MarkAttendence.SingleOrDefault(x => (x.EmpId == attendence.EmpId) && (x.Date == date.Date));
+            if (info == null)
+            {
+                var markAttendence = new MarkAttendence()
+                {
+                    Date = attendence.Date,
+                    InTime = attendence.InTime,
+                    OutTime=attendence.OutTime,
+                    TotalHours=attendence.TotalHours,
+                    EmpId = attendence.EmpId,
+                    Type = "Manual",
+                    Status = "Present"
+
+                };
+
+                await _context.MarkAttendence.AddAsync(markAttendence);
+                await _context.SaveChangesAsync();
+
+            }
+            else
+            {
+                info.InTime = attendence.InTime;
+                info.OutTime = attendence.OutTime;
+                info.TotalHours = attendence.TotalHours;
+                info.Type = "Manual";
+                info.Status = "Present";
+
+                _context.Entry(info).State = EntityState.Modified;
+                await _context.SaveChangesAsync();
+
+            }
+
             return true;
         }
 
@@ -130,14 +145,59 @@ namespace VPMS_Project.Repository
             _context.Entry(attendence).State = EntityState.Modified;
             await _context.SaveChangesAsync();
 
+            DateTime date = (DateTime)attendence.Date;
+            var info = _context.MarkAttendence.SingleOrDefault(x => (x.EmpId == attendence.EmpId) && (x.Date == date.Date));
+            if (info == null)
+            {
+                var markAttendence = new MarkAttendence()
+                {
+                    Date = attendence.Date,
+                    InTime = attendence.InTime,
+                    OutTime = attendence.OutTime,
+                    TotalHours = attendence.TotalHours,
+                    EmpId = attendence.EmpId,
+                    Type = "Manual",
+                    Status = "Absent"
+
+                };
+
+                await _context.MarkAttendence.AddAsync(markAttendence);
+                await _context.SaveChangesAsync();
+
+            }
+            else
+            {
+                info.InTime = attendence.InTime;
+                info.OutTime = attendence.OutTime;
+                info.TotalHours = attendence.TotalHours;
+                info.Type = "Manual";
+                info.Status = "Absent";
+
+                _context.Entry(info).State = EntityState.Modified;
+                await _context.SaveChangesAsync();
+
+            }
+
             return true;
 
         }
 
-        public bool CheckExistAttendence(int id)
+        public async Task<List<MarkAttendenceModel>> GetAttInfo(int id)
         {
-            bool result = _context.MarkAttendence.ToList().Exists(x => (x.EmpId == id) && (x.Date == DateTime.Now.Date));
-            return result;
+            return await (from a in _context.MarkAttendence.Where(x => x.EmpId == id)
+                          select new MarkAttendenceModel()
+                          {
+                              Date = (DateTime)a.Date,
+                              InTime = (DateTime)a.InTime,
+                              OutTime = (DateTime)a.OutTime,
+                              TotalHours = a.TotalHours,
+                              Type=a.Type,
+                              Status = a.Status
+                          })
+                  .ToListAsync();
+
         }
+
+
     }
 }

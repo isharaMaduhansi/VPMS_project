@@ -228,6 +228,10 @@ namespace VPMS_Project.Repository
                     {
                         Date = Start.AddDays(i),
                         EmpId = leave.EmpId,
+                        InTime = null,
+                        OutTime = null,
+                        TotalHours = 0,
+                        Type = null,
                         Status = "Leave On Day"
                     };
 

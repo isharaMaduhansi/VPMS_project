@@ -18,9 +18,13 @@ namespace VPMS_Project.Controllers
             _attendenceRepo = attendenceRepo;
 
         }
-        public IActionResult AttendenceInfo()
+
+        [HttpGet]
+        public async Task<IActionResult> AttendenceInfo()
         {
-            return View();
+            int EmpId = 110;
+            var data = await _attendenceRepo.GetAttInfo(EmpId);
+            return View(data);
         }
 
         [HttpGet]

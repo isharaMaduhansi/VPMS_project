@@ -41,6 +41,8 @@ namespace VPMS_Project.Repository
                 {
                     Date = DateTime.Now.Date,
                     InTime = DateTime.Now,
+                    OutTime=null,
+                    TotalHours=0,
                     EmpId = timeTrackerModel.EmpId,
                     Type = "Auto",
                     Status = "Absent"
@@ -262,11 +264,7 @@ namespace VPMS_Project.Repository
 
         }
 
-        public bool CheckExistAttendence(int id)
-        {
-            bool result = _context.MarkAttendence.ToList().Exists(x => (x.EmpId == id) && (x.Date == DateTime.Now.Date));
-            return result;
-        }
+  
 
 
 
