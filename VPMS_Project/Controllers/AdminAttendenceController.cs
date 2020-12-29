@@ -24,9 +24,17 @@ namespace VPMS_Project.Controllers
             _attendenceRepository = attendenceRepo;
         }
 
-        public IActionResult ViewAttendence()
+        [HttpGet]
+        public async Task<IActionResult> ViewAttendence(string Search = null)
         {
-            return View();
+            var data = await _empRepository.GetSearchEmps(Search);
+
+            if (data == null)
+            {
+                return RedirectToAction(nameof(ViewAttendence));
+            }
+
+            return View(data);
         }
 
         public IActionResult RequestHistory()
@@ -63,6 +71,13 @@ namespace VPMS_Project.Controllers
 
             }
             return View();
+        }
+
+
+        public async Task<IActionResult> SeeAttendenceInfo(int id)
+        {
+            var data = await _attendenceRepository.GetAttInfo(id);
+            return View(data);
         }
     }
 }

@@ -71,9 +71,6 @@ namespace VPMS_Project.Controllers
             int EmpId = 110;
                 var data = await _attendenceRepo.GetRequest(EmpId);
                 return View(data);
-      
-            
-
         }
     }
 }

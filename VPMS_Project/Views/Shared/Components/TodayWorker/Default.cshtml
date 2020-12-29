@@ -1,0 +1,29 @@
+﻿@using VPMS_Project.Models;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@model IEnumerable<TodayWorkModel>
+
+<div class="card" style="margin-left: 2%;width:98%">
+    <div class="card-body" style="background-color:whitesmoke">
+        <h6 class="card-title" style="color:black;"><i class='fa fa-paper-plane'></i> Present Today<br></h6><hr>
+
+        @if (Model.Count() == 0)
+        {
+            <div class="text-primary">
+                <i class='far fa-calendar-times' style="color:black"></i>&nbsp;&nbsp; No one has marked attendence yet.
+            </div>
+        }
+
+        @foreach (var emp in Model)
+        {
+            <br>
+            <h6 class="card-subtitle mb-2" style="font-weight:normal"><i class='fas fa-user-alt'></i> @emp.EmpName -</h6>
+            <p class="card-text text-primary">
+                &nbsp; &nbsp; @emp.Designation <br>
+            </p>
+            <hr>
+        }
+    </div>
+</div>
+<br>
+

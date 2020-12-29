@@ -1,0 +1,119 @@
+﻿@{
+    Layout = "_AttendenceLayout";
+    ViewData["Title"] = "Attendence Info";
+}
+<link href="~/CSS/MenuStyleSheet.css" rel="stylesheet" />
+<link href="~/CSS/MenuStyleSheet.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
+<link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables_themeroller.css">
+
+
+@model IEnumerable<MarkAttendenceModel>
+
+
+<div style="margin-left:20%;height:600px;">
+    <div>
+        <h3 style="font-family:Cambria;color:black;">
+            <br>
+            <a asp-action="ViewAttendence" asp-controller="AdminAttendence" title="Back">
+                <i class='fas fa-arrow-left' style="margin-right:15px;color:black;font-size:14pt"></i>
+            </a>Attendence Info 
+        </h3>
+    </div>
+    <hr>
+
+
+    <br>
+    <div class="table-responsive col-sm-10 col-md-12 col-xm-12">
+        <table class="table table-hover" id="example" width="100%" cellspacing="0">
+
+            <thead>
+                <tr style="line-height: 60px">
+
+                    <th scope="row">Date </th>
+                    <th scope="row">In Time</th>
+                    <th scope="row">Out Time</th>
+                    <th scope="row">Total Hours </th>
+                    <th scope="row">Type </th>
+                    <th scope="row">Status </th>
+                    <th scope="row"></th>
+
+
+
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var time in Model)
+                {
+
+                    <tr style="line-height: 60px">
+
+                        <td scope="row">@time.Date.Day-@time.Date.Month-@time.Date.Year </td>
+                        @if (time.Status == "Leave On Day")
+                        {
+                            <td scope="row" class="text-center">-</td>
+                            <td scope="row" class="text-center">-</td>
+                            <td scope="row" class="text-center">-</td>
+                            <td scope="row" class="text-center">-</td>
+
+                        }
+                        else
+                        {
+                            <td scope="row">@time.InTime.ToString("hh:mm tt")</td>
+                            <td scope="row">@time.OutTime.ToString("hh:mm tt") </td>
+
+                            var timeSpan1 = TimeSpan.FromHours(time.TotalHours);
+                            int hh1 = timeSpan1.Hours;
+                            int mm1 = timeSpan1.Minutes;
+                            String total = hh1 + " h " + mm1 + " min";
+
+
+                            <td scope="row">@total </td>
+                            <td scope="row">@time.Type </td>
+                        }
+
+                        @if (time.Status == "Present")
+                        {
+                            <td scope="row" class="text-success">@time.Status </td>
+                        }
+                        @if (time.Status == "Not Complete")
+                        {
+                            <td scope="row" class="text-danger">@time.Status </td>
+                        }
+                        @if (time.Status == "Absent")
+                        {
+                            <td scope="row" class="text-danger">@time.Status </td>
+                        }
+                        @if (time.Status == "Leave On Day")
+                        {
+                            <td scope="row" class="text-primary">@time.Status </td>
+                        }
+
+                        <td scope="row">View Reports </td>
+
+
+
+
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
+@section Attendence{
+    <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+    <script>
+        $(function () {
+            $("#example").dataTable();
+        })
+    </script>
+
+
+
+}

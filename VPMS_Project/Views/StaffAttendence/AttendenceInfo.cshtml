@@ -23,7 +23,7 @@
 
     <br>
     <div class="table-responsive col-sm-10 col-md-12 col-xm-12">
-        <table class="table table-hover " id="example" width="100%" cellspacing="0">
+        <table class="table table-hover" id="example" width="100%" cellspacing="0">
 
             <thead>
                 <tr style="line-height: 60px">
@@ -47,20 +47,28 @@
                 <tr style="line-height: 60px">
 
                     <td scope="row">@time.Date.Day-@time.Date.Month-@time.Date.Year </td>
-                    <td scope="row">@time.InTime.ToString("hh:mm tt")</td>
-                    <td scope="row">@time.OutTime.ToString("hh:mm tt") </td>
+                    @if (time.Status == "Leave On Day")
+                    {
+                        <td scope="row" class="text-center">-</td>
+                        <td scope="row" class="text-center">-</td>
+                        <td scope="row" class="text-center">-</td>
+                        <td scope="row" class="text-center">-</td>
 
-
-                    @{
+                    }
+                    else
+                    {
+                        <td scope="row">@time.InTime.ToString("hh:mm tt")</td>
+                        <td scope="row">@time.OutTime.ToString("hh:mm tt") </td>
 
                         var timeSpan1 = TimeSpan.FromHours(time.TotalHours);
                         int hh1 = timeSpan1.Hours;
                         int mm1 = timeSpan1.Minutes;
                         String total = hh1 + " h " + mm1 + " min";
-                    }
 
-                    <td scope="row">@total </td>
-                    <td scope="row">@time.Type </td>
+
+                        <td scope="row">@total </td>
+                        <td scope="row">@time.Type </td>
+                    }
 
                     @if (time.Status == "Present")
                     {

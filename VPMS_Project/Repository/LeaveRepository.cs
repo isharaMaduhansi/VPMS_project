@@ -473,5 +473,26 @@ namespace VPMS_Project.Repository
                           })
                    .ToListAsync();
         }
+
+        public async Task<List<LeaveApplyModel>> GetLeaveTakenAsync(int id)
+        {
+            return await (from a in _context.LeaveApply.Where(x => (x.EmpId == id) && (x.Status == "Approved"))
+                          select new LeaveApplyModel()
+                          {
+
+                              LeaveApplyId = a.LeaveApplyId,
+                              LeaveType = a.LeaveType,
+                              Startdate = (DateTime)a.Startdate,
+                              EndDate = (DateTime)a.EndDate,
+                              Reason = a.Reason,
+                              AppliedDate = (DateTime)a.AppliedDate,
+                              NoOfDays = a.NoOfDays,
+                              EmpId = a.EmpId,
+                              RecommendName = a.RecommendName,
+                              ApproverName = a.ApproverName,
+
+                          })
+                   .ToListAsync();
+        }
     }
 }

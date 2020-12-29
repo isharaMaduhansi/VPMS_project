@@ -80,6 +80,7 @@ namespace VPMS_Project.Repository
                               TotalHours = a.TotalHours,
                               BreakingHours = a.BreakingHours,
                               WorkingHours = a.WorkingHours,
+                              EmpId=a.EmpId,
                               Explanation = a.Explanation,
                               EmpName = b.EmpFName + " " + b.EmpLName,
                               Designation = c.JobName,
@@ -194,7 +195,21 @@ namespace VPMS_Project.Repository
                               Type=a.Type,
                               Status = a.Status
                           })
-                  .ToListAsync();
+                  .OrderByDescending(x => x.Date.Date).ToListAsync();
+
+        }
+
+        public async Task<List<TodayWorkModel>> TodayWorkersAsync()
+        {
+            return await (from a in _context.MarkAttendence.Where(x => (x.Date==DateTime.Now.Date) && (x.Status != "Leave On Day"))
+                          join b in _context.Employees on a.EmpId equals b.EmpId
+                          join c in _context.Job on b.JobTitleId equals c.JobId
+                          select new TodayWorkModel()
+                          {
+                              EmpName = b.EmpFName + " " + b.EmpLName,
+                              Designation=c.JobName
+                          })
+                      .ToListAsync();
 
         }
 

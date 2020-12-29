@@ -6,16 +6,38 @@
 @model EmpModel
 
 
-<div class="content" style="height:800px">
-    <br>
-    <div class="navbar">
-        <h3 style="font-family:Cambria;color:black;">
-            <a asp-controller="AdminLeave" asp-action="LeaveDetails" title="Back">
-                <i class='fas fa-arrow-left' style="margin-right:15px;color:black;font-size:14pt"></i>
-            </a>@Model.EmpFName @Model.EmpLName -  <span style="font-size:14pt">@Model.JobType</span>
-        </h3>
-    </div><hr>
-    <br>
-    @await Component.InvokeAsync("AdminLeave", new { id = Model.EmpId })
-</div>
+    <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables_themeroller.css">
+
+
+    <div class="content" style="height:800px">
+        <br>
+        <div class="navbar">
+            <h3 style="font-family:Cambria;color:black;">
+                <a asp-controller="AdminLeave" asp-action="LeaveDetails" title="Back">
+                    <i class='fas fa-arrow-left' style="margin-right:15px;color:black;font-size:14pt"></i>
+                </a>@Model.EmpFName @Model.EmpLName -  <span style="font-size:14pt">@Model.JobType</span>
+            </h3>
+        </div><hr>
+        <br>
+        @await Component.InvokeAsync("AdminLeave", new { id = Model.EmpId })
+        <br>
+        <br>
+
+        @await Component.InvokeAsync("LeaveTakenData", new { id = Model.EmpId })
+    </div>
+
+
+
+    @section leave
+{
+
+        <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+        <script>
+            $(function () {
+                $("#example").dataTable();
+            })
+        </script>
+    }
 
