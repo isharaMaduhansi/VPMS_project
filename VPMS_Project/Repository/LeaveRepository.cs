@@ -249,15 +249,8 @@ namespace VPMS_Project.Repository
                     _context.Entry(info).State = EntityState.Modified;
                     await _context.SaveChangesAsync();
                 }
-
-
-
-                  
-
             }
-
             return true;
-
         }
 
         public async Task<bool> NotApproveLeave(int id, String name)
@@ -493,6 +486,83 @@ namespace VPMS_Project.Repository
 
                           })
                    .ToListAsync();
+        }
+
+        public async Task<List<KeyModel>> SearchLeave1(int id)
+        {
+            return await (from a in _context.LeaveApply.Where(x => (x.EmpId == id) && (x.Status == "Approved"))
+                          join b in _context.Employees on a.EmpId equals b.EmpId
+                          select new KeyModel()
+                          {
+                              LeaveApplyId = a.LeaveApplyId,
+                              EmpId =a.EmpId,
+                              EmpFName=b.EmpFName,
+                              EmpFullName=b.EmpFName+" "+b.EmpLName,
+                              PhotoURL=b.ProfilePhoto,
+                              FromDate= (DateTime)a.Startdate,
+                              ToDate= (DateTime)a.EndDate,
+
+
+                          })
+                   .ToListAsync();
+        }
+
+        public async Task<List<KeyModel>> SearchLeave2(int id, DateTime date)
+        {
+            return await (from a in _context.LeaveApply.Where(x => (x.EmpId == id) && ((x.Status == "Approved") && (x.Startdate <= date.Date) && (x.EndDate > date.Date)))
+                          join b in _context.Employees on a.EmpId equals b.EmpId
+                          select new KeyModel()
+                          {
+                              LeaveApplyId = a.LeaveApplyId,
+                              EmpId = a.EmpId,
+                              EmpFName = b.EmpFName,
+                              EmpFullName = b.EmpFName + " " + b.EmpLName,
+                              PhotoURL = b.ProfilePhoto,
+                              FromDate = (DateTime)a.Startdate,
+                              ToDate = (DateTime)a.EndDate,
+
+
+                          })
+                   .ToListAsync();
+        }
+
+        public async Task<List<KeyModel>> SearchLeave3(DateTime date)
+        {
+            return await (from a in _context.LeaveApply.Where(x => (x.Status == "Approved") && (x.Startdate <= date.Date) && (x.EndDate > date.Date))
+                          join b in _context.Employees on a.EmpId equals b.EmpId
+                          select new KeyModel()
+                          {
+                              LeaveApplyId=a.LeaveApplyId,
+                              EmpId = a.EmpId,
+                              EmpFName = b.EmpFName,
+                              EmpFullName = b.EmpFName + " " + b.EmpLName,
+                              PhotoURL = b.ProfilePhoto,
+                              FromDate = (DateTime)a.Startdate,
+                              ToDate = (DateTime)a.EndDate,
+                          })
+                   .ToListAsync();
+        }
+
+        public async Task<LeaveApplyModel> GetSearchLeaveAsync(int id)
+        {
+            return await (from a in _context.LeaveApply.Where(x => x.LeaveApplyId == id)
+                          join b in _context.Employees on a.EmpId equals b.EmpId
+                          select new LeaveApplyModel()
+                          {
+                              LeaveApplyId = a.LeaveApplyId,
+                              LeaveType = a.LeaveType,
+                              Startdate = (DateTime)a.Startdate,
+                              EndDate = (DateTime)a.EndDate,
+                              Reason = a.Reason,
+                              AppliedDate = (DateTime)a.AppliedDate,
+                              NoOfDays = a.NoOfDays,
+                              EmpId = a.EmpId,
+                              EmpName=b.EmpFName+" "+b.EmpLName,
+                              ApproverName=a.ApproverName,
+                              RecommendName=a.RecommendName
+                          })
+                  .FirstOrDefaultAsync();
+
         }
     }
 }

@@ -16,6 +16,7 @@ namespace VPMS_Project.Models
         public DateTime OutTime { get; set; }
 
         public double TotalHours { get; set; }
+        public String EmpName { get; set; }
 
         public int EmpId { get; set; }
 

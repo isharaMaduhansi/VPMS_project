@@ -94,15 +94,13 @@ namespace VPMS_Project.Controllers
         }
 
 
-
-
         [Route("~/Employee-Details/{id}",Name="empDetailsRoute")]
         public async Task<IActionResult> ViewEmpById(int id)
         {
-           
            var data=await _empRepository.GetEmpById(id);
              return View(data);
         }
+
 
         public async Task<IActionResult> AddEmployee(bool isSucceess=false,int empId = 0)
         {

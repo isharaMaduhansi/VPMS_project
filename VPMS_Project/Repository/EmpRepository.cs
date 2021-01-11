@@ -40,7 +40,19 @@ namespace VPMS_Project.Repository
                            })
                           .ToListAsync();
         }
-        
+
+        public async Task<List<EmpModel>> GetEmps()
+        {
+            return await (from a in _context.Employees.Where(x => (x.Status == "Active"))
+                          join b in _context.Job on a.JobTitleId equals b.JobId
+                          select new EmpModel()
+                          {
+                              EmpId = a.EmpId,
+                              EmpFullName= a.EmpFName+" "+ a.EmpLName
+                          })
+                           .ToListAsync();
+        }
+
 
         public async Task<List<EmpModel>> GetSearchEmps(String name)
         {

@@ -21,5 +21,7 @@ namespace VPMS_Project.Repository
 
         Task<EmpModel> GetEmp(int id);
 
+        Task<List<EmpModel>> GetEmps();
+
     }
 }

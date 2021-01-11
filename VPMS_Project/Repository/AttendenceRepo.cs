@@ -195,7 +195,7 @@ namespace VPMS_Project.Repository
                               Type=a.Type,
                               Status = a.Status
                           })
-                  .OrderByDescending(x => x.Date.Date).ToListAsync();
+                  .OrderBy(x => x.Date).ToListAsync();
 
         }
 
@@ -203,13 +203,86 @@ namespace VPMS_Project.Repository
         {
             return await (from a in _context.MarkAttendence.Where(x => (x.Date==DateTime.Now.Date) && (x.Status != "Leave On Day"))
                           join b in _context.Employees on a.EmpId equals b.EmpId
-                          join c in _context.Job on b.JobTitleId equals c.JobId
                           select new TodayWorkModel()
                           {
                               EmpName = b.EmpFName + " " + b.EmpLName,
-                              Designation=c.JobName
+                              PhotoURL=b.ProfilePhoto
                           })
                       .ToListAsync();
+
+        }
+
+        public async Task<List<Key2Model>> SearchLeave1(int id)
+        {
+            return await (from a in _context.MarkAttendence.Where(x => (x.EmpId == id))
+                          join b in _context.Employees on a.EmpId equals b.EmpId
+                          select new Key2Model()
+                          {
+                              AttendenceId = a.MarkAttendenceId,
+                              EmpId = a.EmpId,
+                              EmpFName = b.EmpFName,
+                              EmpFullName = b.EmpFName + " " + b.EmpLName,
+                              PhotoURL = b.ProfilePhoto,
+                              RelavantDate = (DateTime)a.Date,
+                              Status=a.Status,
+
+
+                          })
+                   .ToListAsync();
+        }
+
+        public async Task<List<Key2Model>> SearchLeave2(int id, DateTime date)
+        {
+            return await (from a in _context.MarkAttendence.Where(x => (x.EmpId == id) && (x.Date == date.Date))
+                          join b in _context.Employees on a.EmpId equals b.EmpId
+                          select new Key2Model()
+                          {
+                              AttendenceId = a.MarkAttendenceId,
+                              EmpId = a.EmpId,
+                              EmpFName = b.EmpFName,
+                              EmpFullName = b.EmpFName + " " + b.EmpLName,
+                              PhotoURL = b.ProfilePhoto,
+                              RelavantDate = (DateTime)a.Date,
+                              Status = a.Status,
+
+
+                          })
+                   .ToListAsync();
+        }
+
+        public async Task<List<Key2Model>> SearchLeave3(DateTime date)
+        {
+            return await (from a in _context.MarkAttendence.Where(x =>  (x.Date == date.Date))
+                          join b in _context.Employees on a.EmpId equals b.EmpId
+                          select new Key2Model()
+                          {
+                              AttendenceId = a.MarkAttendenceId,
+                              EmpId = a.EmpId,
+                              EmpFName = b.EmpFName,
+                              EmpFullName = b.EmpFName + " " + b.EmpLName,
+                              PhotoURL = b.ProfilePhoto,
+                              RelavantDate = (DateTime)a.Date,
+                              Status = a.Status,
+                          })
+                   .ToListAsync();
+        }
+
+        public async Task<MarkAttendenceModel> GetSearchAttendenceAsync(int id)
+        {
+            return await (from a in _context.MarkAttendence.Where(x => x.MarkAttendenceId == id)
+                          join b in _context.Employees on a.EmpId equals b.EmpId
+                          select new MarkAttendenceModel()
+                          {
+                              Date = (DateTime)a.Date,
+                              InTime = (DateTime)a.InTime,
+                              OutTime = (DateTime)a.OutTime,
+                              TotalHours = a.TotalHours,
+                              Type = a.Type,
+                              Status = a.Status,
+                              EmpId = a.EmpId,
+                              EmpName = b.EmpFName + " " + b.EmpLName,
+                          })
+                  .FirstOrDefaultAsync();
 
         }
 

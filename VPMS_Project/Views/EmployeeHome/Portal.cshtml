@@ -77,6 +77,7 @@
         <div class="row" style="margin-top:20px;margin-bottom:100px">
             @*<div class="row-cols-10"><div class="square" style="height: 80px;width: 300px;background-color: #555;opacity:0.3;border: 2px solid red;border-radius:10%;margin-left:10px;margin-top:20px;margin-bottom:10px"></div></div>*@
             <div style="width:50%">
+               
                 <a asp-controller="EmployeeHome" asp-action="Home">
                     <div class="card" style=" opacity: 0.4; border-radius: 5%; margin-left: 100px; margin-top: 20px; margin-bottom: 20px;height:100px;width:300px;background-color:black">
 
@@ -86,23 +87,25 @@
                         </div>
                     </div>
                 </a>
-                <div class="card" style=" opacity: 0.4;  border-radius: 5%; margin-left: 100px; margin-top: 100px; margin-bottom: 20px;height:100px;width:300px;background-color:black">
-
-                    <div class="container" style="margin-top:30px;">
-                        <font style="font-size:14pt;color:white;font-weight:bold;"><center>Manager Portal</center></font>
-
-                    </div>
-                </div>
-                <a asp-controller="StaffHome" asp-action="StaffDash">
-                    <div class="card" style=" opacity: 0.4; border-radius: 5%; margin-left: 100px; margin-top: 100px; margin-bottom: 20px;height:100px;width:300px;background-color:black">
+                <a  asp-controller="ManagerDash" asp-action="Dashboard">
+                    <div class="card" style=" opacity: 0.4;  border-radius: 5%; margin-left: 100px; margin-top: 100px; margin-bottom: 20px;height:100px;width:300px;background-color:black">
 
                         <div class="container" style="margin-top:30px;">
-                            <font style="font-size:14pt;color:white;font-weight:bold;"><center>Staff Portal</center></font>
+                            <font style="font-size:14pt;color:white;font-weight:bold;"><center>Manager Portal</center></font>
 
                         </div>
                     </div>
+                    </a>
+                    <a asp-controller="StaffHome" asp-action="StaffDash">
+                        <div class="card" style=" opacity: 0.4; border-radius: 5%; margin-left: 100px; margin-top: 100px; margin-bottom: 20px;height:100px;width:300px;background-color:black">
 
-                </a>
+                            <div class="container" style="margin-top:30px;">
+                                <font style="font-size:14pt;color:white;font-weight:bold;"><center>Staff Portal</center></font>
+
+                            </div>
+                        </div>
+
+                    </a>
 
             </div>
 

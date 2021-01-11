@@ -1,0 +1,87 @@
+﻿
+
+@{
+    ViewData["Title"] = "Employee details";
+    Layout = "_ManagerLayout";
+}
+
+@model EmpModel
+   
+
+    <div class="content" style="height:600px">
+        <div class="navbar">
+            <font style="font-family:Cambria;color:black;font-size:13pt">
+                <a asp-controller="ManagerDash" asp-action="Dashboard" title="Back">
+                    Back to Dashboard
+                </a>
+            </font>
+        </div>
+        <br>
+        <section class="jumbotron text-center" style="height:500px;position:relative;width:95%;margin-left:2%;background-color:#f1f1f1;">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <div class="card rounded-circle" style="width: 15rem;background-color:gainsboro;border-width:medium">
+                        <img class="card-img-top rounded-circle" src="@(string.IsNullOrEmpty(Model.PhotoURL) ? "~/images/defa.png" : Model.PhotoURL)" height="240" width="60" asp-append-version="true">
+                    </div>
+                    <br> <br>
+
+
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-12">
+                    <div class="card" style="width:100%;background-color:#808080;text-align:left;font-family:Arial;color:white">
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                @Model.EmpFName @Model.EmpLName
+                                <span class="badge badge-dark" style="margin-left:50%;font-size:large"> @Model.Status</span>
+                            </h4>
+                            <h5 class="card-title" style="color:greenyellow">
+                                @Model.JobType
+                            </h5>
+                            <h7 class="card-title">Work since - @Model.WorkSince.Day-@Model.WorkSince.Month-@Model.WorkSince.Year&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Model.Gender</h7><hr>
+                            <table class="table table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">User ID</th>
+                                        <th>@Model.EmpId</th>
+
+                                    </tr>
+
+                                    <tr>
+                                        <th scope="row">Email</th>
+                                        <th>@Model.Email</th>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Mobile </th>
+                                        <th>@Model.Mobile</th>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Address</th>
+                                        <th>@(string.IsNullOrEmpty(Model.Address) ? "Address is not available" : Model.Address) </th>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Date of Birth</th>
+                                        <th>@Model.Dob.Day-@Model.Dob.Month-@Model.Dob.Year</th>
+
+                                    </tr>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </section>
+
+    </div>
+
+
+
+
+
+
+
+

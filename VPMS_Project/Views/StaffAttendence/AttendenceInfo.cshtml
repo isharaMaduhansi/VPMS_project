@@ -35,8 +35,6 @@
                     <th scope="row">Type </th>
                     <th scope="row">Status </th>
 
-
-
                 </tr>
             </thead>
             <tbody>
@@ -70,21 +68,13 @@
                         <td scope="row">@time.Type </td>
                     }
 
-                    @if (time.Status == "Present")
-                    {
-                        <td scope="row" class="text-success">@time.Status </td>
-                    }
-                    @if (time.Status == "Not Complete")
+                    @if (time.Status == "Not Complete" || time.Status == "Absent")
                     {
                         <td scope="row" class="text-danger">@time.Status </td>
                     }
-                    @if (time.Status == "Absent")
+                    else
                     {
-                        <td scope="row" class="text-danger">@time.Status </td>
-                    }
-                    @if (time.Status == "Leave On Day")
-                    {
-                        <td scope="row" class="text-primary">@time.Status </td>
+                        <td scope="row" class="text-dark">@time.Status </td>
                     }
 
                 </tr>
@@ -102,7 +92,10 @@
     <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
     <script>
         $(function () {
-            $("#example").dataTable();
+            $("#example").dataTable({
+                'paging': false,
+                'ordering': false,
+            });
         })
     </script>
 

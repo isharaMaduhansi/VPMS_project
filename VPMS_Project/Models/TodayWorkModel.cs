@@ -10,5 +10,7 @@ namespace VPMS_Project.Models
         public String EmpName { get; set; }
 
         public String Designation { get; set; }
+
+        public String PhotoURL { get; set; }
     }
 }

@@ -1,0 +1,57 @@
+﻿@using VPMS_Project.Models;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@model LeaveApplyModel
+
+
+<br>
+<div class="card bg-light" style="margin-bottom:30px;margin-left:5%;width:90%;height:600px">
+    <div class="card-header text-center" style="font-size:16pt;font-family:'Cambria Math'">
+        <h4 class="card-title ">
+            Leave Report  
+        </h4>
+        
+    </div>
+    <div class="card-body">
+        <blockquote class="blockquote mb-0">
+            <font style="color:forestgreen;font-size:14pt">  Employee </font> - @Model.EmpName
+        </blockquote><br>
+        <table class="table table-striped">
+            <tbody>
+                <tr style="line-height:30px">
+                    <th colspan="2" scope="row">Leave Type</th>
+                    <td colspan="2">@Model.LeaveType</td>
+                </tr>
+                <tr style="line-height:30px">
+                    <th>Start Date </th>
+                    <td>@Model.Startdate.Day-@Model.Startdate.Month-@Model.Startdate.Year</td>
+                    <th>End Date </th>
+                    <td> @Model.EndDate.Day-@Model.EndDate.Month-@Model.EndDate.Year</td>
+                </tr>
+                <tr style="line-height:30px">
+                    <th colspan="2" scope="row">No of Days</th>
+                    <td colspan="2">@Model.NoOfDays Days</td>
+                </tr>
+                <tr style="line-height:30px">
+                    <th colspan="2" scope="row">Reason</th>
+                    <td colspan="2">@Model.Reason</td>
+                </tr>
+                <tr style="line-height:30px">
+                    <th colspan="2" scope="row">Applied On</th>
+                    <td colspan="2">@Model.AppliedDate.Day-@Model.AppliedDate.Month-@Model.AppliedDate.Year</td>
+                </tr>
+                <tr style="line-height:30px">
+                    <th colspan="2" scope="row">Recommender Name</th>
+                    <td colspan="2">@Model.RecommendName</td>
+                </tr>
+                <tr style="line-height:30px">
+                    <th colspan="2" scope="row">Approver Name</th>
+                    <td colspan="2">@Model.ApproverName</td>
+                </tr>
+
+            </tbody>
+        </table>
+
+
+    </div>
+</div>

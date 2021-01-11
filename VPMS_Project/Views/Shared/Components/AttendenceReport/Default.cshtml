@@ -1,0 +1,62 @@
+﻿@using VPMS_Project.Models;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@model MarkAttendenceModel
+
+
+<br>
+<div class="card bg-light" style="margin-bottom:30px;margin-left:5%;width:90%;height:600px">
+    <div class="card-header text-center" style="font-size:16pt;font-family:'Cambria Math'">
+        <h4 class="card-title ">
+            Attendence Report
+        </h4>
+
+    </div>
+    <div class="card-body">
+        <blockquote class="blockquote mb-0">
+            <font style="color:forestgreen;font-size:14pt">  Employee </font> - @Model.EmpName
+        </blockquote><br>
+        <table class="table table-striped">
+            <tbody>
+                <tr style="line-height:40px">
+                    <th>Date</th>
+                    <td>@Model.Date.Day-@Model.Date.Month-@Model.Date.Year</td>
+                </tr>
+                <tr style="line-height:30px">
+                    <th scope="row">Status</th>
+                    <td>@Model.Status</td>
+                </tr>
+               
+                <tr style="line-height:30px">
+                    <th>In Time </th>
+                    <td> @((Model.Status=="Leave On Day") ? "None " : Model.InTime.ToString("hh:mm tt"))</td>
+                </tr>
+                <tr style="line-height:40px">
+
+                    <th>Out Time</th>
+                    <td> @((Model.Status=="Leave On Day") ? "None " : Model.OutTime.ToString("hh:mm tt")) </td>
+                </tr>
+
+                @{
+                    var timeSpan1 = TimeSpan.FromHours(Model.TotalHours);
+                    int hh1 = timeSpan1.Hours;
+                    int mm1 = timeSpan1.Minutes;
+                    String total = hh1 + " hours " + mm1 + " minutes";
+
+                }
+                <tr style="line-height:40px">
+                    <th scope="row">Total Hours</th>
+                    <td>@((Model.Status=="Leave On Day") ? "None " : total+" Days")</td>
+                </tr>
+
+                <tr style="line-height:40px">
+                    <th scope="row">Type</th>
+                    <td> @((Model.Status=="Leave On Day") ? "None " : Model.Type)</td>
+                </tr>
+
+            </tbody>
+        </table>
+
+
+    </div>
+</div>

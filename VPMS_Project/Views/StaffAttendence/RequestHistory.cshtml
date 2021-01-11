@@ -48,53 +48,50 @@
                 @foreach (var time in Model)
                 {
 
-                    <tr style="line-height: 60px">
+                <tr style="line-height: 60px">
 
-                        <td scope="row">@time.Date.Day-@time.Date.Month-@time.Date.Year </td>
-                        <td scope="row">@time.InTime.ToString("hh:mm tt")</td>
-                        <td scope="row">@time.OutTime.ToString("hh:mm tt") </td>
+                    <td scope="row">@time.Date.Day-@time.Date.Month-@time.Date.Year </td>
+                    <td scope="row">@time.InTime.ToString("hh:mm tt")</td>
+                    <td scope="row">@time.OutTime.ToString("hh:mm tt") </td>
 
 
-                        @{
+                    @{
 
-                            var timeSpan1 = TimeSpan.FromHours(time.TotalHours);
-                            int hh1 = timeSpan1.Hours;
-                            int mm1 = timeSpan1.Minutes;
-                            String total = hh1 + " h " + mm1 + " min";
-                        }
+                        var timeSpan1 = TimeSpan.FromHours(time.TotalHours);
+                        int hh1 = timeSpan1.Hours;
+                        int mm1 = timeSpan1.Minutes;
+                        String total = hh1 + " h " + mm1 + " min";
+                    }
 
-                        @{
+                    @{
 
-                            var timeSpan2 = TimeSpan.FromHours(time.BreakingHours);
-                            int hh2 = timeSpan2.Hours;
-                            int mm2 = timeSpan2.Minutes;
-                            String Break = hh2 + " h " + mm2 + " min";
-                        }
-                        @{
-                            var timeSpan3 = TimeSpan.FromHours(time.WorkingHours);
-                            int hh3 = timeSpan3.Hours;
-                            int mm3 = timeSpan3.Minutes;
-                            String Work = hh3 + " h " + mm3 + " min";
-                        }
-                        <td scope="row">@total </td>
-                        <td scope="row">@Break </td>
-                        <td scope="row">@Work </td>
-                        <td scope="row">@time.Explanation </td>
+                        var timeSpan2 = TimeSpan.FromHours(time.BreakingHours);
+                        int hh2 = timeSpan2.Hours;
+                        int mm2 = timeSpan2.Minutes;
+                        String Break = hh2 + " h " + mm2 + " min";
+                    }
+                    @{
+                        var timeSpan3 = TimeSpan.FromHours(time.WorkingHours);
+                        int hh3 = timeSpan3.Hours;
+                        int mm3 = timeSpan3.Minutes;
+                        String Work = hh3 + " h " + mm3 + " min";
+                    }
+                    <td scope="row">@total </td>
+                    <td scope="row">@Break </td>
+                    <td scope="row">@Work </td>
+                    <td scope="row">@time.Explanation </td>
 
-                        @if (time.Status == "Pending")
-                        {
-                            <td scope="row">@time.Status </td>
-                        }
-                        @if (time.Status == "Approved")
-                        {
-                            <td scope="row" class="text-success">@time.Status </td>
-                        }
-                        @if (time.Status == "Not Approved")
-                        {
-                            <td scope="row" class="text-danger">@time.Status </td>
-                        }
 
-                    </tr>
+                    @if (time.Status == "Not Approved")
+                    {
+                        <td scope="row" class="text-danger">@time.Status </td>
+                    }
+                    else
+                    {
+                        <td scope="row">@time.Status </td>
+                    }
+
+                </tr>
                 }
 
             </tbody>

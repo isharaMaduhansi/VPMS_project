@@ -23,6 +23,8 @@ namespace VPMS_Project.Models
         [Required(ErrorMessage = "Last name field is required")]
         public String EmpLName { get; set; }
 
+        public String EmpFullName { get; set; }
+
 
 
         [DataType(DataType.EmailAddress)]

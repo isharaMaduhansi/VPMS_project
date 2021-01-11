@@ -200,12 +200,10 @@ namespace VPMS_Project.Controllers
         public async Task<IActionResult> leaveDetails(string Search = null)
         {
             var data = await _empRepository.GetSearchEmps(Search);
-
             if (data == null)
             {
                 return RedirectToAction(nameof(leaveDetails));
             }
-
             return View(data);
         }
 

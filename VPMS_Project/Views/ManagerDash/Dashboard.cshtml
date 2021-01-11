@@ -1,0 +1,48 @@
+﻿@{
+    Layout = "_ManagerLayout";
+    ViewData["Title"] = "Dashboard";
+
+}
+@model EmpModel
+
+    <div class="content" style="height:600px;">
+        <div class="navbar">
+            <h4 style="font-family:Cambria;color:black;">
+
+                <a asp-controller="EmployeeHome" asp-action="Portal" title="Back">
+                    <i class='fas fa-arrow-left' style="margin-right:15px;color:black;font-size:14pt"></i>
+                </a>Dashboard
+            </h4>
+        </div>
+        <hr>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8"></div>
+                <div class="col-md-4 text-center">
+                    <div class="jumbotron jumbotron-fluid" style="height:320px">
+                        <h1 class="display-4">Employee Details</h1>
+                        <form class="form-inline" method="get" asp-action="ViewEmp" asp-controller="ManagerDash">
+                            <div class="container">
+                                <select asp-for="EmpId" class="form-control custom-select" asp-items="ViewBag.Emps" style="height:45px;border: none;width:100%">
+                                    <option value="">Choose a employee</option>
+                                </select>
+                                <input class="btn btn-success" type="submit" value="Select" style="line-height:25px;width:100%;background-color:#173A47;margin-top:5px;" />
+                                <span asp-validation-for="EmpId" class="text-danger"></span>
+                            </div>
+                        </form>
+
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+

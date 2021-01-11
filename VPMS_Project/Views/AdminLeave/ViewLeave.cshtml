@@ -53,18 +53,14 @@
                         }
                     </td>
                     <td>
-                        @if (leave.Status == "Waiting for Recommendation" || leave.Status == "Waiting for Approval")
-                        {
-                            <div>@leave.Status</div>
-                        }
 
                         @if (leave.Status == "Not Approved" || leave.Status == "Not Recommended")
                         {
                             <div class="text-danger">@leave.Status</div>
                         }
-                        @if (leave.Status == "Approved")
+                        else
                         {
-                            <div class="text-success">@leave.Status</div>
+                    <div>@leave.Status</div>
                         }
 
 
