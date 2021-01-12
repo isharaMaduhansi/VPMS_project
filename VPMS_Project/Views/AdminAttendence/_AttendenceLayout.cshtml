@@ -33,8 +33,10 @@
             <a asp-controller="AdminAttendence" asp-action="ViewAttendence" class="btn-block" style="line-height:15px"><i class='fas fa-info-circle' style="margin-right:5px"></i> Attendence Details</a>
             <a asp-controller="AdminAttendence" asp-action="AttApprove" class="btn-block" style="line-height:15px"><i class='fas fa-calendar-check' style="margin-right:5px"></i> Attendence Approval</a>
 
+            <br>
         </div>
     </header>
+
 
 
     <main role="main">
@@ -61,20 +63,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
 
     @RenderSection("Attendence", required: false)
-    <script>
-        var header = document.getElementById("myDIV");
-        var btns = header.getElementsByClassName("btn-block");
-        for (var i = 0; i < btns.length; i++) {
-            btns[i].addEventListener("click", function () {
-                var current = document.getElementsByClassName("active");
-
-                current[0].className = current[0].className.replace(" active", "");
-                this.className += " active";
-
-            });
-        }
-
-
-    </script>
-</body>
+   
+    </body>
 </html>

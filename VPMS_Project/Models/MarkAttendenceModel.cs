@@ -24,5 +24,8 @@ namespace VPMS_Project.Models
 
         public String Type { get; set; }
 
+        public String PhotoURL { get; set; }
+
+
     }
 }

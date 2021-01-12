@@ -70,6 +70,7 @@ namespace VPMS_Project.Repository
         public async Task<bool> UpdateTrack(TimeTrackerModel timeTrackerModel)
         {
          
+            var Hours= await _context.StandardWorkHours.FindAsync(1);
             var track = await _context.TimeTracker.FindAsync(timeTrackerModel.TrackId);
             track.OutTime = DateTime.Now;
             track.TotalHours = timeTrackerModel.TotalHours;
@@ -81,7 +82,7 @@ namespace VPMS_Project.Repository
             _context.Entry(track).State = EntityState.Modified;
             await _context.SaveChangesAsync();
 
-            if (timeTrackerModel.TotalHours>=10) 
+            if (timeTrackerModel.TotalHours>= Hours.NoOfHours) 
             {
                 var info = _context.MarkAttendence.SingleOrDefault(x => (x.EmpId == track.EmpId) && (x.Date == DateTime.Now.Date));
                 if (info == null)

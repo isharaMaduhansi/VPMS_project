@@ -47,5 +47,11 @@ namespace VPMS_Project.Controllers
             }
 
         }
+
+        public async Task<IActionResult> NotUpdated()
+        {
+            var data = await _attendenceRepo.EmpNotUpdate();
+            return View(data);
+        }
     }
 }

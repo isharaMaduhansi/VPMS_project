@@ -8,116 +8,117 @@
 }
 @model IEnumerable<AttendenceModel>
 
-<div style="margin-left:20%;height:600px;">
-    <div class="navbar">
-        <h3 style="font-family:Cambria;color:black;">
-            <br>
-            <a asp-controller="EmployeeHome" asp-action="EmpIndex" title="Back">
-                <i class='fas fa-arrow-left' style="margin-right:15px;color:black;font-size:14pt"></i>
-            </a>Attendence Request Approval
-        </h3>
-    </div>
-    <hr>
-
-
-    <br>
-    <div style="margin-left:2%;width:90%">
-        @if (ViewBag.IsApprove == true)
-        {
-            <div class="alert alert-success alert-dismissible fade show container" role="alert">
-                 Request Approved.
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        }
-        @if (ViewBag.IsNotApprove == true)
-        {
-            <div class="alert alert-success alert-dismissible fade show container" role="alert">
-                Request Rejected.
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        }
-    </div>
-    <br>
-    @if (Model.Count() == 0)
-    {
-        <div style="margin-left:4%;width:85%">
-            <partial name="_Message" />
+    <div style="margin-left:20%;height:600px;">
+        <div class="navbar">
+            <h3 style="font-family:Cambria;color:black;">
+                <br>
+                <a asp-controller="EmployeeHome" asp-action="EmpIndex" title="Back">
+                    <i class='fas fa-arrow-left' style="margin-right:15px;color:black;font-size:14pt"></i>
+                </a>Attendence Request Approval
+            </h3>
         </div>
-    }
+        <hr>
 
-    @foreach (var attendence in Model)
-    {
-        <div class="card bg-light" style="margin-bottom:30px;margin-left:2%;width:90%">
-            <div class="card-header" style="font-size:13pt;display:flex;justify-content:space-between;background-color:lightgray">
-                <font class="card-title">
-                    <b> @attendence.EmpName - </b> &nbsp;
-                    <span style="font-size:11pt">
-                        @attendence.Designation
-                    </span>
-                </font>
-                <font class="card-title text-sm" style="font-size:11pt">
-                    <a asp-controller="AdminAttendence" asp-action="SeeAttendenceInfo" asp-route-id="@attendence.EmpId"><u>View his/her Attendence Info</u></a>
 
-                </font>
+        <br>
+        <div style="margin-left:2%;width:90%">
+            @if (ViewBag.IsApprove == true)
+            {
+                <div class="alert alert-success alert-dismissible fade show container" role="alert">
+                    Request Approved.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            }
+            @if (ViewBag.IsNotApprove == true)
+            {
+                <div class="alert alert-success alert-dismissible fade show container" role="alert">
+                    Request Rejected.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            }
+        </div>
+        <br>
+        @if (Model.Count() == 0)
+        {
+            <div style="margin-left:4%;width:85%">
+                <partial name="_Message" />
             </div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-4">
-                        <blockquote class="blockquote mb-0">
-                            Request for @attendence.Date.Day-@attendence.Date.Month-@attendence.Date.Year
-                        </blockquote>
-                        <div style="margin-top:10px"><i class='far fa-calendar-alt'></i>  Applied Date : @attendence.AppliedDate.Day - @attendence.AppliedDate.Month - @attendence.AppliedDate.Year</div>
-                        <p style="font-size:12pt;margin-top:5px"><i class='far fa-meh'></i> Explanation : @attendence.Explanation</p>
-                    </div>
-                    <div class="col-md-4">
-                        <div style="margin-top:8px"><i class='far fa-calendar-alt'></i>  In-Time : @attendence.InTime.ToString("hh:mm tt") </div>
-                        <div style="margin-top:8px"><i class='far fa-calendar-alt'></i>  Out-Time : @attendence.OutTime.ToString("hh:mm tt")</div>
-                        @{
+        }
 
-                            var timeSpan1 = TimeSpan.FromHours(attendence.TotalHours);
-                            int hh1 = timeSpan1.Hours;
-                            int mm1 = timeSpan1.Minutes;
-                            String total = hh1 + " h " + mm1 + " min";
-                        }
-                        @{
-                            var timeSpan2 = TimeSpan.FromHours(attendence.BreakingHours);
-                            int hh2 = timeSpan2.Hours;
-                            int mm2 = timeSpan2.Minutes;
-                            String Break = hh2 + " h " + mm2 + " min";
-                        }
-                        @{
-                            var timeSpan3 = TimeSpan.FromHours(attendence.WorkingHours);
-                            int hh3 = timeSpan3.Hours;
-                            int mm3 = timeSpan3.Minutes;
-                            String Work = hh3 + " h " + mm3 + " min";
-                        }
-                        <div style="margin-top:8px"><i class='far fa-calendar-alt'></i>  Break Time : @Break</div>
+        @foreach (var attendence in Model)
+        {
+            <div class="card bg-light" style="margin-bottom:30px;margin-left:2%;width:90%">
+                <div class="card-header" style="font-size:13pt;display:flex;justify-content:space-between;background-color:lightgray">
+                    <font class="card-title">
+                        <b> @attendence.EmpName - </b> &nbsp;
+                        <span style="font-size:11pt">
+                            @attendence.Designation
+                        </span>
+                    </font>
+                    <font class="card-title text-sm" style="font-size:11pt">
+                        <a asp-controller="AdminAttendence" asp-action="SeeAttendenceInfo" asp-route-id="@attendence.EmpId"><u>View his/her Attendence Info</u></a>
 
-                    </div>
-                    <div class="col-md-4">
-                        <div style="margin-top:5px;font-size:13pt"><i class='far fa-calendar-alt'></i>  Total Hours : @total</div>
-                        <div style="margin-top:5px;font-size:13pt"><i class='far fa-calendar-alt'></i>  Working Hours : @Work</div>
-                        <div style="margin-top:15px">
-                            <a asp-controller="AdminAttendence" asp-action="RequestApprove" asp-route-id="@attendence.AttendenceId" onclick="return confirm('Do you want to approve this attendence request ? ')" type="button" class="btn btn-outline-primary btn-sm btn-block">
-                                <i class='far fa-check-square'></i> Approved
-                            </a>
+                    </font>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <blockquote class="blockquote mb-0">
+                                Request for @attendence.Date.Day-@attendence.Date.Month-@attendence.Date.Year
+                            </blockquote>
+                            <div style="margin-top:10px"><i class='far fa-calendar-alt'></i>  Applied Date : @attendence.AppliedDate.Day - @attendence.AppliedDate.Month - @attendence.AppliedDate.Year</div>
+                            <p style="font-size:12pt;margin-top:5px"><i class='far fa-meh'></i> Explanation : @attendence.Explanation</p>
                         </div>
-                        <div style="margin-top:6px">
-                            <a asp-controller="AdminAttendence" asp-action="RequestNotApprove" asp-route-id="@attendence.AttendenceId" onclick="return confirm('Do you want to deny this attendence request ? ')" type="button" class="btn btn-outline-danger btn-sm btn-block">
-                                <i class='fas fa-times'></i> Not Approved
-                            </a>
+                        <div class="col-md-4">
+                            <div style="margin-top:8px"><i class='far fa-calendar-alt'></i>  In-Time : @attendence.InTime.ToString("hh:mm tt") </div>
+                            <div style="margin-top:8px"><i class='far fa-calendar-alt'></i>  Out-Time : @attendence.OutTime.ToString("hh:mm tt")</div>
+                            @{
+
+                                var timeSpan1 = TimeSpan.FromHours(attendence.TotalHours);
+                                int hh1 = timeSpan1.Hours;
+                                int mm1 = timeSpan1.Minutes;
+                                String total = hh1 + " h " + mm1 + " min";
+                            }
+                            @{
+                                var timeSpan2 = TimeSpan.FromHours(attendence.BreakingHours);
+                                int hh2 = timeSpan2.Hours;
+                                int mm2 = timeSpan2.Minutes;
+                                String Break = hh2 + " h " + mm2 + " min";
+                            }
+                            @{
+                                var timeSpan3 = TimeSpan.FromHours(attendence.WorkingHours);
+                                int hh3 = timeSpan3.Hours;
+                                int mm3 = timeSpan3.Minutes;
+                                String Work = hh3 + " h " + mm3 + " min";
+                            }
+                            <div style="margin-top:8px"><i class='far fa-calendar-alt'></i>  Break Time : @Break</div>
+
+                        </div>
+                        <div class="col-md-4">
+                            <div style="margin-top:5px;font-size:13pt"><i class='far fa-calendar-alt'></i>  Total Hours : @total</div>
+                            <div style="margin-top:5px;font-size:13pt"><i class='far fa-calendar-alt'></i>  Working Hours : @Work</div>
+                            <div style="margin-top:15px">
+                                <a asp-controller="AdminAttendence" asp-action="RequestApprove" asp-route-id="@attendence.AttendenceId" onclick="return confirm('Do you want to approve this attendence request ? ')" type="button" class="btn btn-outline-primary btn-sm btn-block">
+                                    <i class='far fa-check-square'></i> Approved
+                                </a>
+                            </div>
+                            <div style="margin-top:6px">
+                                <a asp-controller="AdminAttendence" asp-action="RequestNotApprove" asp-route-id="@attendence.AttendenceId" onclick="return confirm('Do you want to deny this attendence request ? ')" type="button" class="btn btn-outline-danger btn-sm btn-block">
+                                    <i class='fas fa-times'></i> Not Approved
+                                </a>
+                            </div>
+
                         </div>
 
                     </div>
-
                 </div>
             </div>
-        </div>
 
 
-    }
-</div>
+        }
+
+    </div>

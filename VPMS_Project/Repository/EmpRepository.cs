@@ -21,8 +21,8 @@ namespace VPMS_Project.Repository
 
         public async Task<List<EmpModel>> GetActiveEmps()
         {
-          return await (from a in _context.Employees
-                          join b in _context.Job on a.JobTitleId equals b.JobId
+          return await (from a in _context.Employees.Where(x => (x.Status == "Active"))
+                        join b in _context.Job on a.JobTitleId equals b.JobId
                           select new EmpModel()
                           {
                               EmpId = a.EmpId,

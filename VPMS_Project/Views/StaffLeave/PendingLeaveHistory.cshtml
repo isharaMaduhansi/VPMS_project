@@ -24,12 +24,12 @@
 
         @if (ViewBag.IsDelete == true)
         {
-        <div class="alert alert-success alert-dismissible fade show container" role="alert">
-        <strong>Succesffully Deleted!</strong>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-        </div>
+            <div class="alert alert-success alert-dismissible fade show container" role="alert">
+                <strong>Succesffully Deleted!</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
         }
     </div>
     <br>
@@ -46,7 +46,7 @@
                     </span>
                 </font>
                 <font class="card-title" style="font-size:11pt">
-                   
+
                     @if (leave.Status == "Waiting for Recommendation")
                     {
 
@@ -57,7 +57,7 @@
                     @if (leave.Status == "Waiting for Approval")
                     {
 
-                        <font class="text-muted" >Edit not permitted</font>
+                        <font class="text-muted">Edit not permitted</font>
                     }
                 </font>
             </div>
@@ -83,7 +83,7 @@
                 </div>
             </div>
         </div>
-       
+
 
     }
 

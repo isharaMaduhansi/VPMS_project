@@ -9,7 +9,14 @@
 
 <div class="content">
     <partial name="_Menu" />
-    <br><br><br>
+    <br>
+    <div aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="EmployeeHome" asp-action="Portal">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Leave</li>
+        </ol>
+    </div>
+    <br><br>
     @*calander / upcoming leaves*@
     <div class="row">
         <div class="col-md-8" style="margin-left:2%">

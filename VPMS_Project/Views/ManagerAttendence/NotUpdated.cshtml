@@ -1,0 +1,85 @@
+﻿@{
+    Layout = "_ManagerLayout";
+    ViewData["Title"] = "View Attendence";
+
+}
+@model IEnumerable<MarkAttendenceModel>
+
+   
+
+    <div class="content" style="height:600px;">
+        <br>
+        <div class="navbar">
+            <h3 style="font-family:Cambria;color:black;">
+
+                <a asp-action="Attendence" asp-controller="ManagerAttendence" title="Back">
+                    <i class='fas fa-arrow-left' style="margin-right:15px;color:black;font-size:14pt"></i>
+                </a>Attendence Not Manually Updated Employees
+            </h3>
+
+        </div>
+        <br><br>
+        <div class="table-responsive col-sm-10 col-md-12 col-xm-12">
+            <table class="table table-hover " id="example" width="100%" cellspacing="0">
+
+                <thead>
+                    <tr style="line-height: 30px">
+
+                        <th scope="row"></th>
+                        <th scope="row">Employee</th>
+                        <th scope="row">Date</th>
+                        <th scope="row" class="text-center">Issue</th>
+
+
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var emp in Model)
+                    {
+
+                        <tr style="line-height: 70px">
+
+                            <td scope="row">
+                                <div class="rounded-circle" style="width:3.2rem;background-color:gainsboro;border-width:medium">
+                                    <img class="card-img-top rounded-circle" src="@(string.IsNullOrEmpty(emp.PhotoURL) ? "~/images/defa.png" : emp.PhotoURL)" height="50" width="20">
+                                </div>
+                            </td>
+
+                            <td scope="row">@emp.EmpName </td>
+                            <td scope="row">@emp.Date.Day-@emp.Date.Month-@emp.Date.Year </td>
+
+                            @if (emp.Status == "Not Complete")
+                            {
+                                <td scope="row" class="text-center">Standard Work Hours Not Complete </td>
+                            }
+                            @if ((emp.Status == "Absent") && (emp.Type == "Auto"))
+                            {
+                                <td scope="row" class="text-center">Out Time Not Marked</td>
+
+                            }
+
+
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+
+    @section Manager{
+        <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+        <script>
+            $(function () {
+                $("#example").dataTable();
+            })
+        </script>
+
+
+
+    }

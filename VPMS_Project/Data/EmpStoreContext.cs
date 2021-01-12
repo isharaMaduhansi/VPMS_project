@@ -25,6 +25,8 @@ namespace VPMS_Project.Data
 
         public DbSet<MarkAttendence> MarkAttendence { get; set; }
 
+        public DbSet<StandardWorkHours> StandardWorkHours { get; set; }
+
 
     }
 }

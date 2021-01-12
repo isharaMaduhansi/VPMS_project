@@ -14,6 +14,12 @@
 <div class="content">
     <partial name="_Menu" />
     <br>
+    <div aria-label="breadcrumb" class="container">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="EmployeeHome" asp-action="Portal">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Attendence</li>
+        </ol>
+    </div>
     <div class="navbar" style="background-color:white">
         <h3 style="font-family:Cambria;color:#173A47;">
             Attendence Info
@@ -42,42 +48,42 @@
                 @foreach (var time in Model)
                 {
 
-                <tr style="line-height: 60px">
+                    <tr style="line-height: 60px">
 
-                    <td scope="row">@time.Date.Day-@time.Date.Month-@time.Date.Year </td>
-                    @if (time.Status == "Leave On Day")
-                    {
-                        <td scope="row" class="text-center">-</td>
-                        <td scope="row" class="text-center">-</td>
-                        <td scope="row" class="text-center">-</td>
-                        <td scope="row" class="text-center">-</td>
+                        <td scope="row">@time.Date.Day-@time.Date.Month-@time.Date.Year </td>
+                        @if (time.Status == "Leave On Day")
+                        {
+                            <td scope="row" class="text-center">-</td>
+                            <td scope="row" class="text-center">-</td>
+                            <td scope="row" class="text-center">-</td>
+                            <td scope="row" class="text-center">-</td>
 
-                    }
-                    else
-                    {
-                        <td scope="row">@time.InTime.ToString("hh:mm tt")</td>
-                        <td scope="row">@time.OutTime.ToString("hh:mm tt") </td>
+                        }
+                        else
+                        {
+                            <td scope="row">@time.InTime.ToString("hh:mm tt")</td>
+                            <td scope="row">@time.OutTime.ToString("hh:mm tt") </td>
 
-                        var timeSpan1 = TimeSpan.FromHours(time.TotalHours);
-                        int hh1 = timeSpan1.Hours;
-                        int mm1 = timeSpan1.Minutes;
-                        String total = hh1 + " h " + mm1 + " min";
+                            var timeSpan1 = TimeSpan.FromHours(time.TotalHours);
+                            int hh1 = timeSpan1.Hours;
+                            int mm1 = timeSpan1.Minutes;
+                            String total = hh1 + " h " + mm1 + " min";
 
 
-                        <td scope="row">@total </td>
-                        <td scope="row">@time.Type </td>
-                    }
+                            <td scope="row">@total </td>
+                            <td scope="row">@time.Type </td>
+                        }
 
-                    @if (time.Status == "Not Complete" || time.Status == "Absent")
-                    {
-                        <td scope="row" class="text-danger">@time.Status </td>
-                    }
-                    else
-                    {
-                        <td scope="row" class="text-dark">@time.Status </td>
-                    }
+                        @if (time.Status == "Not Complete" || time.Status == "Absent")
+                        {
+                            <td scope="row" class="text-danger">@time.Status </td>
+                        }
+                        else
+                        {
+                            <td scope="row" class="text-dark">@time.Status </td>
+                        }
 
-                </tr>
+                    </tr>
                 }
 
             </tbody>

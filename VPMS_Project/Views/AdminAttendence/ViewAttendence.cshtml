@@ -8,77 +8,80 @@
 
 @model IEnumerable<EmpModel>
 
-<div style="margin-left:20%;height:800px;">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8" style="margin-left:1px">
-                <div class="jumbotron jumbotron-fluid" style="height:300px">
-                    <div class="container">
-                        <h1 class="display-4">Attendence Details</h1>
-                        <p class="lead" style="padding-bottom:10px">Search employee by name or designation to see their attendence details and get attendence reports.</p>
-                        <form class="form-inline" method="get" asp-action="ViewAttendence" asp-controller="AdminAttendence">
-                            <input class="form-control-lg mr-lg-2" type="search" placeholder="Name or Designation" aria-label="Search" name="Search" />
-                            <input class="btn btn-success" type="submit" value="Search" style="line-height:30px;width:80px;background-color:#173A47" onclick="help()" />
-                            <a asp-controller="EmployeeHome" asp-action="EmpIndex" class="btn btn-success" style="background-color:#173A47;line-height:30px;margin-left:3%;width:80px;">Back</a>
-                        </form>
+    <div style="margin-left:20%;height:800px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8" style="margin-left:1px">
+                    <div class="jumbotron jumbotron-fluid" style="height:300px">
+                        <div class="container">
+                            <h1 class="display-4">Attendence Details</h1>
+                            <p class="lead" style="padding-bottom:10px">Search employee by name or designation to see their attendence details and get attendence reports.</p>
+                            <form class="form-inline" method="get" asp-action="ViewAttendence" asp-controller="AdminAttendence">
+                                <input class="form-control-lg mr-lg-2" type="search" placeholder="Name or Designation" aria-label="Search" name="Search" />
+                                <input class="btn btn-success" type="submit" value="Search" style="line-height:30px;width:80px;background-color:#173A47" onclick="help()" />
+                                <a asp-controller="EmployeeHome" asp-action="EmpIndex" class="btn btn-success" style="background-color:#173A47;line-height:30px;margin-left:3%;width:80px;">Back</a>
+                            </form>
+                        </div>
+                    </div>
+
+                    <br> <br>
+                    <div class="row">
+                        <div class="table-responsive col-sm-12 col-md-12">
+                            <table class="table table-hover ">
+                                <thead>
+                                </thead>
+                                <tbody>
+
+                                    @foreach (var emp in Model)
+                                    {
+                                        <tr style="line-height: 40px">
+                                            <th scope="row">
+                                                <a asp-controller="AdminLeave" asp-action="SeeLeaveAllocation" asp-route-id="@emp.EmpId">
+                                                    <div class="rounded-circle" style="width: 3.5rem;background-color:gainsboro;border-width:medium">
+                                                        <img class="card-img-top rounded-circle" src="@(string.IsNullOrEmpty(emp.PhotoURL) ? "~/images/defa.png" : emp.PhotoURL)" height="55" width="20" asp-append-version="true">
+                                                    </div>
+                                                </a>
+                                            </th>
+                                            <td> @emp.EmpFName @emp.EmpLName<br><font style="color:forestgreen;font-size:11pt;margin-bottom:0px"> EmpId : @emp.EmpId</font></td>
+                                            <td>
+                                                @emp.JobType
+
+                                            </td>
+                                            <td><a asp-controller="AdminAttendence" asp-action="SeeAttendenceInfo" asp-route-id=" @emp.EmpId" class="text-success">See Attendence Info</a></td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            <br>
+                            @if (Model.Count() == 0)
+                            {
+                                <div class="find" style="margin-left:20%" id="img">
+                                    Search Employees to get their attendence info
+                                    <img src="~/images/sea.jpg" style="width:50%;height:auto" />
+                                </div>
+                            }
+                        </div>
                     </div>
                 </div>
+                <div class="col-md-3">
+                    @await Component.InvokeAsync("WorkHours");
+                   
+                    @await Component.InvokeAsync("TodayWorker")
 
-                <br> <br>
-                <div class="row">
-                    <div class="table-responsive col-sm-12 col-md-12">
-                        <table class="table table-hover ">
-                            <thead>
-                            </thead>
-                            <tbody>
-
-                                @foreach (var emp in Model)
-                                {
-                                    <tr style="line-height: 40px">
-                                        <th scope="row">
-                                            <a asp-controller="AdminLeave" asp-action="SeeLeaveAllocation" asp-route-id="@emp.EmpId">
-                                                <div class="rounded-circle" style="width: 3.5rem;background-color:gainsboro;border-width:medium">
-                                                    <img class="card-img-top rounded-circle" src="@(string.IsNullOrEmpty(emp.PhotoURL) ? "~/images/defa.png" : emp.PhotoURL)" height="55" width="20" asp-append-version="true">
-                                                </div>
-                                            </a>
-                                        </th>
-                                        <td> @emp.EmpFName @emp.EmpLName<br><font style="color:forestgreen;font-size:11pt;margin-bottom:0px"> EmpId : @emp.EmpId</font></td>
-                                        <td>
-                                            @emp.JobType
-
-                                        </td>
-                                        <td><a asp-controller="AdminAttendence" asp-action="SeeAttendenceInfo" asp-route-id=" @emp.EmpId" class="text-success">See Attendence Info</a></td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-                        <br>
-                        @if (Model.Count() == 0)
-                        {
-                            <div class="find" style="margin-left:20%" id="img">
-                                Search Employees to get their attendence info
-                                <img src="~/images/sea.jpg" style="width:50%;height:auto" />
-                            </div>
-                        }
-                    </div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <br>
-                @await Component.InvokeAsync("TodayWorker")
-                
-            </div>
+
         </div>
 
-
+        
     </div>
-</div>
 
 
 @section Attendence
 {
 
     <script>
+
     $(document).ready(function () {
         $("input").click(function () {
             $(".find").hide(2000);

@@ -29,12 +29,12 @@
                
                 <tr style="line-height:30px">
                     <th>In Time </th>
-                    <td> @((Model.Status=="Leave On Day") ? "None " : Model.InTime.ToString("hh:mm tt"))</td>
+                    <td> @((Model.Status=="Leave On Day")  ? "None " : Model.InTime.ToString("hh:mm tt"))</td>
                 </tr>
                 <tr style="line-height:40px">
 
                     <th>Out Time</th>
-                    <td> @((Model.Status=="Leave On Day") ? "None " : Model.OutTime.ToString("hh:mm tt")) </td>
+                    <td> @(((Model.Status=="Leave On Day") || ((Model.Status == "Absent") && (Model.Type == "Auto"))) ? "None " : Model.OutTime.ToString("hh:mm tt")) </td>
                 </tr>
 
                 @{
@@ -46,7 +46,7 @@
                 }
                 <tr style="line-height:40px">
                     <th scope="row">Total Hours</th>
-                    <td>@((Model.Status=="Leave On Day") ? "None " : total+" Days")</td>
+                    <td>@(((Model.Status=="Leave On Day") || ((Model.Status == "Absent") && (Model.Type == "Auto"))) ? "None " : total)</td>
                 </tr>
 
                 <tr style="line-height:40px">

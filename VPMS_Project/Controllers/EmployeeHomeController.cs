@@ -62,7 +62,7 @@ namespace VPMS_Project.Controllers
                     var timeSpan = TimeSpan.FromHours(dc3);
                     int hh = timeSpan.Hours;
                     int mm = timeSpan.Minutes;
-                    ViewBag.Work = hh+"h "+mm+"m";
+                    ViewBag.Work = hh+"h "+mm+" min";
                     ViewBag.Out = "Not been enterd";
                   
 
@@ -80,7 +80,7 @@ namespace VPMS_Project.Controllers
                     var timeSpan = TimeSpan.FromHours(dc3);
                     int hh = timeSpan.Hours;
                     int mm = timeSpan.Minutes;
-                    ViewBag.Work = hh + "h " + mm + "m";
+                    ViewBag.Work = hh + "h " + mm + " min";
                     ViewBag.Out = data.OutTime.ToString("hh:mm tt");
                     
                 }

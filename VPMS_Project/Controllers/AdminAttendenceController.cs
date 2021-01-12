@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using VPMS_Project.Models;
 using VPMS_Project.Repository;
 
 namespace VPMS_Project.Controllers
@@ -42,6 +43,8 @@ namespace VPMS_Project.Controllers
             return View();
         }
 
+
+
         public async Task<IActionResult> AttApprove(bool isApprove = false, bool isNotApprove = false)
         {
             ViewBag.IsApprove = isApprove;
@@ -78,6 +81,18 @@ namespace VPMS_Project.Controllers
         {
             var data = await _attendenceRepository.GetAttInfo(id);
             return View(data);
+        }
+
+
+        public async Task<IActionResult> ModifyWorkHours(WorkHourModel workHourModel)
+        {
+            bool success = await _attendenceRepository.UpdateHour(workHourModel);
+            if (success == true)
+            {
+                return RedirectToAction(nameof(ViewAttendence), new { isUpdate = true });
+
+            }
+            return View();
         }
     }
 }

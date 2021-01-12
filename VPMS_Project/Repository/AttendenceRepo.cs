@@ -286,6 +286,46 @@ namespace VPMS_Project.Repository
 
         }
 
+        public async Task<List<MarkAttendenceModel>> EmpNotUpdate()
+        {
+            return await (from a in _context.MarkAttendence.Where(x => (x.Status == "Not Complete") || ((x.Status == "Absent") && (x.Type=="Auto")) && (x.Date< DateTime.Now.Date))
+                          join b in _context.Employees on a.EmpId equals b.EmpId
+                          select new MarkAttendenceModel()
+                          {
+                              EmpId = a.EmpId,
+                              EmpName = b.EmpFName + " " + b.EmpLName,
+                              PhotoURL = b.ProfilePhoto,
+                              Date = (DateTime)a.Date,
+                              Status = a.Status,
+                              Type=a.Type
+                          })
+                   .ToListAsync();
+        }
+
+        public async Task<WorkHourModel> GetStandardWorkHours()
+        {
+            return await (from a in _context.StandardWorkHours
+                          select new WorkHourModel()
+                          {
+                              HourId=a.HourId,
+                              NoOfHours=a.NoOfHours
+                          })
+                  .FirstOrDefaultAsync();
+
+        }
+
+        public async Task<bool> UpdateHour(WorkHourModel workHourModel)
+        {
+
+            var hour = await _context.StandardWorkHours.FindAsync(workHourModel.HourId);
+            hour.NoOfHours = workHourModel.NoOfHours;
+            _context.Entry(hour).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            return true;
+
+        }
+
 
     }
 }
