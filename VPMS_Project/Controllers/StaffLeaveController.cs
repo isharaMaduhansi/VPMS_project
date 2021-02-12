@@ -27,14 +27,14 @@ namespace VPMS_Project.Controllers
 
             public async Task<IActionResult> Leavebalance()
             {
-                int EmpId = 110;
+                int EmpId = 2;
                 var data = await _leaveRepository.GetLeaveBalance(EmpId);
                 return View(data);
             }
 
             public async Task<IActionResult> PendingLeaveHistory(bool isDelete = false)
             {
-                int EmpId = 110;
+                int EmpId = 2;
                 ViewBag.IsDelete = isDelete;
                 var data = await _leaveRepository.GetAllPendingLeaveById(EmpId);
                 return View(data);
@@ -42,7 +42,7 @@ namespace VPMS_Project.Controllers
 
             public async Task<IActionResult> ApprovedHistory(bool isMore = false)
             {
-                int EmpId = 110;
+                int EmpId = 2;
                 ViewBag.IsMore = isMore;
                 var data = await _leaveRepository.GetApprovedLeaveById(EmpId);
                 return View(data);
@@ -50,14 +50,14 @@ namespace VPMS_Project.Controllers
 
             public async Task<IActionResult> RejectedLeave()
             {
-                int EmpId = 110;
+                int EmpId = 2;
                 var data = await _leaveRepository.GetRejectedLeaveById(EmpId);
                 return View(data);
             }
 
             public async Task<IActionResult> LeaveApply(bool isSucceess = false, bool isUpdate = false, int leaveId = 0, bool isExist = false)
             {
-                int EmpId = 110;
+                int EmpId = 2;
                 ViewBag.LeaveId = leaveId;
                 ViewBag.IsSuccess = isSucceess;
                 ViewBag.IsUpdate = isUpdate;
@@ -69,7 +69,7 @@ namespace VPMS_Project.Controllers
             [HttpPost]
             public async Task<IActionResult> LeaveApply(LeaveApplyModel leaveApplyModel)
             {
-                leaveApplyModel.EmpId = 110;
+                leaveApplyModel.EmpId = 2;
                 int Eid = leaveApplyModel.EmpId;
                 DateTime date = leaveApplyModel.Startdate;
                bool existOne = _leaveRepository.CheckExist(Eid, date);
@@ -109,7 +109,7 @@ namespace VPMS_Project.Controllers
             public async Task<IActionResult> EditLeave(LeaveApplyModel leaveApplyModel)
             {
 
-                leaveApplyModel.EmpId = 110;
+                leaveApplyModel.EmpId = 2;
                 TimeSpan differ = (TimeSpan)(leaveApplyModel.EndDate - leaveApplyModel.Startdate);
                 leaveApplyModel.NoOfDays = differ.Days;
                 bool success = await _leaveRepository.UpdateLeave(leaveApplyModel);

@@ -18,7 +18,7 @@ namespace VPMS_Project.Components
 
         public async Task<IViewComponentResult> InvokeAsync(int id)
         {
-            var data = await _leaveRepository.LeaveBalanceAsync(id);
+            var data = await _leaveRepository.LeaveBalanceGetAsync(id);
             return View(data);
         }
     }

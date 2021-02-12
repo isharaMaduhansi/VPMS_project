@@ -81,12 +81,12 @@ namespace VPMS_Project.Repository
             var emp = await _context.Employees.FindAsync(id);
            
             int totalLeaveGiven = emp.ShortLeaveAllocated + emp.HalfLeaveAllocated + emp.AnnualAllocated + emp.MedicalAllocated + emp.CasualAllocated;
-            int totalLeaveTaken = _context.LeaveApply.Where(x => (x.EmpId == id) && (x.Status == "Approved")).Count();
-            int medicalTaken = _context.LeaveApply.Where(x => (x.EmpId == id) && (x.Status == "Approved") && (x.LeaveType== "Medical Leave")).Count();
-            int annualTaken = _context.LeaveApply.Where(x => (x.EmpId == id) && (x.Status == "Approved") && (x.LeaveType == "Annual Leave")).Count();
-            int casualTaken = _context.LeaveApply.Where(x => (x.EmpId == id) && (x.Status == "Approved") && (x.LeaveType == "Casual Leave")).Count();
-            int shortTaken = _context.LeaveApply.Where(x => (x.EmpId == id) && (x.Status == "Approved") && (x.LeaveType == "Short Leave")).Count();
-            int halfTaken = _context.LeaveApply.Where(x => (x.EmpId == id) && (x.Status == "Approved") && (x.LeaveType == "Half Days")).Count();
+            int totalLeaveTaken = _context.LeaveApply.Where(x => (x.EmpId == id) && (x.Status == "Approved")&& (x.LeaveType != "Special Leave") && (x.LeaveType != "No Pay Leave")).Select(x=> x.NoOfDays).Sum();
+            int medicalTaken = _context.LeaveApply.Where(x => (x.EmpId == id) && (x.Status == "Approved") && (x.LeaveType== "Medical Leave")).Select(x => x.NoOfDays).Sum();
+            int annualTaken = _context.LeaveApply.Where(x => (x.EmpId == id) && (x.Status == "Approved") && (x.LeaveType == "Annual Leave")).Select(x => x.NoOfDays).Sum();
+            int casualTaken = _context.LeaveApply.Where(x => (x.EmpId == id) && (x.Status == "Approved") && (x.LeaveType == "Casual Leave")).Select(x => x.NoOfDays).Sum();
+            int shortTaken = _context.LeaveApply.Where(x => (x.EmpId == id) && (x.Status == "Approved") && (x.LeaveType == "Short Leave")).Select(x => x.NoOfDays).Sum();
+            int halfTaken = _context.LeaveApply.Where(x => (x.EmpId == id) && (x.Status == "Approved") && (x.LeaveType == "Half Days")).Select(x => x.NoOfDays).Sum();
 
             return await (from a in _context.LeaveApply select new LBalanceModel()
                           {
@@ -394,29 +394,7 @@ namespace VPMS_Project.Repository
                           }).ToListAsync();
         }
 
-        public async Task<RemainLeaveModel> LeaveBalanceAsync(int id)
-        {
-            var emp = await _context.Employees.FindAsync(id);
-
-            int totalLeaveGiven = emp.ShortLeaveAllocated + emp.HalfLeaveAllocated + emp.AnnualAllocated + emp.MedicalAllocated + emp.CasualAllocated;
-            int totalLeaveTaken = _context.LeaveApply.Where(x => (x.EmpId == id) && (x.Status == "Approved")).Count();
-            int medicalTaken = _context.LeaveApply.Where(x => (x.EmpId == id) && (x.Status == "Approved") && (x.LeaveType == "Medical Leave")).Count();
-            int annualTaken = _context.LeaveApply.Where(x => (x.EmpId == id) && (x.Status == "Approved") && (x.LeaveType == "Annual Leave")).Count();
-            int casualTaken = _context.LeaveApply.Where(x => (x.EmpId == id) && (x.Status == "Approved") && (x.LeaveType == "Casual Leave")).Count();
-            int shortTaken = _context.LeaveApply.Where(x => (x.EmpId == id) && (x.Status == "Approved") && (x.LeaveType == "Short Leave")).Count();
-            int halfTaken = _context.LeaveApply.Where(x => (x.EmpId == id) && (x.Status == "Approved") && (x.LeaveType == "Half Days")).Count();
-
-            return await (from a in _context.LeaveApply
-                          select new RemainLeaveModel()
-                          {
-                              EmpId = id,
-                              MedicalRemain = emp.MedicalAllocated - medicalTaken,
-                              CasualRemain = emp.CasualAllocated - casualTaken,
-                              AnnualRemain = emp.AnnualAllocated - annualTaken,
-                              HalfRemain = emp.HalfLeaveAllocated - halfTaken,
-                              ShortRemain = emp.ShortLeaveAllocated - shortTaken
-                          }).FirstOrDefaultAsync();
-        }
+        
 
         public async Task<List<LeaveApplyModel>> TodayLeaveAsync()
         {
@@ -426,6 +404,7 @@ namespace VPMS_Project.Repository
                           {
                               
                               EmpName = b.EmpFName + " " + b.EmpLName,
+                              PhotoURL = b.ProfilePhoto,
                               Startdate = (DateTime)a.Startdate,
                               EndDate = (DateTime)a.EndDate,
                               NoOfDays = a.NoOfDays,
@@ -440,6 +419,7 @@ namespace VPMS_Project.Repository
                           {
 
                               EmpName = b.EmpFName + " " + b.EmpLName,
+                              PhotoURL = b.ProfilePhoto,
                               Startdate = (DateTime)a.Startdate,
                               EndDate = (DateTime)a.EndDate,
                               NoOfDays = a.NoOfDays,
@@ -564,5 +544,29 @@ namespace VPMS_Project.Repository
                   .FirstOrDefaultAsync();
 
         }
+
+        public async Task<RemainLeaveModel> LeaveBalanceGetAsync(int id)
+        {
+            var emp = await _context.Employees.FindAsync(id);
+            int medicalTaken = _context.LeaveApply.Where(x => (x.EmpId == id) && (x.Status == "Approved") && (x.LeaveType == "Medical Leave")).Select(x => x.NoOfDays).Sum();
+            int annualTaken = _context.LeaveApply.Where(x => (x.EmpId == id) && (x.Status == "Approved") && (x.LeaveType == "Annual Leave")).Select(x => x.NoOfDays).Sum();
+            int casualTaken = _context.LeaveApply.Where(x => (x.EmpId == id) && (x.Status == "Approved") && (x.LeaveType == "Casual Leave")).Select(x => x.NoOfDays).Sum();
+            int shortTaken = _context.LeaveApply.Where(x => (x.EmpId == id) && (x.Status == "Approved") && (x.LeaveType == "Short Leave")).Select(x => x.NoOfDays).Sum();
+            int halfTaken = _context.LeaveApply.Where(x => (x.EmpId == id) && (x.Status == "Approved") && (x.LeaveType == "Half Days")).Select(x => x.NoOfDays).Sum();
+
+            return await (from a in _context.LeaveApply
+                          select new RemainLeaveModel()
+                          {
+                              EmpId = id,
+                              MedicalRemain = emp.MedicalAllocated - medicalTaken,
+                              CasualRemain = emp.CasualAllocated - casualTaken,
+                              AnnualRemain = emp.AnnualAllocated - annualTaken,
+                              HalfRemain = emp.HalfLeaveAllocated - halfTaken,
+                              ShortRemain = emp.ShortLeaveAllocated - shortTaken
+                          }).FirstOrDefaultAsync();
+        }
+
+      
+
     }
 }

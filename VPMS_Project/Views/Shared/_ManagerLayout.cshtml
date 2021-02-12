@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables_themeroller.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 
     <environment include="Development">
         <link href="~/lib/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" />
@@ -34,7 +34,7 @@
                 <i class="fa fa-fw fa-user"></i> Manager Portal
             </h4>
             <a asp-controller="ManagerDash" asp-action="Dashboard" class="btn-block" style="line-height:15px"><i class='fas fa-info-circle' style="margin-right:5px"></i> Dashboard</a>
-            <a class="btn-block " asp-controller="ManagerLeave" asp-action="Leave" style="line-height:15px"><i class='far fa-calendar-alt' style="margin-right:5px"></i> Work Sheet</a>
+            @*<a class="btn-block " asp-controller="ManagerLeave" asp-action="Leave" style="line-height:15px"><i class='far fa-calendar-alt' style="margin-right:5px"></i> Work Sheet</a>*@
             <a class="btn-block " asp-controller="ManagerLeave" asp-action="Leave" style="line-height:15px"><i class='far fa-calendar-alt' style="margin-right:5px"></i> Leave</a>
             <a asp-action="Attendence" asp-controller="ManagerAttendence" class="btn-block" style="line-height:15px"><i class='far fa-calendar-check' style="margin-right:5px"></i> Attendence </a>
             <a asp-controller="AdminLeave" asp-action="Approve" class="btn-block" style="line-height:15px"><i class='fas fa-calendar-check' style="margin-right:5px"></i> Time Sheet</a>

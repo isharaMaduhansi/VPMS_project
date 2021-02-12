@@ -76,7 +76,7 @@ namespace VPMS_Project.Controllers
 
         public async Task<IActionResult> LeaveRecomend(int id)
         {
-            String name = "ishara hansi";
+            String name = "Ishara hansi";
             bool success = await _leaveRepository.RecommendLeave(id,name);
             if (success == true)
             {
@@ -209,8 +209,9 @@ namespace VPMS_Project.Controllers
 
         public async Task<IActionResult> SeeLeaveDetails(int id)
         {
-            var data = await _empRepository.GetEmp(id);
-            return View(data);
+              var data = await _empRepository.GetEmp(id);
+                return View(data);
+    
         }
 
         public async Task<IActionResult> ViewLeave(int id)

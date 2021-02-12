@@ -22,7 +22,7 @@ namespace VPMS_Project.Controllers
         [HttpGet]
         public async Task<IActionResult> AttendenceInfo()
         {
-            int EmpId = 110;
+            int EmpId = 2;
             var data = await _attendenceRepo.GetAttInfo(EmpId);
             return View(data);
         }
@@ -38,7 +38,7 @@ namespace VPMS_Project.Controllers
         [HttpPost]
         public async Task<IActionResult> AtteRequest(AttendenceModel attendenceModel)
         {
-            attendenceModel.EmpId = 110;
+            attendenceModel.EmpId = 2;
             bool existOne = _attendenceRepo.CheckExist(attendenceModel.EmpId, attendenceModel.Date);
             if (existOne)
             {
@@ -68,7 +68,7 @@ namespace VPMS_Project.Controllers
         [HttpGet]
         public async Task<IActionResult> RequestHistory()
         {
-            int EmpId = 110;
+            int EmpId = 2;
                 var data = await _attendenceRepo.GetRequest(EmpId);
                 return View(data);
         }

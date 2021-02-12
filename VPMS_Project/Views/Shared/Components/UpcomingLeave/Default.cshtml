@@ -15,15 +15,35 @@
             </div>
         }
 
+    <div id="accordion">
         @foreach (var emp in Model)
         {
-            <br>
-            <h6 class="card-subtitle mb-2" style="font-weight:normal"><i class='fas fa-user-alt'></i> @emp.EmpName - @emp.NoOfDays Days</h6>
-            <p class="card-text text-primary ">
-                <i class='far fa-calendar-alt' style="color:black"></i> From &nbsp; @emp.Startdate.Day-@emp.Startdate.Month-@emp.Startdate.Year <br>
-                <i class='far fa-calendar-alt' style="color:black"></i> To &nbsp; @emp.EndDate.Day-@emp.EndDate.Month-@emp.EndDate.Year
-            </p><hr>
+            <div class="card">
+                <div class="card-header">
+                    <a class="card-link" data-toggle="collapse" href="#collapseOne">
+                        <div class="row">
+                            <div class="rounded-circle col" style="width: 2.5rem;border-width:medium">
+                                <img class="card-img-top rounded-circle" src="@(string.IsNullOrEmpty(emp.PhotoURL) ? "~/images/defa.png" : emp.PhotoURL)" height="40" width="20" asp-append-version="true">
+                            </div> 
+                            <div class="col">
+                                @emp.EmpName
+                            </div>
+                          </div>
+                    </a>
+                </div>
+                <div id="collapseOne" class="collapse hide" data-parent="#accordion">
+                    <div class="card-body ">
+                        <div class="row" style="margin-bottom:8px">
+                            From &nbsp; @emp.Startdate.Day-@emp.Startdate.Month-@emp.Startdate.Year
+                        </div>
+                        <div class="row">
+                            To &nbsp; @emp.EndDate.Day-@emp.EndDate.Month-@emp.EndDate.Year
+                        </div>
+                    </div>
+                </div>
+            </div>
         }
+    </div>
     </div>
 </div>
 <br>

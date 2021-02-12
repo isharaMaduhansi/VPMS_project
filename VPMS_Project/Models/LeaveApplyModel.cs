@@ -48,5 +48,8 @@ namespace VPMS_Project.Models
         public String ApproverName { get; set; }
 
         public String Visible { get; set; }
+
+        public String PhotoURL { get; set; }
+
     }
 }

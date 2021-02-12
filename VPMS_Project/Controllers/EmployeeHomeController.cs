@@ -42,7 +42,7 @@ namespace VPMS_Project.Controllers
 
         public async Task<IActionResult> Portal(bool isExist = false, bool isOutExist = false,bool isFail = false, bool isEnd=false)
         {
-            int EmpId = 110;
+            int EmpId = 2;
             ViewBag.EmpId = EmpId;
             bool result = _timeTrackRepo.CheckExist(EmpId);
 
@@ -113,11 +113,11 @@ namespace VPMS_Project.Controllers
 
         public async Task<IActionResult> InTime(TimeTrackerModel timeTrackerModel)
         {
-            timeTrackerModel.EmpId = 110;
+            timeTrackerModel.EmpId = 2;
             bool existOne = _timeTrackRepo.CheckIn(timeTrackerModel.EmpId);
             if (existOne)
             {
-                return RedirectToAction(nameof(Portal), new { isExist = true });
+                return RedirectToAction(nameof(Portal));
             }
             else
             {

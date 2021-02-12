@@ -13,6 +13,8 @@ namespace VPMS_Project.Models
 
         public DateTime InTime { get; set; }
 
+        public DateTime? TempInTime { get; set; }
+
         public DateTime OutTime { get; set; }
 
         public double TotalHours { get; set; }
