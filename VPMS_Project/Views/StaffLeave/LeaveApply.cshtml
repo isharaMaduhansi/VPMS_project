@@ -111,10 +111,12 @@
             
             function check1() {
                 var from = document.getElementById("x").value;
+                var from_ = new Date(from);
                 var to = document.getElementById("y").value;
+                var to_ = new Date(to);
                 var start = document.getElementById("start").value;
-
-                if (to < start)
+                var start_ = new Date(start);
+                if (to_.getTime() < start_.getTime())
                 {
                     document.getElementById('msg').innerHTML = " Your leave allocation has not been extended from " + to + " yet. Please inform admin to extend your leave allocation.";
                     document.getElementById("myBtn").disabled = true;
@@ -124,7 +126,7 @@
 
                 else
                 {
-                    if (from > start) {
+                    if (from_.getTime() > start_.getTime()) {
                         document.getElementById('msg').innerHTML = "Oops! You can not apply leave on " + start + ". Because your leaves have been allocated from " + from;
                         document.getElementById("myBtn").disabled = true;
                         document.getElementById("end").disabled = true;
@@ -145,19 +147,20 @@
                 var to = document.getElementById("y").value;
                 var date1 = new Date(start);
                 var date2 = new Date(end);
+                var to_ = new Date(to);
 
                 var oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
                 var diffDays = Math.abs((date1.getTime() - date2.getTime()) / (oneDay));
 
-                if (to < end) {
+                if (to_.getTime() < date2.getTime()) {
                     document.getElementById('msg').innerHTML = " Your leave allocation has not been extended from " + to + " yet. Please inform admin to extend your leave allocation.";
                     document.getElementById("myBtn").disabled = true;
                     
-
+                                                                                                               
                 }
 
                 else {
-                    if (end <= start) {
+                    if (date2.getTime() <= date1.getTime()) {
                         document.getElementById('msg').innerHTML = "End Date should be bigger than start date( " + start + " ) ";
                         document.getElementById("myBtn").disabled = true;
                     }
