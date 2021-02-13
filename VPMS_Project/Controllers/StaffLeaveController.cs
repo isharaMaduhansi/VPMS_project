@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using VPMS_Project.Models;
 using VPMS_Project.Repository;
@@ -82,7 +84,12 @@ namespace VPMS_Project.Controllers
 
                     TimeSpan differ = (TimeSpan)(leaveApplyModel.EndDate - leaveApplyModel.Startdate);
                     leaveApplyModel.NoOfDays = differ.Days;
-                    int id = await _leaveRepository.AddLeave(leaveApplyModel);
+                if (leaveApplyModel.EvidencePDF != null)
+                {
+                    String folder = "images/evidencePDF/";
+                    leaveApplyModel.PdfURL = await UploadPDF(folder, leaveApplyModel.EvidencePDF); 
+                }
+                int id = await _leaveRepository.AddLeave(leaveApplyModel);
 
                     if (id > 0)
                     {
@@ -112,7 +119,12 @@ namespace VPMS_Project.Controllers
                 leaveApplyModel.EmpId = 2;
                 TimeSpan differ = (TimeSpan)(leaveApplyModel.EndDate - leaveApplyModel.Startdate);
                 leaveApplyModel.NoOfDays = differ.Days;
-                bool success = await _leaveRepository.UpdateLeave(leaveApplyModel);
+                if (leaveApplyModel.EvidencePDF != null)
+                {
+                String folder = "images/evidencePDF/";
+                leaveApplyModel.PdfURL = await UploadPDF(folder, leaveApplyModel.EvidencePDF);
+                 }
+                 bool success = await _leaveRepository.UpdateLeave(leaveApplyModel);
 
                 if (success == true)
                 {
@@ -158,6 +170,14 @@ namespace VPMS_Project.Controllers
                 }
                 return View();
             }
+
+        private async Task<string> UploadPDF(string folderPath, IFormFile file) 
+        {
+            folderPath += Guid.NewGuid().ToString() + "_" + file.FileName;
+            String serverFolder = Path.Combine(_webHostEnvironment.WebRootPath, folderPath);
+            await file.CopyToAsync(new FileStream(serverFolder,FileMode.Create));
+            return "/" + folderPath;
+        }
 
         
         }

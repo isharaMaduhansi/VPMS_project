@@ -48,8 +48,17 @@
                     <th colspan="2" scope="row">Approver Name</th>
                     <td colspan="2">@Model.ApproverName</td>
                 </tr>
+                @if (Model.PdfURL != null)
+                {
+            <tr style="line-height:30px">
+                <th colspan="2" scope="row">Evidence PDF</th>
+                <td colspan="2">
+                    <a href="@Model.PdfURL" target="_blank" style="font-size:11pt;color:black"> Click here to view</a>
+                </td>
+            </tr>
 
-            </tbody>
+                 }
+        </tbody>
         </table>
 
 

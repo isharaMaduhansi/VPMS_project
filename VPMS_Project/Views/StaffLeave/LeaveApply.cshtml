@@ -96,167 +96,179 @@
             <span asp-validation-for="Reason" class="text-danger"></span>
 
         </div>
+        <div class="form-group" style="margin-top:18px">
+            <font style="color:white">Upload Evidence in pdf file format (Optional)</font>
+            <div class="custom-file">
+                <input asp-for="EvidencePDF" class="custom-file-input" id="customFile" style="line-height:25px">
+                <label class="custom-file-label" for="customFile" style="height:50px">Choose File (Ex: Medical report..)</label>
+            </div>
+        </div>
+        <br>
         <div class="form-group">
-            <input type="submit" value="Apply" class="btn-block btn-success btn-lg" id="myBtn" onclick="ConfirmApply()" />
-            <a asp-controller="StaffLeave" asp-action="LeaveBalance" class="btn btn-success btn-lg btn-block" style="margin-top:20px">Cancel</a>
+            <input type="submit" value="Apply" class="btn-block  btn-lg" id="myBtn" onclick="ConfirmApply()" style="background-color:#173A47;color:white" />
+            <a asp-controller="StaffLeave" asp-action="LeaveBalance" class="btn btn-lg btn-block" style="margin-top:20px;background-color:#173A47;color:white">Cancel</a>
         </div>
     </form>
 </div>
 
 
 
-    @section DateCompare
+@section DateCompare
 {
-        <script type="text/javascript">
-            
-            function check1() {
-                var from = document.getElementById("x").value;
-                var from_ = new Date(from);
-                var to = document.getElementById("y").value;
-                var to_ = new Date(to);
-                var start = document.getElementById("start").value;
-                var start_ = new Date(start);
-                if (to_.getTime() < start_.getTime())
-                {
-                    document.getElementById('msg').innerHTML = " Your leave allocation has not been extended from " + to + " yet. Please inform admin to extend your leave allocation.";
+    <script type="text/javascript">
+
+
+        $(".custom-file-input").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+    </script>
+
+    <script type="text/javascript">
+
+        function check1() {
+            var from = document.getElementById("x").value;
+            var from_ = new Date(from);
+            var to = document.getElementById("y").value;
+            var to_ = new Date(to);
+            var start = document.getElementById("start").value;
+            var start_ = new Date(start);
+            if (to_.getTime() < start_.getTime()) {
+                document.getElementById('msg').innerHTML = " Your leave allocation has not been extended from " + to + " yet. Please inform admin to extend your leave allocation.";
+                document.getElementById("myBtn").disabled = true;
+                document.getElementById("end").disabled = true;
+
+            }
+
+            else {
+                if (from_.getTime() > start_.getTime()) {
+                    document.getElementById('msg').innerHTML = "Oops! You can not apply leave on " + start + ". Because your leaves have been allocated from " + from;
                     document.getElementById("myBtn").disabled = true;
                     document.getElementById("end").disabled = true;
-
                 }
-
-                else
-                {
-                    if (from_.getTime() > start_.getTime()) {
-                        document.getElementById('msg').innerHTML = "Oops! You can not apply leave on " + start + ". Because your leaves have been allocated from " + from;
-                        document.getElementById("myBtn").disabled = true;
-                        document.getElementById("end").disabled = true;
-                    }
-                    else {
-                        document.getElementById('msg').innerHTML = "";
-                        document.getElementById("myBtn").disabled = false;
-                        document.getElementById("end").disabled = false;
-                    }
-
-                }
-
-            }
-
-            function check2() {
-                var start = document.getElementById("start").value;
-                var end = document.getElementById("end").value;
-                var to = document.getElementById("y").value;
-                var date1 = new Date(start);
-                var date2 = new Date(end);
-                var to_ = new Date(to);
-
-                var oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
-                var diffDays = Math.abs((date1.getTime() - date2.getTime()) / (oneDay));
-
-                if (to_.getTime() < date2.getTime()) {
-                    document.getElementById('msg').innerHTML = " Your leave allocation has not been extended from " + to + " yet. Please inform admin to extend your leave allocation.";
-                    document.getElementById("myBtn").disabled = true;
-                    
-                                                                                                               
-                }
-
                 else {
-                    if (date2.getTime() <= date1.getTime()) {
-                        document.getElementById('msg').innerHTML = "End Date should be bigger than start date( " + start + " ) ";
+                    document.getElementById('msg').innerHTML = "";
+                    document.getElementById("myBtn").disabled = false;
+                    document.getElementById("end").disabled = false;
+                }
+
+            }
+
+        }
+
+        function check2() {
+            var start = document.getElementById("start").value;
+            var end = document.getElementById("end").value;
+            var to = document.getElementById("y").value;
+            var date1 = new Date(start);
+            var date2 = new Date(end);
+            var to_ = new Date(to);
+
+            var oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+            var diffDays = Math.abs((date1.getTime() - date2.getTime()) / (oneDay));
+
+            if (to_.getTime() < date2.getTime()) {
+                document.getElementById('msg').innerHTML = " Your leave allocation has not been extended from " + to + " yet. Please inform admin to extend your leave allocation.";
+                document.getElementById("myBtn").disabled = true;
+
+
+            }
+
+            else {
+                if (date2.getTime() <= date1.getTime()) {
+                    document.getElementById('msg').innerHTML = "End Date should be bigger than start date( " + start + " ) ";
+                    document.getElementById("myBtn").disabled = true;
+                }
+                else {
+                    document.getElementById('msg').innerHTML = "";
+                    document.getElementById("myBtn").disabled = false;
+                    document.getElementById('days').innerHTML = "Leave Period : " + diffDays + " days ";
+                    LeaveCheck(diffDays);
+                }
+            }
+
+
+        }
+
+        function ConfirmApply() {
+            var start = document.getElementById("start").value;
+            var end = document.getElementById("end").value;
+            var date1 = new Date(start);
+            var date2 = new Date(end);
+
+            var oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+            var diffDays = Math.abs((date1.getTime() - date2.getTime()) / (oneDay));
+
+
+            var x = confirm("Are you sure you want to Apply " + diffDays + " days leave from " + start + " to " + end + " ?");
+            if (x)
+                return true;
+            else
+                return false;
+
+
+        }
+
+        function Remain() {
+
+            var annual = document.getElementById("annual").value;
+            var casual = document.getElementById("casual").value;
+            var medical = document.getElementById("medical").value;
+            var half = document.getElementById("half").value;
+            var short = document.getElementById("short").value;
+
+            var leaveType = document.getElementById("LeaveType").value;
+
+            switch (leaveType) {
+                case "Annual Leave":
+                    document.getElementById('balance').innerHTML = annual + " Annual Leaves are available";
+                    break;
+                case "Medical Leave":
+                    document.getElementById('balance').innerHTML = medical + " Medical Leaves are available";
+                    break;
+                case "Casual Leave":
+                    document.getElementById('balance').innerHTML = casual + " Casual Leaves are available";
+                    break;
+                case "Short Leave":
+                    document.getElementById('balance').innerHTML = short + " Short Leaves are available";
+                    break;
+                case "Half Days":
+                    document.getElementById('balance').innerHTML = half + " Half Days are available";
+                    break;
+                default:
+                    document.getElementById('balance').innerHTML = "";
+
+            }
+
+        }
+
+        function LeaveCheck(diffDays) {
+            var LeaveBal = [];
+            LeaveBal[0] = document.getElementById("annual").value;
+            LeaveBal[1] = document.getElementById("medical").value;
+            LeaveBal[2] = document.getElementById("casual").value;
+            LeaveBal[3] = document.getElementById("short").value;
+            LeaveBal[4] = document.getElementById("half").value;
+
+
+            var leaveType = document.getElementById("LeaveType").value;
+            var leaves = ["Annual Leave", "Medical Leave", "Casual Leave", "Short Leave", "Half Days"];
+
+            var i;
+            for (i = 0; i < 5; i++) {
+                if (leaveType == leaves[i]) {
+                    if (diffDays > LeaveBal[i]) {
+
+                        document.getElementById('msg').innerHTML = "Can not get " + diffDays + " " + leaves[i] + ". Only " + LeaveBal[i] + " " + leaves[i] + " are available.";
                         document.getElementById("myBtn").disabled = true;
-                    }
-                    else {
-                        document.getElementById('msg').innerHTML = "";
-                        document.getElementById("myBtn").disabled = false;
-                        document.getElementById('days').innerHTML = "Leave Period : " + diffDays + " days ";
-                        LeaveCheck(diffDays);
+
                     }
                 }
-
-                
             }
 
-            function ConfirmApply() {
-                var start = document.getElementById("start").value;
-                var end = document.getElementById("end").value;
-                var date1 = new Date(start);
-                var date2 = new Date(end);
+        }
 
-                var oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
-                var diffDays = Math.abs((date1.getTime() - date2.getTime()) / (oneDay));
+    </script>
 
 
-                var x = confirm("Are you sure you want to Apply " + diffDays + " days leave from " + start + " to " + end + " ?");
-                if (x)
-                    return true;
-                else
-                    return false;
-
-
-            }
-
-            function Remain() {
-
-                var annual = document.getElementById("annual").value;
-                var casual = document.getElementById("casual").value;
-                var medical = document.getElementById("medical").value;
-                var half = document.getElementById("half").value;
-                var short = document.getElementById("short").value;
-
-                var leaveType = document.getElementById("LeaveType").value;
-
-                switch (leaveType) {
-                    case "Annual Leave":
-                        document.getElementById('balance').innerHTML = annual +" Annual Leaves are available";
-                        break;
-                    case "Medical Leave":
-                        document.getElementById('balance').innerHTML = medical + " Medical Leaves are available";
-                        break;
-                    case "Casual Leave":
-                        document.getElementById('balance').innerHTML = casual + " Casual Leaves are available";
-                        break;
-                    case "Short Leave":
-                        document.getElementById('balance').innerHTML = short + " Short Leaves are available";
-                        break;
-                    case "Half Days":
-                        document.getElementById('balance').innerHTML = half + " Half Days are available";
-                        break;
-                    default:
-                        document.getElementById('balance').innerHTML ="";
-                        
-                }
-
-            }
-
-            function LeaveCheck(diffDays) {
-                var LeaveBal = [];
-                LeaveBal[0] = document.getElementById("annual").value;
-                LeaveBal[1] = document.getElementById("medical").value;
-                LeaveBal[2] = document.getElementById("casual").value;
-                LeaveBal[3] = document.getElementById("short").value;
-                LeaveBal[4]  = document.getElementById("half").value;
-                
-
-                var leaveType = document.getElementById("LeaveType").value;
-                var leaves = ["Annual Leave", "Medical Leave", "Casual Leave", "Short Leave", "Half Days"];
-                
-                var i;
-                for (i = 0; i < 5;i++)
-                {
-                    if (leaveType == leaves[i])
-                    {
-                        if (diffDays > LeaveBal[i])
-                        {
-                            
-                            document.getElementById('msg').innerHTML = "Can not get " + diffDays + " " + leaves[i] + ". Only " + LeaveBal[i] + " " + leaves[i] +" are available.";
-                            document.getElementById("myBtn").disabled = true;
-                           
-                        }
-                    }
-                }
-
-            }
-
-        </script>
-
-
-    }
+}

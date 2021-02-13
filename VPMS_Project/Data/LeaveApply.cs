@@ -34,6 +34,8 @@ namespace VPMS_Project.Data
 
         public Employees Employees { get; set; }
 
-      
+        public String PdfURL { get; set; }
+
+
     }
 }

@@ -48,7 +48,13 @@
 
 
                     </div>
-                    <div class="col-md-4"><p style="font-size:12pt">Reason: <br>@leave.Reason</p></div>
+                    <div class="col-md-4">
+                        <p style="font-size:12pt">Reason: <br>@leave.Reason</p>
+                        @if (leave.PdfURL != null)
+                        {
+                            <a class="btn btn-outline-dark" href="@leave.PdfURL" target="_blank" style="font-size:12pt">View Evidence PDF</a>
+                        }
+                    </div>
                     <div class="col-md-4">
                         <font class="text-danger" style="font-size:13pt"><i class="fa fa-trash-o"></i> @leave.Status</font><br>
                         @*<div style="display:block;margin-top:10px">  Recommender : @leave.RecommendName  <br></div>

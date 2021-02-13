@@ -60,7 +60,11 @@
                         </span>
                     </font>
                     <font class="card-title">
-                        <a asp-controller="AdminLeave" asp-action="ViewLeave" asp-route-id="@leave.EmpId">Leave Request Details</a>
+                        <a class="btn btn-outline-dark" asp-controller="AdminLeave" asp-action="ViewLeave" asp-route-id="@leave.EmpId" style="font-size:10pt">View Leave Request Details</a>
+                        @if (leave.PdfURL != null)
+                        {
+                            <a class="btn btn-outline-dark" href="@leave.PdfURL" target="_blank" style="font-size:10pt">View Evidence PDF</a>
+                        }
                     </font>
                 </div>
                 <div class="card-body">
@@ -75,7 +79,7 @@
                         <div class="col-md-4">
                             <div style="margin-top:8px"><i class='far fa-calendar-alt'></i>  From : @leave.Startdate.Day - @leave.Startdate.Month - @leave.Startdate.Year</div>
                             <div style="margin-top:8px"><i class='far fa-calendar-alt'></i>  To&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : @leave.EndDate.Day - @leave.EndDate.Month - @leave.EndDate.Year</div>
-
+ 
                         </div>
                         <div class="col-md-4">
                            

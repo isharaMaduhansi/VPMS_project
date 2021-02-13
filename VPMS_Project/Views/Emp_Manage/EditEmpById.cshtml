@@ -118,19 +118,20 @@
                         </div>
                     </div>
 
-                    <div class="form-group" style="margin-top:13px">
+                    <div class="form-group" style="margin-top:13px;">
                         <div class="custom-file">
                             <input asp-for="ProfilePhoto" class="custom-file-input" id="customFile" style="line-height:45px">
-                            <label class="custom-file-label" for="customFile">Click here to change image</label>
+                            <label class="custom-file-label" for="customFile"  style="height: 50px">Click here to change image</label>
                         </div>
                     </div>
+                    
 
 
-
+                    <br>
 
                     <div class="form-group">
-                        <input type="submit" value="Save Changes" class="btn-block" /><br><br>
-                        <a asp-controller="Emp_Manage" asp-action="EditEmp" class="btn btn-success btn-lg btn-block" style="margin-top:20px">Cancel</a>
+                        <input type="submit" value="Save Changes" class="btn-block" style="background-color:#173A47;color:white"/><br><br>
+                        <a asp-controller="Emp_Manage" asp-action="EditEmp" class="btn btn-lg btn-block" style="margin-top:20px;background-color:#173A47;color:white">Cancel</a>
                     </div>
 
 

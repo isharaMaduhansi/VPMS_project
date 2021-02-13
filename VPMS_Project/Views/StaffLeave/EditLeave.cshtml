@@ -66,13 +66,20 @@
 
 
         </div>
-
+        <div class="form-group" style="margin-top:18px">
+            <font style="color:white">Upload Evidence in pdf file format (Optional)</font>
+            <div class="custom-file">
+                <input asp-for="EvidencePDF" class="custom-file-input" id="customFile" style="line-height:25px">
+                <label class="custom-file-label" for="customFile" style="height:50px">Choose File (Ex: Medical report..)</label>
+            </div>
+        </div>
+        <br>
 
 
 
         <div class="form-group">
-            <input type="submit" value="Apply" class="btn-block btn-success btn-lg" id="myBtn" onclick="ConfirmApply()" />
-            <a asp-controller="StaffLeave" asp-action="PendingLeaveHistory" class="btn btn-success btn-lg btn-block" style="margin-top:20px">Cancel</a>
+            <input type="submit" value="Apply" class="btn-block btn-lg" id="myBtn" onclick="ConfirmApply()" style="background-color:#173A47;color:white" />
+            <a asp-controller="StaffLeave" asp-action="PendingLeaveHistory" class="btn btn-lg btn-block" style="margin-top:20px;background-color:#173A47;color:white">Cancel</a>
         </div>
 
 
@@ -83,6 +90,15 @@
 
 @section DateCompare
 {
+    <script type="text/javascript">
+
+
+        $(".custom-file-input").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+    </script>
+.
     <script type="text/javascript">
 
         function check1() {

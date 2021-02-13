@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -28,6 +29,10 @@ namespace VPMS_Project.Models
          public DateTime EndDate { get; set; }
 
         public DateTime AppliedDate { get; set; }
+
+        public IFormFile EvidencePDF { get; set; }
+
+        public String PdfURL { get; set; }
 
         public int NoOfDays { get; set; }
 

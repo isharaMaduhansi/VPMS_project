@@ -71,8 +71,17 @@
 
 
                     </div>
-                    <div class="col-md-4"><p style="font-size:12pt">Reason: <br>@leave.Reason</p></div>
                     <div class="col-md-4">
+                        <p style="font-size:12pt">Reason: @leave.Reason</p>
+                        @if (leave.PdfURL != null)
+                        {
+                            <a class="btn btn-outline-dark" href="@leave.PdfURL" target="_blank" style="font-size:12pt">View Evidence PDF</a>
+                        }
+                    </div>
+                    
+                    <div class="col-md-4">
+                       
+
                         <font class="text-primary" style="font-size:13pt"><i class='fas fa-hourglass-end'></i> @leave.Status</font><br>
                         @if (leave.Status == "Waiting for Approval")
                         {

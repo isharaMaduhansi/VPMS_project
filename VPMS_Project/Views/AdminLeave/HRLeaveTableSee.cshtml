@@ -11,7 +11,7 @@
     <h3 style="font-family:Cambria;color:black;">
         <a asp-controller="AdminLeave" asp-action="LeaveAllocation" title="Back">
             <i class='fas fa-arrow-left' style="margin-right:15px;color:black;font-size:14pt"></i>
-        </a>HR Leave Allocation Graph
+        </a>Leave Allocation Graph
     </h3><hr>
     <br>
     <div style="margin-left:5%;width:88%">
@@ -38,20 +38,20 @@
         </div>
         <div style="margin-left:5%;margin-right:6%;">
             <br>
-            <div style="background-color:#191616;line-height:60px;width:100%">
-                <a asp-controller="AdminLeave" asp-action="AddJob" class="btn-success" style="margin-left:30px;background-color:#175A47"><i class='fas fa-plus'></i> Add New </a>
+            <div style="background-color:lightgray;line-height:60px;width:100%">
+                <a asp-controller="AdminLeave" asp-action="AddJob" class="btn-success" style="margin-left:30px;background-color:#173A47"><i class='fas fa-plus'></i> Add New </a>
             </div>
 
             <div class="table-responsive">
-                <table class="table table-hover table-dark" style="width:100%;">
+                <table class="table table-hover table-dark" style="width:100%;background-color:lightgray;">
 
                     <thead>
-                        <tr>
+                        <tr style="color:black">
                             <th scope="col"></th>
                             <td scope="col" colspan="5">Number of Leaves given for one year </td>
 
                         </tr>
-                        <tr>
+                        <tr style="color:black">
                             <td scope="col">Job Title</td>
                             <td scope="col">Casual Leaves</td>
                             <td scope="col">Medical Leaves</td>
@@ -68,14 +68,14 @@
                         {
                             @*onclick="return confirm('Are you sure')"*@
                             i += 1;
-                            <tr style="line-height: 20px">
-                                <td scope="row"> <font style="color:white"> @job.JobName</font> </td>
-                                <td scope="row"> <font style="color:white"> @job.Casual</font> </td>
-                                <td scope="row"> <font style="color:white"> @job.Medical</font> </td>
-                                <td scope="row"> <font style="color:white"> @job.Annual</font> </td>
-                                <td scope="row"> <font style="color:white"> @job.ShortLeaves</font> </td>
-                                <td scope="row"> <font style="color:white"> @job.HalfDays</font> </td>
-                                <td scope="row"> <font style="color:white"> @job.TotalLeaves</font> </td>
+                            <tr style="line-height: 20px;color:black">
+                                <td scope="row">  @job.JobName </td>
+                                <td scope="row">  @job.Casual</td>
+                                <td scope="row">  @job.Medical</td>
+                                <td scope="row"> @job.Annual</td>
+                                <td scope="row"> @job.ShortLeaves </td>
+                                <td scope="row">  @job.HalfDays </td>
+                                <td scope="row"> @job.TotalLeaves </td>
                                 <td>
                                     <a asp-controller="AdminLeave" asp-action="EditJob" asp-route-id="@job.JobId" title="Edit">
                                         <i class='fas fa-edit' style='font-size:20px;color:royalblue'></i>

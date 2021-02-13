@@ -30,7 +30,8 @@ namespace VPMS_Project.Repository
                 AppliedDate=DateTime.Now,
                 NoOfDays=LeaveApplyModel.NoOfDays,
                 Status="Waiting for Recommendation",
-                Visible="Show"
+                Visible="Show",
+                PdfURL= LeaveApplyModel.PdfURL
 
             };
 
@@ -71,6 +72,7 @@ namespace VPMS_Project.Repository
                               EmpId=a.EmpId,
                               Status=a.Status,
                               RecommendName=a.RecommendName,
+                              PdfURL=a.PdfURL
 
                          })
                    .ToListAsync();
@@ -130,7 +132,8 @@ namespace VPMS_Project.Repository
                               Status = a.Status,
                               RecommendName = a.RecommendName,
                               ApproverName=a.ApproverName,
-                             
+                              PdfURL = a.PdfURL
+
 
                           })
                    .ToListAsync();
@@ -151,6 +154,7 @@ namespace VPMS_Project.Repository
                               NoOfDays = a.NoOfDays,
                               EmpId = a.EmpId,
                               Status = a.Status,
+                              PdfURL = a.PdfURL
                               //RecommendName = a.RecommendName,
                               //ApproverName = a.ApproverName
 
@@ -201,7 +205,8 @@ namespace VPMS_Project.Repository
                               EmpId = a.EmpId,
                               Status = a.Status,
                               EmpName=b.EmpFName+" "+b.EmpLName,
-                              Designation=c.JobName
+                              Designation=c.JobName,
+                              PdfURL=a.PdfURL
 
 
                           })
@@ -284,7 +289,8 @@ namespace VPMS_Project.Repository
                               Status = a.Status,
                               EmpName = b.EmpFName + " " + b.EmpLName,
                               Designation = c.JobName,
-                              RecommendName=a.RecommendName
+                              RecommendName=a.RecommendName,
+                              PdfURL=a.PdfURL
 
 
                           })
@@ -305,6 +311,7 @@ namespace VPMS_Project.Repository
                               NoOfDays = a.NoOfDays,
                               EmpId = a.EmpId,
                               Status=a.Status,
+                              PdfURL=a.PdfURL
                           })
                   .FirstOrDefaultAsync();
 
@@ -342,6 +349,7 @@ namespace VPMS_Project.Repository
             leave.EndDate = leaveApplyModel.EndDate;
             leave.Reason = leaveApplyModel.Reason;
             leave.NoOfDays = leaveApplyModel.NoOfDays;
+            leave.PdfURL = leaveApplyModel.PdfURL;
 
             _context.Entry(leave).State = EntityState.Modified;
             await _context.SaveChangesAsync();
@@ -463,6 +471,7 @@ namespace VPMS_Project.Repository
                               EmpId = a.EmpId,
                               RecommendName = a.RecommendName,
                               ApproverName = a.ApproverName,
+                              PdfURL=a.PdfURL
 
                           })
                    .ToListAsync();
@@ -539,7 +548,8 @@ namespace VPMS_Project.Repository
                               EmpId = a.EmpId,
                               EmpName=b.EmpFName+" "+b.EmpLName,
                               ApproverName=a.ApproverName,
-                              RecommendName=a.RecommendName
+                              RecommendName=a.RecommendName,
+                              PdfURL=a.PdfURL
                           })
                   .FirstOrDefaultAsync();
 

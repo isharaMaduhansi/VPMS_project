@@ -40,7 +40,13 @@
 
 
                 </div>
-                <div class="col-md-4"><p style="font-size:13pt">Reason: <br><br>@Model.Reason</p></div>
+                <div class="col-md-4">
+                    <p style="font-size:13pt">Reason: @Model.Reason</p>
+                    @if (Model.PdfURL != null)
+                    {
+                        <a class="btn btn-outline-dark" href="@Model.PdfURL" target="_blank" style="font-size:12pt">View Evidence PDF</a>
+                    }
+                </div>
                 <div class="col-md-4">
                     <font class="text-success"><i class='fas fa-hourglass-end'></i> @Model.Status</font><br>
                 </div>

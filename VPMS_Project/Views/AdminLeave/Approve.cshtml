@@ -60,8 +60,12 @@
                         </span>
                     </font>
                     <font class="card-title text-sm" style="font-size:12pt">
-                        <a asp-controller="AdminLeave" asp-action="ViewLeave" asp-route-id="@leave.EmpId">Leave Request Details</a>
-                        
+                        <a class="btn btn-outline-dark" asp-controller="AdminLeave" asp-action="ViewLeave" asp-route-id="@leave.EmpId" style="font-size:10pt">View Leave Request Details</a>
+                        @if (leave.PdfURL != null)
+                        {
+                            <a class="btn btn-outline-dark" href="@leave.PdfURL" target="_blank" style="font-size:10pt">View Evidence PDF</a>
+                        }
+
                     </font>
                 </div>
                 <div class="card-body">
