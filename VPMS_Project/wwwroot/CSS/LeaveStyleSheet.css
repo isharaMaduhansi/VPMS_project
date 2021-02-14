@@ -15,6 +15,17 @@ dropdown-menu
     overflow: auto;
 }
 
+.circle {
+    width: 500px;
+    height: 500px;
+    line-height: 500px;
+    border-radius: 50%;
+    font-size: 50px;
+    color: #fff;
+    text-align: center;
+    background: #000
+}
+
 
     /* Sidebar links */
     .sidebar a {

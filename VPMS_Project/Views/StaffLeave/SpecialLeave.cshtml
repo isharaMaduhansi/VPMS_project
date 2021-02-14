@@ -1,0 +1,104 @@
+﻿@{
+    Layout = "_StaffLayout";
+    ViewData["Title"] = "Special Leave";
+    ViewData["Msg1"] = "No Special Leaves";
+    ViewData["Msg2"] = "You haven't taken special leaves yet.";
+}
+<link href="~/CSS/MenuStyleSheet.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
+<link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables_themeroller.css">
+
+@model IEnumerable<LeaveApplyModel>
+
+
+<div class="content" style="height:600px">
+    <partial name="_Menu" />
+
+    <br>
+    <div aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="EmployeeHome" asp-action="Portal">Home</a></li>
+            <li class="breadcrumb-item"><a asp-controller="StaffLeave" asp-action="LeaveBalance">Leave Balance</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Special Leaves</li>
+        </ol>
+    </div>
+    <br>
+
+
+    @if (Model.Count() == 0)
+    {
+        <br>
+        <div style="margin-left:8%;width:80%">
+            <div style="width:90%">
+                <partial name="_Message" />
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="navbar" style="background-color: white">
+            <h3 style="font-family:Cambria;color:black;">
+                Special Leaves Taken So Far
+            </h3>
+        </div><hr>
+
+        <br>
+        <div class="card" style="margin-left:10%;width:70%">
+            <p class="card-header" style="background-color:gainsboro">Search the number of special leaves taken within a certain period of time. Select the start date and end date</p>
+            <div class="card-body ">
+                <form class="form-inline" method="get" asp-controller="StaffLeave" asp-action="SpecialLeave">
+                    <div class="row">
+                        <div class="col">
+                            <font style="color:#173A47;font-size:10pt">Start Date</font>
+                            <input name="start_Date" type="Date" class="form-control" value="dd/mm/yyyy" onchange="check()" id="start" required>
+                        </div>
+                        <div class="col">
+                            <font style="color:#173A47;font-size:10pt">End Date</font>
+                            <input name="end_Date" type="Date" class="form-control" value="dd/mm/yyyy" id="end" onchange="check()"  required>
+                        </div>
+                        <div class="col">
+                            <input class="btn btn-outline-success" type="submit" value="Search" id="myBtn"  style="width:200px;margin-left:20%;margin-top:8%" />
+                        </div>
+
+                    </div>
+
+                </form>
+                <div style="margin-top:10px;color:red;" id="msg" class="text-center"></div>
+            </div>
+        </div>
+        <br><br>
+        <partial name="_ExtraLeaves" />
+
+
+    }
+
+
+
+</div>
+
+@section DateCompare{
+    <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+    <script>
+        $(function () {
+            $("#example").dataTable();
+        })
+    </script>
+    <script>
+        function check() {
+           
+            var start = document.getElementById("start").value;
+            var end = document.getElementById("end").value;
+            var date1 = new Date(start);
+            var date2 = new Date(end);
+
+            if (date2.getTime() <= date1.getTime()) {
+                document.getElementById('msg').innerHTML = "End Date should be bigger than start date ";
+                document.getElementById("myBtn").disabled = true;
+            }
+
+
+        }
+    </script>
+
+        }

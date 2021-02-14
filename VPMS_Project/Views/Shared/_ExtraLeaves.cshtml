@@ -1,0 +1,34 @@
+﻿<div class="table-responsive col-sm-10 col-md-12 col-xm-12">
+    <table class="table table-hover" id="example" width="100%" cellspacing="0" style="background-color:gainsboro">
+
+        <thead>
+            <tr style="line-height: 60px">
+
+                <th scope="row">Applied Date </th>
+                <th scope="row">From Date</th>
+                <th scope="row">To date</th>
+                <th scope="row">No Of Days </th>
+                <th scope="row">Reason </th>
+
+
+
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var leave in Model)
+            {
+
+                <tr style="line-height: 60px">
+
+                    <td scope="row">@leave.AppliedDate.Day-@leave.AppliedDate.Month-@leave.AppliedDate.Year </td>
+                    <td scope="row">@leave.Startdate.Day-@leave.Startdate.Month-@leave.Startdate.Year</td>
+                    <td scope="row">@leave.EndDate.Day-@leave.EndDate.Month-@leave.EndDate.Year</td>
+                    <td scope="row">@leave.NoOfDays </td>
+                    <td scope="row">@leave.Reason </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>

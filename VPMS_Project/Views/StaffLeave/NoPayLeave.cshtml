@@ -1,0 +1,65 @@
+﻿@{
+    Layout = "_StaffLayout";
+    ViewData["Title"] = "Special Leave";
+    ViewData["Msg1"] = "No No-Pay Leaves";
+    ViewData["Msg2"] = "You haven't taken No Pay leaves yet.";
+}
+<link href="~/CSS/MenuStyleSheet.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
+<link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables_themeroller.css">
+
+@model IEnumerable<LeaveApplyModel>
+
+
+<div class="content" style="height:600px">
+    <partial name="_Menu" />
+    <br>
+    <div aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="EmployeeHome" asp-action="Portal">Home</a></li>
+            <li class="breadcrumb-item"><a asp-controller="StaffLeave" asp-action="LeaveBalance">Leave Balance</a></li>
+            <li class="breadcrumb-item active" aria-current="page">No-Pay Leaves</li>
+        </ol>
+    </div>
+    <br>
+
+
+    @if (Model.Count() == 0)
+    {
+        <br>
+        <div style="margin-left:8%;width:80%">
+            <div style="width:90%">
+                <partial name="_Message" />
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="navbar" style="background-color: white">
+            <h3 style="font-family:Cambria;color:black;">
+                 No-Pay Leaves Taken So Far
+            </h3>
+        </div><hr>
+
+        <br>
+        <partial name="_ExtraLeaves" />
+
+
+    }
+
+
+
+</div>
+
+@section DateCompare{
+    <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+    <script>
+        $(function () {
+            $("#example").dataTable();
+        })
+    </script>
+
+
+
+}

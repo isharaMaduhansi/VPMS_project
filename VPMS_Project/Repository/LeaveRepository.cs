@@ -89,6 +89,8 @@ namespace VPMS_Project.Repository
             int casualTaken = _context.LeaveApply.Where(x => (x.EmpId == id) && (x.Status == "Approved") && (x.LeaveType == "Casual Leave")).Select(x => x.NoOfDays).Sum();
             int shortTaken = _context.LeaveApply.Where(x => (x.EmpId == id) && (x.Status == "Approved") && (x.LeaveType == "Short Leave")).Select(x => x.NoOfDays).Sum();
             int halfTaken = _context.LeaveApply.Where(x => (x.EmpId == id) && (x.Status == "Approved") && (x.LeaveType == "Half Days")).Select(x => x.NoOfDays).Sum();
+            int specialTaken= _context.LeaveApply.Where(x => (x.EmpId == id) && (x.Status == "Approved") && (x.LeaveType == "Special Leave")).Select(x => x.NoOfDays).Sum();
+            int noPayTaken = _context.LeaveApply.Where(x => (x.EmpId == id) && (x.Status == "Approved") && (x.LeaveType == "No Pay Leave")).Select(x => x.NoOfDays).Sum();
 
             return await (from a in _context.LeaveApply select new LBalanceModel()
                           {
@@ -112,7 +114,9 @@ namespace VPMS_Project.Repository
                               CasualRemain= emp.CasualAllocated- casualTaken,
                               AnnualRemain= emp.AnnualAllocated- annualTaken,
                               HalfRemain=emp.HalfLeaveAllocated- halfTaken,
-                              ShortRemain=emp.ShortLeaveAllocated- shortTaken
+                              ShortRemain=emp.ShortLeaveAllocated- shortTaken,
+                              SpecialTaken= specialTaken,
+                              NoPayTaken= noPayTaken
             }).FirstOrDefaultAsync();
         }
 
@@ -576,7 +580,41 @@ namespace VPMS_Project.Repository
                           }).FirstOrDefaultAsync();
         }
 
-      
+        public async Task<List<LeaveApplyModel>> GetSpecialLeaveById(int id)
+        {
+            return await (from a in _context.LeaveApply.Where(x => (x.EmpId == id) && (x.Status == "Approved") && (x.LeaveType == "Special Leave"))
+                          select new LeaveApplyModel()
+                          {
+                              
+                              Startdate = (DateTime)a.Startdate,
+                              EndDate = (DateTime)a.EndDate,
+                              AppliedDate = (DateTime)a.AppliedDate,
+                              Reason=a.Reason,
+                              NoOfDays = a.NoOfDays,
+
+                          })
+                   .ToListAsync();
+        }
+
+        public async Task<List<LeaveApplyModel>> GetNoPayLeaveById(int id)
+        {
+            return await (from a in _context.LeaveApply.Where(x => (x.EmpId == id) && (x.Status == "Approved") && (x.LeaveType == "No Pay Leave"))
+                          select new LeaveApplyModel()
+                          {
+
+                              Startdate = (DateTime)a.Startdate,
+                              EndDate = (DateTime)a.EndDate,
+                              AppliedDate = (DateTime)a.AppliedDate,
+                              Reason = a.Reason,
+                              NoOfDays = a.NoOfDays,
+
+                          })
+                   .ToListAsync();
+        }
+
+        
+
+
 
     }
 }

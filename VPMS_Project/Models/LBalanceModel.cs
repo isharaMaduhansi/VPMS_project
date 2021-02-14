@@ -44,5 +44,9 @@ namespace VPMS_Project.Models
         public int Halftaken{ get; set; }
 
         public int HalfAllocated { get; set; }
+
+        public int SpecialTaken { get; set; }
+
+        public int NoPayTaken { get; set; }
     }
 }

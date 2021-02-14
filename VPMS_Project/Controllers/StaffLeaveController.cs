@@ -170,6 +170,21 @@ namespace VPMS_Project.Controllers
                 }
                 return View();
             }
+        [HttpGet]
+        public async Task<IActionResult> SpecialLeave(DateTime start_Date, DateTime end_Date)
+        {
+            int EmpId = 2;
+            var data = await _leaveRepository.GetSpecialLeaveById(EmpId);
+            return View(data);
+        }
+
+        public async Task<IActionResult> NoPayLeave()
+        {
+            int EmpId = 2;
+            var data = await _leaveRepository.GetNoPayLeaveById(EmpId);
+            return View(data);
+        }
+        
 
         private async Task<string> UploadPDF(string folderPath, IFormFile file) 
         {
