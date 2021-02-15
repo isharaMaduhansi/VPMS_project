@@ -183,7 +183,7 @@ namespace VPMS_Project.Controllers
             else 
             {
                 ViewBag.valueHas = true;
-                ViewBag.start = start_Date.Day+" / "+ start_Date.Month + " / " + start_Date.Year;
+                ViewBag.start = start_Date.Day+"/"+ start_Date.Month + "/" + start_Date.Year;
                 ViewBag.end = end_Date.Day + "/" + end_Date.Month + "/" + end_Date.Year; ;
                 var data = await _leaveRepository.SpecialLeavePeriod(EmpId, start_Date, end_Date);
                 return View(data);
