@@ -612,7 +612,39 @@ namespace VPMS_Project.Repository
                    .ToListAsync();
         }
 
-        
+        public async Task<List<LeaveApplyModel>> SpecialLeavePeriod(int id,DateTime start_Date,DateTime end_Date)
+        {
+            return await (from a in _context.LeaveApply.Where(x => (x.EmpId == id) && (x.Status == "Approved") && (x.LeaveType == "Special Leave") && (x.Startdate >= start_Date.Date) && (x.Startdate < end_Date.Date))
+                          select new LeaveApplyModel()
+                          {
+
+                              Startdate = (DateTime)a.Startdate,
+                              EndDate = (DateTime)a.EndDate,
+                              AppliedDate = (DateTime)a.AppliedDate,
+                              Reason = a.Reason,
+                              NoOfDays = a.NoOfDays,
+
+                          })
+                   .ToListAsync();
+        }
+
+        public async Task<List<LeaveApplyModel>> NoPayLeavePeriod(int id, DateTime start_Date, DateTime end_Date)
+        {
+            return await (from a in _context.LeaveApply.Where(x => (x.EmpId == id) && (x.Status == "Approved") && (x.LeaveType == "No Pay Leave") && (x.Startdate >= start_Date.Date) && (x.Startdate < end_Date.Date))
+                          select new LeaveApplyModel()
+                          {
+
+                              Startdate = (DateTime)a.Startdate,
+                              EndDate = (DateTime)a.EndDate,
+                              AppliedDate = (DateTime)a.AppliedDate,
+                              Reason = a.Reason,
+                              NoOfDays = a.NoOfDays,
+
+                          })
+                   .ToListAsync();
+        }
+
+
 
 
 

@@ -174,15 +174,40 @@ namespace VPMS_Project.Controllers
         public async Task<IActionResult> SpecialLeave(DateTime start_Date, DateTime end_Date)
         {
             int EmpId = 2;
-            var data = await _leaveRepository.GetSpecialLeaveById(EmpId);
-            return View(data);
+            if (start_Date == DateTime.MinValue && end_Date == DateTime.MinValue)
+            {
+                var data = await _leaveRepository.GetSpecialLeaveById(EmpId);
+                return View(data);
+
+            }
+            else 
+            {
+                ViewBag.valueHas = true;
+                ViewBag.start = start_Date.Day+" / "+ start_Date.Month + " / " + start_Date.Year;
+                ViewBag.end = end_Date.Day + "/" + end_Date.Month + "/" + end_Date.Year; ;
+                var data = await _leaveRepository.SpecialLeavePeriod(EmpId, start_Date, end_Date);
+                return View(data);
+            }
+           
         }
 
-        public async Task<IActionResult> NoPayLeave()
+        public async Task<IActionResult> NoPayLeave(DateTime start_Date, DateTime end_Date)
         {
             int EmpId = 2;
-            var data = await _leaveRepository.GetNoPayLeaveById(EmpId);
-            return View(data);
+            if (start_Date == DateTime.MinValue && end_Date == DateTime.MinValue)
+            {
+
+                var data = await _leaveRepository.GetNoPayLeaveById(EmpId);
+                return View(data);
+            }
+            else
+            {
+                ViewBag.valueHas = true;
+                ViewBag.start = start_Date.Day + "/" + start_Date.Month + "/" + start_Date.Year;
+                ViewBag.end = end_Date.Day + "/" + end_Date.Month + "/" + end_Date.Year; ;
+                var data = await _leaveRepository.NoPayLeavePeriod(EmpId, start_Date, end_Date);
+                return View(data);
+            }
         }
         
 

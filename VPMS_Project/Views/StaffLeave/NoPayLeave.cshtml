@@ -18,7 +18,11 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a asp-controller="EmployeeHome" asp-action="Portal">Home</a></li>
             <li class="breadcrumb-item"><a asp-controller="StaffLeave" asp-action="LeaveBalance">Leave Balance</a></li>
-            <li class="breadcrumb-item active" aria-current="page">No-Pay Leaves</li>
+            <li class="breadcrumb-item"><a asp-controller="StaffLeave" asp-action="NoPayLeave">No-Pay Leaves</a></li>
+            @if (ViewBag.valueHas == true)
+            {
+                <li class="breadcrumb-item active" aria-current="page">The period from @ViewBag.start to @ViewBag.end</li>
+            }
         </ol>
     </div>
     <br>
@@ -37,11 +41,36 @@
     {
         <div class="navbar" style="background-color: white">
             <h3 style="font-family:Cambria;color:black;">
-                 No-Pay Leaves Taken So Far
+                No-Pay Leaves Taken So Far
             </h3>
         </div><hr>
 
         <br>
+
+        <div class="card" style="margin-left:10%;width:70%">
+            <p class="card-header" style="background-color:gainsboro">Search the number of No pay leaves taken within a certain period of time. Select the start date and end date</p>
+            <div class="card-body ">
+                <form class="form-inline" method="get" asp-controller="StaffLeave" asp-action="NoPayLeave">
+                    <div class="row">
+                        <div class="col">
+                            <font style="color:#173A47;font-size:10pt">Start Date</font>
+                            <input name="start_Date" type="Date" class="form-control" value="dd/mm/yyyy" onchange="check()" id="start" required>
+                        </div>
+                        <div class="col">
+                            <font style="color:#173A47;font-size:10pt">End Date</font>
+                            <input name="end_Date" type="Date" class="form-control" value="dd/mm/yyyy" id="end" onchange="check()" required>
+                        </div>
+                        <div class="col">
+                            <input class="btn btn-outline-primary" type="submit" value="Search" id="myBtn" style="width:200px;margin-left:20%;margin-top:8%" />
+                        </div>
+
+                    </div>
+
+                </form>
+                <div style="margin-top:10px;color:red;" id="msg" class="text-center"></div>
+            </div>
+        </div>
+        <br><br>
         <partial name="_ExtraLeaves" />
 
 
@@ -58,6 +87,27 @@
         $(function () {
             $("#example").dataTable();
         })
+    </script>
+
+    <script>
+        function check() {
+
+            var start = document.getElementById("start").value;
+            var end = document.getElementById("end").value;
+            var date1 = new Date(start);
+            var date2 = new Date(end);
+
+            if (date2.getTime() <= date1.getTime()) {
+                document.getElementById('msg').innerHTML = "End Date should be bigger than start date ";
+                document.getElementById("myBtn").disabled = true;
+            }
+            else {
+                document.getElementById('msg').innerHTML = "";
+                document.getElementById("myBtn").disabled = false;
+            }
+
+
+        }
     </script>
 
 

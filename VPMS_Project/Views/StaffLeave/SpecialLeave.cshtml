@@ -19,11 +19,14 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a asp-controller="EmployeeHome" asp-action="Portal">Home</a></li>
             <li class="breadcrumb-item"><a asp-controller="StaffLeave" asp-action="LeaveBalance">Leave Balance</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Special Leaves</li>
+            <li class="breadcrumb-item active"><a asp-controller="StaffLeave" asp-action="SpecialLeave">Special Leaves</a></li>
+            @if (ViewBag.valueHas == true)
+            {
+                <li class="breadcrumb-item active" aria-current="page">The period from @ViewBag.start to @ViewBag.end</li>
+            }
         </ol>
     </div>
     <br>
-
 
     @if (Model.Count() == 0)
     {
@@ -54,10 +57,10 @@
                         </div>
                         <div class="col">
                             <font style="color:#173A47;font-size:10pt">End Date</font>
-                            <input name="end_Date" type="Date" class="form-control" value="dd/mm/yyyy" id="end" onchange="check()"  required>
+                            <input name="end_Date" type="Date" class="form-control" value="dd/mm/yyyy" id="end" onchange="check()" required>
                         </div>
                         <div class="col">
-                            <input class="btn btn-outline-success" type="submit" value="Search" id="myBtn"  style="width:200px;margin-left:20%;margin-top:8%" />
+                            <input class="btn btn-outline-primary" type="submit" value="Search" id="myBtn" style="width:200px;margin-left:20%;margin-top:8%" />
                         </div>
 
                     </div>
@@ -95,6 +98,10 @@
             if (date2.getTime() <= date1.getTime()) {
                 document.getElementById('msg').innerHTML = "End Date should be bigger than start date ";
                 document.getElementById("myBtn").disabled = true;
+            }
+            else {
+                document.getElementById('msg').innerHTML = "";
+                document.getElementById("myBtn").disabled = false;
             }
 
 
