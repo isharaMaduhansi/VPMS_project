@@ -209,8 +209,10 @@ namespace VPMS_Project.Controllers
 
         public async Task<IActionResult> SeeLeaveDetails(int id)
         {
-              var data = await _empRepository.GetEmp(id);
+            var data = await _empRepository.GetEmp(id);
                 return View(data);
+
+           
     
         }
 
@@ -218,6 +220,43 @@ namespace VPMS_Project.Controllers
         {
             var data = await _leaveRepository.GetLeaveById(id);
             return View(data);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> SpecialLeave(int id, DateTime start_Date, DateTime end_Date)
+        {
+            if (start_Date == DateTime.MinValue && end_Date == DateTime.MinValue)
+            {
+                ViewBag.Id = id;
+                var data = await _leaveRepository.GetSpecialLeaveById(id);
+                return View(data);
+
+        }
+            else
+            {
+                ViewBag.Id = id;
+                var data = await _leaveRepository.SpecialLeavePeriod(id, start_Date, end_Date);
+                return View(data);
+         }
+
+       }
+
+        [HttpGet]
+        public async Task<IActionResult> NoPayLeave(int id, DateTime start_Date, DateTime end_Date)
+        {
+         
+            if (start_Date == DateTime.MinValue && end_Date == DateTime.MinValue)
+            {
+                ViewBag.Id = id;
+                var data = await _leaveRepository.GetNoPayLeaveById(id);
+                return View(data);
+            }
+            else
+            {
+                ViewBag.Id = id;
+                var data = await _leaveRepository.NoPayLeavePeriod(id, start_Date, end_Date);
+                return View(data);
+            }
         }
 
 

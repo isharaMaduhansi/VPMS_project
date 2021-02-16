@@ -25,24 +25,26 @@
         <tbody>
             @foreach (var leave in Model)
             {
-            <tr style="line-height:60px">
-                <td>@leave.AppliedDate.Day-@leave.AppliedDate.Month-@leave.AppliedDate.Year</td>
-                <td>@leave.LeaveType</td>
-                <td>@leave.Startdate.Day-@leave.Startdate.Month-@leave.Startdate.Year</td>
-                <td>@leave.EndDate.Day-@leave.EndDate.Month-@leave.EndDate.Year</td>
-                <td>@leave.NoOfDays</td>
-                <td class="text-center">
-                   View Report
-                    @if (leave.PdfURL != null)
-                    {
-                         <a href="@leave.PdfURL" target="_blank" style="color:black;">| Evidence PDF</a>
-                    }
+                <tr style="line-height:60px">
+                    <td>@leave.AppliedDate.Day-@leave.AppliedDate.Month-@leave.AppliedDate.Year</td>
+                    <td>@leave.LeaveType</td>
+                    <td>@leave.Startdate.Day-@leave.Startdate.Month-@leave.Startdate.Year</td>
+                    <td>@leave.EndDate.Day-@leave.EndDate.Month-@leave.EndDate.Year</td>
+                    <td>@leave.NoOfDays</td>
+                    <td class="text-center">
+                        View Report
+                        @if (leave.PdfURL != null)
+                        {
+                            <a href="@leave.PdfURL" target="_blank" style="color:black;">| Evidence PDF</a>
+                        }
 
-                </td>
-            </tr>
+                    </td>
+                </tr>
             }
         </tbody>
     </table>
-    </div>
+</div>
+
+
 
 

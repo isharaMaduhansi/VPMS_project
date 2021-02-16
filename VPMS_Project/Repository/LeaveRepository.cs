@@ -117,6 +117,7 @@ namespace VPMS_Project.Repository
                               ShortRemain=emp.ShortLeaveAllocated- shortTaken,
                               SpecialTaken= specialTaken,
                               NoPayTaken= noPayTaken
+                              
             }).FirstOrDefaultAsync();
         }
 
@@ -644,7 +645,7 @@ namespace VPMS_Project.Repository
                    .ToListAsync();
         }
 
-
+     
 
 
 

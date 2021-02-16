@@ -48,5 +48,8 @@ namespace VPMS_Project.Models
         public int SpecialTaken { get; set; }
 
         public int NoPayTaken { get; set; }
+
+       
     }
+
 }

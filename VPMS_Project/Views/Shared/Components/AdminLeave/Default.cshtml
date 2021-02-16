@@ -2,11 +2,23 @@
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 @model LBalanceModel
+    <style>
+        .circle {
+            width: 70px;
+            height: 70px;
+            line-height: 70px;
+            border-radius: 30%;
+            font-size: 18px;
+            color: white;
+            text-align: center;
+            background: #173A47;
+        }
+    </style>
 
-    <div style="background-color:lightgray;margin-left:3%;width:92%">
-        <h3 style="font-family:Cambria;color:black;margin-bottom:20px"> Leave Balance</h3>
-        <h6 style="font-family:Arial;color:black;"> From @Model.FromDate.Day-@Model.FromDate.Month-@Model.FromDate.Year &nbsp;&nbsp;&nbsp;&nbsp;To @Model.Todate.Day-@Model.Todate.Month-@Model.Todate.Year</h6>
-    </div>
+<div style="background-color:lightgray;margin-left:3%;width:92%">
+    <h3 style="font-family:Cambria;color:black;margin-bottom:20px"> Leave Balance</h3>
+    <h6 style="font-family:Arial;color:black;"> From @Model.FromDate.Day-@Model.FromDate.Month-@Model.FromDate.Year &nbsp;&nbsp;&nbsp;&nbsp;To @Model.Todate.Day-@Model.Todate.Month-@Model.Todate.Year</h6>
+</div>
 <br>
 <div class="row">
     <div class="col-md-3" style="margin-left:3%">
@@ -127,5 +139,60 @@
                 </h6>
             </div>
         </div>
+
+    </div>
+</div>
+<br>
+<br>
+<br>
+<div style="background-color:lightgray;margin-left:3%;width:92%">
+    <h3 style="font-family:Cambria;color:black;"> Extra Leave Taken</h3><br>
+</div>
+<br>
+<br>
+<div class="row" style="margin-left:4%;font-family:Cambria">
+    <div class="col">
+        <div class="card" style="width: 25rem;">
+            <div class="card-header" style="background-color: #173A47;color:white">
+                <h4 class="card-title text-center">special Leaves</h4>
+            </div>
+            <div class="card-body" style="background-color:ThreeDHighlight">
+                <div class="row">
+                    <div class="col-md-9"> <h5 class="card-subtitle">Total Number of special leaves taken so far</h5></div>
+                    <div class="col-md-3">
+                        <a asp-controller="AdminLeave" asp-action="SpecialLeave" asp-route-id="@Model.EmpId">
+                            <div class="circle float-right">@Model.SpecialTaken</div>
+                        </a>
+                    </div>
+
+                </div>
+
+
+
+            </div>
+        </div>
+
+
+    </div>
+    <div class="col">
+        <div class="card" style="width: 25rem;">
+            <div class="card-header" style="background-color: #173A47;color:white">
+                <h4 class="card-title text-center">No Pay Leaves</h4>
+            </div>
+            <div class="card-body" style="background-color:ThreeDHighlight">
+                <div class="row">
+                    <div class="col-md-9"> <h5 class="card-subtitle">Total Number of No pay leaves taken so far</h5></div>
+                    <div class="col-md-3">
+                        <a asp-controller="AdminLeave" asp-action="NoPayLeave" asp-route-id="@Model.EmpId">
+                        <div class="circle float-right">@Model.NoPayTaken</div></a>
+                    </div>
+
+                </div>
+
+
+
+            </div>
+        </div>
+
     </div>
 </div>

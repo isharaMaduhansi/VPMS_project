@@ -19,10 +19,12 @@
                 </a>@Model.EmpFName @Model.EmpLName -  <span style="font-size:14pt">@Model.JobType</span>
             </h3>
         </div><hr>
+
+
         <br>
         @await Component.InvokeAsync("AdminLeave", new { id = Model.EmpId })
         <br>
-        <br>
+        <br> <br>
         @await Component.InvokeAsync("LeaveTakenData", new { id = Model.EmpId })
     </div>
 
@@ -38,5 +40,6 @@
                 $("#example").dataTable();
             })
         </script>
+
     }
 
