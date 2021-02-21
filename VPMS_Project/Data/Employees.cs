@@ -53,6 +53,7 @@ namespace VPMS_Project.Data
 
         public ICollection<MarkAttendence> MarkAttendence { get; set; }
 
+        public ICollection<Task> Task { get; set; }
 
 
 

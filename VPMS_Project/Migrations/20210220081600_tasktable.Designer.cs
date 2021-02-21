@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VPMS_Project.Data;
 
 namespace VPMS_Project.Migrations
 {
     [DbContext(typeof(EmpStoreContext))]
-    partial class EmpStoreContextModelSnapshot : ModelSnapshot
+    [Migration("20210220081600_tasktable")]
+    partial class tasktable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -318,9 +320,6 @@ namespace VPMS_Project.Migrations
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<bool?>("TaskComplete")
-                        .HasColumnType("bit");
 
                     b.Property<bool?>("TimeSheet")
                         .HasColumnType("bit");

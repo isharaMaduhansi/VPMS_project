@@ -27,6 +27,8 @@ namespace VPMS_Project.Data
 
         public DbSet<StandardWorkHours> StandardWorkHours { get; set; }
 
+        public DbSet<Task> Task { get; set; }
+
 
     }
 }

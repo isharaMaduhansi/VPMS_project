@@ -4,6 +4,17 @@
     overflow: auto;
 }
 
+.circle {
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    border-radius: 30%;
+    font-size: 18px;
+    color: white;
+    text-align: center;
+    background: #173A47;
+}
+
     /* Navigation links */
     .navbar a {
         float: left;
