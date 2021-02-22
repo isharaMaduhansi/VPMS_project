@@ -18,11 +18,8 @@
         color: white;
         text-align: center;
         background: #173A47;
-  
-        
     }
-
-    </style>
+</style>
 <div class="content">
     <partial name="_Menu" />
     <br>
@@ -170,24 +167,26 @@
                 <div class="col">
                     <div class="card" style="width: 19rem;">
                         <div class="card-header" style="background-color: #173A47;color:white">
-                            <h4 class="card-title text-center" >special Leaves</h4>
+                            <h4 class="card-title text-center">special Leaves</h4>
                         </div>
-                            <div class="card-body" style="background-color:ThreeDHighlight">
-                                <div class="row">
-                                    <div class="col-md-9"> <h5 class="card-subtitle" >Total Number of special leaves taken so far</h5></div>
-                                    <div class="col-md-3">  
+                        <div class="card-body" style="background-color:ThreeDHighlight">
+                            <div class="row">
+                                <div class="col-md-9"> <h5 class="card-subtitle">Total Number of special leaves taken so far</h5></div>
+                                <div class="col-md-3">
                                     <a asp-controller="StaffLeave" asp-action="SpecialLeave">
-                                    <div class="circle float-right">@Model.SpecialTaken</div></a></div>
-
+                                        <div class="circle float-right">@Model.SpecialTaken</div>
+                                    </a>
                                 </div>
-                               
-                              
 
                             </div>
+
+
+
                         </div>
-
-
                     </div>
+
+
+                </div>
                 <div class="col">
                     <div class="card" style="width: 19rem;">
                         <div class="card-header" style="background-color: #173A47;color:white">
@@ -213,9 +212,9 @@
 
 
         </div>
-                <div class="col-md-3" style="">
-                    @await Component.InvokeAsync("Leave", new { id = Model.EmpId })
-                </div>
-            </div>
+        <div class="col-md-3" style="">
+            @await Component.InvokeAsync("Leave", new { id = Model.EmpId })
         </div>
+    </div>
+</div>
 

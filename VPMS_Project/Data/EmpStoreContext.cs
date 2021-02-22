@@ -29,6 +29,8 @@ namespace VPMS_Project.Data
 
         public DbSet<Task> Task { get; set; }
 
+        public DbSet<TimeSheetTask> TimeSheetTask { get; set; }
+
 
     }
 }

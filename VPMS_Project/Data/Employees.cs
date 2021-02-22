@@ -55,6 +55,10 @@ namespace VPMS_Project.Data
 
         public ICollection<Task> Task { get; set; }
 
+        public ICollection<TimeSheetTask> TimeSheetTask { get; set; }
+
+
+
 
 
 

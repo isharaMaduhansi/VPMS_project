@@ -8,7 +8,7 @@ namespace VPMS_Project.Data
 {
     public class Task
     {
-        
+        [Key]
         public int Id { get; set; }
 
         public String Name { get; set; }
@@ -32,5 +32,8 @@ namespace VPMS_Project.Data
         public int EmployeesId { get; set; }
 
         public Employees Employees { get; set; }
+
+        public ICollection<TimeSheetTask> TimeSheetTask { get; set; }
+
     }
 }
