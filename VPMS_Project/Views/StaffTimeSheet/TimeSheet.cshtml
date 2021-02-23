@@ -27,71 +27,71 @@
                 @await Component.InvokeAsync("TimeSheetForm", new { id = ViewBag.TaskId })
                 <br>
             }
-            <label class="col-sm-2 col-form-label"><b>@ViewBag.Status</b></label>
-            <div class="card text-center" style="font-family:Cambria;border-bottom-width:10px;">
-            <br>
-            <h4 class="container" style="text-align:center;border-color:black;">
-                <b>Daily Time Sheet</b><br>
-                 @DateTime.Now.Day-@DateTime.Now.Month-@DateTime.Now.Year
+            <div class="card text-center text-white" style="font-family:Cambria;border-bottom-width:10px;background:linear-gradient(to left,#607d8b, #173A47);">
+                    <br>
+                    <h4 class="container" style="text-align:center;border-color:black;">
+                        Daily Time Sheet<br>
+                        <span style="font-size:13pt"> @DateTime.Now.Day-@DateTime.Now.Month-@DateTime.Now.Year</span>
+                        <span style="font-size:13pt"> @ViewBag.Com</span>
 
-            </h4>
-                <div class="card-body">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr class="text-center">
-                                <th scope="col">Task</th>
-                                <th scope="col">Allocated Hours</th>
-                                <th scope="col">Start Time</th>
-                                <th scope="col">End Time</th>
-                                <th scope="col">Total Hours</th>
-                            </tr>
-                        </thead>
+                    </h4>
+                    <div class="card-body">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr class="text-center text-white">
+                                    <th scope="col">Task</th>
+                                    <th scope="col">Allocated Hours</th>
+                                    <th scope="col">Start Time</th>
+                                    <th scope="col">End Time</th>
+                                    <th scope="col">Total Hours</th>
+                                </tr>
+                            </thead>
 
-                        <tbody>
-                            @if (Model.Count() == 0)
-                            {
-                                <tr>
-                                    <td colspan="6">
-                                        <div class="jumbotron jumbotron-fluid">
-                                            <div class="container">
-                                                <img src="~/images/task.png" />
-                                                <h3><b>Add Tasks</b></h3>
-                                                <p class="lead">You can add tasks from task list and submit your daily time sheet.</p>
+                            <tbody>
+                                @if (Model.Count() == 0)
+                                {
+                                    <tr>
+                                        <td colspan="6">
+                                            <div class="jumbotron jumbotron-fluid">
+                                                <div class="container">
+                                                    <img src="~/images/task.png" />
+                                                    <h3><b>Add Tasks</b></h3>
+                                                    <p class="lead">You can add tasks from task list and submit your daily time sheet.</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            }
+                                        </td>
+                                    </tr>
+                                }
 
-                            @foreach (var task in Model)
-                            {
+                                @foreach (var task in Model)
+                                {
 
-                                <tr>
+                                    <tr class="text-white">
 
-                                    <td scope="row">@task.Name</td>
-                                    <td>@task.AllocatedHours</td>
-                                    <td>@task.ActualStartDateTime</td>
-                                    <td>@task.ActualEndDateTime</td>
-                                    @{ 
-                                        var timeSpan1 = TimeSpan.FromHours(task.TotalHours);
-                                        int hh1 = timeSpan1.Hours;
-                                        int mm1 = timeSpan1.Minutes;
-                                        String total = hh1 + " h " + mm1 + " min";
+                                        <td scope="row">@task.Name</td>
+                                        <td>@task.AllocatedHours</td>
+                                        <td>@task.ActualStartDateTime</td>
+                                        <td>@task.ActualEndDateTime</td>
+                                        @{
+                                            var timeSpan1 = TimeSpan.FromHours(task.TotalHours);
+                                            int hh1 = timeSpan1.Hours;
+                                            int mm1 = timeSpan1.Minutes;
+                                            String total = hh1 + " h " + mm1 + " min";
 
 
-                                    }
-                                    <td>@total</td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
+                                        }
+                                        <td>@total</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
 
-                </div>
-                <br>
+                    </div>
+           
+             
             </div>
 
-
-        </div>
+            </div>
         <div class="column right" style="background-color:ThreeDHighlight;font-family:Cambria">
             @await Component.InvokeAsync("TaskList", new { id = ViewBag.EmpId })
         </div>

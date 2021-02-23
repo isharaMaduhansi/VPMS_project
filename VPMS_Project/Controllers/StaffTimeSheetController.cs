@@ -9,8 +9,8 @@ using VPMS_Project.Repository;
 
 namespace VPMS_Project.Controllers
 {
-    public class StaffTimeSheetController :  Controller
-        {
+    public class StaffTimeSheetController : Controller
+    {
         private readonly IEmpRepository _empRepository = null;
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly TaskRepo _taskRepository = null;
@@ -25,12 +25,12 @@ namespace VPMS_Project.Controllers
 
         }
 
-        public async Task<IActionResult> TimeSheet(int id, DateTime Start,DateTime End ,String Complete,int ID = 0)
+        public async Task<IActionResult> TimeSheet(int id, DateTime Start, DateTime End, String Complete, int ID = 0)
         {
             ViewBag.EmpId = 2;
             ViewBag.TaskId = ID;
-         
-            if (ID!=0) 
+
+            if (ID != 0)
             {
                 await _taskRepository.AddTaskFromList(ID);
             }
@@ -39,15 +39,17 @@ namespace VPMS_Project.Controllers
                 TimeSpan differ = (TimeSpan)(End - Start);
                 Double TotalHours = differ.TotalHours;
                 await _taskRepository.TImeSheetTaskInsert(id, Start, End, TotalHours);
-            }
 
-            if (Complete== "Complete")
-            {
-                await _taskRepository.CompleteTask(id);
-            }
-            if (Complete == "NotComplete")
-            {
-                await _taskRepository.NotCompleteTask(id);
+                if (Complete == "Complete")
+                {
+                    await _taskRepository.CompleteTask(id);
+                }
+                if (Complete == "NotComplete")
+                {
+                    await _taskRepository.NotCompleteTask(id);
+                }
+                return RedirectToAction(nameof(TimeSheet), new {ID = 0 });
+
             }
             var data = await _taskRepository.AddTaskList(ViewBag.EmpId);
             return View(data);

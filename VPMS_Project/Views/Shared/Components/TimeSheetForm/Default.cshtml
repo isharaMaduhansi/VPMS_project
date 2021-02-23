@@ -10,7 +10,7 @@
         <form enctype="multipart/form-data" method="post" asp-action="TimeSheet" asp-controller="StaffTimeSheet">
             <input hidden value="@ViewBag.TaskId" />
 
-            <div class="form-group row">
+            <div class="row">
                 <label class="col-sm-2 col-form-label">Select Start Time</label>
                 <div class="col-sm-4 form-group">
                     <input name="Start" type="datetime-local" class="form-control" value="dd/mm/yyyy" required>
@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 </div>
-            <div class="form-group row">
+            <div class="row">
                 <label class="col-sm-2 col-form-label">Select End Time</label>
                 <div class="col-sm-4 form-group">
                     <input name="End" type="datetime-local" class="form-control" value="dd/mm/yyyy" required>
