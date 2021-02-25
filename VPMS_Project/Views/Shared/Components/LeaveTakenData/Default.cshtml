@@ -32,7 +32,8 @@
                     <td>@leave.EndDate.Day-@leave.EndDate.Month-@leave.EndDate.Year</td>
                     <td>@leave.NoOfDays</td>
                     <td class="text-center">
-                        View Report
+                        <a asp-controller="StaffTimeSheet" asp-action="CreateDocument" target="_blank" class="text-dark">View Reports </a>
+   
                         @if (leave.PdfURL != null)
                         {
                             <a href="@leave.PdfURL" target="_blank" style="color:black;">| Evidence PDF</a>

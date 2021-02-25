@@ -15,10 +15,26 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a asp-controller="EmployeeHome" asp-action="Portal">Home</a></li>
             <li class="breadcrumb-item active" aria-current="page">Time Sheet</li>
+
         </ol>
     </div>
+
+    <p style="text-align:left;">
+        <h1 class="display-4">Daily Time Sheet</h1>
+        <span style="float:right;">
+            @{Html.BeginForm("CreateDocument", "StaffTimeSheet", FormMethod.Get);
+                {
+                    <div>
+                        <input type="submit" value="View Time Sheet" style="width:150px;height:27px" formtarget="_blank" />
+                    </div>
+                }
+                Html.EndForm();
+            }
+
+
+        </span>
+    </p>
     <br>
-    <h1 class="display-4">Daily Time Sheet</h1>
     <br>
     <div class="row">
         <div class="column left">
@@ -28,73 +44,78 @@
                 <br>
             }
             <div class="card text-center text-white" style="font-family:Cambria;border-bottom-width:10px;background:linear-gradient(to left,#607d8b, #173A47);">
-                    <br>
-                    <h4 class="container" style="text-align:center;border-color:black;">
-                        Daily Time Sheet<br>
-                        <span style="font-size:13pt"> @DateTime.Now.Day-@DateTime.Now.Month-@DateTime.Now.Year</span>
-                        <span style="font-size:13pt"> @ViewBag.Com</span>
+                <br>
+                <h4 class="container" style="text-align:center;border-color:black;">
+                    Daily Time Sheet<br>
+                    <span style="font-size:13pt"> @DateTime.Now.Day-@DateTime.Now.Month-@DateTime.Now.Year</span>
+                    <span style="font-size:13pt"> @ViewBag.Com</span>
 
-                    </h4>
-                    <div class="card-body">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr class="text-center text-white">
-                                    <th scope="col">Task</th>
-                                    <th scope="col">Allocated Hours</th>
-                                    <th scope="col">Start Time</th>
-                                    <th scope="col">End Time</th>
-                                    <th scope="col">Total Hours</th>
-                                </tr>
-                            </thead>
+                </h4>
+                <div class="card-body">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr class="text-center text-white">
+                                <th scope="col">Task</th>
+                                <th scope="col">Allocated Hours</th>
+                                <th scope="col">Start Time</th>
+                                <th scope="col">End Time</th>
+                                <th scope="col">Total Hours</th>
+                            </tr>
+                        </thead>
 
-                            <tbody>
-                                @if (Model.Count() == 0)
-                                {
-                                    <tr>
-                                        <td colspan="6">
-                                            <div class="jumbotron jumbotron-fluid">
-                                                <div class="container">
-                                                    <img src="~/images/task.png" />
-                                                    <h3><b>Add Tasks</b></h3>
-                                                    <p class="lead">You can add tasks from task list and submit your daily time sheet.</p>
-                                                </div>
+                        <tbody>
+                            @if (Model.Count() == 0)
+                            {
+                                <tr>
+                                    <td colspan="6">
+                                        <div class="jumbotron jumbotron-fluid">
+                                            <div class="container">
+                                                <img src="~/images/task.png" />
+                                                <h3><b>Add Tasks</b></h3>
+                                                <p class="lead">You can add tasks from task list and submit your daily time sheet.</p>
                                             </div>
-                                        </td>
-                                    </tr>
-                                }
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
 
-                                @foreach (var task in Model)
-                                {
+                            @foreach (var task in Model)
+                            {
 
-                                    <tr class="text-white">
+                                <tr class="text-white">
 
-                                        <td scope="row">@task.Name</td>
-                                        <td>@task.AllocatedHours</td>
-                                        <td>@task.ActualStartDateTime</td>
-                                        <td>@task.ActualEndDateTime</td>
-                                        @{
-                                            var timeSpan1 = TimeSpan.FromHours(task.TotalHours);
-                                            int hh1 = timeSpan1.Hours;
-                                            int mm1 = timeSpan1.Minutes;
-                                            String total = hh1 + " h " + mm1 + " min";
+                                    <td scope="row">@task.Name</td>
+                                    <td>@task.AllocatedHours</td>
+                                    <td>@task.ActualStartDateTime</td>
+                                    <td>@task.ActualEndDateTime</td>
+                                    @{
+                                        var timeSpan1 = TimeSpan.FromHours(task.TotalHours);
+                                        int hh1 = timeSpan1.Hours;
+                                        int mm1 = timeSpan1.Minutes;
+                                        String total = hh1 + " h " + mm1 + " min";
 
 
-                                        }
-                                        <td>@total</td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
+                                    }
+                                    <td>@total</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
 
-                    </div>
-           
-             
+                </div>
+
+
             </div>
 
-            </div>
+        </div>
         <div class="column right" style="background-color:ThreeDHighlight;font-family:Cambria">
             @await Component.InvokeAsync("TaskList", new { id = ViewBag.EmpId })
         </div>
     </div>
 </div>
 
+@section TimeSheet{
+    <script type="text/javascript">
+
+    </script>
+}

@@ -6,10 +6,13 @@
 
 <div class="content">
 
-    @ViewBag.a
-    @ViewBag.b
-    @ViewBag.c
-    @ViewBag.d
-
+    @{Html.BeginForm("CreateDocument", "StaffTimeSheet", FormMethod.Get);
+        {
+            <div>
+                <input type="submit" value="Create Document" style="width:150px;height:27px" formtarget="_blank"/>
+            </div>
+        }
+        Html.EndForm();
+    }
 
 </div>
