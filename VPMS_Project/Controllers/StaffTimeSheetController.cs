@@ -72,10 +72,7 @@ namespace VPMS_Project.Controllers
             return RedirectToAction(nameof(TimeSheet));
         }
 
-        public IActionResult TaskInsert()
-        {
-            return View();
-        }
+   
 
         public IActionResult CreateDocument()
         {

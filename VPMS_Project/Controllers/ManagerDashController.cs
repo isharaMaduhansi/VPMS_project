@@ -34,5 +34,7 @@ namespace VPMS_Project.Controllers
             var data = await _empRepository.GetEmpById(empModel.EmpId);
             return View(data);
         }
+
+       
     }
 }

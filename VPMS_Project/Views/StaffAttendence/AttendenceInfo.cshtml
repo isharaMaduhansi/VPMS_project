@@ -3,7 +3,6 @@
     ViewData["Title"] = "Attendence Info";
 }
 <link href="~/CSS/MenuStyleSheet.css" rel="stylesheet" />
-<link href="~/CSS/MenuStyleSheet.css" rel="stylesheet" />
 <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
 <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables_themeroller.css">
 
@@ -14,80 +13,100 @@
 <div class="content">
     <partial name="_Menu" />
     <br>
-    <div aria-label="breadcrumb" class="container" >
+    <div aria-label="breadcrumb" class="container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a asp-controller="EmployeeHome" asp-action="Portal">Home</a></li>
             <li class="breadcrumb-item active" aria-current="page">Attendence</li>
+
         </ol>
-    </div>
-    <div class="navbar" style="background-color:white">
-        <h3 style="font-family:Cambria;color:#173A47;">
-            Attendence Info
-        </h3>
     </div>
 
 
     <br>
+    <div class="jumbotron jumbotron-fluid" style="height:300px">
+        <div class="container">
+            <h1 class="display-4">Attendence Info</h1>
+            <p class="lead" style="padding-bottom:10px">Select a month and view your attendence in that selected month.</p>
+            <form class="form-inline" method="get" asp-action="AttendenceInfo" asp-controller="StaffAttendence">
+                <input id="start" type="month" class="form-control" style="height:50px;width:88%" name="Month" required />
+                <input class="btn btn-success" type="submit" value="Search" style="line-height:35px;background-color:#173A47;width:10%;margin-left:2%" />
+            </form>
+        </div>
+    </div>
+    <br>
+    <br>
     <div class="table-responsive col-sm-10 col-md-12 col-xm-12">
-        <table class="table table-hover" id="example" width="100%" cellspacing="0" style="background-color:gainsboro">
+        @if (ViewBag.a == DateTime.MinValue)
+        {
+        <div style="margin-left:20%;font-size:15pt;font-family:Cambria">
 
-            <thead>
-                <tr style="line-height: 60px">
+            <img src="~/images/download.png" style="width:30%;height:auto;"/>
+            View your attendence so far
+        </div>
+        }
+        else
+        {
+            <h3 class="text-center" style="font-family:Cambria">@ViewBag.subtitle</h3>
+            <table class="table table-hover" id="example" width="100%" cellspacing="0" style="background-color:gainsboro">
 
-                    <th scope="row">Date </th>
-                    <th scope="row">In Time</th>
-                    <th scope="row">Out Time</th>
-                    <th scope="row">Total Hours </th>
-                    <th scope="row">Type </th>
-                    <th scope="row">Status </th>
-
-                </tr>
-            </thead>
-            <tbody>
-
-                @foreach (var time in Model)
-                {
-
+                <thead>
                     <tr style="line-height: 60px">
 
-                        <td scope="row">@time.Date.Day-@time.Date.Month-@time.Date.Year </td>
-                        @if (time.Status == "Leave On Day")
-                        {
-                            <td scope="row" class="text-center">-</td>
-                            <td scope="row" class="text-center">-</td>
-                            <td scope="row" class="text-center">-</td>
-                            <td scope="row" class="text-center">-</td>
-
-                        }
-                        else
-                        {
-                            <td scope="row">@time.InTime.ToString("hh:mm tt")</td>
-                            <td scope="row">@time.OutTime.ToString("hh:mm tt") </td>
-
-                            var timeSpan1 = TimeSpan.FromHours(time.TotalHours);
-                            int hh1 = timeSpan1.Hours;
-                            int mm1 = timeSpan1.Minutes;
-                            String total = hh1 + " h " + mm1 + " min";
-
-
-                            <td scope="row">@total </td>
-                            <td scope="row">@time.Type </td>
-                        }
-
-                        @if (time.Status == "Not Complete" || time.Status == "Absent")
-                        {
-                            <td scope="row" class="text-danger">@time.Status </td>
-                        }
-                        else
-                        {
-                            <td scope="row" class="text-dark">@time.Status </td>
-                        }
+                        <th scope="row">Date </th>
+                        <th scope="row">In Time</th>
+                        <th scope="row">Out Time</th>
+                        <th scope="row">Total Hours </th>
+                        <th scope="row">Type </th>
+                        <th scope="row">Status </th>
 
                     </tr>
-                }
+                </thead>
+                <tbody>
 
-            </tbody>
-        </table>
+                    @foreach (var time in Model)
+                    {
+
+                        <tr style="line-height: 60px">
+
+                            <td scope="row">@time.Date.Day-@time.Date.Month-@time.Date.Year </td>
+                            @if (time.Status == "Leave On Day")
+                            {
+                                <td scope="row" class="text-center">-</td>
+                                <td scope="row" class="text-center">-</td>
+                                <td scope="row" class="text-center">-</td>
+                                <td scope="row" class="text-center">-</td>
+
+                            }
+                            else
+                            {
+                                <td scope="row">@time.InTime.ToString("hh:mm tt")</td>
+                                <td scope="row">@time.OutTime.ToString("hh:mm tt") </td>
+
+                                var timeSpan1 = TimeSpan.FromHours(time.TotalHours);
+                                int hh1 = timeSpan1.Hours;
+                                int mm1 = timeSpan1.Minutes;
+                                String total = hh1 + " h " + mm1 + " min";
+
+
+                                <td scope="row">@total </td>
+                                <td scope="row">@time.Type </td>
+                            }
+
+                            @if (time.Status == "Not Complete" || time.Status == "Absent")
+                            {
+                                <td scope="row" class="text-danger">@time.Status </td>
+                            }
+                            else
+                            {
+                                <td scope="row" class="text-dark">@time.Status </td>
+                            }
+
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        }
     </div>
 
 </div>

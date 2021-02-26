@@ -183,9 +183,12 @@ namespace VPMS_Project.Repository
 
         }
 
-        public async Task<List<MarkAttendenceModel>> GetAttInfo(int id)
+        public async Task<List<MarkAttendenceModel>> GetAttInfo(int id,DateTime Month)
         {
-            return await (from a in _context.MarkAttendence.Where(x => x.EmpId == id)
+            int year = Month.Year;
+            int month = Month.Month;
+
+            return await (from a in _context.MarkAttendence.Where(x => (x.EmpId == id)&& (x.Date.Value.Month== month) && (x.Date.Value.Year == year))
                           select new MarkAttendenceModel()
                           {
                               Date = (DateTime)a.Date,
@@ -193,6 +196,26 @@ namespace VPMS_Project.Repository
                               OutTime = (DateTime)a.OutTime,
                               TotalHours = a.TotalHours,
                               Type=a.Type,
+                              Status = a.Status
+                          })
+                  .OrderBy(x => x.Date).ToListAsync();
+
+        }
+
+
+        public async Task<List<MarkAttendenceModel>> GetAttInfo2(int id, DateTime Month)
+        {
+            int year = Month.Year;
+            int month = Month.Month;
+
+            return await (from a in _context.MarkAttendence.Where(x => (x.EmpId == id) && (x.Date.Value.Month == month) && (x.Date.Value.Year == year))
+                          select new MarkAttendenceModel()
+                          {
+                              Date = (DateTime)a.Date,
+                              InTime = (DateTime)a.InTime,
+                              OutTime = (DateTime)a.OutTime,
+                              TotalHours = a.TotalHours,
+                              Type = a.Type,
                               Status = a.Status
                           })
                   .OrderBy(x => x.Date).ToListAsync();

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
@@ -76,11 +77,29 @@ namespace VPMS_Project.Controllers
             return View();
         }
 
-
-        public async Task<IActionResult> SeeAttendenceInfo(int id)
+        [HttpGet]
+        public async Task<IActionResult> SeeAttendenceInfo(int id, DateTime Month)
         {
-            var data = await _attendenceRepository.GetAttInfo(id);
-            return View(data);
+            String monthName = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(Month.Month);
+            if (Month != DateTime.MinValue)
+            {
+                ViewBag.subtitle = "Attendence of " + monthName + " , " + Month.Year;
+                var data = await _attendenceRepository.GetAttInfo2(id, Month);
+                if (data == null)
+                {
+                    ViewBag.a = DateTime.MinValue;
+                    return RedirectToAction(nameof(SeeAttendenceInfo));
+                }
+                else
+                {
+                    ViewBag.a = Month;
+                    return View(data);
+                }
+
+
+            }
+            ViewBag.a = Month;
+            return View();
         }
 
 

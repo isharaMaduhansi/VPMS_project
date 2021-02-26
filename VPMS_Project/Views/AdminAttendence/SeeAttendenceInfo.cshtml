@@ -12,90 +12,113 @@
 
 
 <div style="margin-left:18%;height:600px;">
-    <div>
-        <h3 style="font-family:Cambria;color:black;">
-            <br>
-            <a asp-action="ViewAttendence" asp-controller="AdminAttendence" title="Back">
-                <i class='fas fa-arrow-left' style="margin-right:15px;color:black;font-size:14pt"></i>
-            </a>Attendence Info 
-        </h3>
-    </div>
+    <br>
+        <div aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-controller="AdminAttendence" asp-action="ViewAttendence">Attendence Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page"> Attendence Info</li>
+
+            </ol>
+        </div>
     <hr>
+    <br>
+    <div class="jumbotron jumbotron-fluid" style="height:300px">
+        <div class="container">
+            <h1 class="display-4">Attendence Info</h1>
+            <p class="lead" style="padding-bottom:10px">Select a month and view attendence in that selected month.</p>
+            <form class="form-inline" method="get" asp-action="SeeAttendenceInfo" asp-controller="AdminAttendence">
+                <input id="start" type="month" class="form-control" style="height:50px;width:88%" name="Month" required />
+                <input class="btn btn-success" type="submit" value="Search" style="line-height:35px;background-color:#173A47;width:10%;margin-left:2%" />
+            </form>
+        </div>
+    </div>
 
 
     <br>
     <div class="table-responsive col-sm-10 col-md-12 col-xm-12">
-        <table class="table table-hover" id="example" width="100%" cellspacing="0" style="background-color:gainsboro">
+        @if (ViewBag.a == DateTime.MinValue)
+        {
+            <div style="margin-left:20%;font-size:15pt;font-family:Cambria">
 
-            <thead>
-                <tr style="line-height: 60px">
+                <img src="~/images/download.png" style="width:30%;height:auto;" />
+                View attendence
+            </div>
+        }
+        else
+        {
+            <h3 class="text-center" style="font-family:Cambria">@ViewBag.subtitle</h3>
+            <table class="table table-hover" id="example" width="100%" cellspacing="0" style="background-color:gainsboro">
 
-                    <th scope="row">Date </th>
-                    <th scope="row">In Time</th>
-                    <th scope="row">Out Time</th>
-                    <th scope="row">Total Hours </th>
-                    <th scope="row">Type </th>
-                    <th scope="row">Status </th>
-                    <th scope="row"></th>
+                <thead>
+                    <tr style="line-height: 60px">
+
+                        <th scope="row">Date </th>
+                        <th scope="row">In Time</th>
+                        <th scope="row">Out Time</th>
+                        <th scope="row">Total Hours </th>
+                        <th scope="row">Type </th>
+                        <th scope="row">Status </th>
+                        <th scope="row"></th>
 
 
 
-                </tr>
-            </thead>
-            <tbody>
+                    </tr>
+                </thead>
+                <tbody>
 
-                @foreach (var time in Model)
-                {
-
-                <tr style="line-height: 60px">
-
-                    <td scope="row">@time.Date.Day-@time.Date.Month-@time.Date.Year </td>
-                    @if (time.Status == "Leave On Day")
+                    @foreach (var time in Model)
                     {
-                        <td scope="row" class="text-center">-</td>
-                        <td scope="row" class="text-center">-</td>
-                        <td scope="row" class="text-center">-</td>
-                        <td scope="row" class="text-center">-</td>
 
+                        <tr style="line-height: 60px">
+
+                            <td scope="row">@time.Date.Day-@time.Date.Month-@time.Date.Year </td>
+                            @if (time.Status == "Leave On Day")
+                            {
+                                <td scope="row" class="text-center">-</td>
+                                <td scope="row" class="text-center">-</td>
+                                <td scope="row" class="text-center">-</td>
+                                <td scope="row" class="text-center">-</td>
+
+                            }
+                            else
+                            {
+                                <td scope="row">@time.InTime.ToString("hh:mm tt")</td>
+                                <td scope="row">@time.OutTime.ToString("hh:mm tt") </td>
+
+                                var timeSpan1 = TimeSpan.FromHours(time.TotalHours);
+                                int hh1 = timeSpan1.Hours;
+                                int mm1 = timeSpan1.Minutes;
+                                String total = hh1 + " h " + mm1 + " min";
+
+
+                                <td scope="row">@total </td>
+                                <td scope="row">@time.Type </td>
+                            }
+
+                            @if (time.Status == "Not Complete" || time.Status == "Absent")
+                            {
+                                <td scope="row" class="text-danger">@time.Status </td>
+                            }
+                            else
+                            {
+                                <td scope="row" class="text-dark">@time.Status </td>
+                            }
+
+                            <td scope="row">
+                                <a asp-controller="StaffTimeSheet" asp-action="CreateDocument" target="_blank" class="text-dark">View Reports </a>
+
+                            </td>
+
+
+
+
+                        </tr>
                     }
-                    else
-                    {
-                        <td scope="row">@time.InTime.ToString("hh:mm tt")</td>
-                        <td scope="row">@time.OutTime.ToString("hh:mm tt") </td>
 
-                        var timeSpan1 = TimeSpan.FromHours(time.TotalHours);
-                        int hh1 = timeSpan1.Hours;
-                        int mm1 = timeSpan1.Minutes;
-                        String total = hh1 + " h " + mm1 + " min";
-
-
-                        <td scope="row">@total </td>
-                        <td scope="row">@time.Type </td>
-                    }
-
-                    @if (time.Status == "Not Complete" || time.Status == "Absent")
-                    {
-                        <td scope="row" class="text-danger">@time.Status </td>
-                    }
-                    else
-                    {
-                        <td scope="row" class="text-dark">@time.Status </td>
-                    }
-
-                <td scope="row">
-                    <a asp-controller="StaffTimeSheet" asp-action="CreateDocument" target="_blank" class="text-dark">View Reports </a>
-
-                </td>
-
-
-
-
-                </tr>
-                }
-
-            </tbody>
-        </table>
-    </div>
+                </tbody>
+            </table>
+        }
+        </div>
 
 </div>
 
