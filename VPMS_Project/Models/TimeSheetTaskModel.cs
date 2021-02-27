@@ -13,6 +13,8 @@ namespace VPMS_Project.Models
 
         public String Name { get; set; }
 
+        public String EmpName { get; set; }
+
         public double AllocatedHours { get; set; }
 
         public DateTime ActualStartDateTime { get; set; }

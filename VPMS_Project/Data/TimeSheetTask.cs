@@ -9,7 +9,7 @@ namespace VPMS_Project.Data
     {
         [key]
         public int Id { get; set; }
-
+    
         public DateTime AppliedDate { get; set; }
 
         public DateTime StartDateTime { get; set; }

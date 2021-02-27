@@ -142,5 +142,62 @@ namespace VPMS_Project.Repository
 
         }
 
+        public async Task<List<TimeSheetTaskModel>> GetTimeSheet(int id, DateTime date)
+        {
+            return await (from a in _context.TimeSheetTask.Where(x => (x.EmployeesId==id)&& (x.AppliedDate.Date==date.Date))
+                          join b in _context.Task on a.TaskId equals b.Id
+                          select new TimeSheetTaskModel()
+                          {
+                            Name=b.Name,
+                            AllocatedHours=b.AllocatedHours,
+                            ActualStartDateTime=a.StartDateTime,
+                            ActualEndDateTime=a.EndDateTime,
+                            TotalHours=a.TotalHours,
+
+
+                          })
+                  .ToListAsync();
+
+        }
+
+        public double GetTotalHours(int id, DateTime date)
+        {
+            double total = _context.TimeSheetTask.Where(x => (x.EmployeesId == id) && (x.AppliedDate.Date == date.Date)).Select(x => x.TotalHours).Sum();
+            return total;
+
+        }
+
+        public async Task<TodayWorkModel> GetEmpData(int id)
+        {
+            return await (from a in _context.Employees.Where(x => (x.EmpId == id ))
+                          select new TodayWorkModel()
+                          {
+                              EmpName = a.EmpFName + " " + a.EmpLName,
+                              PhotoURL = a.ProfilePhoto
+                          })
+                      .FirstOrDefaultAsync();
+
+        }
+
+        public async Task<List<TimeSheetTaskModel>> GetWorkSheet(DateTime date)
+        {
+            return await (from a in _context.TimeSheetTask.Where(x =>(x.AppliedDate.Date == date.Date))
+                          join b in _context.Task on a.TaskId equals b.Id
+                          join c in _context.Employees on a.EmployeesId equals c.EmpId
+                          select new TimeSheetTaskModel()
+                          {
+                              Name = b.Name,
+                              AllocatedHours = b.AllocatedHours,
+                              EmpName=c.EmpFName+" "+c.EmpFName,
+                              ActualStartDateTime = a.StartDateTime,
+                              ActualEndDateTime = a.EndDateTime,
+                              TotalHours = a.TotalHours,
+
+
+                          })
+                  .ToListAsync();
+
+        }
+
     }
 }

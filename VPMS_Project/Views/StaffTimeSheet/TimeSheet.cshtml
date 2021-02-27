@@ -24,9 +24,7 @@
         <span style="float:right;">
             @{Html.BeginForm("CreateDocument", "StaffTimeSheet", FormMethod.Get);
                 {
-                    <div>
-                        <input type="submit" value="View Time Sheet" style="width:150px;height:27px" formtarget="_blank" />
-                    </div>
+                 <input type="submit" value="View Time Sheet" style="width:150px;height:27px" formtarget="_blank" /> 
                 }
                 Html.EndForm();
             }
@@ -48,7 +46,6 @@
                 <h4 class="container" style="text-align:center;border-color:black;">
                     Daily Time Sheet<br>
                     <span style="font-size:13pt"> @DateTime.Now.Day-@DateTime.Now.Month-@DateTime.Now.Year</span>
-                    <span style="font-size:13pt"> @ViewBag.Com</span>
 
                 </h4>
                 <div class="card-body">
