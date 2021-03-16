@@ -2,20 +2,19 @@
     Layout = "_LeaveLayout";
     ViewData["Title"] = Model.EmpFName + " Leave Details";
 }
-
+<link href="~/CSS/SeeLeavedetails.css" rel="stylesheet" />
 @model EmpModel
-
 
     <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
     <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables_themeroller.css">
 
 
-    <div class="content" style="height:800px">
+    <div class="content" >
         <br>
         <div class="navbar">
-            <h3 style="font-family:Cambria;color:black;">
+            <h3>
                 <a asp-controller="AdminLeave" asp-action="LeaveDetails" title="Back">
-                    <i class='fas fa-arrow-left' style="margin-right:15px;color:black;font-size:14pt"></i>
+                    <i class='fas fa-arrow-left'></i>
                 </a>@Model.EmpFName @Model.EmpLName -  <span style="font-size:14pt">@Model.JobType</span>
             </h3>
         </div><hr>

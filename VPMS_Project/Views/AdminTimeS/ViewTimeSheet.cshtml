@@ -2,38 +2,30 @@
     Layout = "_TimeSLayout";
     ViewData["Title"] = "View Time Sheet";
 }
+<link href="~/CSS/TimeSheet View.css" rel="stylesheet" />
 <link href="~/CSS/MenuStyleSheet.css" rel="stylesheet" />
-
 @model TimeSheetTaskModel
 
-    <div style="margin-left:2%;height:60px;">
-        <div class="container-fluid">
-            @*<div class="row">
-                <div class="column left" style="width:40%">*@
-                    <br>
-                    <div class="jumbotron jumbotron-fluid" style="height:500px">
-                        <div class="container">
-                            <h1 class="display-4">View Time Sheet</h1>
-                            <p class="lead" style="padding-bottom:10px">Select an employee and a date to view the daily Time Sheet .</p>
-                            <form class="form-inline" method="get" asp-action="Leave" asp-controller="ManagerLeave">
-                                <div class="container">
-                                    <select name="Search" class="form-control custom-select" asp-items="ViewBag.Emps" style="height:45px;border: none;width:100%">
-                                        <option value="">Select an Employee</option>
-                                    </select>
-                                    <input name="Date" type="Date" class="form-control" placeholder="select day" value="dd/mm/yyyy" style="height:45px;margin-top:20px;width:100%" />
+<div id="s1">
+    <div class="container-fluid">
+        <br>
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4">View Time Sheet</h1>
+                <p class="lead">Select an employee and a date to view the daily Time Sheet .</p>
+                <form class="form-inline" method="get" asp-action="Leave" asp-controller="ManagerLeave">
+                    <div class="container">
+                        <select name="Search" id="s2" class="form-control custom-select" asp-items="ViewBag.Emps" required>
+                            <option value="">Select an Employee</option>
+                        </select>
+                        <input name="Date" id="date" type="Date" class="form-control" placeholder="select day" value="dd/mm/yyyy" required/>
 
-                                    <a asp-controller="StaffTimeSheet" asp-action="CreateDocument" target="_blank" class="btn btn-success" style="line-height:35px;width:100%;background-color:#173A47;margin-top:25px;">View Time Sheet </a>
-
-
-                                </div>
-                            </form>
-                        </div>
+                        <a id="a" asp-controller="StaffTimeSheet" asp-action="CreateDocument" target="_blank" class="btn btn-success">View Time Sheet </a>
                     </div>
-
-                @*</div>
-                <div class="column right" style="width:60%;background-color:red"> </div>*@
-            @*</div>*@
+                </form>
+            </div>
         </div>
     </div>
+</div>
 
 

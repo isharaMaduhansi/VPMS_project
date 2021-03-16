@@ -82,8 +82,15 @@
                                         <td scope="row">@task.Name</td>
                                         <td>@task.AllocatedHours</td>
                                         <td>@task.EmpName</td>
-                                        <td>@task.ActualStartDateTime</td>
-                                        <td>@task.ActualEndDateTime</td>
+                                        @{
+
+                                            String start = string.Format("{0:hh:mm:ss tt}", task.ActualStartDateTime);
+                                            String end = string.Format("{0:hh:mm:ss tt}", task.ActualEndDateTime);
+
+                                        }
+
+                                        <td>@start</td>
+                                        <td>@end</td>
                                         @{
                                             var timeSpan1 = TimeSpan.FromHours(task.TotalHours);
                                             int hh1 = timeSpan1.Hours;

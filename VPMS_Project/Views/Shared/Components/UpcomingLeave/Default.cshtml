@@ -4,46 +4,63 @@
 @model IEnumerable<LeaveApplyModel>
 
 
-<div class="card" style="margin-left: 2%;width:98%;">
+<div class="card" style="margin-left: 1%;width:99%;font-family:Cambria;">
     <div class="card-body" style="background-color:whitesmoke">
-        <h6 class="card-title" style="color:black;"><i class="fa fa-paper-plane"></i> Upcoming approved&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;  leaves in next week.</h6><hr>
+
+        <div class="row">
+            <div class="col-2">
+                <i class="fa fa-paper-plane"></i>
+            </div>
+            <div class="col-10">
+                <h5 class="card-title" style="color:black;">  Upcoming leaves in next week</h5>
+            </div>
+        </div>
+        <hr>
 
         @if (Model.Count() == 0)
         {
-            <div class="text-primary">
-                <i class='far fa-calendar-times' style="color:black"></i>&nbsp;&nbsp; There are no upcoming approved leaves in next week.
+            <div class="text-primary text-black-50">
+                <div class="row">
+                    <div class="col-2">
+                        <i class='far fa-calendar-times'></i>
+                    </div>
+                    <div class="col-10">
+                        <h6 class="card-title">There are no upcoming approved leaves in next week.</h6>
+                    </div>
+                </div>
+
             </div>
         }
 
-    <div id="accordion">
-        @foreach (var emp in Model)
-        {
-            <div class="card">
-                <div class="card-header">
-                    <a class="card-link" data-toggle="collapse" href="#collapseOne">
-                        <div class="row">
-                            <div class="rounded-circle col" style="width: 2.5rem;border-width:medium">
-                                <img class="card-img-top rounded-circle" src="@(string.IsNullOrEmpty(emp.PhotoURL) ? "~/images/defa.png" : emp.PhotoURL)" height="40" width="20" asp-append-version="true">
-                            </div> 
-                            <div class="col">
-                                @emp.EmpName
+        <div id="accordion">
+            @foreach (var emp in Model)
+            {
+                <div class="card">
+                    <div class="card-header">
+                        <a class="card-link" data-toggle="collapse" href="#collapseOne">
+                            <div class="row">
+                                <div class="rounded-circle col" style="width: 2.5rem;border-width:medium">
+                                    <img class="card-img-top rounded-circle" src="@(string.IsNullOrEmpty(emp.PhotoURL) ? "~/images/defa.png" : emp.PhotoURL)" height="40" width="20" asp-append-version="true">
+                                </div>
+                                <div class="col">
+                                    @emp.EmpName
+                                </div>
                             </div>
-                          </div>
-                    </a>
-                </div>
-                <div id="collapseOne" class="collapse hide" data-parent="#accordion">
-                    <div class="card-body ">
-                        <div class="row" style="margin-bottom:8px">
-                            From &nbsp; @emp.Startdate.Day-@emp.Startdate.Month-@emp.Startdate.Year
-                        </div>
-                        <div class="row">
-                            To &nbsp; @emp.EndDate.Day-@emp.EndDate.Month-@emp.EndDate.Year
+                        </a>
+                    </div>
+                    <div id="collapseOne" class="collapse hide" data-parent="#accordion">
+                        <div class="card-body ">
+                            <div class="row" style="margin-bottom:8px">
+                                From &nbsp; @emp.Startdate.Day-@emp.Startdate.Month-@emp.Startdate.Year
+                            </div>
+                            <div class="row">
+                                To &nbsp; @emp.EndDate.Day-@emp.EndDate.Month-@emp.EndDate.Year
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        }
-    </div>
+            }
+        </div>
     </div>
 </div>
 <br>

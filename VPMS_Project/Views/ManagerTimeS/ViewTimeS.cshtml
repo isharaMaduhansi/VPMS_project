@@ -79,22 +79,30 @@
                                 @foreach (var task in Model)
                                 {
 
-                                    <tr class="text-white">
+                                <tr class="text-white">
 
-                                        <td scope="row">@task.Name</td>
-                                        <td>@task.AllocatedHours</td>
-                                        <td>@task.ActualStartDateTime</td>
-                                        <td>@task.ActualEndDateTime</td>
-                                        @{
-                                            var timeSpan1 = TimeSpan.FromHours(task.TotalHours);
-                                            int hh1 = timeSpan1.Hours;
-                                            int mm1 = timeSpan1.Minutes;
-                                            String total = hh1 + " h " + mm1 + " min";
+                                    <td scope="row">@task.Name</td>
+                                    <td>@task.AllocatedHours</td>
 
-                                           
-                                        }
-                                        <td>@total</td>
-                                    </tr>
+                                    @{ 
+
+                                        String start= string.Format("{0:hh:mm:ss tt}", task.ActualStartDateTime);
+                                        String end = string.Format("{0:hh:mm:ss tt}", task.ActualEndDateTime);
+
+                                    }
+                                   
+                                    <td>@start</td>
+                                    <td>@end</td>
+                                    @{
+                                        var timeSpan1 = TimeSpan.FromHours(task.TotalHours);
+                                        int hh1 = timeSpan1.Hours;
+                                        int mm1 = timeSpan1.Minutes;
+                                        String total = hh1 + " h " + mm1 + " min";
+
+
+                                    }
+                                    <td>@total</td>
+                                </tr>
                                 }
                             <tr class="text-white" style="font-size:15pt">
                                 <td colspan="4" class="text-white">Total Spent Hours</td>

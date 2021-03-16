@@ -4,21 +4,21 @@
     Layout = "_LeaveLayout";
     ViewData["Title"] = "Leave Details";
 }
-
+<link href="~/CSS/LeaveDetail.css" rel="stylesheet" />
 @model IEnumerable<EmpModel>
 
-<div style="margin-left:15%;height:800px;">
+<div id="s1" >
     <div class="container">
         <div class="row">
-            <div class="col-md-8" style="margin-left:1px">
-                <div class="jumbotron jumbotron-fluid" style="height:300px">
+            <div class="col-md-8" >
+                <div class="jumbotron jumbotron-fluid">
                     <div class="container">
                         <h1 class="display-4">Leave Details</h1>
-                        <p class="lead" style="padding-bottom:10px">Search employee by name or designation to see their leave balance/Taken details and get leave reports.</p>
+                        <p class="lead">Search employee by name or designation to see their leave balance/Taken details and get leave reports.</p>
                         <form class="form-inline" method="get" asp-action="LeaveDetails" asp-controller="AdminLeave">
                             <input class="form-control-lg mr-lg-2" type="search" placeholder="Name or Designation" aria-label="Search" name="Search" required/>
-                            <input class="btn btn-success" type="submit" value="Search" style="line-height:30px;width:80px;background-color:#173A47" onclick="help()" />
-                            <a asp-controller="EmployeeHome" asp-action="EmpIndex" class="btn btn-success" style="background-color:#173A47;line-height:30px;margin-left:3%;width:80px;">Back</a>
+                            <input class="btn btn-success" type="submit" value="Search" id="s2" onclick="help()" />
+                            <a asp-controller="EmployeeHome" asp-action="EmpIndex" class="btn btn-success">Back</a>
                         </form>
                     </div>
                 </div>
@@ -30,18 +30,17 @@
                             <thead>
                             </thead>
                             <tbody>
-
                                 @foreach (var emp in Model)
                                 {
-                                    <tr style="line-height: 40px">
+                                    <tr>
                                         <th scope="row">
                                             <a asp-controller="AdminLeave" asp-action="SeeLeaveAllocation" asp-route-id="@emp.EmpId">
-                                                <div class="rounded-circle" style="width: 3.5rem;background-color:gainsboro;border-width:medium">
+                                                <div class="rounded-circle" >
                                                     <img class="card-img-top rounded-circle" src="@(string.IsNullOrEmpty(emp.PhotoURL) ? "~/images/defa.png" : emp.PhotoURL)" height="55" width="20" asp-append-version="true">
                                                 </div>
                                             </a>
                                         </th>
-                                        <td> @emp.EmpFName @emp.EmpLName<br><font style="color:forestgreen;font-size:11pt;margin-bottom:0px"> EmpId : @emp.EmpId</font></td>
+                                        <td> @emp.EmpFName @emp.EmpLName<br><font id="s5"> EmpId : @emp.EmpId</font></td>
                                         <td>
                                             @emp.JobType
 
@@ -54,9 +53,9 @@
                         <br>
                         @if (Model.Count() == 0)
                         {
-                            <div class="find" style="margin-left:20%" id="img">
+                            <div class="find" id="img">
                                 Search Employees to see their leave balance details
-                                <img src="~/images/sea.jpg" style="width:60%;height:auto" />
+                                <img src="~/images/sea.jpg"  />
                             </div>
                         }
                     </div>
@@ -69,8 +68,6 @@
                 @await Component.InvokeAsync("UpcomingLeave")
             </div>
         </div>
-
-
     </div>
 </div>
 

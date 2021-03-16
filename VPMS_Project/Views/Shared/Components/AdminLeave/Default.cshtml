@@ -2,18 +2,64 @@
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 @model LBalanceModel
-    <style>
-        .circle {
-            width: 70px;
-            height: 70px;
-            line-height: 70px;
-            border-radius: 30%;
-            font-size: 18px;
-            color: white;
-            text-align: center;
-            background: #173A47;
-        }
-    </style>
+<style>
+    .circle {
+        width: 70px;
+        height: 70px;
+        line-height: 70px;
+        border-radius: 30%;
+        font-size: 18px;
+        color: white;
+        text-align: center;
+        background: #173A47;
+    }
+
+    .flip-card {
+        background-color: transparent;
+        width: 24rem;
+        height: 180px;
+        border: 1px solid #f1f1f1;
+        perspective: 1000px; /* Remove this if you don't want the 3D effect */
+    }
+
+    /* This container is needed to position the front and back side */
+    .flip-card-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        transition: transform 0.8s;
+        transform-style: preserve-3d;
+    }
+
+    /* Do an horizontal flip when you move the mouse over the flip box container */
+    .flip-card:hover .flip-card-inner {
+        transform: rotateY(180deg);
+    }
+
+    /* Position the front and back side */
+    .flip-card-front, .flip-card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        -webkit-backface-visibility: hidden; /* Safari */
+        backface-visibility: hidden;
+    }
+
+    /* Style the front side (fallback if image is missing) */
+    .flip-card-front {
+        border-bottom-width: 10px;
+        background: linear-gradient(to left,#607d8b, #173A47);
+        color: white
+    }
+
+    /* Style the back side */
+    .flip-card-back {
+        background: linear-gradient(to left,#607d8b, #173A47);
+        color: white;
+        transform: rotateY(180deg);
+    }
+</style>
 
 <div style="background-color:lightgray;margin-left:3%;width:92%">
     <h3 style="font-family:Cambria;color:black;margin-bottom:20px"> Leave Balance</h3>
@@ -152,45 +198,64 @@
 <br>
 <div class="row" style="margin-left:4%;font-family:Cambria">
     <div class="col">
-        <div class="card" style="width: 25rem;">
-            <div class="card-header" style="background-color: #173A47;color:white">
-                <h4 class="card-title text-center">special Leaves</h4>
-            </div>
-            <div class="card-body" style="background-color:ThreeDHighlight">
-                <div class="row">
-                    <div class="col-md-9"> <h5 class="card-subtitle">Total Number of special leaves taken so far</h5></div>
-                    <div class="col-md-3">
-                        <a asp-controller="AdminLeave" asp-action="SpecialLeave" asp-route-id="@Model.EmpId">
-                            <div class="circle float-right">@Model.SpecialTaken</div>
-                        </a>
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <div class="card-header">
+                        <h4 class="card-title text-center">special Leaves</h4>
+                    </div>
+                    <div class="card-body" style="background-color:ThreeDHighlight;color:black">
+                        <div class="row">
+                            <div class="col-md-9"> <h5 class="card-subtitle">Total Number of special leaves taken so far</h5></div>
+                            <div class="col-md-3">
+                                    <div class="circle float-right">@Model.SpecialTaken</div>
+                            </div>
+
+                        </div>
                     </div>
 
                 </div>
-
-
-
+                <div class="flip-card-back">
+                    <br>
+                    <div class="card-header">
+                        <a asp-controller="AdminLeave" asp-action="SpecialLeave" asp-route-id="@Model.EmpId">
+                            <h4 class="float-center text-white">View Special Leaves</h4>
+                        </a>
+                    </div>
+                   
+                </div>
             </div>
         </div>
 
 
     </div>
     <div class="col">
-        <div class="card" style="width: 25rem;">
-            <div class="card-header" style="background-color: #173A47;color:white">
-                <h4 class="card-title text-center">No Pay Leaves</h4>
-            </div>
-            <div class="card-body" style="background-color:ThreeDHighlight">
-                <div class="row">
-                    <div class="col-md-9"> <h5 class="card-subtitle">Total Number of No pay leaves taken so far</h5></div>
-                    <div class="col-md-3">
-                        <a asp-controller="AdminLeave" asp-action="NoPayLeave" asp-route-id="@Model.EmpId">
-                        <div class="circle float-right">@Model.NoPayTaken</div></a>
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <div class="card-header">
+                        <h4 class="card-title text-center">No Pay Leaves</h4>
+                    </div>
+                    <div class="card-body" style="background-color:ThreeDHighlight;color:black">
+                        <div class="row">
+                            <div class="col-md-9"> <h5 class="card-subtitle">Total Number of No pay leaves taken so far</h5></div>
+                            <div class="col-md-3">
+                                <div class="circle float-right">@Model.NoPayTaken</div>
+                            </div>
+
+                        </div>
                     </div>
 
                 </div>
+                <div class="flip-card-back">
+                    <br>
+                    <div class="card-header">
+                        <a asp-controller="AdminLeave" asp-action="NoPayLeave" asp-route-id="@Model.EmpId">
+                            <h4 class="float-center text-white">View No Pay Leaves</h4>
+                        </a>
+                    </div>
 
-
-
+                </div>
             </div>
         </div>
 

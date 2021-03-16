@@ -188,7 +188,7 @@ namespace VPMS_Project.Repository
                           {
                               Name = b.Name,
                               AllocatedHours = b.AllocatedHours,
-                              EmpName=c.EmpFName+" "+c.EmpFName,
+                              EmpName=c.EmpFName+" "+c.EmpLName,
                               ActualStartDateTime = a.StartDateTime,
                               ActualEndDateTime = a.EndDateTime,
                               TotalHours = a.TotalHours,

@@ -1,0 +1,14 @@
+﻿.sidebar h4 {
+    font-family: 'Bell MT';
+    background-color: #173A47;
+    color: white;
+    line-height: 100px;
+}
+
+.sidebar a {
+    line-height: 15px;
+}
+
+    .sidebar a i {
+        margin-right: 5px
+    }

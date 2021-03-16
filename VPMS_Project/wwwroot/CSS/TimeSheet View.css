@@ -1,0 +1,31 @@
+﻿#s1 {
+    margin-left: 2%;
+    height: 60px;
+}
+
+.jumbotron {
+    height: 500px
+}
+
+.lead {
+    padding-bottom: 10px
+}
+
+#s2 {
+    height: 45px;
+    border: none;
+    width: 100%
+}
+
+#date {
+    height: 45px;
+    margin-top: 20px;
+    width: 100%
+}
+
+#a {
+    line-height: 35px;
+    width: 100%;
+    background-color: #173A47;
+    margin-top: 25px;
+}

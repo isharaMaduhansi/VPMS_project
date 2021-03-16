@@ -7,7 +7,7 @@
     <link href="~/CSS/LeaveStyleSheet.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-
+    <link href="~/CSS/LeaveLayout.css" rel="stylesheet" />
     <environment include="Development">
         <link href="~/lib/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" />
     </environment>
@@ -27,13 +27,13 @@
 
         
         <div class="sidebar">
-            <h4 class="text-center" style="font-family:'Bell MT';background-color:#173A47;color:white;line-height:100px;">
+            <h4 class="text-center">
                 <i class="fa fa-fw fa-user"></i> Admin Portal
             </h4>
-            <a asp-controller="AdminLeave" asp-action="LeaveDetails" class="btn-block" style="line-height:15px"><i class='fas fa-info-circle' style="margin-right:5px"></i> Leave Details</a>
-            <a class="btn-block " asp-controller="AdminLeave" asp-action="LeaveAllocation" style="line-height:15px"><i class='far fa-calendar-alt' style="margin-right:5px"></i> Leave Allocation</a>
-            <a asp-controller="AdminLeave" asp-action="Recomend" class="btn-block" style="line-height:15px"><i class='far fa-calendar-check' style="margin-right:5px"></i> Leave Recommendation </a>
-            <a asp-controller="AdminLeave" asp-action="Approve" class="btn-block" style="line-height:15px"><i class='fas fa-calendar-check' style="margin-right:5px"></i> Leave Approval</a>
+            <a asp-controller="AdminLeave" asp-action="LeaveDetails" class="btn-block"><i class='fas fa-info-circle' ></i> Leave Details</a>
+            <a class="btn-block " asp-controller="AdminLeave" asp-action="LeaveAllocation"><i class='far fa-calendar-alt'></i> Leave Allocation</a>
+            <a asp-controller="AdminLeave" asp-action="Recomend" class="btn-block" ><i class='far fa-calendar-check' ></i> Leave Recommendation </a>
+            <a asp-controller="AdminLeave" asp-action="Approve" class="btn-block"><i class='fas fa-calendar-check'></i> Leave Approval</a>
 
         </div>
     </header>

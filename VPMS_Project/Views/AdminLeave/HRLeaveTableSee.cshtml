@@ -3,32 +3,30 @@
     ViewData["Title"] = "Leave Standard";
     int i = 0;
 }
-
+<link href="~/CSS/HR.css" rel="stylesheet" />
 @model IEnumerable<JobModel>
 
 <br>
-<div style="margin-left:20%;height:1000px;">
-    <h3 style="font-family:Cambria;color:black;">
+<div class="s1">
+    <h3>
         <a asp-controller="AdminLeave" asp-action="LeaveAllocation" title="Back">
-            <i class='fas fa-arrow-left' style="margin-right:15px;color:black;font-size:14pt"></i>
+            <i class='fas fa-arrow-left'></i>
         </a>Leave Allocation Graph
     </h3><hr>
     <br>
-    <div style="margin-left:5%;width:88%">
+    <div id="s2">
         @if (ViewBag.IsSuccess == true)
         {
             <div class="alert alert-success" role="alert">
                 <strong>Congragulations!</strong> You have added a new job title successfully.
             </div>
         }
-
         @if (ViewBag.IsDelete == true)
         {
             <div class="alert alert-success" role="alert">
                 Successfully Deleted.
             </div>
         }
-
         @if (ViewBag.IsUpdate == true)
         {
             <div class="alert alert-success" role="alert">
@@ -36,20 +34,17 @@
             </div>
         }
         </div>
-        <div style="margin-left:5%;margin-right:6%;">
+        <div id="s3">
             <br>
-            <div style="background-color:lightgray;line-height:60px;width:100%">
-                <a asp-controller="AdminLeave" asp-action="AddJob" class="btn-success" style="margin-left:30px;background-color:#173A47"><i class='fas fa-plus'></i> Add New </a>
+            <div class="s4">
+                <a asp-controller="AdminLeave" asp-action="AddJob" class="btn-success"><i class='fas fa-plus'></i> Add New </a>
             </div>
-
             <div class="table-responsive">
-                <table class="table table-hover table-dark" style="width:100%;background-color:lightgray;">
-
+                <table class="table table-hover table-dark" >
                     <thead>
                         <tr style="color:black">
                             <th scope="col"></th>
                             <td scope="col" colspan="5">Number of Leaves given for one year </td>
-
                         </tr>
                         <tr style="color:black">
                             <td scope="col">Job Title</td>
@@ -63,7 +58,6 @@
                         </tr>
                     </thead>
                     <tbody>
-
                         @foreach (var job in Model)
                         {
                             @*onclick="return confirm('Are you sure')"*@
@@ -78,32 +72,19 @@
                                 <td scope="row"> @job.TotalLeaves </td>
                                 <td>
                                     <a asp-controller="AdminLeave" asp-action="EditJob" asp-route-id="@job.JobId" title="Edit">
-                                        <i class='fas fa-edit' style='font-size:20px;color:royalblue'></i>
+                                        <i class='fas fa-edit' ></i>
                                     </a>
                                 </td>
-
-                                <td>
+                               <td>
                                     <a asp-controller="AdminLeave" asp-action="DeleteJob" title="Delete" asp-route-id="@job.JobId" onclick="return confirm('This will also permantly delete existing employees who hold this position. Do you want to delete this job title ?')">
-                                        <i class='fas fa-times' style='font-size:20px;color:red;margin-right:5px'></i>
+                                        <i class='fas fa-times' style='color:red;'></i>
                                     </a>
-
-
-
                                 </td>
-
                             </tr>
                         }
-
-
-
                     </tbody>
                 </table>
             </div>
-
-
-
-
-
         </div>
         <br>
         <h5>No of Job Types : @i</h5>

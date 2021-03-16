@@ -6,20 +6,19 @@
     ViewData["Msg2"] = "No pending attendence requests have been received yet.";
 
 }
+<link href="~/CSS/AdminAtt1.css" rel="stylesheet" />
 @model IEnumerable<AttendenceModel>
 
     <div style="margin-left:18%;height:600px;">
         <div class="navbar">
-            <h3 style="font-family:Cambria;color:black;">
+            <h3 style="font-family:Cambria;">
                 <br>
                 <a asp-controller="EmployeeHome" asp-action="EmpIndex" title="Back">
-                    <i class='fas fa-arrow-left' style="margin-right:15px;color:black;font-size:14pt"></i>
+                    <i class='fas fa-arrow-left' id="s1"></i>
                 </a>Attendence Request Approval
             </h3>
         </div>
         <hr>
-
-
         <br>
         <div style="margin-left:2%;width:90%">
             @if (ViewBag.IsApprove == true)
@@ -51,8 +50,8 @@
 
         @foreach (var attendence in Model)
         {
-            <div class="card bg-light" style="margin-bottom:30px;margin-left:2%;width:90%">
-                <div class="card-header" style="font-size:13pt;display:flex;justify-content:space-between;background-color:lightgray">
+            <div class="card bg-light" id="s2">
+                <div class="card-header" >
                     <font class="card-title">
                         <b> @attendence.EmpName - </b> &nbsp;
                         <span style="font-size:11pt">
@@ -61,7 +60,6 @@
                     </font>
                     <font class="card-title text-sm" style="font-size:11pt">
                         <a asp-controller="AdminAttendence" asp-action="SeeAttendenceInfo" asp-route-id="@attendence.EmpId"><u>View his/her Attendence Info</u></a>
-
                     </font>
                 </div>
                 <div class="card-body">
@@ -99,8 +97,8 @@
 
                         </div>
                         <div class="col-md-4">
-                            <div style="margin-top:5px;font-size:13pt"><i class='far fa-calendar-alt'></i>  Total Hours : @total</div>
-                            <div style="margin-top:5px;font-size:13pt"><i class='far fa-calendar-alt'></i>  Working Hours : @Work</div>
+                            <div id="s3"><i class='far fa-calendar-alt'></i>  Total Hours : @total</div>
+                            <div id="s3"><i class='far fa-calendar-alt'></i>  Working Hours : @Work</div>
                             <div style="margin-top:15px">
                                 <a asp-controller="AdminAttendence" asp-action="RequestApprove" asp-route-id="@attendence.AttendenceId" onclick="return confirm('Do you want to approve this attendence request ? ')" type="button" class="btn btn-outline-primary btn-sm btn-block">
                                     <i class='far fa-check-square'></i> Approved
@@ -111,14 +109,9 @@
                                     <i class='fas fa-times'></i> Not Approved
                                 </a>
                             </div>
-
                         </div>
-
                     </div>
                 </div>
             </div>
-
-
         }
-
     </div>

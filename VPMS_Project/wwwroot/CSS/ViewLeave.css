@@ -1,0 +1,22 @@
+﻿.content {
+    height: 800px
+}
+
+    .content h3 {
+        font-family: Cambria;
+        color: black;
+    }
+
+        .content h3 a i {
+            margin-right: 15px;
+            color: black;
+            font-size: 14pt
+        }
+
+#example {
+    background-color: gainsboro
+}
+
+.table tr {
+    line-height: 60px
+}

@@ -6,14 +6,15 @@
     ViewData["Msg2"] = "No pending leave requests have been received yet.";
 
 }
+<link href="~/CSS/Recomm.css" rel="stylesheet" />
 @model IEnumerable<LeaveApplyModel>
 
-    <div style="margin-left:18%;height:600px;">
+    <div id="s1">
         <div class="navbar">
-            <h3 style="font-family:Cambria;color:black;">
+            <h3>
                 <br>
                 <a asp-controller="EmployeeHome" asp-action="EmpIndex" title="Back">
-                    <i class='fas fa-arrow-left' style="margin-right:15px;color:black;font-size:14pt"></i>
+                    <i class='fas fa-arrow-left'></i>
                 </a>Leave Recommendation
             </h3>
         </div>
@@ -21,7 +22,7 @@
 
 
         <br>
-        <div style="margin-left:2%;width:90%">
+        <div id="s2">
             @if (ViewBag.IsRecommend == true)
             {
                 <div class="alert alert-success alert-dismissible fade show container" role="alert">
@@ -44,15 +45,15 @@
         <br>
         @if (Model.Count() == 0)
         {
-           <div style="margin-left:5%;width:85%">
+           <div id="s3">
               <partial name="_Message" />
            </div>
         }
 
         @foreach (var leave in Model)
         {
-            <div class="card bg-light" style="margin-bottom:30px;margin-left:2%;width:90%">
-                <div class="card-header" style="font-size:13pt;display:flex;justify-content:space-between;background-color:lightgray">
+            <div class="card bg-light">
+                <div class="card-header">
                     <font class="card-title">
                         <b> @leave.EmpName - </b> &nbsp;
                         <span style="font-size:11pt">
@@ -60,10 +61,10 @@
                         </span>
                     </font>
                     <font class="card-title">
-                        <a class="btn btn-outline-dark" asp-controller="AdminLeave" asp-action="ViewLeave" asp-route-id="@leave.EmpId" style="font-size:10pt">View Leave Request Details</a>
+                        <a class="btn btn-outline-dark" asp-controller="AdminLeave" asp-action="ViewLeave" asp-route-id="@leave.EmpId" >View Leave Request Details</a>
                         @if (leave.PdfURL != null)
                         {
-                            <a class="btn btn-outline-dark" href="@leave.PdfURL" target="_blank" style="font-size:10pt">View Evidence PDF</a>
+                            <a class="btn btn-outline-dark" href="@leave.PdfURL" target="_blank">View Evidence PDF</a>
                         }
                     </font>
                 </div>
@@ -74,17 +75,17 @@
                                 @leave.LeaveType for @leave.NoOfDays Days
                             </blockquote>
                             <div style="margin-top:10px"><i class='far fa-calendar-alt'></i>  Applied Date : @leave.AppliedDate.Day - @leave.AppliedDate.Month - @leave.AppliedDate.Year</div>
-                            <p style="font-size:12pt;margin-top:5px"><i class='far fa-meh'></i> Reason : @leave.Reason</p>
+                            <p id="s4"><i class='far fa-meh'></i> Reason : @leave.Reason</p>
+                        </div>
+                        <div class="s6 col-md-4">
+                            <div><i class='far fa-calendar-alt'></i>  From : @leave.Startdate.Day - @leave.Startdate.Month - @leave.Startdate.Year</div>
+                            <div><i class='far fa-calendar-alt'></i>  To&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : @leave.EndDate.Day - @leave.EndDate.Month - @leave.EndDate.Year</div>
+
                         </div>
                         <div class="col-md-4">
-                            <div style="margin-top:8px"><i class='far fa-calendar-alt'></i>  From : @leave.Startdate.Day - @leave.Startdate.Month - @leave.Startdate.Year</div>
-                            <div style="margin-top:8px"><i class='far fa-calendar-alt'></i>  To&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : @leave.EndDate.Day - @leave.EndDate.Month - @leave.EndDate.Year</div>
- 
-                        </div>
-                        <div class="col-md-4">
-                           
-                                <div style="margin-top:2px"><a type="button" class="btn btn-outline-dark btn-sm btn-block" asp-controller="AdminLeave" asp-action="SeeLeaveDetails" asp-route-id="@leave.EmpId"><i class='fas fa-info'></i> Leave Balance Info</a></div>
-                 
+                                <div style="margin-top:2px"><a type="button" class="btn btn-outline-dark btn-sm btn-block" asp-controller="AdminLeave" asp-action="SeeLeaveDetails" asp-route-id="@leave.EmpId">
+                                    <i class='fas fa-info'></i> Leave Balance Info</a></div>
+
                             <div style="margin-top:6px">
                                 <a asp-controller="AdminLeave" asp-action="LeaveRecomend" asp-route-id="@leave.LeaveApplyId" onclick="return confirm('Do you want to recommend this Leave ? ')" type="button" class="btn btn-outline-primary btn-sm btn-block">
                                     <i class='far fa-check-square'></i> Recommended
@@ -95,13 +96,9 @@
                                     <i class='fas fa-times'></i> Not Recommended
                                 </a>
                             </div>
-
                         </div>
-
                     </div>
                 </div>
             </div>
-
-
         }
     </div>

@@ -4,20 +4,20 @@
 }
 @model IEnumerable<LeaveApplyModel>
 
-
+<link href="~/CSS/ViewLeave.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
     <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables_themeroller.css">
-    <div class="content" style="height:800px">
-        <h3 style="font-family:Cambria;color:black;">
+    <div class="content">
+        <h3>
             <br>
             <a asp-controller="AdminLeave" asp-action="Recomend" title="Back">
-                <i class='fas fa-arrow-left' style="margin-right:15px;color:black;font-size:14pt"></i>
+                <i class='fas fa-arrow-left'></i>
             </a>Leave Request Details
         </h3>
         <br><br>
-        <table class="table table-hover" id="example" style="background-color:gainsboro">
+        <table class="table table-hover" id="example">
             <thead>
-                <tr style="line-height:60px">
+                <tr>
                     <th scope="col">Applied On</th>
                     <th scope="col">Leave Type</th>
                     <th scope="col">Start Date</th>
@@ -31,7 +31,7 @@
             <tbody>
                 @foreach (var leave in Model)
                 {
-                <tr style="line-height:60px">
+                <tr>
                     <td>@leave.AppliedDate.Day-@leave.AppliedDate.Month-@leave.AppliedDate.Year</td>
                     <td>@leave.LeaveType</td>
                     <td>@leave.Startdate.Day-@leave.Startdate.Month-@leave.Startdate.Year</td>
@@ -42,14 +42,14 @@
 
                         @if (leave.RecommendName == null)
                         {
-                            <div class="text-dark text-center">None</div>
+                            <div class="text-dark">None</div>
                         }
                     </td>
                     <td>
                         @leave.ApproverName
                         @if (leave.ApproverName == null)
                         {
-                            <div class="text-dark text-center">None</div>
+                            <div class="text-dark">None</div>
                         }
                     </td>
                     <td>

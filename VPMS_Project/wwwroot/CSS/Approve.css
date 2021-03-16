@@ -1,0 +1,44 @@
+﻿#s1 {
+    margin-left: 18%;
+    height: 600px;
+}
+
+#s2 {
+    margin-left: 2%;
+    width: 90%
+}
+
+#s3 {
+    margin-left: 4%;
+    width: 85%
+}
+
+#s4 {
+    margin-left: 2%;
+    width: 90%
+}
+
+
+.navbar h3 {
+    font-family: Cambria;
+    color: black;
+}
+
+    .navbar h3 a i {
+        margin-right: 15px;
+        color: black;
+        font-size: 14pt
+    }
+
+.card {
+    margin-bottom: 30px;
+    margin-left: 2%;
+    width: 90%
+}
+
+.card-header {
+    font-size: 13pt;
+    display: flex;
+    justify-content: space-between;
+    background-color: lightgray
+}

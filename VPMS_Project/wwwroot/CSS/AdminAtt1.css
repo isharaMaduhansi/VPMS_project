@@ -1,0 +1,23 @@
+﻿#s1 {
+    margin-right: 15px;
+    color: black;
+    font-size: 14pt
+}
+
+#s2 {
+    margin-bottom: 30px;
+    margin-left: 2%;
+    width: 90%
+}
+
+#s3 {
+    margin-top: 5px;
+    font-size: 13pt
+}
+
+.card-header {
+    font-size: 13pt;
+    display: flex;
+    justify-content: space-between;
+    background-color: lightgray
+}

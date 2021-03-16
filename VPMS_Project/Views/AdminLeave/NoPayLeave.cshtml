@@ -4,32 +4,29 @@
     ViewData["Msg1"] = "No No-Pay Leaves";
     ViewData["Msg2"] = "No No-Pay leaves have been taken yet.";
 }
+<link href="~/CSS/Nopay.css" rel="stylesheet" />
 <link href="~/CSS/MenuStyleSheet.css" rel="stylesheet" />
 <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
 <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables_themeroller.css">
 
 @model IEnumerable<LeaveApplyModel>
 
-
-<div style="height:600px;margin-left:16%">
-
-
-    <div style="background-color:ThreeDHighlight;font-family:Cambria">
+<div id="s1">
+    <div class="s2">
         <h3>
             <br>
             <a asp-controller="AdminLeave" asp-action="SeeLeaveDetails" asp-route-id="@ViewBag.Id" title="Back">
-                <i class='fas fa-arrow-left' style="margin-right:15px;color:black;font-size:14pt"></i>
+                <i class='fas fa-arrow-left'></i>
             </a>No-Pay Leaves taken
         </h3><hr>
-
     </div>
     <br>
 
     @if (Model.Count() == 0)
     {
         <br>
-        <div style="margin-left:8%;width:80%">
-            <div style="width:90%">
+        <div class="s3">
+            <div>
                 <partial name="_Message" />
             </div>
         </div>
@@ -37,38 +34,29 @@
     else
     {
         <br>
-        <div class="card" style="margin-left:10%;width:70%">
-            <p class="card-header" style="background-color:gainsboro">Search No-Pay leaves taken within a certain period of time. Select the start date and end date</p>
+        <div class="card">
+            <p class="card-header" >Search No-Pay leaves taken within a certain period of time. Select the start date and end date</p>
             <div class="card-body ">
                 <form class="form-inline" method="get" asp-controller="AdminLeave" asp-action="NoPayLeave">
                     <div class="row">
                         <input hidden value="@ViewBag.Id" />
-                        <div class="col">
-                            <font style="color:#173A47;font-size:10pt">Start Date</font>
+                        <div class="s5 col">Start Date
                             <input name="start_Date" type="Date" class="form-control" value="dd/mm/yyyy" onchange="check()" id="start" required>
                         </div>
-                        <div class="col">
-                            <font style="color:#173A47;font-size:10pt">End Date</font>
+                        <div class="s5 col">End Date
                             <input name="end_Date" type="Date" class="form-control" value="dd/mm/yyyy" id="end" onchange="check()" required>
                         </div>
                         <div class="col">
-                            <input class="btn btn-outline-primary" type="submit" value="Search" id="myBtn" style="width:200px;margin-left:20%;margin-top:8%" />
+                            <input class="btn btn-outline-dark" type="submit" value="Search" id="myBtn" />
                         </div>
-
                     </div>
-
                 </form>
-                <div style="margin-top:10px;color:red;" id="msg" class="text-center"></div>
+                <div id="msg" class="text-center"></div>
             </div>
         </div>
         <br><br>
-
         <partial name="_ExtraLeaves" />
-
-
     }
-
-
 
 </div>
 

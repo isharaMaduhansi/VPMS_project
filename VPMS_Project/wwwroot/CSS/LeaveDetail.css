@@ -1,0 +1,55 @@
+﻿#s1 {
+    margin-left: 15%;
+    height: 800px;
+}
+
+.col-md-8 {
+    margin-left: 1px
+}
+
+.jumbotron {
+    height: 300px
+}
+
+.form-inline a {
+    background-color: #173A47;
+    line-height: 30px;
+    margin-left: 3%;
+    width: 80px;
+}
+
+#s2 {
+    line-height: 30px;
+    width: 80px;
+    background-color: #173A47
+}
+
+.table tbody tr {
+    line-height: 40px
+}
+
+.rounded-circle {
+    width: 3.5rem;
+    background-color: gainsboro;
+    border-width: medium
+}
+
+#s5 {
+    color: forestgreen;
+    font-size: 11pt;
+    margin-bottom: 0px
+}
+
+
+.lead {
+    padding-bottom: 10px
+}
+
+#img {
+    margin-left: 20%
+}
+
+    #img img {
+        width: 60%;
+        height: auto
+    }

@@ -188,7 +188,7 @@ namespace VPMS_Project.Repository
             int year = Month.Year;
             int month = Month.Month;
 
-            return await (from a in _context.MarkAttendence.Where(x => (x.EmpId == id)&& (x.Date.Value.Month== month) && (x.Date.Value.Year == year))
+            return await (from a in _context.MarkAttendence.Where(x => (x.EmpId == id)&& (x.Date.Value.Month== month) && (x.Date.Value.Year == year) && (x.Date != DateTime.Now.Date))
                           select new MarkAttendenceModel()
                           {
                               Date = (DateTime)a.Date,
@@ -208,7 +208,7 @@ namespace VPMS_Project.Repository
             int year = Month.Year;
             int month = Month.Month;
 
-            return await (from a in _context.MarkAttendence.Where(x => (x.EmpId == id) && (x.Date.Value.Month == month) && (x.Date.Value.Year == year))
+            return await (from a in _context.MarkAttendence.Where(x => (x.EmpId == id) && (x.Date.Value.Month == month) && (x.Date.Value.Year == year) && (x.Date != DateTime.Now.Date))
                           select new MarkAttendenceModel()
                           {
                               Date = (DateTime)a.Date,

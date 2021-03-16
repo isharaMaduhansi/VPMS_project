@@ -42,9 +42,9 @@
                         <tr style="line-height: 70px">
 
                             <td scope="row">
-                                <div class="rounded-circle" style="width:3.2rem;background-color:gainsboro;border-width:medium">
-                                    <img class="card-img-top rounded-circle" src="@(string.IsNullOrEmpty(emp.PhotoURL) ? "~/images/defa.png" : emp.PhotoURL)" height="50" width="20">
-                                </div>
+                               
+                                    <img class="card-img-top rounded-circle" src="@(string.IsNullOrEmpty(emp.PhotoURL) ? "~/images/defa.png" : emp.PhotoURL)" style="width:50px;height:50px">
+                              
                             </td>
 
                             <td scope="row">@emp.EmpName </td>

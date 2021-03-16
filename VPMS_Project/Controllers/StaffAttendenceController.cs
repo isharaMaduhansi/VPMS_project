@@ -27,6 +27,7 @@ namespace VPMS_Project.Controllers
             String monthName = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(Month.Month);
             if (Month != DateTime.MinValue)
             {
+                ViewBag.Month = Month;
                 ViewBag.subtitle = "Attendence of " + monthName + " , " + Month.Year;
               var data = await _attendenceRepo.GetAttInfo(EmpId, Month);
                 if (data == null)

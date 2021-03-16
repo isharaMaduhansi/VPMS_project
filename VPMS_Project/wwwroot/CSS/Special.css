@@ -1,0 +1,49 @@
+﻿#s1 {
+    height: 600px;
+    margin-left: 16%
+}
+
+.s2 {
+    background-color: ThreeDHighlight;
+    font-family: Cambria
+}
+
+    .s2 h3 a i {
+        margin-right: 15px;
+        color: black;
+        font-size: 14pt
+    }
+
+.s3 {
+    margin-left: 8%;
+    width: 80%
+}
+
+.s5 {
+    color: #173A47;
+    font-size: 10pt
+}
+
+.s3 div {
+    width: 90%
+}
+
+.card {
+    margin-left: 10%;
+    width: 70%
+}
+
+.card-header {
+    background-color: gainsboro
+}
+
+#myBtn {
+    width: 200px;
+    margin-left: 20%;
+    margin-top: 8%
+}
+
+#msg {
+    margin-top: 10px;
+    color: red;
+}

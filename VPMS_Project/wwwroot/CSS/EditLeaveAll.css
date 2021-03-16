@@ -1,0 +1,21 @@
+﻿#s1 {
+    margin-left: 14%;
+    height: 750px;
+    background-image: url('/images/Parallax.jpg');
+    background-repeat: no-repeat;
+    position: center;
+    background-size: 100% 100%;
+}
+
+#s2 {
+    margin-left: 20%;
+    width: 600px
+}
+
+.form-group input {
+    height: 50px;
+}
+
+.form-group {
+    margin-top: 13px
+}

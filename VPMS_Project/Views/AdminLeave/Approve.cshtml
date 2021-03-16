@@ -4,16 +4,17 @@
     ViewData["Title"] = "Leave Approve";
     ViewData["Msg1"] = "No Leave Requests";
     ViewData["Msg2"] = "No pending leave requests have been received yet.";
-
 }
+
+<link href="~/CSS/Approve.css" rel="stylesheet" />
 @model IEnumerable<LeaveApplyModel>
 
-    <div style="margin-left:18%;height:600px;">
+    <div id="s1">
         <div class="navbar">
-            <h3 style="font-family:Cambria;color:black;">
+            <h3>
                 <br>
                 <a asp-controller="EmployeeHome" asp-action="EmpIndex" title="Back">
-                    <i class='fas fa-arrow-left' style="margin-right:15px;color:black;font-size:14pt"></i>
+                    <i class='fas fa-arrow-left'></i>
                 </a>Leave Approval
             </h3>
         </div>
@@ -21,7 +22,7 @@
 
 
         <br>
-        <div style="margin-left:2%;width:90%">
+        <div id="s2">
             @if (ViewBag.IsApprove == true)
             {
             <div class="alert alert-success alert-dismissible fade show container" role="alert">
@@ -44,15 +45,15 @@
         <br>
         @if (Model.Count() == 0)
         {
-              <div style="margin-left:4%;width:85%">
+              <div id="s3">
                 <partial name="_Message" />
                </div>
         }
 
         @foreach (var leave in Model)
         {
-            <div class="card bg-light" style="margin-bottom:30px;margin-left:2%;width:90%">
-                <div class="card-header" style="font-size:13pt;display:flex;justify-content:space-between;background-color:lightgray">
+            <div class="card bg-light">
+                <div class="card-header" >
                     <font class="card-title">
                         <b> @leave.EmpName - </b> &nbsp;
                         <span style="font-size:11pt">

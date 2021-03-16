@@ -1,0 +1,47 @@
+﻿.s1 {
+    margin-left: 20%;
+    height: 1000px;
+}
+
+#s2 {
+    margin-left: 5%;
+    width: 88%
+}
+
+#s3 {
+    margin-left: 5%;
+    margin-right: 6%;
+}
+
+.s4 {
+    background-color: lightgray;
+    line-height: 60px;
+    width: 100%
+}
+
+    .s4 a {
+        margin-left: 30px;
+        background-color: #173A47
+    }
+
+
+.s1 h3 {
+    font-family: Cambria;
+    color: black;
+}
+
+    .s1 h3 i {
+        margin-right: 15px;
+        color: black;
+        font-size: 14pt
+    }
+
+.table {
+    width: 100%;
+    background-color: lightgray;
+}
+
+.td a i {
+    font-size: 20px;
+    color: royalblue
+}

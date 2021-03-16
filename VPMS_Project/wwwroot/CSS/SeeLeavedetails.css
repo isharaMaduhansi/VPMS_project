@@ -1,0 +1,14 @@
+﻿.content {
+    height: 800px
+}
+
+.navbar {
+    font-family: Cambria;
+    color: black;
+}
+
+    .navbar a i {
+        margin-right: 15px;
+        color: black;
+        font-size: 14pt
+    }
