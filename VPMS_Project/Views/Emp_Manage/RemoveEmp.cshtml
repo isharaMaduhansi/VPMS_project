@@ -6,41 +6,24 @@
 
 @model IEnumerable<EmpModel>
 
-
-
-
-
-
-
 <div class="content">
-    <br>   <br>
+    <br><br>
     @if (ViewBag.IsSuccess == true)
     {
         <div class="alert alert-success" role="alert">
             Successfully Deleted
         </div>
-
-
     }
-
-    <br>
-
-
+  <br>
     <div class="table-responsive  col-sm-10 col-md-12 col-xl-12">
         <table class="table table-hover" >
-
             <thead>
-
             </thead>
             <tbody>
-
                 @foreach (var emp in Model)
                 {
-
-
-                    <tr style="line-height: 40px">
-
-                        <th scope="row">
+                  <tr style="line-height: 40px">
+                    <th scope="row">
                             <a asp-route="empDetailsRoute" asp-route-id="@emp.EmpId">
                                 <div class="rounded-circle" style="width: 3.7rem;background-color:gainsboro;border-width:medium">
                                     <img class="card-img-top rounded-circle" src="@(string.IsNullOrEmpty(emp.PhotoURL) ? "~/images/defa.png" : emp.PhotoURL)" height="55" width="20" asp-append-version="true">
@@ -56,20 +39,8 @@
                         <td><a asp-controller="Emp_Manage" asp-action="DeleteEmp" asp-route-id="@emp.EmpId" class="btn btn-outline-danger btn-sm"><i class='fas fa-times' style='color:red'></i> Delete</a></td>
 
                     </tr>
-
-
-
                 }
-
-
-
-            </tbody>
+           </tbody>
         </table>
     </div>
-
-
-
-
-
-
 </div>

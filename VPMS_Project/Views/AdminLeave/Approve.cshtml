@@ -18,10 +18,7 @@
                 </a>Leave Approval
             </h3>
         </div>
-        <hr>
-
-
-        <br>
+        <hr> <br>
         <div id="s2">
             @if (ViewBag.IsApprove == true)
             {
@@ -75,23 +72,23 @@
                             <blockquote class="blockquote mb-0">
                                 @leave.LeaveType for @leave.NoOfDays Days
                             </blockquote>
-                            <div style="margin-top:10px"><i class='far fa-calendar-alt'></i>  Applied Date : @leave.AppliedDate.Day - @leave.AppliedDate.Month - @leave.AppliedDate.Year</div>
+                            <div class="mt-3"><i class='far fa-calendar-alt'></i>  Applied Date : @leave.AppliedDate.Day - @leave.AppliedDate.Month - @leave.AppliedDate.Year</div>
                             <p style="font-size:12pt;margin-top:5px"><i class='far fa-meh'></i> Reason : @leave.Reason</p>
                         </div>
                         <div class="col-md-4">
-                            <div style="margin-top:8px"><i class='far fa-calendar-alt'></i>  From : @leave.Startdate.Day - @leave.Startdate.Month - @leave.Startdate.Year</div>
-                            <div style="margin-top:8px"><i class='far fa-calendar-alt'></i>  To&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : @leave.EndDate.Day - @leave.EndDate.Month - @leave.EndDate.Year</div>
-                            <div style="margin-top:8px"><i class='far fa-user-circle'></i> Recommended by : @leave.RecommendName</div>
+                            <div class="mt-2"><i class='far fa-calendar-alt'></i>  From : @leave.Startdate.Day - @leave.Startdate.Month - @leave.Startdate.Year</div>
+                            <div class="mt-2"><i class='far fa-calendar-alt'></i>  To&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : @leave.EndDate.Day - @leave.EndDate.Month - @leave.EndDate.Year</div>
+                            <div class="mt-2"><i class='far fa-user-circle'></i> Recommended by : @leave.RecommendName</div>
 
                         </div>
                         <div class="col-md-4">
-                            <div style="margin-top:2px"><a type="button" class="btn btn-outline-dark btn-sm btn-block" asp-controller="AdminLeave" asp-action="SeeLeaveDetails" asp-route-id="@leave.EmpId"><i class='fas fa-info'></i> Leave Balance Info</a></div>
-                            <div style="margin-top:6px">
+                            <div class="mt-1"><a type="button" class="btn btn-outline-dark btn-sm btn-block" asp-controller="AdminLeave" asp-action="SeeLeaveDetails" asp-route-id="@leave.EmpId"><i class='fas fa-info'></i> Leave Balance Info</a></div>
+                            <div class="mt-1">
                                 <a asp-controller="AdminLeave" asp-action="LeaveApprove" asp-route-id="@leave.LeaveApplyId" onclick="return confirm('Do you want to approve this Leave ? ')" type="button" class="btn btn-outline-primary btn-sm btn-block">
                                     <i class='far fa-check-square'></i> Approved
                                 </a>
                             </div>
-                            <div style="margin-top:6px">
+                            <div class="mt-1">
                                 <a asp-controller="AdminLeave" asp-action="LeaveNotApprove" asp-route-id="@leave.LeaveApplyId" onclick="return confirm('Do you want to reject this Leave ? ')" type="button" class="btn btn-outline-danger btn-sm btn-block">
                                     <i class='fas fa-times'></i> Not Approved
                                 </a>

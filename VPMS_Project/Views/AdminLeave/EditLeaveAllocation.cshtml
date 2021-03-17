@@ -10,14 +10,9 @@
 @model EmpModel
     
 <div id="s1">
-    <br><br><br>
-    @*<h4>@Model.EmpFName @Model.EmpLName</h4>*@
-    <br>
-
+    <br><br><br> <br>
     <form enctype="multipart/form-data" method="post" id="s2" asp-action="EditLeaveAllocation" asp-controller="AdminLeave">
-
         <input hidden asp-for="EmpId" />
-
         <div class="row">
             <div class="col">
                 <div class="form-group">
@@ -25,7 +20,6 @@
                     <input asp-for="FromDate" class="form-control" placeholder="Casual Leaves" />
                     <span asp-validation-for="FromDate" class="text-danger"></span>
                 </div>
-
             </div>
 
             <div class="col">
@@ -36,7 +30,6 @@
                 </div>
             </div>
         </div>
-
 
         <div class="row">
             <div class="col">
@@ -64,7 +57,6 @@
                     <input asp-for="AnnualAllocated" class="form-control" placeholder="Annual Leaves" />
                     <span asp-validation-for="AnnualAllocated" class="text-danger"></span>
                 </div>
-
             </div>
 
             <div class="col">

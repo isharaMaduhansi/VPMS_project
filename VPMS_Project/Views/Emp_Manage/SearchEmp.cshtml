@@ -8,44 +8,27 @@
 
 
 <div class="content">
-
     <br>
     @if (Model.Count() == 0)
     {
         <div style="text-align:center">
             <img src="~/images/not found.jpg" style="height:400px;width:400px" />
-
             <h1>
                 Sorry! Result Not Found :(
             </h1>
-
             <a asp-controller="Emp_Manage" asp-action="ViewAllEmp" class="btn btn-outline-success text-center">View All Employeees</a>
         </div>
-
-
     }
-
-
-    <br>
-    <br>
-    <br>
-
-
+    <br><br> <br>
     <div class="table-responsive col-sm-10 col-md-12 col-xl-12">
         <table class="table table-hover ">
-
             <thead>
-
             </thead>
             <tbody>
-
                 @foreach (var emp in Model)
                 {
-
-
-                    <tr style="line-height: 40px">
-
-                        <th scope="row">
+                  <tr style="line-height: 40px">
+                     <th scope="row">
                             <a asp-route="empDetailsRoute" asp-route-id="@emp.EmpId">
                                 <div class="rounded-circle" style="width: 3.5rem;background-color:gainsboro;border-width:medium">
                                     <img class="card-img-top rounded-circle" src="@(string.IsNullOrEmpty(emp.PhotoURL) ? "~/images/defa.png" : emp.PhotoURL)" height="55" width="20" asp-append-version="true">
@@ -59,22 +42,9 @@
                         </td>
                         <td><i class="fa fa-envelope"></i> : @emp.Email <br><i class='fas fa-mobile-alt' style="margin-left:7px"></i> : @emp.Mobile</td>
                         <td><a asp-route="empDetailsRoute" asp-route-id="@emp.EmpId" class="btn btn-outline-success btn-sm">View More</a></td>
-
                     </tr>
-
-
-
                 }
-
-
-
             </tbody>
         </table>
     </div>
-
-
-
-
-
-
 </div>

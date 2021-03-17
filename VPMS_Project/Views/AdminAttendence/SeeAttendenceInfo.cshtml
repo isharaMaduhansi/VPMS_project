@@ -10,7 +10,7 @@
 @model IEnumerable<MarkAttendenceModel>
 
 <link href="~/CSS/AdminAtt2.css" rel="stylesheet" />
-<div style="margin-left:18%;height:600px;">
+<div id="s3">
     <br>
     <div aria-label="breadcrumb">
         <ol class="breadcrumb">
@@ -20,10 +20,10 @@
     </div>
     <hr>
     <br>
-    <div class="jumbotron jumbotron-fluid" style="height:300px">
+    <div class="jumbotron jumbotron-fluid">
         <div class="container">
             <h1 class="display-4">Attendence Info</h1>
-            <p class="lead" style="padding-bottom:10px">Select a month and view attendence in that selected month.</p>
+            <p class="lead pb-3">Select a month and view attendence in that selected month.</p>
             <form class="form-inline" method="get" asp-action="SeeAttendenceInfo" asp-controller="AdminAttendence">
                 <input id="start" type="month" class="form-control" style="height:50px;width:88%" name="Month" required />
                 <input class="btn btn-success" type="submit" id="s1" value="Search" />

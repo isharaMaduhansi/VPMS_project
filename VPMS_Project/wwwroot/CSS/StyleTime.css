@@ -52,6 +52,7 @@
     border-radius: 50px;
     color: #fff;
     transition: all ease 0.1s;
+    background: linear-gradient(45deg, #173A47,#607d8b);
 }
 
 #stop {
@@ -60,6 +61,7 @@
     color: #fff;
     font-weight: 400;
     transition: all ease 0.1s;
+    background: linear-gradient(45deg, #173A47,#607d8b);
 }
 
     #play:active, #reset:active, #stop:active {

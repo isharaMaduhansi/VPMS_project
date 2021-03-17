@@ -4,38 +4,50 @@
     ViewData["Title"] = Model.EmpFName;
     ViewData["Topic"] = "Employees of Bellvantage (Pvt) Ltd";
 }
-
+<style>
+    .jumbotron {
+        height: 650px;
+        position: relative;
+        width: 90%;
+        margin-left: 4%;
+        background-color: #f1f1f1;
+    }
+    .card {
+        width: 100%;
+        background-color: #808080;
+        text-align: left;
+        font-family: Arial;
+        color: white
+    }
+    .s1 {
+        width: 15rem;
+        background-color: gainsboro;
+        border-width: medium
+    }
+</style>
 @model EmpModel
-
-
-
 
 <div class="content">
     <br>
-    <section class="jumbotron text-center" style="height:650px;position:relative;width:95%;margin-left:2%;background-color:#f1f1f1;">
-        <a asp-controller="Emp_Manage" asp-action="EditEmpById" asp-route-id="@Model.EmpId" class="btn btn-outline-success" style="margin-left:55%;width:80px">
+    <section class="jumbotron text-center">
+        <a asp-controller="Emp_Manage" asp-action="EditEmpById" asp-route-id="@Model.EmpId" class="btn btn-outline-success float-right">
             <i class='fas fa-wrench'></i> Edit
         </a>
-        <a asp-controller="Emp_Manage" asp-action="DeleteEmp" asp-route-id="@Model.EmpId" class="btn btn-outline-danger" style="margin-left:25px;width:92px"><i class='fas fa-times' style='color:red'></i> Delete</a>
-
-
+        <a asp-controller="Emp_Manage" asp-action="DeleteEmp" asp-route-id="@Model.EmpId" class="btn btn-outline-danger float-right mr-4"><i class='fas fa-times text-danger'></i> Delete</a>
         <br><br>
-
         <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-12">
-                <div class="card rounded-circle" style="width: 15rem;background-color:gainsboro;border-width:medium">
+                <div class="s1 card rounded-circle">
                     <img class="card-img-top rounded-circle" src="@(string.IsNullOrEmpty(Model.PhotoURL) ? "~/images/defa.png" : Model.PhotoURL)" height="240" width="60" asp-append-version="true">
                 </div>
                 <br> <br>
-
-
             </div>
             <div class="col-lg-8 col-md-8 col-sm-12">
-                <div class="card" style="width: 100%;background-color:#808080;text-align:left;font-family:Arial;color:white">
+                <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">
                             @Model.EmpFName @Model.EmpLName
-                            <span class="badge badge-dark" style="margin-left:50%;font-size:large"> @Model.Status</span>
+                            <span class="badge badge-dark float-right"> @Model.Status</span>
                         </h4>
                         <h5 class="card-title" style="color:greenyellow">
                             @Model.JobType
@@ -46,7 +58,6 @@
                                 <tr>
                                     <th scope="row">User ID</th>
                                     <th>@Model.EmpId</th>
-
                                 </tr>
 
                                 <tr>
@@ -74,19 +85,14 @@
                                     <th>@Model.Dob.Day-@Model.Dob.Month-@Model.Dob.Year</th>
 
                                 </tr>
-</table>
-
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
-       
-
-
     </section>
-
     <br>
-    <a style="color:forestgreen;margin-left:84%;margin-bottom:20px" asp-controller="Emp_Manage" asp-action="ViewAllEmp">View All Employees</a>
+    <a asp-controller="Emp_Manage" asp-action="ViewAllEmp" class="float-right mr-5 text-success">View All Employees</a>
     <br>
     <div class="container">
         <h3 style="color:white;background-color:#555;margin-top:18px">Related Employees</h3>

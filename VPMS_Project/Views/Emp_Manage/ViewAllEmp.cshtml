@@ -9,23 +9,16 @@
 
 <br>
 <div class="content">
-
     <br> <br>
-
     <div class="table-responsive col-sm-10 col-md-12 col-xl-12">
         <table class="table table-hover ">
-
             <thead>
-
             </thead>
             <tbody>
-
                 @foreach (var emp in Model)
                 {
-
                     i += 1;
                     <tr style="line-height: 40px">
-
                         <th scope="row">
                             <a asp-route="empDetailsRoute" asp-route-id="@emp.EmpId">
                                 <div class="rounded-circle" style="width: 3.5rem;background-color:gainsboro;border-width:medium">
@@ -33,30 +26,20 @@
                                 </div>
                             </a>
                         </th>
-                        <td>@emp.EmpFName @emp.EmpLName<br><font style="color:forestgreen;font-size:11pt;margin-bottom:0px"> User ID : @emp.EmpId</font></td>
+                        <td>@emp.EmpFName @emp.EmpLName<br><font style="color:forestgreen;font-size:11pt;"> User ID : @emp.EmpId</font></td>
                         <td>
                             @emp.JobType
-                            <br><span class="badge badge-dark" style="margin-bottom: 0px; font-size: 11pt">@emp.Status</span>
+                            <br><span class="badge badge-dark" style="font-size: 11pt">@emp.Status</span>
                         </td>
                         <td><i class="fa fa-envelope" title="Email"></i> : @emp.Email <br><i class='fas fa-mobile-alt' style="margin-left:7px" title="Mobile"></i> : @emp.Mobile</td>
                         <td><a asp-route="empDetailsRoute" asp-route-id="@emp.EmpId" class="btn btn-outline-success btn-sm"> View More</a></td>
-
                     </tr>
-
-
-
                 }
-
-
-
             </tbody>
         </table>
     </div>
     <br>
     <hr>
     <h5>No of employees : @i</h5>
-
-
-
 </div>
 

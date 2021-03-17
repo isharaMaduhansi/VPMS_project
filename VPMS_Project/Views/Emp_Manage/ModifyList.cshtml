@@ -4,12 +4,30 @@
     ViewData["Topic"] = "";
 
 }
-
+<style>
+    .content {
+        height: 800px;
+        background-image: url('/images/Parallax.jpg');
+        background-repeat: no-repeat;
+        position: center;
+        background-size: 100% 100%;
+    }
+    #s1 {
+        margin-left: 18%;
+        margin-right: 27%;
+    }
+    .table tr {
+        line-height: 20px
+    }
+    .table td a i {
+        font-size: 24px;
+        color: red
+    }
+    </style>
 @model IEnumerable<JobModel>
 
 
-<div class="content" style="height: 800px; background-image: url('/images/Parallax.jpg'); background-repeat: no-repeat; position: center;background-size:100% 100%;">
-
+<div class="content">
     <br>
     <div class="container">
         @if (ViewBag.IsSuccess == true)
@@ -17,8 +35,6 @@
             <div class="alert alert-success" role="alert">
                 <strong>Congragulations!</strong> You added a new job title successfully.
             </div>
-
-
         }
 
         @if (ViewBag.IsDelete == true)
@@ -26,72 +42,36 @@
             <div class="alert alert-success" role="alert">
                 Successfully Deleted.
             </div>
-
-
         }
     </div>
     <br>
-
-
-    <div style="margin-left:18%;margin-right:27%;">
+    <div id="s1">
         <br>
         <a asp-controller="Emp_Manage" asp-action="AddEmployee"><i class='fas fa-arrow-left' style="margin-left:8px;color:white"></i></a>
         <a asp-controller="Emp_Manage" asp-action="AddJob" class="btn-success" style="margin-left:30px;background-color:#173A47"><i class='fas fa-plus'></i> Add New </a>
-
         <br>
         <br>
         <div class="table-responsive col-sm-10 col-md-12 col-xl-12">
             <table class="table table-hover " id="datatable">
-
                 <thead>
-
-                </thead>
+               </thead>
                 <tbody>
-
                     @foreach (var job in Model)
                     {
-
-
-                        <tr style="line-height: 20px">
-
-
-                            <td scope="row">
-                                <font style="color:white"> @job.JobName</font>
+                        <tr>
+                          <td scope="row" class="text-white">
+                                @job.JobName
                             </td>
                             <td>
                                 <a asp-controller="Emp_Manage" asp-action="DeleteJob" asp-route-id="@job.JobId" onclick="return confirm('This will also permantly delete existing employees who hold this position. Do you want to delete this job title?')">
-
-                                    <i class='fas fa-times' style='font-size:24px;color:red'></i>
-
+                                    <i class='fas fa-times'></i>
                                 </a>
                             </td>
-
                         </tr>
                     }
-
-
-
                 </tbody>
             </table>
         </div>
-
-
-
-
-
     </div>
 </div>
-@*@section photo
-{
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
-
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
-
-    <script>
-        $(document).ready(function () {
-            $('#datatable').DataTable();
-        });
-
-    </script>
-}*@
 

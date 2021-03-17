@@ -2,24 +2,40 @@
     ViewData["Title"] = Model.EmpFName;
     ViewData["Topic"] = "Employees Who Quited";
 }
-
+<style>
+    .jumbotron {
+        height: 800px;
+        position: relative;
+        width: 85%;
+        margin-left: 6%;
+        background-color: whitesmoke;
+    }
+    .rounded-circle {
+        width: 15rem;
+        background-color: gainsboro;
+        border-width: medium;
+    }
+    .s1 {
+        width: 35rem;
+        background-color: #808080;
+        text-align: left;
+        font-family: Arial;
+        color: white
+    }
+</style>
 @model EmpModel
     <div class="content">
         <br><br>
-
-        <a asp-controller="Emp_Manage" asp-action="EditEmpById" asp-route-id="@Model.EmpId" class="btn btn-outline-success" style="margin-left:75%;width:80px"><i class='fas fa-wrench'></i> Edit</a>
-
-        <a asp-controller="Emp_Manage" asp-action="SeeRemoveEmp" class="btn btn-outline-success" style="margin-left:20px;width:80px"><i class='fas fa-arrow-left'></i> Back</a>
-
+        <a asp-controller="Emp_Manage" asp-action="EditEmpById" asp-route-id="@Model.EmpId" class="btn btn-outline-success float-right mr-4">
+        <i class='fas fa-wrench'></i> Edit</a>
+        <a asp-controller="Emp_Manage" asp-action="SeeRemoveEmp" class="btn btn-outline-success float-right">
+        <i class='fas fa-arrow-left'></i> Back</a>
         <br> <br>
-        <section class="jumbotron text-center" style="height:1050px;position:relative;width:85%;margin-left:6%;background-color:whitesmoke;">
-
-
+        <section class="jumbotron text-center">
             <br>
-
-            <div class="row">
+          <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-12">
-                    <div class="card rounded-circle" style="width: 15rem;background-color:gainsboro;border-width:medium;">
+                    <div class="card rounded-circle">
                         <img class="card-img-top rounded-circle" src="@(string.IsNullOrEmpty(Model.PhotoURL) ? "~/images/defa.png" : Model.PhotoURL)" height="230" width="50" asp-append-version="true">
                     </div>
                     <br> <br>
@@ -27,7 +43,7 @@
 
                 </div>
                 <div class="col-lg-8 col-md-8 col-sm-12">
-                    <div class="card" style="width: 35rem;background-color:#808080;text-align:left;font-family:Arial;color:white">
+                    <div class="s1 card">
                         <div class="card-body">
                             <h4 class="card-title">
                                 @Model.EmpFName @Model.EmpLName
