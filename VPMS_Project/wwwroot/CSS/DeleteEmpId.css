@@ -1,0 +1,21 @@
+﻿.jumbotron {
+    height: 800px;
+    position: relative;
+    width: 85%;
+    margin-left: 6%;
+    background-color: whitesmoke;
+}
+
+.rounded-circle {
+    width: 15rem;
+    background-color: gainsboro;
+    border-width: medium;
+}
+
+.s1 {
+    width: 35rem;
+    background-color: #808080;
+    text-align: left;
+    font-family: Arial;
+    color: white
+}

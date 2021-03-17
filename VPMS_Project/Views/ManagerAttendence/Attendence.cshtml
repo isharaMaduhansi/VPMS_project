@@ -4,16 +4,16 @@
 
 }
 @model IEnumerable<Key2Model>
+    <link href="~/CSS/AttManage.css" rel="stylesheet" />
 
-
-<div class="content" style="height:600px;">
+<div class="content" >
     <br>
-    <div class="navbar" style="display: flex; justify-content: space-between;">
+    <div class="navbar">
         <div class="card-title">
-            <h3 style="font-family:Cambria;color:black;">
+            <h3>
 
                 <a asp-controller="EmployeeHome" asp-action="Portal" title="Back">
-                    <i class='fas fa-arrow-left' style="margin-right:15px;color:black;font-size:14pt"></i>
+                    <i class='fas fa-arrow-left'></i>
                 </a>View Attendence info
             </h3>
         </div>
@@ -25,15 +25,15 @@
     <div class="container">
         <div class="row">
             <div class="col-md-5 text-center">
-                <div class="jumbotron jumbotron-fluid" style="height:250px">
+                <div class="jumbotron jumbotron-fluid">
                     <form class="form-inline" method="get" asp-action="Attendence" asp-controller="ManagerAttendence">
                         <div class="container">
-                            <select name="Search" class="form-control custom-select" asp-items="ViewBag.Emps" style="height:45px;border: none;width:100%">
+                            <select name="Search" class="i1 form-control custom-select" asp-items="ViewBag.Emps" style="height:45px;border: none;width:100%">
                                 <option value="">All Employees</option>
                             </select>
-                            <input name="Date" type="Date" class="form-control" placeholder="select day" value="dd/mm/yyyy" style="height:45px;margin-top:15px;width:100%" />
+                            <input name="Date" type="Date" class="i1 form-control mt-3" placeholder="select day" value="dd/mm/yyyy" style="height:45px;width:100%" />
 
-                            <input class="btn btn-success" type="submit" value="View Attendence Details" style="line-height:28px;width:100%;background-color:#173A47;margin-top:15px;" />
+                            <input class="b btn btn-success mt-3 " type="submit" value="View Attendence Details" />
 
 
                         </div>

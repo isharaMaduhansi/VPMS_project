@@ -45,14 +45,14 @@
         <div class="header">
             <nav class="navbar navbar-light" style="background-color:gainsboro;">
 
-                <div class="row" style="margin-left:5px">
+                <div class="row ml-2">
                     <a class="navbar-brand d-inline-block " asp-controller="EmployeeHome" asp-action="EmpIndex">
-                        <i class='fas fa-arrow-circle-left' style="margin-right:6px;color:#173A47"></i>
+                        <i class='fas fa-arrow-circle-left mr-2 mt-2' style="color:#173A47"></i>
                     </a>
-                    <h4 style="font-family:Cambria;margin-left:15px;margin-top:5px" class="text-center">@ViewData["Topic"]</h4>
+                    <h4 style="font-family:Cambria;" class="text-center ml-3 mt-2">@ViewData["Topic"]</h4>
                 </div>
 
-                <div class="col-sm-12 col-md-12 col-lg-4" style="padding-left:50px">
+                <div class="col-sm-12 col-md-12 col-lg-4 pl-5">
                     <form class="form-inline" method="get" asp-action="SearchEmp">
                         <input class="form-control mr-sm-2" type="search" placeholder="Search employees" aria-label="Search" name="Search" />
                         <input class="btn btn-outline-success" type="submit" value="Search" style="line-height:16px;background-color: #173A47" />

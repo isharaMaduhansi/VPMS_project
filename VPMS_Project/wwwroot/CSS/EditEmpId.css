@@ -1,0 +1,51 @@
+﻿.content {
+    height: 1000px;
+    background-image: url('/images/Parallax.jpg');
+    background-repeat: no-repeat;
+    position: center;
+    background-size: 100% 100%;
+}
+
+    .content h5 {
+        color: white;
+        margin-left: 2%;
+    }
+
+#s1 {
+    margin-left: 15%;
+    width: 750px
+}
+
+.form-group {
+    margin-top: 13px
+}
+
+.s2 {
+    font-size: 11pt;
+    margin-left: 280px;
+    color: white
+}
+
+.s3 {
+    margin-left: 70px;
+    color: white
+}
+
+.custom-file-label {
+    height: 50px;
+}
+
+#s4 {
+    background-color: #173A47;
+    color: white;
+    font-size: 12pt
+}
+
+.form-control {
+    height: 45px;
+}
+
+.form-inline {
+    font-size: 15pt;
+    margin-top: 33px
+}

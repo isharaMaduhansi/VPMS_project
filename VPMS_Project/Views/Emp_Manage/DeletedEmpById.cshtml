@@ -2,31 +2,11 @@
     ViewData["Title"] = Model.EmpFName;
     ViewData["Topic"] = "Employees Who Quited";
 }
-<style>
-    .jumbotron {
-        height: 800px;
-        position: relative;
-        width: 85%;
-        margin-left: 6%;
-        background-color: whitesmoke;
-    }
-    .rounded-circle {
-        width: 15rem;
-        background-color: gainsboro;
-        border-width: medium;
-    }
-    .s1 {
-        width: 35rem;
-        background-color: #808080;
-        text-align: left;
-        font-family: Arial;
-        color: white
-    }
-</style>
+<link href="~/CSS/DeleteEmpId.css" rel="stylesheet" />
 @model EmpModel
     <div class="content">
         <br><br>
-        <a asp-controller="Emp_Manage" asp-action="EditEmpById" asp-route-id="@Model.EmpId" class="btn btn-outline-success float-right mr-4">
+        <a asp-controller="Emp_Manage" asp-action="EditEmpById" asp-route-id="@Model.EmpId" class="btn btn-outline-success float-right ml-4 mr-4">
         <i class='fas fa-wrench'></i> Edit</a>
         <a asp-controller="Emp_Manage" asp-action="SeeRemoveEmp" class="btn btn-outline-success float-right">
         <i class='fas fa-arrow-left'></i> Back</a>

@@ -1,0 +1,29 @@
+﻿.content {
+    height: 600px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+}
+
+.jumbotron {
+    height: 250px
+}
+
+.b {
+    line-height: 28px;
+    width: 100%;
+    background-color: #173A47;
+}
+
+.card-title h3 {
+    font-family: Cambria;
+    color: black;
+}
+
+    .card-title h3 a i {
+        margin-right: 15px;
+        color: black;
+        font-size: 14pt
+    }
