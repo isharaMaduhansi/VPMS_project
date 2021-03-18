@@ -28,8 +28,14 @@ namespace VPMS_Project.Controllers
         public async Task<IActionResult> StaffDash()
         {
             int id = 2;
+            ViewBag.Id = id;
             var data = await _taskRepository.GetTaskListAsync(id);
             return View(data);
         }
+
+
+
+
+        
     }
 }

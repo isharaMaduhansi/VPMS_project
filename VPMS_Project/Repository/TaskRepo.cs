@@ -26,7 +26,34 @@ namespace VPMS_Project.Repository
                               Name=a.Name,
                               AllocatedHours=a.AllocatedHours,
                               EmpId = id,
+                              StartDate=a.StartDate,
+                              EndDate=a.EndDate,
+                              LastUpdate=a.LastUpdate,
+                              CreatedDate=a.CreatedDate,
+                              Description=a.Description
    
+                          }).ToListAsync();
+        }
+
+        public async Task<List<TaskModel>> GetAllTaskListAsync(int id)
+        {
+            return await (from a in _context.Task.Where(x => (x.EmployeesId == id))
+                          join b in _context.TimeSheetTask on a.Id equals b.TaskId
+                          select new TaskModel()
+                          {
+                              Id = a.Id,
+                              Name = a.Name,
+                              AllocatedHours = a.AllocatedHours,
+                              EmpId = id,
+                              StartDate = a.StartDate,
+                              EndDate = a.EndDate,
+                              ActualStartDateTime=b.StartDateTime,
+                              ActualEndDateTime=b.EndDateTime,
+                              TakenHours=b.TotalHours,
+                              LastUpdate = a.LastUpdate,
+                              CreatedDate = a.CreatedDate,
+                              Description = a.Description
+
                           }).ToListAsync();
         }
 

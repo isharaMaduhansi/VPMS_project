@@ -11,8 +11,7 @@ namespace VPMS_Project.Models
         public int Id { get; set; }
 
         public String Name { get; set; }
-
-        
+      
         public DateTime AppliedDate { get; set; }
 
         public DateTime StartDate { get; set; }
@@ -28,6 +27,8 @@ namespace VPMS_Project.Models
         public DateTime ActualEndDateTime { get; set; }
 
         public double AllocatedHours { get; set; }
+
+        public double TakenHours { get; set; }
 
         public DateTime CreatedDate { get; set; }
 

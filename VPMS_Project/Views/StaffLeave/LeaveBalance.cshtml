@@ -7,7 +7,6 @@
 @model LBalanceModel
 
 <link href="~/CSS/MenuStyleSheet.css" rel="stylesheet" />
-
 <style>
     .circle {
         width: 70px;
@@ -19,7 +18,32 @@
         text-align: center;
         background: #173A47;
     }
-
+    #d1 {
+        background-color: #aaa;
+        font-family: Cambria;
+        color: black;
+    }
+    .c1 {
+        border: 2px solid black;
+        height: 150px;
+        border-radius: 5%;
+        background-color: #173A47
+    }
+    #d2 {
+        font-size: 12pt;
+        color: white;
+    }
+    .c2 {
+        background-color: ThreeDHighlight
+    }
+    .card-header {
+        display: flex;
+        justify-content: space-between;
+    }
+    .b1 {
+        font-weight: normal;
+        font-size: 12pt
+    }
 </style>
 <div class="content">
     <partial name="_Menu" />
@@ -33,62 +57,55 @@
     <br><br>
 
     <div class="row">
-        <div class="col-md-8" style="margin-left:2%">
-            <div style="background-color:#aaa">
-                <h3 style="font-family:Cambria;color:black;margin-bottom:20px"> Leave Balance</h3>
-                <h6 style="font-family:Arial;color:black;"> From @Model.FromDate.Day-@Model.FromDate.Month-@Model.FromDate.Year &nbsp;&nbsp;&nbsp;&nbsp;To @Model.Todate.Day-@Model.Todate.Month-@Model.Todate.Year</h6>
+        <div class="col-md-8  ml-4">
+            <div id="d1">
+                <h3 class="mb-3"> Leave Balance</h3>
+                <h6 style="font-family: Arial"> From @Model.FromDate.Day-@Model.FromDate.Month-@Model.FromDate.Year &nbsp;&nbsp;&nbsp;&nbsp;
+                To @Model.Todate.Day-@Model.Todate.Month-@Model.Todate.Year</h6>
             </div>
 
-            <div class="row">
-                <div class="row">
-                    <div class="col-sm-12 col-lg-4" style="padding:50px">
-                        <div class="card text-center" style=" border: 2px solid black;color:white ;border-radius: 5%;height:150px;width:170px;margin-left:3%;background-color:#173A47">
+            <div class="row">       
+                    <div class="col-sm-12 col-lg-4 col-md-10 p-5">
+                        <div class="c1 card text-center text-white">
                             <div class="container">
-                                <div style="font-size:12pt;color:white;" class="row">
-                                    <br>&nbsp;&nbsp;Total Leave Allocation
-                                </div><br>
+                                <div id="d2" class="text-center mt-4 mb-4 ">
+                                    Total Leave Allocation
+                                </div>
                                 <h4>@Model.TotalLeaveGiven</h4>
-
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-12 col-lg-4" style="padding:50px">
-                        <div class="card text-center" style=" border: 2px solid black;color:white;border-radius: 5%;height:150px;width:170px;margin-left:3%;background-color:#173A47">
+                    <div class="col-sm-12 col-lg-4 col-md-10 p-5">
+                        <div class="c1 card text-center text-white">
                             <div class="container">
-                                <font style="font-size:12pt;color:white;">
-                                    <br> Total Leave Taken
-                                </font><br><br>
+                                <div id="d2" class="text-center mt-4 mb-4 ">
+                                    Total Leave Taken
+                                </div>
                                 <h4> @Model.TotalLeaveTaken</h4>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12 col-lg-4" style="padding:50px">
-                        <div class="card text-center" style=" border: 2px solid black;color:white; border-radius: 5%;height:150px;width:170px;margin-left:3%;background-color:#173A47">
+                    <div class="col-sm-12 col-lg-4 col-md-10 p-5" >
+                        <div class="c1 card text-center text-white">
                             <div class="container">
-                                <font style="font-size:12pt;color:white">
-                                    <br>Leave Balance
-                                </font><br><br>
+                                <div id="d2" class="text-center mt-4 mb-4 ">
+                                    Leave Balance
+                                </div>
                                 <h4>  @Model.TotalLeaveBalance </h4>
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
             <br>
-            <div class="card" style="background-color:ThreeDHighlight">
-                <div class="card-header" style="display: flex; justify-content: space-between;">
+            <div class="c2 card">
+                <div class="card-header">
                     <h5 class="card-title">Annual Leaves</h5>
                     <h5 class="card-title">
-                        <span class="bottom" style="font-weight:normal;font-size:12pt;">Current Available&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <span class="b1 bottom mr-2">Current Available</span>
                         <span>@Model.AnnualRemain</span>
                     </h5>
                     <h5 class="card-title">
-                        <span class="bottom" style="font-weight:normal;font-size:12pt;">Leave Taken&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <span class="b1 bottom mr-2">Leave Taken</span>
                         <span>@Model.AnnualTaken</span>
                         <span class="symbol">/</span>
                         <span class="bottom">@Model.AnnualAllocated</span>
@@ -96,15 +113,15 @@
                 </div>
             </div>
             <br>
-            <div class="card" style="background-color:ThreeDHighlight">
-                <div class="card-header" style="display: flex; justify-content: space-between;">
+            <div class="c2 card">
+                <div class="card-header">
                     <h5 class="card-title">Medical Leaves</h5>
                     <h5 class="card-title">
-                        <span class="bottom" style="font-weight:normal;font-size:12pt;">Current Available&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <span class="b1 bottom mr-2">Current Available</span>
                         <span>@Model.MedicalRemain</span>
                     </h5>
                     <h5 class="card-title">
-                        <span class="bottom" style="font-weight:normal;font-size:12pt;">Leave Taken&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <span class="b1 bottom mr-2">Leave Taken</span>
                         <span>@Model.MedicalTaken</span>
                         <span class="symbol">/</span>
                         <span class="bottom">@Model.MedicalAllocated</span>
@@ -112,15 +129,15 @@
                 </div>
             </div>
             <br>
-            <div class="card" style="background-color:ThreeDHighlight">
-                <div class="card-header" style="display: flex; justify-content: space-between;">
+            <div class="c2 card">
+                <div class="card-header">
                     <h5 class="card-title">Casual Leaves</h5>
                     <h5 class="card-title">
-                        <span class="bottom" style="font-weight:normal;font-size:12pt;">Current Available&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <span class="b1 bottom mr-2">Current Available</span>
                         <span>@Model.CasualRemain</span>
                     </h5>
                     <h5 class="card-title">
-                        <span class="bottom" style="font-weight:normal;font-size:12pt;">Leave Taken&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <span class="b1 bottom mr-2">Leave Taken</span>
                         <span>@Model.CasualTaken</span>
                         <span class="symbol">/</span>
                         <span class="bottom">@Model.CasualAllocated</span>
@@ -128,15 +145,15 @@
                 </div>
             </div>
             <br>
-            <div class="card" style="background-color:ThreeDHighlight">
-                <div class="card-header" style="display: flex; justify-content: space-between;">
+            <div class="c2 card">
+                <div class="card-header">
                     <h5 class="card-title">Short Leaves</h5>
                     <h5 class="card-title">
-                        <span class="bottom" style="font-weight:normal;font-size:12pt;">Current Available&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <span class="b1 bottom mr-2">Current Available</span>
                         <span>@Model.ShortRemain</span>
                     </h5>
                     <h5 class="card-title">
-                        <span class="bottom" style="font-weight:normal;font-size:12pt;">Leave Taken&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <span class="b1 bottom mr-2">Leave Taken</span>
                         <span>@Model.ShortTaken</span>
                         <span class="symbol">/</span>
                         <span class="bottom">@Model.ShortAllocated</span>
@@ -144,15 +161,15 @@
                 </div>
             </div>
             <br>
-            <div class="card" style="background-color:ThreeDHighlight">
-                <div class="card-header" style="display: flex; justify-content: space-between;">
+            <div class="c2 card">
+                <div class="card-header">
                     <h5 class="card-title">Half Days</h5>
                     <h5 class="card-title">
-                        <span class="bottom" style="font-weight:normal;font-size:12pt;margin-left:20px">Current Available&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <span class="b1 bottom mr-2">Current Available</span>
                         <span>@Model.HalfRemain</span>
                     </h5>
                     <h5 class="card-title">
-                        <span class="bottom" style="font-weight:normal;font-size:12pt;">Leave Taken&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <span class="b1 bottom mr-2">Leave Taken</span>
                         <span>@Model.Halftaken</span>
                         <span class="symbol">/</span>
                         <span class="bottom">@Model.HalfAllocated</span>
@@ -160,14 +177,13 @@
                 </div>
             </div>
             <br><br><br>
-            <div style="background-color:#aaa">
-                <h3 style="font-family:Cambria;color:black;"> Extra Leave Taken</h3><br>
+            <div id="d1">
+                <h3> Extra Leave Taken</h3><br>
             </div>
-            <br><br>
-            <div class="row" style="margin-left:2%;font-family:Cambria">
-                <div class="col">
-                    <div class="card" style="width: 19rem;">
-                        <div class="card-header" style="background-color: #173A47;color:white">
+            <div class="row mt-5 ml-4" style="font-family:Cambria">
+                <div class="col-lg-5  col-md-9 col-sm-12 mb-5">
+                    <div class="card" >
+                        <div class="card-header text-white" style="background-color: #173A47;">
                             <h4 class="card-title text-center">special Leaves</h4>
                         </div>
                         <div class="card-body" style="background-color:ThreeDHighlight">
@@ -178,19 +194,13 @@
                                         <div class="circle float-right">@Model.SpecialTaken</div>
                                     </a>
                                 </div>
-
                             </div>
-
-
-
                         </div>
                     </div>
-
-
                 </div>
-                <div class="col">
-                    <div class="card" style="width: 19rem;">
-                        <div class="card-header" style="background-color: #173A47;color:white">
+                <div class="col-lg-5 col-sm-12 col-md-9 ml-lg-5">
+                    <div class="card">
+                        <div class="card-header text-white" style="background-color: #173A47;">
                             <h4 class="card-title text-center">No Pay Leaves</h4>
                         </div>
                         <div class="card-body" style="background-color:ThreeDHighlight">
@@ -199,21 +209,14 @@
                                 <div class="col-md-3">
                                     <a asp-controller="StaffLeave" asp-action="NoPayLeave"><div class="circle float-right">@Model.NoPayTaken</div></a>
                                 </div>
-
                             </div>
-
-
-
-                        </div>
+                     </div>
                     </div>
 
                 </div>
             </div>
-
-
-
         </div>
-        <div class="col-md-3" style="">
+        <div class="col-md-3">
             @await Component.InvokeAsync("Leave", new { id = Model.EmpId })
         </div>
     </div>

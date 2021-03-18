@@ -3,15 +3,14 @@
     ViewData["Title"] = "View Leave";
 
 }
-@model  IEnumerable<KeyModel>
-
-<div class="content" style="height:600px;">
+@model IEnumerable<KeyModel>
+    <link href="~/CSS/Manager.css" rel="stylesheet" />
+<div class="content">
     <br>
     <div class="navbar">
-        <h3 style="font-family:Cambria;color:black;">
-
+        <h3>
             <a asp-controller="EmployeeHome" asp-action="Portal" title="Back">
-                <i class='fas fa-arrow-left' style="margin-right:15px;color:black;font-size:14pt"></i>
+                <i class='fas fa-arrow-left mr-4'></i>
             </a>View Leave info
         </h3>
     </div>
@@ -22,12 +21,12 @@
                 <div class="jumbotron jumbotron-fluid" style="height:250px">
                     <form class="form-inline" method="get" asp-action="Leave" asp-controller="ManagerLeave">
                         <div class="container">
-                            <select name="Search" class="form-control custom-select" asp-items="ViewBag.Emps" style="height:45px;border: none;width:100%">
+                            <select name="Search" class="f1 form-control custom-select" asp-items="ViewBag.Emps" id="f1">
                                 <option value="">All Employees</option>
                             </select>
-                            <input name="Date" type="Date" class="form-control" placeholder="select day" value="dd/mm/yyyy" style="height:45px;margin-top:15px;width:100%" />
+                            <input name="Date" type="Date" class="f2 form-control" placeholder="select day" value="dd/mm/yyyy" id="f2"  />
 
-                            <input class="btn btn-success" type="submit" value="View Leave Details" style="line-height:28px;width:100%;background-color:#173A47;margin-top:15px;" />
+                            <input class="b1 btn btn-success" type="submit" value="View Leave Details" />
 
 
                         </div>
@@ -58,12 +57,12 @@
 
                                     <th scope="row">
                                         <a asp-action="Leave" asp-controller="ManagerLeave" asp-route-id="@emp.LeaveApplyId">
-                                            <div class="rounded-circle" style="width: 3rem;background-color:gainsboro;border-width:medium">
+                                            <div class="rounded-circle">
                                                 <img class="card-img-top rounded-circle" src="@(string.IsNullOrEmpty(emp.PhotoURL) ? "~/images/defa.png" : emp.PhotoURL)" height="45" width="20" asp-append-version="true">
                                             </div>
                                         </a>
                                     </th>
-                                    <td class="text-left"> @emp.EmpFName<br><font style="color:forestgreen;font-size:11pt;margin-bottom:0px">From - @emp.FromDate.Day-@emp.FromDate.Month-@emp.FromDate.Year  <br> To &nbsp;&nbsp;&nbsp;&nbsp;- @emp.ToDate.Day-@emp.ToDate.Month-@emp.ToDate.Year </font></td>
+                                    <td class="text-left"> @emp.EmpFName<br><font id="f3">From - @emp.FromDate.Day-@emp.FromDate.Month-@emp.FromDate.Year  <br> To &nbsp;&nbsp;&nbsp;&nbsp;- @emp.ToDate.Day-@emp.ToDate.Month-@emp.ToDate.Year </font></td>
 
                                     <td><a asp-action="Leave" asp-controller="ManagerLeave" asp-route-id="@emp.LeaveApplyId" class="text-dark">View More</a></td>
                                 </tr>

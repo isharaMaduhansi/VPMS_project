@@ -1,0 +1,73 @@
+﻿@using VPMS_Project.Models;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@model IEnumerable<TaskModel>
+<style>
+    #d1 {
+        background-color: #aaa;
+        font-family: Cambria;
+        color: black;
+        width:100%
+    }
+    </style>
+
+    <div id="d1" class="mt-5 mb-4 ml-2 mr-2">
+        <h3> Completed Tasks</h3><br>
+    </div>
+
+<div class="table-responsive col-sm-10 col-md-12 col-xm-12">
+   
+    <table class="table table-hover" id="example" width="100%" cellspacing="0" style="background-color:gainsboro">
+
+        <thead>
+            <tr style="line-height: 60px">
+                <th scope="row" rowspan="2">Task name  </th>
+                <th scope="row" rowspan="2">Description</th>
+                <th scope="row" colspan="3">Estimated </th>
+                <th scope="row" colspan="3">Actual </th>
+            </tr>
+            <tr style="line-height: 30px">
+                <th scope="row">Start Date </th>
+                <th scope="row">End Date </th>
+                <th scope="row">Allocated hours </th>
+                <th scope="row">Actual Start Date </th>
+                <th scope="row">Actual End Date </th>
+                <th scope="row">Total hours </th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var task in Model)
+            {
+            <tr style="line-height: 40px" class="mb-5">
+                <td scope="row">@task.Name </td>
+                <td scope="row" class="text-center">@task.Description</td>
+                <td scope="row" class="text-center">@task.StartDate.Day/@task.StartDate.Month/@task.StartDate.Year <br> @task.StartDate.TimeOfDay</td>
+                <td scope="row" class="text-center">@task.EndDate.Day/@task.EndDate.Month/@task.EndDate.Year <br> @task.EndDate.TimeOfDay</td>
+
+                @{
+                    var timeSpan1 = TimeSpan.FromHours(task.AllocatedHours);
+                    int hh1 = timeSpan1.Hours;
+                    int mm1 = timeSpan1.Minutes;
+                    String total1 = hh1 + " h " + mm1 + " min";
+                }
+
+                <td scope="row">@total1 </td>
+                <td scope="row" class="text-center">@task.ActualStartDateTime.Day/@task.ActualStartDateTime.Month/@task.ActualStartDateTime.Year <br> @task.ActualStartDateTime.TimeOfDay</td>
+                <td scope="row" class="text-center">@task.ActualEndDateTime.Day/@task.ActualEndDateTime.Month/@task.ActualEndDateTime.Year <br> @task.ActualEndDateTime.TimeOfDay</td>
+
+                @{
+                    var timeSpan2 = TimeSpan.FromHours(task.TakenHours);
+                    int hh2 = timeSpan2.Hours;
+                    int mm2 = timeSpan2.Minutes;
+                    String total2 = hh2 + " h " + mm2 + " min";
+                }
+
+                <td scope="row">@total2 </td>
+            </tr>
+            }
+
+        </tbody>
+    </table>
+
+</div>

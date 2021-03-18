@@ -1,0 +1,51 @@
+﻿.content {
+    height: 600px;
+}
+
+.navbar h3 {
+    font-family: Cambria;
+    color: black;
+}
+
+.navbar i {
+    color: black;
+    font-size: 14pt
+}
+
+#f1 {
+    height: 45px;
+    border: none;
+    width: 100%
+}
+
+#f2 {
+    height: 45px;
+    margin-top: 15px;
+    width: 100%;
+}
+
+.b1 {
+    line-height: 28px;
+    width: 100%;
+    background-color: #173A47;
+    margin-top: 15px;
+}
+
+.rounded-circle {
+    width: 3rem;
+    background-color: gainsboro;
+    border-width: medium
+}
+
+#f3 {
+    color: forestgreen;
+    font-size: 11pt;
+    margin-bottom: 0px
+}
+
+
+.c2 {
+    font-family: Cambria;
+    border-bottom-width: 10px;
+    background: linear-gradient(to left,#607d8b, #173A47);
+}

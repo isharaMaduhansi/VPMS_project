@@ -3,94 +3,146 @@
     ViewData["Title"] = "Dashboard";
 }
 @model IEnumerable<TaskModel>
+<style>
+    .content {
+        height: 700px
+    }
+    #Upcoming {
+        background-color: ThreeDLightShadow;
+    }
+    #Overdue {
+        background-color: rgba(244, 76, 76, 0.58);
+    }
+    #Today {
+        background-color: #eeee7b;
+    }
+    .c1 {
+        font-family: Cambria;
+        border-bottom-width: 10px;
+        background: linear-gradient(to left,#607d8b, #173A47);
+    }
+    #h {
+        font-family: Cambria;
+        border-color: black;
+        text-align: left;
+        background-color: gainsboro
+    }
+    .c2 {
+        font-family: Cambria;
+        border-bottom-width: 10px;
+        background: linear-gradient(to left,#607d8b, #173A47);
+        margin-left: 3%
+    }
+</style>
+<link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
+<link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables_themeroller.css">
 
-<div class="content text-center" style="height:700px">
+<div class="content text-center">
     <div class="row">
-        <div class="column left" style="width:30%">
+        <div class="col-md-4 col-lg-4 col-sm-12">
             <br>
-            <div class="card text-center text-white" style="font-family:Cambria;border-bottom-width:10px;background:linear-gradient(to left,#607d8b, #173A47);margin-left:3%">
+            <div class="c2 card text-center text-white">
                 <br>
                 <h4 class="container" style="text-align:center;border-color:black;">
                     Task To Do<br>
                 </h4>
+
                 @if (Model.Count() == 0)
                 {
                     <div class="jumbotron jumbotron-fluid">
                         <div class="container">
                             <h2>No Tasks Available</h2>
-
                         </div>
                     </div>
                 }
                 else
                 {
-                    <div class="card-body" style="background-color:ThreeDHighlight">
+            <div class="card-body" style="background-color:ThreeDHighlight">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Task</th>
+                            <th scope="col">Allocated Hours</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var task in Model)
+                        {
+                            String status = "Upcoming";
+                            if (task.EndDate.Date > DateTime.Now.Date)
+                                status = "Upcoming";
+                            else if (task.EndDate < DateTime.Now)
+                                status = "Overdue";
+                            else if ((task.StartDate.Date == DateTime.Now.Date) || (task.EndDate.Date == DateTime.Now.Date))
+                                status = "Today";
 
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Task</th>
-                                    <th scope="col">Allocated Hours</th>
+                            <tr id="@status" style="line-height:5px;">
+                                <td><a class="btn p-0" style="line-height:5px;" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">@task.Name</a></td>
+                                <td><a class="btn p-0" style="line-height:5px;" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">@task.AllocatedHours</a></td>
+                            </tr>
+                           
+                                String start = string.Format("{0:hh:mm:ss tt}", task.StartDate);
+                                String end = string.Format("{0:hh:mm:ss tt}", task.EndDate);
+                            
+                            <tr style="background-color:ThreeDHighlight">
+                                <td colspan="2">
+                                    <div class="collapse" id="collapseExample" style="line-height:10px">
+                                        <span class="float-left mb-4">Start Date: @task.StartDate.Day/@task.StartDate.Month/@task.StartDate.Year</span> <span class="float-right mb-4"> @start</span><br>
+                                        <span class="float-left">End Date: @task.EndDate.Day/@task.EndDate.Month/@task.EndDate.Year</span> <span class="float-right">@end</span>
 
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var task in Model)
-                                {
-                                    <tr>
-                                        <td scope="row">@task.Name </td>
-                                        <td>@task.AllocatedHours</td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-                    </div>
-                }
+                                    </div>
+                                </td>
+                            </tr>
 
+                        }
+                    </tbody>
+                </table>
+                <span class="float-left mr-4" style="font-size:12px;color:black;background-color:ThreeDLightShadow">Upcoming</span>
+                <span class="float-left mr-4" style="font-size:12px;color:black;background-color:rgba(244, 76, 76, 0.58)">Overdue</span>
+                <span class="float-left mr-4"  style="font-size:12px;color:black;background-color: #eeee7b;">Today</span>
             </div>
-
-
+                }
+            </div>
         </div>
 
-        <div class="column left" style="width:60%;margin-left:5%">
-            <br>    <h4 style="font-family:Cambria;border-color:black;text-align:left;background-color:gainsboro">
-              <b>Summary</b>
+        <div class="col-md-8 col-lg-8 col-sm-12">
+            <br>    <h4 id="h">
+                <b>Summary</b>
             </h4><br>
-                 <div class="row">
-                     <div class="col">
-                         <div class="card text-white mb-3" style="max-width: 18rem;font-family:Cambria;border-bottom-width:10px;background:linear-gradient(to left,#607d8b, #173A47);">
-                             <div class="card-header">View More</div>
-                             <div class="card-body">
-                                 <h5 class="card-title">Overall Achievments</h5><br>
-                                 <p class="card-text">x %</p>
-                             </div>
-                         </div>
-                     </div>
-                     <div class="col">
-                         <div class="card text-white mb-3" style="max-width: 18rem;font-family:Cambria;border-bottom-width:10px;background:linear-gradient(to left,#607d8b, #173A47);">
-                             <div class="card-header">View More</div>
-                             <div class="card-body">
-                                 <h5 class="card-title">Target Achievments</h5><br>
-                                 <p class="card-text">x %</p>
-                             </div>
-                         </div>
-                     </div>
-                     <div class="col">
-                         <div class="card text-white mb-3" style="max-width: 18rem;font-family:Cambria;border-bottom-width:10px;background:linear-gradient(to left,#607d8b, #173A47);">
-                             <div class="card-header">View More</div>
-                             <div class="card-body">
-                                 <h5 class="card-title">Overdue Tasks</h5><br>
-                                 <p class="card-text">x %</p>
-                             </div>
-                         </div>
-
-                     </div>
-                 </div>
+            <div class="row">
+                <div class="col col-lg-4 col-md-4 col-sm-12">
+                    <div class="c1 card text-white mb-3">
+                        <div class="card-header">View More</div>
+                        <div class="card-body">
+                            <h5 class="card-title">Overall Achievments</h5><br>
+                            <p class="card-text">x %</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-lg-4 col-md-4 col-sm-12">
+                    <div class="c1 card text-white mb-3">
+                        <div class="card-header">View More</div>
+                        <div class="card-body">
+                            <h5 class="card-title">Target Achievments</h5><br>
+                            <p class="card-text">x %</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-lg-4 col-md-4 col-sm-12">
+                    <div class="c1 card text-white mb-3">
+                        <div class="card-header">View More</div>
+                        <div class="card-body">
+                            <h5 class="card-title">Overdue Tasks</h5><br>
+                            <p class="card-text">x %</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <br>  <br>
             <div class="row">
-                <div class="col">
-                    <div class="card text-white mb-3" style="max-width: 18rem;font-family:Cambria;border-bottom-width:10px;background:linear-gradient(to left,#607d8b, #173A47);">
+                <div class="col col-lg-4 col-md-4 col-sm-12">
+                    <div class="c1 card text-white mb-3">
                         <div class="card-header">View More</div>
                         <div class="card-body">
                             <h5 class="card-title">Loss to the company</h5><br>
@@ -98,8 +150,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="card text-white mb-3" style="max-width: 18rem;font-family:Cambria;border-bottom-width:10px;background:linear-gradient(to left,#607d8b, #173A47);">
+                <div class="col col-lg-4 col-md-4 col-sm-12">
+                    <div class="c1 card text-white mb-3">
                         <div class="card-header">View More</div>
                         <div class="card-body">
                             <h5 class="card-title">Additional gain to the company</h5>
@@ -107,27 +159,34 @@
                         </div>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="card text-white mb-3" style="max-width: 18rem;font-family:Cambria;border-bottom-width:10px;background:linear-gradient(to left,#607d8b, #173A47);">
+                <div class="col col-lg-4 col-md-4 col-sm-12">
+                    <div class="c1 card text-white mb-3">
                         <div class="card-header">View More</div>
                         <div class="card-body">
                             <h5 class="card-title">Cumalative Gain/Loss</h5><br>
                             <p class="card-text">LKR 0.00</p>
                         </div>
                     </div>
-
                 </div>
             </div>
-
         </div>
+        <br>
+        @await Component.InvokeAsync("TaskAll", new { id = ViewBag.Id });
+
     </div>
 </div>
 
-@*@section Dashboard
-            {
+@section Dashboard
+{
+    <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+    <script>
+        $(function () {
+            $("#example").dataTable({
+                'paging': false,
+                'ordering': false,
+            });
+        })
+    </script>
 
-
-
-
-
-    }*@
+}

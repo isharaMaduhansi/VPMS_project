@@ -4,13 +4,14 @@
 
 }
 @model EmpModel
+    <link href="~/CSS/ManageDash.css" rel="stylesheet" />
 
-    <div class="content" style="height:600px;">
+    <div class="content">
         <div class="navbar">
-            <h4 style="font-family:Cambria;color:black;">
+            <h4>
                 <br>
                 <a asp-controller="EmployeeHome" asp-action="Portal" title="Back">
-                    <i class='fas fa-arrow-left' style="margin-right:15px;color:black;font-size:14pt"></i>
+                    <i class='fas fa-arrow-left mr-4'></i>
                 </a>Dashboard
             </h4>
         </div>
@@ -23,19 +24,15 @@
                         <h1 class="display-4">Employee Details</h1>
                         <form class="form-inline" method="get" asp-action="ViewEmp" asp-controller="ManagerDash">
                             <div class="container">
-                                <select asp-for="EmpId" class="form-control custom-select" asp-items="ViewBag.Emps" style="height:45px;border: none;width:100%">
+                                <select asp-for="EmpId" class="form-control custom-select mb-3" asp-items="ViewBag.Emps" id="f1">
                                     <option value="">Choose a employee</option>
                                 </select>
-                                <input class="btn btn-success" type="submit" value="Select" style="line-height:25px;width:100%;background-color:#173A47;margin-top:5px;" />
+                                <input class="b1 btn btn-success" type="submit" value="Select" />
                                 <span asp-validation-for="EmpId" class="text-danger"></span>
                             </div>
                         </form>
 
                     </div>
-
-
-
-
                 </div>
             </div>
         </div>

@@ -4,23 +4,21 @@
     ViewData["Title"] = "Employee details";
     Layout = "_ManagerLayout";
 }
-
+<link href="~/CSS/ManageEmp.css" rel="stylesheet" />
 @model EmpModel
-   
+ 
 
-    <div class="content" style="height:600px">
+    <div class="content">
         <div class="navbar">
-            <font style="font-family:Cambria;color:black;font-size:13pt">
                 <a asp-controller="ManagerDash" asp-action="Dashboard" title="Back">
                     Back to Dashboard
                 </a>
-            </font>
         </div>
         <br>
-        <section class="jumbotron text-center" style="height:500px;position:relative;width:95%;margin-left:2%;background-color:#f1f1f1;">
+        <section class="jumbotron text-center">
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-12">
-                    <div class="card rounded-circle" style="width: 15rem;background-color:gainsboro;border-width:medium">
+                    <div class="card rounded-circle">
                         <img class="card-img-top rounded-circle" src="@(string.IsNullOrEmpty(Model.PhotoURL) ? "~/images/defa.png" : Model.PhotoURL)" height="240" width="60" asp-append-version="true">
                     </div>
                     <br> <br>
@@ -28,16 +26,17 @@
 
                 </div>
                 <div class="col-lg-8 col-md-8 col-sm-12">
-                    <div class="card" style="width:100%;background-color:#808080;text-align:left;font-family:Arial;color:white">
+                    <div class="c1 card">
                         <div class="card-body">
                             <h4 class="card-title">
                                 @Model.EmpFName @Model.EmpLName
-                                <span class="badge badge-dark" style="margin-left:50%;font-size:large"> @Model.Status</span>
+                                <span class="badge badge-dark"> @Model.Status</span>
                             </h4>
                             <h5 class="card-title" style="color:greenyellow">
                                 @Model.JobType
                             </h5>
-                            <h7 class="card-title">Work since - @Model.WorkSince.Day-@Model.WorkSince.Month-@Model.WorkSince.Year&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Model.Gender</h7><hr>
+                            <h7 class="card-title">Work since - @Model.WorkSince.Day-@Model.WorkSince.Month-@Model.WorkSince.Year
+                            <span class="ml-5">@Model.Gender</span></h7><hr>
                             <table class="table table-bordered">
                                 <tbody>
                                     <tr>
