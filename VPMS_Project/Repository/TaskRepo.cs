@@ -50,6 +50,7 @@ namespace VPMS_Project.Repository
                               ActualStartDateTime=b.StartDateTime,
                               ActualEndDateTime=b.EndDateTime,
                               TakenHours=b.TotalHours,
+                              BreakHours=b.BreakHours,
                               LastUpdate = a.LastUpdate,
                               CreatedDate = a.CreatedDate,
                               Description = a.Description
@@ -123,6 +124,7 @@ namespace VPMS_Project.Repository
                              AppliedDate=a.AppliedDate,
                              ActualStartDateTime=a.StartDateTime,
                              ActualEndDateTime=a.EndDateTime,
+                             BreakHours=a.BreakHours,
                              TotalHours=a.TotalHours,
                              EmployeesId=a.EmployeesId,
                              TaskId=a.TaskId,
@@ -132,27 +134,51 @@ namespace VPMS_Project.Repository
                           }).ToListAsync();
         }
 
-        public async Task<int> TImeSheetTaskInsert(int id, DateTime Start, DateTime End, Double TotalHours)
+        public async Task<int> TImeSheetTaskInsert(int id, DateTime Start, DateTime End)
         {
 
-            var taskInfo = await _context.Task.FindAsync(id);
-            var task = new TimeSheetTask()
+            var taskInfo = await _context.Task.FindAsync(id);  
+            var info = _context.TimeSheetTask.SingleOrDefault(x => (x.TaskId == id) && (x.AppliedDate == Start.Date) && (x.EmployeesId == taskInfo.EmployeesId));          
+
+            if (info == null)
             {
-                AppliedDate=Start.Date,
-                StartDateTime=Start,
-                EndDateTime=End,
-                TotalHours=TotalHours,
-                EmployeesId=taskInfo.EmployeesId,
-                TaskId=id
+                TimeSpan differ = (TimeSpan)(End - Start);
+                Double TotalHours = Math.Round((Double)differ.TotalHours, 2);
+                var task = new TimeSheetTask()
+                {
+                    AppliedDate = Start.Date,
+                    StartDateTime = Start,
+                    EndDateTime = End,
+                    TotalHours = TotalHours,
+                    BreakHours=0,
+                    EmployeesId = taskInfo.EmployeesId,
+                    TaskId = id
 
-            };
+                };
 
-            await _context.TimeSheetTask.AddAsync(task);
-            await _context.SaveChangesAsync();
+                await _context.TimeSheetTask.AddAsync(task);
+                await _context.SaveChangesAsync();
+                return task.Id;
+            }
+            else
+            {
+                TimeSpan differ1 = (TimeSpan)(End - info.StartDateTime);
+                Double TotalHours = Math.Round((Double)differ1.TotalHours, 2);
 
-            return task.Id;
+                TimeSpan differ2 = (TimeSpan)(Start - info.EndDateTime);
+                Double breakTime = Math.Round((Double)differ2.TotalHours, 2);
+                Double TotalBreakHours= info.BreakHours + breakTime;
+                Double TotalEffort = TotalHours - TotalBreakHours;
+
+                info.BreakHours = TotalBreakHours;
+                info.EndDateTime = End;
+                info.TotalHours = TotalEffort;
 
 
+                _context.Entry(info).State = EntityState.Modified;
+                await _context.SaveChangesAsync();
+                return info.Id;
+            }
         }
 
         public async Task<TaskModel> GetTaskAsync(int id)
@@ -179,6 +205,7 @@ namespace VPMS_Project.Repository
                             AllocatedHours=b.AllocatedHours,
                             ActualStartDateTime=a.StartDateTime,
                             ActualEndDateTime=a.EndDateTime,
+                            BreakHours=a.BreakHours,
                             TotalHours=a.TotalHours,
 
 
@@ -218,6 +245,7 @@ namespace VPMS_Project.Repository
                               EmpName=c.EmpFName+" "+c.EmpLName,
                               ActualStartDateTime = a.StartDateTime,
                               ActualEndDateTime = a.EndDateTime,
+                              BreakHours=a.BreakHours,
                               TotalHours = a.TotalHours,
 
 
@@ -225,6 +253,7 @@ namespace VPMS_Project.Repository
                   .ToListAsync();
 
         }
+
 
     }
 }

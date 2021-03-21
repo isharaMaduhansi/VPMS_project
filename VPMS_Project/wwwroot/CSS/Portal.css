@@ -1,1 +1,81 @@
-﻿
+﻿#b1 {
+    background-image: url('/images/parallax.jpg');
+    background-repeat: no-repeat;
+    position: center;
+    background-size: 100% 100%;
+    height: 1050px;
+    width: 90%;
+    max-width: 100%
+}
+
+.navbar {
+    width: 111%;
+    line-height: 25px;
+    background-color: #173A47
+}
+
+#f2 {
+    font-size: 15pt;
+    color: white;
+    font-family: 'Bell MT';
+    font-weight: bold;
+    margin-left: 20px
+}
+
+.bd-footer {
+    background-color: #173A47;
+    position: absolute;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px
+}
+
+.s1 {
+    margin-top: 20px;
+    margin-bottom: 100px
+}
+
+.card {
+    opacity: 0.4;
+    border-radius: 5%;
+    margin-left: 100px;
+    margin-top: 40px;
+    margin-bottom: 100px;
+    height: 100px;
+    width: 300px;
+    background-color: black
+}
+
+.f1 {
+    font-size: 16pt;
+    font-family: Cambria;
+}
+
+#track {
+    width: 80%;
+    margin-left: 8%;
+    background: linear-gradient(to left, #607d8b, #173A47)
+}
+
+#play, #stop, #reset {
+    background: linear-gradient(45deg, #173A47,#607d8b);
+}
+
+#canvas {
+    background-color: white
+}
+
+.c2 {
+    margin-left: 16%;
+    font-size: 12pt;
+    font-weight: bold;
+    font-family: 'Cambria'
+}
+
+.a {
+    font-size: 14pt;
+    line-height: 40px;
+    font-family: 'Cambria';
+    background: linear-gradient(45deg, #173A47,#607d8b);
+    color: white
+}

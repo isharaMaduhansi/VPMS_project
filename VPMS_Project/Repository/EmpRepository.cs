@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using VPMS_Project.Data;
-using VPMS_Project.Enums;
 using VPMS_Project.Models;
 
 namespace VPMS_Project.Repository
@@ -17,7 +16,6 @@ namespace VPMS_Project.Repository
         {
             _context = context;
         }
-
 
         public async Task<List<EmpModel>> GetActiveEmps()
         {

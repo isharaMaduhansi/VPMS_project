@@ -32,6 +32,7 @@
                 <th scope="row">Allocated hours </th>
                 <th scope="row">Actual Start Date </th>
                 <th scope="row">Actual End Date </th>
+                <th scope="row">Break Hours </th>
                 <th scope="row">Total hours </th>
             </tr>
         </thead>
@@ -55,6 +56,14 @@
                 <td scope="row">@total1 </td>
                 <td scope="row" class="text-center">@task.ActualStartDateTime.Day/@task.ActualStartDateTime.Month/@task.ActualStartDateTime.Year <br> @task.ActualStartDateTime.TimeOfDay</td>
                 <td scope="row" class="text-center">@task.ActualEndDateTime.Day/@task.ActualEndDateTime.Month/@task.ActualEndDateTime.Year <br> @task.ActualEndDateTime.TimeOfDay</td>
+                @{
+                    var timeSpan3 = TimeSpan.FromHours(task.BreakHours);
+                    int hh3 = timeSpan3.Hours;
+                    int mm3 = timeSpan3.Minutes;
+                    String total3 = hh3 + " h " + mm3 + " min";
+                }
+
+                <td scope="row">@total3 </td>
 
                 @{
                     var timeSpan2 = TimeSpan.FromHours(task.TakenHours);

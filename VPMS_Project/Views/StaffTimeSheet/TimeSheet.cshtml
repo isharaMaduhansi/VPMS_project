@@ -19,19 +19,22 @@
         </ol>
     </div>
 
-    <p style="text-align:left;">
-        <h1 class="display-4">Daily Time Sheet</h1>
-        <span style="float:right;">
-            @{Html.BeginForm("CreateDocument", "StaffTimeSheet", FormMethod.Get);
-                {
-                 <input type="submit" value="View Time Sheet" style="width:150px;height:27px" formtarget="_blank" /> 
-                }
-                Html.EndForm();
+    <div style="display: flex; justify-content: space-between;">
+        <div  class="float-left">
+            <h1 class="display-4">Daily Time Sheet</h1>
+        </div>
+        <div class="float-right mt-5 mr-5">
+            @*@{Html.BeginForm("CreateDocument", "StaffTimeSheet", FormMethod.Get);
+            {
+             <input type="submit" value="View Time Sheet" style="width:150px;height:27px" formtarget="_blank" />
             }
+            Html.EndForm();
+        }*@
+            <a asp-controller="StaffTimeSheet" asp-action="ViewTimeS" class="btn btn-outline-dark btn-block">View Time Sheets</a>
 
-
-        </span>
-    </p>
+        </div>
+  
+        </div>
     <br>
     <br>
     <div class="row">
@@ -56,6 +59,7 @@
                                 <th scope="col">Allocated Hours</th>
                                 <th scope="col">Start Time</th>
                                 <th scope="col">End Time</th>
+                                <th scope="col">Break Hours</th>
                                 <th scope="col">Total Hours</th>
                             </tr>
                         </thead>
@@ -79,22 +83,34 @@
                             @foreach (var task in Model)
                             {
 
-                                <tr class="text-white">
+                        <tr class="text-white">
 
-                                    <td scope="row">@task.Name</td>
-                                    <td>@task.AllocatedHours</td>
-                                    <td>@task.ActualStartDateTime</td>
-                                    <td>@task.ActualEndDateTime</td>
-                                    @{
-                                        var timeSpan1 = TimeSpan.FromHours(task.TotalHours);
-                                        int hh1 = timeSpan1.Hours;
-                                        int mm1 = timeSpan1.Minutes;
-                                        String total = hh1 + " h " + mm1 + " min";
+                            <td scope="row">@task.Name</td>
+                            <td>@task.AllocatedHours</td>
+                            @{
+                                String start = string.Format("{0:hh:mm:ss tt}", task.ActualStartDateTime);
+                                String end = string.Format("{0:hh:mm:ss tt}", task.ActualEndDateTime);
+                            }
+                            <td>@start</td>
+                            <td>@end</td>
+                            @{
+                                var timeSpan2 = TimeSpan.FromHours(task.BreakHours);
+                                int hh2 = timeSpan2.Hours;
+                                int mm2 = timeSpan2.Minutes;
+                                String total2 = hh2 + " h " + mm2 + " min";
+                            }
+                            <td>@total2</td>
+
+                            @{
+                                var timeSpan1 = TimeSpan.FromHours(task.TotalHours);
+                                int hh1 = timeSpan1.Hours;
+                                int mm1 = timeSpan1.Minutes;
+                                String total = hh1 + " h " + mm1 + " min";
 
 
-                                    }
-                                    <td>@total</td>
-                                </tr>
+                            }
+                            <td>@total</td>
+                        </tr>
                             }
                         </tbody>
                     </table>

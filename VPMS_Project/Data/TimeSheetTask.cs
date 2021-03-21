@@ -16,6 +16,8 @@ namespace VPMS_Project.Data
 
         public DateTime EndDateTime { get; set; }
 
+        public double BreakHours { get; set; }
+
         public double TotalHours { get; set; }
 
         public int EmployeesId { get; set; }

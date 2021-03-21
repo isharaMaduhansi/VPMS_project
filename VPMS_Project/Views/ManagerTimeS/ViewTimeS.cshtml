@@ -4,7 +4,7 @@
 
 }
 @model IEnumerable<TimeSheetTaskModel>
-    <link href="~/CSS/Manager.css" rel="stylesheet" />
+    <link href="~/CSS/Manager.css" rel="stylesheet"/>
     <div class="content">
         <br>
         <div class="navbar">
@@ -16,8 +16,8 @@
         </div>
         <hr>
         <div class="row">
-            <div class="col-md-4 col-lg-4 col-sm-12 ml-3 mr-lg-5">
-                <div class="jumbotron jumbotron-fluid" style="height:400px">
+            <div class="col-md-4 col-lg-4 col-sm-12 ">
+                <div class="jumbotron jumbotron-fluid" style="height:400px;background-color:rgba(172, 203, 222, 0.27)">
 
                     <p class="lead text-center pb-3">Select an employee and a date to view time sheet.</p>
                     <br>
@@ -36,7 +36,7 @@
                 <br>
 
             </div>
-            <div class="col-md-7 col-lg-7 col-sm-12" style="background-image:url('/images/Background.jpg');">
+            <div class="col-md-8 col-lg-8 col-sm-12" style="background-image:url('/images/Background.jpg');">
                 @if (ViewBag.Empty == true)
                 {
                     <br>
@@ -49,58 +49,73 @@
                 }
                 else
                 {
-                    <div class="c2 card text-center text-white">
-                        <br>
-                        <h4 class="container" style="text-align:center;border-color:black;">
-                            Daily Time Sheet<br>
-                            <span style="font-size:13pt"> @ViewBag.Date.Day-@ViewBag.Date.Month-@ViewBag.Date.Year</span>
+                    <div class="card text-center" style="border:5px solid;border-color:lightgray;width:100%;background-color:white;font-family:Cambria">
+                        <div class="row ml-5 mr-5" style="background-color:white">
+                            <div class="col-md-2">
+                                <img src="~/images/bell.jpg" height="120" width="120" />
+                            </div>
+                            <div class="col-md-4 float-left" style="border-color:black;">
+                                <br>
+                                <h4>
+                                    Daily Time Sheet<br>
+                                    <span style="font-size:13pt"> @ViewBag.Date.Day-@ViewBag.Date.Month-@ViewBag.Date.Year</span>
 
-                        </h4>
-                        <br>
-                        <div class="card-body">
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr class="text-center text-white">
-                                            <th scope="col">Task</th>
-                                            <th scope="col">Allocated Hours</th>
-                                            <th scope="col">Start Time</th>
-                                            <th scope="col">End Time</th>
-                                            <th scope="col">Total Hours</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach (var task in Model)
-                                        {
-                                            <tr class="text-white">
-                                                <td scope="row">@task.Name</td>
-                                                <td>@task.AllocatedHours</td>
-                                                @{
-                                                    String start = string.Format("{0:hh:mm:ss tt}", task.ActualStartDateTime);
-                                                    String end = string.Format("{0:hh:mm:ss tt}", task.ActualEndDateTime);
-                                                }
-                                                <td>@start</td>
-                                                <td>@end</td>
-                                                @{
-                                                    var timeSpan1 = TimeSpan.FromHours(task.TotalHours);
-                                                    int hh1 = timeSpan1.Hours;
-                                                    int mm1 = timeSpan1.Minutes;
-                                                    String total = hh1 + " h " + mm1 + " min";
-                                                }
-                                                <td>@total</td>
-                                            </tr>
-                                        }
-                                        <tr class="text-white" style="font-size:15pt">
-                                            <td colspan="4" class="text-white">Total Spent Hours</td>
+                                </h4>
+                            </div>
+                        </div>
+                        <hr style="border-width: 10px;">
+                        <div class="card-body" style="border-width:20px;width:100%">
+                            <table class="table table-striped" style="background-color:rgba(229, 231, 231, 0.56)">
+                                <thead>
+                                    <tr class="text-center">
+                                        <th scope="col">Task</th>
+                                        <th scope="col">Start Time</th>
+                                        <th scope="col">End Time</th>
+                                        <th scope="col">Break Hours</th>
+                                        <th scope="col">Total Hours</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var task in Model)
+                                    {
+                                        <tr style="line-height:40px">
+                                            <td scope="row">@task.Name</td>
                                             @{
-                                                var timeSpan2 = TimeSpan.FromHours(ViewBag.TotalHours);
-                                                int hh2 = timeSpan2.Hours;
-                                                int mm2 = timeSpan2.Minutes;
-                                                String total2 = hh2 + " h " + mm2 + " minutes";
+                                                String start = string.Format("{0:hh:mm:ss tt}", task.ActualStartDateTime);
+                                                String end = string.Format("{0:hh:mm:ss tt}", task.ActualEndDateTime);
                                             }
-                                            <td>@total2</td>
+                                            <td>@start</td>
+                                            <td>@end</td>
+                                            @{
+                                                var timeSpan3 = TimeSpan.FromHours(task.BreakHours);
+                                                int hh3 = timeSpan3.Hours;
+                                                int mm3 = timeSpan3.Minutes;
+                                                String total3 = hh3 + " h " + mm3 + " min";
+                                            }
+                                            <td>@total3</td>
+
+
+                                            @{
+                                                var timeSpan1 = TimeSpan.FromHours(task.TotalHours);
+                                                int hh1 = timeSpan1.Hours;
+                                                int mm1 = timeSpan1.Minutes;
+                                                String total = hh1 + " h " + mm1 + " min";
+                                            }
+                                            <td>@total</td>
                                         </tr>
-                                    </tbody>
-                                </table>
+                                    }
+                                    <tr style="font-size:15pt">
+                                        <td colspan="4">Total Spent Hours</td>
+                                        @{
+                                            var timeSpan2 = TimeSpan.FromHours(ViewBag.TotalHours);
+                                            int hh2 = timeSpan2.Hours;
+                                            int mm2 = timeSpan2.Minutes;
+                                            String total2 = hh2 + " h " + mm2 + " minutes";
+                                        }
+                                        <td>@total2</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 }

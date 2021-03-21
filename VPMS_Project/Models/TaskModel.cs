@@ -30,6 +30,8 @@ namespace VPMS_Project.Models
 
         public double TakenHours { get; set; }
 
+        public double BreakHours { get; set; }
+
         public DateTime CreatedDate { get; set; }
 
         public DateTime LastUpdate { get; set; }

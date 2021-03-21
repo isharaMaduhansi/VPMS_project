@@ -14,19 +14,42 @@ namespace VPMS_Project.Controllers
         private readonly IEmpRepository _empRepository = null;
         private readonly JobRepository _jobRepository = null;
         private readonly IWebHostEnvironment _webHostEnvironment;
-        private readonly LeaveRepository _leaveRepository = null;
+        private readonly TaskRepo _taskRepository = null;
 
-        public AdminTimeSController(IEmpRepository empRepository, IWebHostEnvironment webHostEnvironment, LeaveRepository leaveRepository, JobRepository jobRepository)
+        public AdminTimeSController(IEmpRepository empRepository, IWebHostEnvironment webHostEnvironment, TaskRepo taskRepository, JobRepository jobRepository)
         {
             _empRepository = empRepository;
             _jobRepository = jobRepository;
             _webHostEnvironment = webHostEnvironment;
-            _leaveRepository = leaveRepository;
+            _taskRepository = taskRepository;
         }
-        public async Task<IActionResult> ViewTimeSheetAsync()
+
+        [HttpGet]
+        public async Task<IActionResult> ViewTimeSheet(DateTime Date, int Search)
         {
             ViewBag.Emps = new SelectList(await _empRepository.GetEmps(), "EmpId", "EmpFullName");
-            return View();
+            if (Date == DateTime.MinValue && Search == 0)
+            {
+                ViewBag.Empty = true;
+                return View();
+            }
+            else
+            {
+                ViewBag.Date = Date;
+
+                ViewBag.TotalHours = _taskRepository.GetTotalHours(Search, Date);
+                var data = await _taskRepository.GetTimeSheet(Search, Date);
+                if (data != null)
+                {
+                    ViewBag.Empty = false;
+                    return View(data);
+                }
+                else
+                {
+                    ViewBag.Empty = true;
+                    return View();
+                }
+            }
         }
     }
 }

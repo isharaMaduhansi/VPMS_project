@@ -1,9 +1,7 @@
 ﻿@{
-    Layout = "_TimeSLayout";
-    ViewData["Title"] = "View Time Sheet";
+    Layout = "_Layout";
+    ViewData["Title"] = "Time Sheet";
 }
-
-<link href="~/CSS/MenuStyleSheet.css" rel="stylesheet" />
 
 @model IEnumerable<TimeSheetTaskModel>
 <style>
@@ -13,7 +11,7 @@
     }
 
     .jumbotron {
-        height: 300px
+        height: 250px
     }
 
     .lead {
@@ -26,7 +24,7 @@
         width: 100%
     }
 
-    #input {
+    #date {
         height: 45px;
         margin-top: 20px;
         width: 100%
@@ -43,26 +41,32 @@
         font-family: Cambria;
         border-bottom-width: 10px;
     }
-</style>
 
-<div class="ml-5 mr-5">
-    <div class="jumbotron jumbotron-fluid" style="background-color:rgba(172, 203, 222, 0.27)">
+    </style>
+
+<div class="content">
+    <br>
+    <div aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="EmployeeHome" asp-action="Portal">Home</a></li>
+            <li class="breadcrumb-item"><a asp-controller="StaffTimeSheet" asp-action="TimeSheet">Time sheet</a></li>
+            <li class="breadcrumb-item active" aria-current="page">View Time Sheet</li>
+
+        </ol>
+    </div>
+
+    <div class="jumbotron jumbotron-fluid" style="background-color: rgba(172, 203, 222, 0.27)">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-lg-6 col-sm-12">
                     <h1 class="display-4">View Time Sheet</h1>
-                    <p class="lead">Select a date and view daily Time Sheet .</p>
+                    <p class="lead">Select a date and view your daily Time Sheet .</p>
                 </div>
                 <div class="col-md-6 col-lg-6 col-sm-12">
-                    <form class="form-inline" method="get" asp-action="ViewTimeSheet" asp-controller="AdminTimeS">
+                    <form class="form-inline" method="get" asp-action="ViewTimeS" asp-controller="StaffTimeSheet">
                         <div class="row">
                             <div class="col-md-12 col-lg-12 col-sm-12 mr-5">
-                                <select name="Search" id="input" class="form-control custom-select" asp-items="ViewBag.Emps" required>
-                                    <option value="">Select an Employee</option>
-                                </select>
-                            </div>
-                            <div class="col-md-12 col-lg-12 col-sm-12 mr-5">
-                                <input name="Date" id="input" type="Date" class="form-control" placeholder="select day" value="dd/mm/yyyy" required />
+                                <input name="Date" id="date" type="Date" class="form-control" placeholder="select day" value="dd/mm/yyyy" required />
                             </div>
                             <div class="col-md-12 col-lg-12 col-sm-12 mr-5">
                                 <input id="a" class="btn btn-success" type="submit" value="View" />
@@ -79,21 +83,21 @@
         <div style="margin-left:20%;font-size:15pt;font-family:Cambria">
 
             <img src="~/images/download.png" style="width:30%;height:auto;" />
-            View Time Sheets Entered so far
+            View your Time Sheets Entered so far
         </div>
 
     }
     else
     {
-        {
-            Html.BeginForm("CreateDocument", "StaffTimeSheet", FormMethod.Get);
+       {Html.BeginForm("CreateDocument", "StaffTimeSheet", FormMethod.Get);
             {
                 <input type="submit" value="Get As Pdf" style="width:150px;height:27px;margin-left:10%" formtarget="_blank" />
             }
             Html.EndForm();
         }
         <br>
-        <div class="c2 card text-center" style="border:5px solid;border-color:ThreeDHighlight;width:80%;margin-left:10%">
+        <div class="c2 card text-center" style="border:5px solid;border-color:lightgray;width:80%;margin-left:10%">
+
             <div class="row ml-5 mr-5" style="background-color:white">
                 <div class="col-md-2">
                     <img src="~/images/bell.jpg" height="120" width="120" />
@@ -109,7 +113,7 @@
             </div>
             <hr style="border-width: 10px;">
             <div class="card-body" style="border-width:20px;width:100%">
-                <table class="table table-striped" style="background-color:rgba(224, 225, 226, 0.43)">
+                <table class="table table-striped" style="background-color:rgba(211, 214, 214, 0.49)">
                     <thead>
                         <tr class="text-center">
                             <th scope="col">Task</th>

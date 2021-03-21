@@ -21,6 +21,8 @@ namespace VPMS_Project.Models
 
         public DateTime ActualEndDateTime { get; set; }
 
+        public double BreakHours { get; set; }
+
         public double TotalHours { get; set; }
 
         public int EmployeesId { get; set; }

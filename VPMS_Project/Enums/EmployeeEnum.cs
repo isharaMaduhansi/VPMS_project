@@ -8,7 +8,7 @@ namespace VPMS_Project.Enums
 {
     public enum EmployeeEnum
     {
-        [Display(Name ="CEO")]
+        [Display(Name = "CEO")]
         CEO,
 
         [Display(Name = "Project Manager")]
@@ -23,5 +23,5 @@ namespace VPMS_Project.Enums
         QA,
         BA
 
- }
+    }
 }

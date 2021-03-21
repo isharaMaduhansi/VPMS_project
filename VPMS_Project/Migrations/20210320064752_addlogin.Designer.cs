@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VPMS_Project.Data;
 
 namespace VPMS_Project.Migrations
 {
     [DbContext(typeof(EmpStoreContext))]
-    partial class EmpStoreContextModelSnapshot : ModelSnapshot
+    [Migration("20210320064752_addlogin")]
+    partial class addlogin
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -537,9 +539,6 @@ namespace VPMS_Project.Migrations
 
                     b.Property<DateTime>("AppliedDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<double>("BreakHours")
-                        .HasColumnType("float");
 
                     b.Property<int>("EmployeesId")
                         .HasColumnType("int");
